@@ -4,10 +4,10 @@ namespace IDAL
 {
     namespace DO
     {
-        public struct weightCatagory
+        public struct WeightCategory
         {
-            public enum weight { light, medium, heavy }
-            public weight Myweight { get; set; }
+            public enum Weight { light, medium, heavy }
+            public Weight Myweight { get; set; }
             
         }
     }
