@@ -9,6 +9,7 @@ namespace ConsoleUI
         /// </summary>
         static void printMainMenu()
         {
+            #region printing menue
             Console.WriteLine("1. Adding options: " +
                 "\n - adding base station to the stations list" +
                 "\n - adding a drone to the existing drones list" +
@@ -37,7 +38,9 @@ namespace ConsoleUI
                 "\n - Displaying packages not assigned yet to a drone" +
                 "\n - Displaying base stations with unoccupied charging stations");
             Console.WriteLine("5. Exit");
+        #endregion
         }
+        
 
         static void Main(string[] args)
         {

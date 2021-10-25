@@ -3,21 +3,13 @@
 
 namespace IDAL
 {
-    namespace DO
-    {
-        public class Class1
-        { }
-        public struct Customer
-        {
-             
-        }
-
+    
         /// <summary>
         /// Example enum to show where to put enums as defined in exercise 1.
         /// </summary>
         enum example
         {
-
+            
         }
     }
 
