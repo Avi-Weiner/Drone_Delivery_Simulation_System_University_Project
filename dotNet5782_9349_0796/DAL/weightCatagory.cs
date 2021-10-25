@@ -7,7 +7,7 @@ namespace IDAL
         public struct weightCatagory
         {
             public enum weight { light, medium, heavy }
-            weight Myweight { get; set; }
+            public weight Myweight { get; set; }
             
         }
     }
