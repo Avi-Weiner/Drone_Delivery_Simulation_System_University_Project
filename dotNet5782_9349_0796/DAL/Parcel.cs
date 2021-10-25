@@ -11,7 +11,7 @@ namespace IDAL
             public int SenderId { get; set; }
             public WeightCategory Weight { get; set; }
 
-            //Priorities Priority; Priority needs to be defined
+            public Priority Priority { get; set; }
             public DateTime DateTime { get; set; }
             public int DroneId { get; set; }
             public DateTime Scheduled { get; set; }
