@@ -10,13 +10,18 @@ namespace DAL
     {
         public class DalObject
         {
+            //creates a DAL object by intializing values accordign to Initialize
+            DalObject()
+            {
+                DataSource.Initialize();//constructor for DalObjects
+            }
             //I think the following methods need to be added.
             //Adding to lists methods
 
             //adding base station to the stations list
             public void AddStation()
             {
-
+                DataSource.StationList[]
             }
 
             //adding a drone to the existing drones list
