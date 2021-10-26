@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
-{
     namespace DalObject
     {
         public class DalObject
@@ -21,7 +19,7 @@ namespace DAL
             //adding base station to the stations list
             public void AddStation()
             {
-                DataSource.StationList[]
+                DataSource.StationList
             }
 
             //adding a drone to the existing drones list
@@ -87,4 +85,4 @@ namespace DAL
         }
     }
 }
-}
+
