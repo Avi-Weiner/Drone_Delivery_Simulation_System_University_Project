@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DalObject
 {
-    class DataSource
+    public class DataSource
     {
         class Config
         {
@@ -32,10 +32,10 @@ namespace DalObject
             //static int PackagesId;
         }
 
-        static IDAL.DO.Drone[] DroneList = new IDAL.DO.Drone[10];
-        static IDAL.DO.Station[] StationList = new IDAL.DO.Station[5];
-        static IDAL.DO.Customer[] CustomerList = new IDAL.DO.Customer[100];
-        static IDAL.DO.Parcel[] ParcelList = new IDAL.DO.Parcel[1000];
+        public static IDAL.DO.Drone[] DroneList = new IDAL.DO.Drone[10];
+        public static IDAL.DO.Station[] StationList = new IDAL.DO.Station[5];
+        public static IDAL.DO.Customer[] CustomerList = new IDAL.DO.Customer[100];
+        public static IDAL.DO.Parcel[] ParcelList = new IDAL.DO.Parcel[1000];
 
         /// <summary>
         /// Initialie all the arrays according to exercise 1 specs.
@@ -47,26 +47,35 @@ namespace DalObject
             //2 base stations
             for (int i = 0; i < 2; i++)
             {
-                //StationList[i].Id = rand.Next(10000,99999);
-
-                StationList[i].Id = Config.FreeStationi;
-                //Random double latitude between -90 and 90
-                StationList[i].Latitude = rand.NextDouble() * 180 - 90;
+                StationList[i].Id = StationList[i].Name = Config.FreeStationi;
                 //Random double longitude between -180 and 180
                 StationList[i].Longitude = rand.NextDouble() * 360 - 180;
-                
-            //public int Id { get; set; }
-            //public int Name { get; set; }
-            //public double Longitude { get; set; }
-            //public double Latitude { get; set; }
-            //public int ChargeSlots { get; set; }
-                //increment 
+                //Random double latitude between -90 and 90
+                StationList[i].Latitude = rand.NextDouble() * 180 - 90;
+                //Random int between 2 and 10
+                StationList[i].ChargeSlots = rand.Next(2, 10);
+                //Increment to the new emtpy station index.
+                Config.FreeStationi++;
             }
+
             //5 drones
             for (int i = 0; i < 5; i++)
             {
+                DroneList[i].Id = Config.FreeDronei;
+                DroneList[i].Model = "";
 
-            }
+
+
+
+        //public int Id { get; set; }
+        //public string Model { get; set; }
+        //public WeightCategory MaxWeight { get; set; }
+
+
+        //public DroneStatus Status { get; set; }
+        //public double battery { get; set; }
+
+    }
             //10 customers
             for (int i = 0; i < 10; i++)
             {
