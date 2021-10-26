@@ -47,9 +47,11 @@ namespace DalObject
             //2 base stations
             for (int i = 0; i < 2; i++)
             {
-                StationList[i].Id = rand.Next(10000,99999);
-                
+                //StationList[i].Id = rand.Next(10000,99999);
 
+
+                
+                //increment 
             }
             //5 drones
             for (int i = 0; i < 5; i++)
