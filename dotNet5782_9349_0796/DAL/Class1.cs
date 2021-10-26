@@ -14,10 +14,3 @@ namespace IDAL
     
 }
 
-namespace DalObject
-{
-    public class DataSource
-    {
-
-    }
-}
