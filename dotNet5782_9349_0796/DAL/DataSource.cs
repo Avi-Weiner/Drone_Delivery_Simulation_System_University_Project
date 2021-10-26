@@ -34,8 +34,8 @@ namespace DalObject
             /// <summary>
             /// Next Unique Id tracks the next availbe ID to be given out.
             /// </summary>
-            public static int NextUniqueId { get; set; } = 0;
-            
+            public static int NextUniqueId { get; set; } = 1;
+
         }
 
         public static IDAL.DO.Drone[] DroneList = new IDAL.DO.Drone[10];
@@ -71,7 +71,7 @@ namespace DalObject
                 DroneList[i].Id = Config.NextUniqueId;
                 DroneList[i].Model = "Model T";
                 //Make the weight catagory have a random value between 0 and 2
-                DroneList[i].MaxWeight = (IDAL.DO.WeightCategory)(rand.Next(0,2));
+                DroneList[i].MaxWeight = (IDAL.DO.WeightCategory)(rand.Next(0, 2));
                 //All drones start free.
                 DroneList[i].Status = IDAL.DO.DroneStatus.free;
                 //Max battery
@@ -84,24 +84,39 @@ namespace DalObject
             char letter = 'A'; //Customer names will just be letters of the alphabet, incremented.
             for (int i = 0; i < 10; i++)
             {
-                CustomerList[i].Id = Config.FreeCustomeri;
+                CustomerList[i].Id = Config.NextUniqueId;
                 CustomerList[i].Name = letter.ToString();
                 CustomerList[i].Phone = "000-0000-0000";
-
-                //public int Id { get; set; }
-                //public string Name { get; set; }
-                //public string Phone { get; set; }
-                //public double Longitude { get; set; }
-                //public double Latitude { get; set; }
+                //Random double longitude between -180 and 180
+                CustomerList[i].Longitude = rand.NextDouble() * 360 - 180;
+                //Random double latitude between -90 and 90
+                CustomerList[i].Latitude = rand.NextDouble() * 180 - 90;
 
                 Config.FreeCustomeri++;
-                
+                Config.NextUniqueId++;
             }
+
             //10 packages
             for (int i = 0; i < 10; i++)
             {
+                ParcelList[i].Id = Config.NextUniqueId;
+                ParcelList[i].SenderId = CustomerList[i].Id;
+                //Receiver id of customer i to sender id of customer i + 1
+                //if last package then send to first customer as ran out of customers
+                if (i == 9)
+                    ParcelList[i].ReceiverId = CustomerList[0].Id;
+                else
+                    ParcelList[i].ReceiverId = CustomerList[i + 1].Id;
+                ParcelList[i].Weight = (IDAL.DO.WeightCategory)(rand.Next(0, 2));
+                ParcelList[i].Priority = (IDAL.DO.Priority)(rand.Next(0, 2));
+                ParcelList[i].Requested = DateTime.Now;
+                ParcelList[i].DroneId = 0; //Not picked up yet = 0
+                ParcelList[i].Scheduled = (DateTime.Now).AddDays(5);
+                ParcelList[i].PickedUp = null;
+                ParcelList[i].Delivered = null;
 
             }
+
         }
 
     }
