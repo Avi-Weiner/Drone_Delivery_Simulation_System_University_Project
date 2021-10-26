@@ -30,6 +30,12 @@ namespace DalObject
 
             //Told to include the below field in exercise 1 but I am not sure what it is.
             //static int PackagesId;
+
+            /// <summary>
+            /// Next Unique Id tracks the next availbe ID to be given out.
+            /// </summary>
+            public static int NextUniqueId { get; set; } = 0;
+            
         }
 
         public static IDAL.DO.Drone[] DroneList = new IDAL.DO.Drone[10];
@@ -47,7 +53,7 @@ namespace DalObject
             //2 base stations
             for (int i = 0; i < 2; i++)
             {
-                StationList[i].Id = StationList[i].Name = Config.FreeStationi;
+                StationList[i].Id = StationList[i].Name = Config.NextUniqueId;
                 //Random double longitude between -180 and 180
                 StationList[i].Longitude = rand.NextDouble() * 360 - 180;
                 //Random double latitude between -90 and 90
@@ -56,30 +62,40 @@ namespace DalObject
                 StationList[i].ChargeSlots = rand.Next(2, 10);
                 //Increment to the new emtpy station index.
                 Config.FreeStationi++;
+                Config.NextUniqueId++;
             }
 
             //5 drones
             for (int i = 0; i < 5; i++)
             {
-                DroneList[i].Id = Config.FreeDronei;
+                DroneList[i].Id = Config.NextUniqueId;
                 DroneList[i].Model = "Model T";
-                DroneList[i].MaxWeight = (IDAL.DO.WeightCategory)(i%3);
+                //Make the weight catagory have a random value between 0 and 2
+                DroneList[i].MaxWeight = (IDAL.DO.WeightCategory)(rand.Next(0,2));
+                //All drones start free.
+                DroneList[i].Status = IDAL.DO.DroneStatus.free;
+                //Max battery
+                DroneList[i].battery = 1;
+                Config.FreeDronei++;
+                Config.NextUniqueId++;
+            }
 
-
-
-        //public int Id { get; set; }
-        //public string Model { get; set; }
-        //public WeightCategory MaxWeight { get; set; }
-
-
-        //public DroneStatus Status { get; set; }
-        //public double battery { get; set; }
-
-    }
             //10 customers
+            char letter = 'A'; //Customer names will just be letters of the alphabet, incremented.
             for (int i = 0; i < 10; i++)
             {
+                CustomerList[i].Id = Config.FreeCustomeri;
+                CustomerList[i].Name = letter.ToString();
+                CustomerList[i].Phone = "000-0000-0000";
 
+                //public int Id { get; set; }
+                //public string Name { get; set; }
+                //public string Phone { get; set; }
+                //public double Longitude { get; set; }
+                //public double Latitude { get; set; }
+
+                Config.FreeCustomeri++;
+                
             }
             //10 packages
             for (int i = 0; i < 10; i++)
