@@ -14,19 +14,19 @@ namespace DalObject
             /// <summary>
             /// Index of first free element in DroneList. 
             /// </summary>
-            static int FreeDronei { get; set; } = 0;
+            public static int FreeDronei { get; set; } = 0;
             /// <summary>
             /// Index of first free element in StationList.
             /// </summary>
-            static int FreeStationi { get; set; } = 0;
+            public static int FreeStationi { get; set; } = 0;
             /// <summary>
             /// Index of first free element in CustomerList.
             /// </summary>
-            static int FreeCustomeri { get; set; } = 0;
+            public static int FreeCustomeri { get; set; } = 0;
             /// <summary>
             /// Index of first free element in ParcelList.
             /// </summary>
-            static int FreeParceli { get; set; } = 0;
+            public static int FreeParceli { get; set; } = 0;
 
             //Told to include the below field in exercise 1 but I am not sure what it is.
             //static int PackagesId;
@@ -40,7 +40,7 @@ namespace DalObject
         /// <summary>
         /// Initialie all the arrays according to exercise 1 specs.
         /// </summary>
-        static void Initialize() 
+        public static void Initialize()
         {
             var rand = new Random();
 
@@ -48,10 +48,18 @@ namespace DalObject
             for (int i = 0; i < 2; i++)
             {
                 //StationList[i].Id = rand.Next(10000,99999);
-                
-                   // StationList[i].Id
 
+                StationList[i].Id = Config.FreeStationi;
+                //Random double latitude between -90 and 90
+                StationList[i].Latitude = rand.NextDouble() * 180 - 90;
+                //Random double longitude between -180 and 180
+                StationList[i].Longitude = rand.NextDouble() * 360 - 180;
                 
+            //public int Id { get; set; }
+            //public int Name { get; set; }
+            //public double Longitude { get; set; }
+            //public double Latitude { get; set; }
+            //public int ChargeSlots { get; set; }
                 //increment 
             }
             //5 drones
