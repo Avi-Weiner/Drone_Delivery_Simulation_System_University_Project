@@ -14,19 +14,19 @@ namespace DalObject
             /// <summary>
             /// Index of first free element in DroneList. 
             /// </summary>
-            static int FreeDronei = 0;
+            static int FreeDronei { get; set; } = 0;
             /// <summary>
             /// Index of first free element in StationList.
             /// </summary>
-            static int FreeStationi = 0;
+            static int FreeStationi { get; set; } = 0;
             /// <summary>
             /// Index of first free element in CustomerList.
             /// </summary>
-            static int FreeCustomeri = 0;
+            static int FreeCustomeri { get; set; } = 0;
             /// <summary>
             /// Index of first free element in ParcelList.
             /// </summary>
-            static int FreeParceli = 0;
+            static int FreeParceli { get; set; } = 0;
 
             //Told to include the below field in exercise 1 but I am not sure what it is.
             //static int PackagesId;
@@ -48,7 +48,8 @@ namespace DalObject
             for (int i = 0; i < 2; i++)
             {
                 //StationList[i].Id = rand.Next(10000,99999);
-
+                
+                   // StationList[i].Id
 
                 
                 //increment 
