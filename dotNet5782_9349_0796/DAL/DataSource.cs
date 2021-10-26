@@ -125,12 +125,18 @@ namespace DalObject
 
 
         //        "\n - sending a drone to a charge in a base station" +
-        
         //        "\n   - by changing the drone’s status and adding a record(instance) of" +
         //        "\n     a drone battery charger entity" +
+
         //        "\n   - the station is selected by the user in the main menu(It is" +
         //        "\n     recommended to provide a list of stations to the user)" +
         //        "\n - releasing a drone from charging in a base station");
+        public void ChargeDrone(IDAL.DO.Drone drone, IDAL.DO.DroneCharge)
+        {
+
+        }
+
+        
 
 
 
