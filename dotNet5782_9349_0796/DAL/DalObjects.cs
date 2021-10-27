@@ -269,7 +269,8 @@ namespace DalObject
             DataSource.DroneList[i].battery = 1;
             DataSource.DroneList[i].Status = IDAL.DO.DroneStatus.maintenance;
 
-            //Adding instance of Dronecharger (Need to save this somewhere or it will just get deleted...)
+            //Adding instance of Dronecharger (Need to save this somewhere or it will just get deleted...),
+            //specs unspecific of where to save it so for the meantime it will be deleted
             IDAL.DO.DroneCharger newCharger = new IDAL.DO.DroneCharger();
             newCharger.DroneId = DataSource.DroneList[i].Id;
             newCharger.StationId = DataSource.StationList[j].Id;
