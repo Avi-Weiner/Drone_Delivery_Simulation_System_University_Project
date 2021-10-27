@@ -51,6 +51,8 @@ namespace ConsoleUI
                 printMainMenu();
                 Console.WriteLine("Enter number of option: ");
                 option = Convert.ToInt32(Console.ReadLine());
+
+                }
             }
 
         }
