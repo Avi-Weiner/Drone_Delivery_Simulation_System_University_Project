@@ -70,7 +70,7 @@ namespace ConsoleUI
                         switch(InnerOption)
                         {
                             case 1:
-
+                                
                                 break;
 
                         }
