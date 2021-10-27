@@ -14,7 +14,6 @@ namespace IDAL
             /// number of slots that are free.
             /// </summary>
             public int ChargeSlots { get; set; }
-            
         }
     }
     
