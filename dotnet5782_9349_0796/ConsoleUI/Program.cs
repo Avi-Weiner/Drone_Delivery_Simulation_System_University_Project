@@ -56,6 +56,9 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             int option = 0;
+            int InnerOption;
+            //ID1 and ID2 are for all the ID pickups in the switches
+            int ID1, ID2;
 
             while (option != 5) //Option = 5 for exit
                 {
@@ -66,21 +69,133 @@ namespace ConsoleUI
                 {
                     case 1:
                         PrintAddingMenu();
-                        int InnerOption = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Enter number of option: ");
+                        InnerOption = Convert.ToInt32(Console.ReadLine());
                         switch(InnerOption)
                         {
                             case 1:
+                                DalObject.DalObject.AddStation();
+                                break;
+                            case 2:
+                                DalObject.DalObject.AddDrone();
+                                break;
+                            case 3:
+                                DalObject.DalObject.AddCustomer();
+                                break;
+                            case 4:
+                                DalObject.DalObject.AddPackage();
+                                break;
+                        }  
+                        break;
 
+                    case 2:
+                        PrintUpdatingMenu();
+                        Console.WriteLine("Enter number of option: ");
+                        InnerOption = Convert.ToInt32(Console.ReadLine());
+                        switch (InnerOption)
+                        {
+                            case 1:
+                                Console.WriteLine("Enter Package ID: ");
+                                ID1 = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("Enter Drone ID: ");
+                                ID2 = Convert.ToInt32(Console.ReadLine());
+                                DalObject.DalObject.AssignDroneToPackage(ID1,ID2);
                                 break;
 
+                            case 2:
+                                Console.WriteLine("Enter Package ID: ");
+                                ID1 = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("Enter Drone ID: ");
+                                ID2 = Convert.ToInt32(Console.ReadLine());
+                                DalObject.DalObject.DronePickUp(ID1,ID2);
+                                break;
+
+                            case 3:
+                                Console.WriteLine("Enter package ID: ");
+                                ID1 = Convert.ToInt32(Console.ReadLine());
+                                DalObject.DalObject.PackageDropOff(ID1);
+                                break;
+
+                            case 4:
+                                Console.WriteLine("Enter Drone ID: ");
+                                ID1 = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("Enter Station ID: ");
+                                ID2 = Convert.ToInt32(Console.ReadLine());
+                                DalObject.DalObject.ChargeDrone(ID1,ID2);
+                                break;
+
+                            case 5:
+                                Console.WriteLine("Enter Drone ID: ");
+                                ID1 = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("Enter Station ID: ");
+                                ID2 = Convert.ToInt32(Console.ReadLine());
+                                DalObject.DalObject.ReleaseDrone(ID1, ID2);
+                                break;
                         }
-                            
                         break;
-                    case 2:
-                        break;
+
                     case 3:
+                        PrintDisplayMenu();
+                        Console.WriteLine("Enter number of option: ");
+                        InnerOption = Convert.ToInt32(Console.ReadLine());
+                        switch (InnerOption)
+                        {
+                            case 1:
+                                Console.WriteLine("Enter Station ID: ");
+                                ID1 = Convert.ToInt32(Console.ReadLine());
+                                DalObject.DalObject.DisplayBaseStation(ID1);
+                                break;
+
+                            case 2:
+                                Console.WriteLine("Enter Drone ID: ");
+                                ID1 = Convert.ToInt32(Console.ReadLine());
+                                DalObject.DalObject.DisplayDrone(ID1);
+                                break;
+
+                            case 3:
+                                Console.WriteLine("Enter customer ID: ");
+                                ID1 = Convert.ToInt32(Console.ReadLine());
+                                DalObject.DalObject.DisplayCustomer(ID1);
+                                break;
+
+                            case 4:
+                                Console.WriteLine("Enter Package ID: ");
+                                ID1 = Convert.ToInt32(Console.ReadLine());
+                                DalObject.DalObject.DisplayPackage(ID1);
+                                break;
+                        }
                         break;
+
                     case 4:
+                        PrintListDisplayMenu();
+                        Console.WriteLine("Enter number of option: ");
+                        InnerOption = Convert.ToInt32(Console.ReadLine());
+                        switch (InnerOption)
+                        {
+                            case 1:
+                                DalObject.DalObject.DisplayStationList();
+                                break;
+
+                            case 2:
+                                DalObject.DalObject.DisplayDroneList();
+                                break;
+
+                            case 3:
+                                DalObject.DalObject.DisplayCustomerList();
+                                break;
+
+                            case 4:
+                                DalObject.DalObject.DisplayParcelList();
+                                break;
+
+                            case 5:
+                                DalObject.DalObject.DisplayUnassignedPackages();
+                                break;
+
+                            case 6:
+                                DalObject.DalObject.DisplayFreeChargingStations();
+                                break;
+                        }
                         break;
                 }
                                 
