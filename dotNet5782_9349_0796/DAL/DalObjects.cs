@@ -12,7 +12,7 @@ namespace DalObject
         //creates a DAL object by intializing values accordign to Initialize
         DalObjectClass()
         {
-        DataSource.Initialize();//constructor for DalObjects
+            DataSource.Initialize();//constructor for DalObjects
         }
         //I think the following methods need to be added.
         //Adding to lists methods
@@ -87,7 +87,9 @@ namespace DalObject
             return i;
         }
 
-        //adding base station to the stations list
+        /// <summary>
+        /// adding base station to the stations list
+        /// </summary>
         public void AddStation()
         {
             if (DataSource.GetFreeStationI() < 5)
@@ -110,7 +112,9 @@ namespace DalObject
 
         }
 
-        //adding a drone to the existing drones list
+        /// <summary>
+        /// adding a drone to the existing drones list
+        /// </summary>
         public void AddDrone()
         {
             int ThisDroneNumber = DataSource.GetFreeDroneI();
@@ -134,8 +138,9 @@ namespace DalObject
             }
         }
 
-
-        //adding a new customer to the customers list
+        /// <summary>
+        /// adding a new customer to the customers list
+        /// </summary>
         public void AddCustomer()
         {
             int ThisCustomerNumber = DataSource.GetFreeCustomerI();
@@ -153,8 +158,9 @@ namespace DalObject
             }
         }
 
-
-        //receiving a package to deliver
+        /// <summary>
+        /// receiving a package to deliver
+        /// </summary>
         public void AddPackage()
         {
             if (DataSource.GetFreeParcelI() < 1000) // 1000 max customers
@@ -188,9 +194,11 @@ namespace DalObject
             }
         }
 
-
-        //Updating existing data
-        //assigning a package to a drone" +
+        /// <summary>
+        /// Assigning a package to a drone
+        /// </summary>
+        /// <param name="PackageId"></param>
+        /// <param name="DroneId"></param>
         public void AssignDroneToPackage(int PackageId, int DroneId)
         {   
             //Checks if drone Id is valid
@@ -204,7 +212,11 @@ namespace DalObject
         }
 
 
-        //        "\n - collecting a package by a drone" +
+        /// <summary>
+        /// Receives Drone with ID DroneId and picks up package with ID PackageId
+        /// </summary>
+        /// <param name="PackageId"></param>
+        /// <param name="DroneId"></param>
         public void DronePickUp(int PackageId, int DroneId)
         {
             int i = GetDrone(DroneId);
@@ -218,7 +230,10 @@ namespace DalObject
             }
         }
 
-        //        "\n - providing a package to a customer" +
+        /// <summary>
+        /// Receives a package from Id PackageId and "drops it off" with a customer
+        /// </summary>
+        /// <param name="PackageId"></param>
         public void PackageDropOff(int PackageId)
         {
             int p = GetPackage(PackageId);
@@ -291,7 +306,10 @@ namespace DalObject
                + "\nBase Station # of Charging slots: " + DataSource.StationList[i].ChargeSlots);
         }
 
-        //display base station
+        /// <summary>
+        /// Prints the base station from the given ID
+        /// </summary>
+        /// <param name="Id"></param>
         public void DisplayBaseStation(int Id)
         {
             int p = GetStation(Id);
@@ -311,12 +329,20 @@ namespace DalObject
                 + "\nDrone Battery: " + DataSource.DroneList[i].battery);
         }
 
+        /// <summary>
+        /// Prints the details of the drone with the given ID
+        /// </summary>
+        /// <param name="Id"></param>
         public void DisplayDrone(int Id)
         {
             int p = GetDrone(Id);
             PrintDrone(p);
         }
 
+        /// <summary>
+        /// Prints a customer at indexx in CustomerList
+        /// </summary>
+        /// <param name="i"></param>
         public void PrintCustomer(int i)
         {
             Console.WriteLine("Customer ID: " + DataSource.CustomerList[i].Id
@@ -326,6 +352,10 @@ namespace DalObject
                 + "\nCustomer Latitude: " + DataSource.CustomerList[i].Latitude);
         }
 
+        /// <summary>
+        /// Prints the customer with ID Id
+        /// </summary>
+        /// <param name="Id"></param>
         public void DisplayCustomer(int Id)
         {
             int p = GetCustomer(Id);
