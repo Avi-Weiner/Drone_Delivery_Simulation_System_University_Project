@@ -47,8 +47,7 @@ namespace DalObject
         //left. Mainly used for public access by DalObjects.
         //!!!!It is the responsibilty of the user to use the set method as well
         //when allocating a new station/drone/custoemr/parcel/ID
-        public static int GetFreeStationI() { return Config.FreeStationi; }
-        public static int GetFreeDroneI() { return Config.FreeDronei; }
+        public static int GetFreeStationI() { return Config.FreeStationi; }  
         public static int GetFreeCustomerI() { return Config.FreeCustomeri; }
         public static int GetFreeParcelI() { return Config.FreeParceli; }
         public static int GetNextUniqueID() {  return Config.NextUniqueId; }
