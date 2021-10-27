@@ -20,16 +20,25 @@ using System.Threading.Tasks;
             //adding base station to the stations list
             public void AddStation()
             {
-            int ThisStationNumber = DataSource.GetFreeStationI();
-            var rand = new Random();
-            DataSource.StationList[ThisStationNumber].Id = DataSource.GetNextUniqueID();
-            DataSource.StationList[ThisStationNumber].Longitude = rand.NextDouble() *360 - 180;
-            DataSource.StationList[ThisStationNumber].Latitude =  rand.NextDouble() * 180 - 90;
-            DataSource.StationList[ThisStationNumber].ChargeSlots = rand.Next(2,10);
-            DataSource.SetNextUniqueID();
-            DataSource.SetFreeCustomer();
+                if (DataSource.GetFreeStationI() < 5)
+                {
+                    int ThisStationNumber = DataSource.GetFreeStationI();
+                    DataSource.StationList[ThisStationNumber].Id = DataSource.GetNextUniqueID();
+                    Console.WriteLine("Enter Longitude: ");
+                    DataSource.StationList[ThisStationNumber].Longitude = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Enter Latitude: ");
+                    DataSource.StationList[ThisStationNumber].Latitude = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Enter number of charge slots: ");
+                    DataSource.StationList[ThisStationNumber].ChargeSlots = Convert.ToInt32(Console.ReadLine());
+                    DataSource.SetNextUniqueID();
+                    DataSource.SetFreeStation();
+                }
+                else
+                {
+                Console.WriteLine("Error: Too many Stations");
+                }
 
-        }
+            }
 
             //adding a drone to the existing drones list
             public void AddDrone()
@@ -79,16 +88,44 @@ using System.Threading.Tasks;
             //receiving a package to deliver
             public void AddPackage()
             {
+            if (DataSource.GetFreeParcelI() < 1000) // 1000 max customers
+            {
+                int ThisPackage = DataSource.GetFreeParcelI();
+                DataSource.ParcelList[ThisPackage].Id = DataSource.GetNextUniqueID();
 
+                //User inputs:
+                Console.WriteLine("Enter Sender ID: ");
+                DataSource.ParcelList[ThisPackage].SenderId = Convert.ToInt32(Console.ReadLine()); //Does not check if Customer exists as Exercise 1 says not to
+                Console.WriteLine("Enter Receiver ID: ");
+                DataSource.ParcelList[ThisPackage].ReceiverId = Convert.ToInt32(Console.ReadLine());//Does not check if Customer exists as Exercise 1 says not to
+                Console.WriteLine("Enter Weight Catagory ('light', 'medium', 'heavy'): ");
+                DataSource.ParcelList[ThisPackage].Weight = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), Console.ReadLine());
+                Console.WriteLine("Enter Priority ('regular', 'fast', 'emergency'): ");
+                DataSource.ParcelList[ThisPackage].Priority = (IDAL.DO.Priority)Enum.Parse(typeof(IDAL.DO.Priority), Console.ReadLine());
+
+                //Rest are System inputs
+                DataSource.ParcelList[ThisPackage].Requested = DateTime.Now;
+                DataSource.ParcelList[ThisPackage].DroneId = 0; //No drone assigned yet
+                DataSource.ParcelList[ThisPackage].Scheduled = null;
+                DataSource.ParcelList[ThisPackage].PickedUp = null;
+                DataSource.ParcelList[ThisPackage].Delivered = null;
+
+                DataSource.SetNextUniqueID();
+                DataSource.SetFreeParcel();
             }
+            else
+            {
+                Console.WriteLine("Error: Too many Packages \n");
+            }
+        }
 
 
-            //Updating existing data
-            //assigning a package to a drone" +
+        //Updating existing data
+        //assigning a package to a drone" +
 
             public void AssignDroneToPackage()
             {
-
+               
             }
 
 
