@@ -9,15 +9,16 @@ namespace ConsoleUI
         /// </summary>
         static void PrintMainMenu()
         {
-            #region printing menue
+
             Console.WriteLine("1. Adding options: ");
-            Console.WriteLine("2. Updating options: " );
+            Console.WriteLine("2. Updating options: ");
             Console.WriteLine("3. Display options: ");
             Console.WriteLine("4. List display options: ");
-                "\n - Displaying customers list" +
-                "\n - Displaying packages list" +
-                "\n - Displaying packages not assigned yet to a drone" +
-
+            Console.WriteLine("5. Exit");
+            //"\n - Displaying customers list" +
+            //"\n - Displaying packages list" +
+            //"\n - Displaying packages not assigned yet to a drone" + 
+        }
         static void PrintAddingMenu()
         {
             Console.WriteLine("\n1. - adding base station to the stations list" +
@@ -52,44 +53,30 @@ namespace ConsoleUI
                 "\n5. - Displaying packages not assigned yet to a drone" +
                 "\n6. - Displaying base stations with unoccupied charging stations");
         }
-        
-            Console.WriteLine("5. Exit");
-        #endregion
-        }
-        
 
-        }
-
-        static void PrintListDisplayMenu()
-        {
-
-        }
-        
 
         static void Main(string[] args)
         {
             int option = 0;
-      
+
             while (option != 5) //Option = 5 for exit
-            {
-                
-                Console.WriteLine("Enter number of option: ");
-                option = Convert.ToInt32(Console.ReadLine());
-                switch(option)
-                    {
+                {
+
+                    Console.WriteLine("Enter number of option: ");
+                    option = Convert.ToInt32(Console.ReadLine());
+                switch (option)
+                {
                     case 1:
                         PrintAddingMenu();
                         int InnerOption = Convert.ToInt32(Console.ReadLine());
+                        switch(InnerOption)
+                        {
+                            case 1:
 
-            }
                                 break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                            case 4
-                                break;
+
                         }
+                            
                         break;
                     case 2:
                         break;
@@ -98,14 +85,10 @@ namespace ConsoleUI
                     case 4:
                         break;
                 }
+                                
+
 
             }
-                            case 1:
-
-                }
-            }
-
         }
     }
 }
-
