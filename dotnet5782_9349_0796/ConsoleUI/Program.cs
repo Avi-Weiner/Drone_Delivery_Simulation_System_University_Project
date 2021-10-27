@@ -15,10 +15,8 @@ namespace ConsoleUI
             Console.WriteLine("3. Display options: ");
             Console.WriteLine("4. List display options: ");
             Console.WriteLine("5. Exit");
-            //"\n - Displaying customers list" +
-            //"\n - Displaying packages list" +
-            //"\n - Displaying packages not assigned yet to a drone" + 
         }
+
         static void PrintAddingMenu()
         {
             Console.WriteLine("\n1. - adding base station to the stations list" +
