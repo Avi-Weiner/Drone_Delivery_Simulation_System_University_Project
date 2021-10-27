@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace DalObject
 {
-    public class DalObjectClass
+    public class DalObject
     {
         //creates a DAL object by intializing values accordign to Initialize
-        DalObjectClass()
+        DalObject()
         {
             DataSource.Initialize();//constructor for DalObjects
         }
