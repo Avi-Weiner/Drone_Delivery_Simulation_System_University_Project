@@ -51,6 +51,7 @@ namespace DalObject
         public static int GetFreeCustomerI() { return Config.FreeCustomeri; }
         public static int GetFreeParcelI() { return Config.FreeParceli; }
         public static int GetNextUniqueID() {  return Config.NextUniqueId; }
+        public static int GetFreeDroneI() { return Config.FreeDronei; }
 
         //setters for new amount of station/drone/cutomer.
         public static void SetFreeStation() { Config.FreeStationi += 1; }
