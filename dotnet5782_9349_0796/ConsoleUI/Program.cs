@@ -60,36 +60,32 @@ namespace ConsoleUI
             int option = 0;
 
             while (option != 5) //Option = 5 for exit
-            {
+                {
 
-                Console.WriteLine("Enter number of option: ");
-                option = Convert.ToInt32(Console.ReadLine());
-                //    switch(option)
-                //        {
-                //        case 1:
-                //            PrintAddingMenu();
-                //            int InnerOption = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter number of option: ");
+                    option = Convert.ToInt32(Console.ReadLine());
+                switch (option)
+                {
+                    case 1:
+                        PrintAddingMenu();
+                        int InnerOption = Convert.ToInt32(Console.ReadLine());
+                        switch(InnerOption)
+                        {
+                            case 1:
 
-                //}
-                //                    break;
-                //                case 2:
-                //                    break;
-                //                case 3:
-                //                    break;
-                //                case 4
-                //                    break;
-                //            }
-                //            break;
-                //        case 2:
-                //            break;
-                //        case 3:
-                //            break;
-                //        case 4:
-                //            break;
-                //    }
+                                break;
 
-                //}
-                //                case 1:
+                        }
+                            
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                }
+                                
 
 
             }
