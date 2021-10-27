@@ -144,15 +144,19 @@ namespace DalObject
             int ThisCustomerNumber = DataSource.GetFreeCustomerI();
             if(ThisCustomerNumber < 100)
             {
-            DataSource.SetFreeCustomer();
-            DataSource.CustomerList[ThisCustomerNumber].Id = DataSource.GetNextUniqueID();
-            DataSource.SetNextUniqueID();
-            DataSource.CustomerList[ThisCustomerNumber].Name = Console.ReadLine();
-            DataSource.CustomerList[ThisCustomerNumber].Phone = Console.ReadLine();
-            Console.WriteLine("Enter longitude: ");
-            DataSource.CustomerList[ThisCustomerNumber].Longitude = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter latitude: ");
-            DataSource.CustomerList[ThisCustomerNumber].Latitude = Convert.ToDouble(Console.ReadLine());
+                DataSource.SetFreeCustomer();
+                DataSource.CustomerList[ThisCustomerNumber].Id = DataSource.GetNextUniqueID();
+                DataSource.SetNextUniqueID();
+
+                Console.WriteLine("Enter name: ");
+                DataSource.CustomerList[ThisCustomerNumber].Name = Console.ReadLine();
+
+                Console.WriteLine("Enter phone: ");
+                DataSource.CustomerList[ThisCustomerNumber].Phone = Console.ReadLine();
+                Console.WriteLine("Enter longitude: ");
+                DataSource.CustomerList[ThisCustomerNumber].Longitude = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Enter latitude: ");
+                DataSource.CustomerList[ThisCustomerNumber].Latitude = Convert.ToDouble(Console.ReadLine());
             }
         }
 
@@ -298,7 +302,7 @@ namespace DalObject
         /// <param name="i"></param>
         public static void PrintStation(int i)
         {
-            Console.WriteLine("Base Station ID: " + DataSource.StationList[i].Id
+            Console.WriteLine("\nBase Station ID: " + DataSource.StationList[i].Id
                + "\nBase Station  name: " + DataSource.StationList[i].Name
                + "\nBase Station Longitude: " + DataSource.StationList[i].Longitude
                + "\nBase Station Latitude: " + DataSource.StationList[i].Latitude
@@ -321,7 +325,7 @@ namespace DalObject
         /// <param name="i"></param>
         public static void PrintDrone(int i)
         {
-            Console.WriteLine("Drone ID: " + DataSource.DroneList[i].Id
+            Console.WriteLine("\nDrone ID: " + DataSource.DroneList[i].Id
                 + "\nDrone Model: " + DataSource.DroneList[i].Model
                 + "\nDrone MaxWeight: " + DataSource.DroneList[i].MaxWeight.ToString()
                 + "\nDrone Status: " + DataSource.DroneList[i].Status.ToString()
@@ -344,7 +348,7 @@ namespace DalObject
         /// <param name="i"></param>
         public static void PrintCustomer(int i)
         {
-            Console.WriteLine("Customer ID: " + DataSource.CustomerList[i].Id
+            Console.WriteLine("\nCustomer ID: " + DataSource.CustomerList[i].Id
                 + "\nCustomer Name: " + DataSource.CustomerList[i].Name
                 + "\nCustomer Phone: " + DataSource.CustomerList[i].Phone
                 + "\nCustomer Longitude: " + DataSource.CustomerList[i].Longitude
@@ -367,7 +371,7 @@ namespace DalObject
         /// <param name="i"></param>
         public static void PrintPackage(int i)
         {
-            Console.WriteLine("Package ID: " + DataSource.ParcelList[i].Id
+            Console.WriteLine("\nPackage ID: " + DataSource.ParcelList[i].Id
                 + "\nSender ID: " + DataSource.ParcelList[i].SenderId
                 + "\nReceiver ID: " + DataSource.ParcelList[i].ReceiverId
                 + "\nWeight: " + DataSource.ParcelList[i].Weight.ToString()
