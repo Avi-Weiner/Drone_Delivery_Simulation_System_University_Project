@@ -68,6 +68,25 @@ namespace DalObject
             return i;
         }
 
+        /// <summary>
+        /// Receives Customer Id and returns its index in CustomerList
+        /// </summary>
+        /// <param name="CustomerId"></param>
+        /// <returns></returns>
+        public int GetCustomer(int CustomerId)
+        {
+            int i = 0;
+            while (i < DataSource.GetFreeCustomerI() && DataSource.CustomerList[i].Id != CustomerId)
+                i++;
+
+            if (DataSource.CustomerList[i].Id != CustomerId)
+            {
+                Console.WriteLine("Error: Customer not found.");
+                return 0;
+            }
+            return i;
+        }
+
         //adding base station to the stations list
         public void AddStation()
         {
@@ -189,39 +208,26 @@ namespace DalObject
         //        "\n - collecting a package by a drone" +
         public void DronePickUp(int PackageId, int DroneId)
         {
-            int i = 0;
-            while(i<DataSource.GetFreeDroneI() && DataSource.DroneList[i].Id!=DroneId)
-                {
-                    i++;
-                }
-            int p = 0;
-            while(p<DataSource.GetFreeParcelI() && DataSource.ParcelList[p].Id != PackageId)
-            {
-                p++;
-            }
+            int i = GetDrone(DroneId);
+            int p = GetPackage(PackageId);
+
             if(DataSource.ParcelList[p].Id == PackageId && DataSource.DroneList[i].Id == DroneId)
-        {
+            {
             DataSource.ParcelList[p].PickedUp = DateTime.Now;
             DataSource.DroneList[i].Status = IDAL.DO.DroneStatus.delivery;
             DataSource.ParcelList[p].DroneId = DroneId;
-        }
+            }
         }
 
         //        "\n - providing a package to a customer" +
         public void PackageDropOff(int PackageId)
         {
-            int p = 0;
-            while (p < DataSource.GetFreeParcelI() && DataSource.ParcelList[p].Id != PackageId)
-            {
-                p++;
-            }
+            int p = GetPackage(PackageId);
+
             DataSource.ParcelList[p].Delivered = DateTime.Now;
             int DroneId = DataSource.ParcelList[p].DroneId;
-            int i = 0;
-            while (i < DataSource.GetFreeDroneI() && DataSource.DroneList[p].Id != DroneId)
-            {
-                i++;
-            }
+            int i = GetDrone(DroneId);
+
             DataSource.DroneList[i].Status = IDAL.DO.DroneStatus.free;
         }
 
@@ -248,11 +254,8 @@ namespace DalObject
         //display base station
         public void DisplayBaseStation(int Id)
         {
-            int p = 0;
-            while (p < DataSource.GetFreeStationI() && DataSource.StationList[p].Id != Id)
-            {
-                p++;
-            }
+            int p = GetStation(Id);
+
             Console.WriteLine("Base Station ID: " + DataSource.StationList[p].Id
                 + "\nBase Station  name: " + DataSource.StationList[p].Name 
                 + "\nBase Statoin Longitude: " + DataSource.StationList[p].Longitude
@@ -262,11 +265,8 @@ namespace DalObject
 
         public void DisplayDrone(int Id)
         {
-            int p = 0;
-            while (p < DataSource.GetFreeDroneI() && DataSource.DroneList[p].Id != Id)
-            {
-                p++;
-            }
+            int p = GetDrone(Id);
+
             Console.WriteLine("Customer ID: " + DataSource.CustomerList[p].Id
                 + "\nCustomer Name: " + DataSource.CustomerList[p].Name
                 + "\nCustomer Phone: " + DataSource.CustomerList[p].Phone
@@ -276,11 +276,8 @@ namespace DalObject
 
         public void DisplayCustomer(int Id)
         {
-            int p = 0;
-            while (p < DataSource.GetFreeCustomerI() && DataSource.CustomerList[p].Id != Id)
-            {
-                p++;
-            }
+            int p = GetCustomer(Id);
+
             Console.WriteLine("Drone ID: " + DataSource.DroneList[p].Id
                 + "\nDrone Model: " + DataSource.DroneList[p].Model
                 + "\nDrone MaxWeight: " + DataSource.DroneList[p].MaxWeight.ToString()
@@ -289,5 +286,7 @@ namespace DalObject
         }
     }
 }
+
+
 
 
