@@ -7,20 +7,16 @@ namespace ConsoleUI
         /// <summary>
         /// Prints main menu
         /// </summary>
-        static void printMainMenu()
+        static void PrintMainMenu()
         {
             #region printing menue
-            Console.WriteLine("1. Adding options: " +
-                "\n - adding base station to the stations list" +
-                "\n - adding a drone to the existing drones list" +
-                "\n - adding a new customer to the customers list" +
-                "\n - receiving a package to deliver");
-            Console.WriteLine("2.Updating options" +
-                "\n - assigning a package to a drone" +
-                "\n - collecting a package by a drone" +
-                "\n - providing a package to a customer" +
-                "\n - sending a drone to a charge in a base station" +
-                "\n   - by changing the drone’s status and adding a record(instance) of" +
+            Console.WriteLine("1. Adding options: ");
+            Console.WriteLine("2. Updating options" +
+                "\n 1. - assigning a package to a drone" +
+                "\n 2. - collecting a package by a drone" +
+                "\n 3. - providing a package to a customer" +
+                "\n 4. - sending a drone to a charge in a base station" +
+                "\n 5. - by changing the drone’s status and adding a record(instance) of" +
                 "\n     a drone battery charger entity" +
                 "\n   - the station is selected by the user in the main menu(It is" +
                 "\n     recommended to provide a list of stations to the user)" +
@@ -40,6 +36,29 @@ namespace ConsoleUI
             Console.WriteLine("5. Exit");
         #endregion
         }
+
+        static void PrintAddingMenu()
+        {
+            "\n 1. - adding base station to the stations list" +
+                "\n 2. - adding a drone to the existing drones list" +
+                "\n 3. - adding a new customer to the customers list" +
+                "\n 4. - receiving a package to deliver"
+        }
+
+        static void PrintUpdatingMenu()
+        {
+
+        }
+
+        static void PrintDisplayMenu()
+        {
+
+        }
+
+        static void PrintListDisplayMenu()
+        {
+
+        }
         
 
         static void Main(string[] args)
@@ -48,11 +67,35 @@ namespace ConsoleUI
       
             while (option != 5) //Option = 5 for exit
             {
-                printMainMenu();
+                PrintMainMenu();
                 Console.WriteLine("Enter number of option: ");
                 option = Convert.ToInt32(Console.ReadLine());
+                switch(option)
+                    {
+                    case 1:
+                        PrintAddingMenu();
+                        int InnerOption = Convert.ToInt32(Console.ReadLine());
+                        switch(InnerOption)
+                        {
+                            case 1:
 
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            case 4
+                                break;
+                        }
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
                 }
+
             }
 
         }
