@@ -9,7 +9,7 @@ namespace ConsoleUI
         /// </summary>
         static void PrintMainMenu()
         {
-            Console.WriteLine("1. Adding options: ");
+            Console.WriteLine("\n1. Adding options: ");
             Console.WriteLine("2. Updating options: ");
             Console.WriteLine("3. Display options: ");
             Console.WriteLine("4. List display options: ");
