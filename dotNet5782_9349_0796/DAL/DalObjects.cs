@@ -251,38 +251,76 @@ namespace DalObject
             newCharger.StationId = DataSource.StationList[j].Id;
         }
 
+        /// <summary>
+        /// Prints Station from index in StationList.
+        /// </summary>
+        /// <param name="i"></param>
+        public void PrintStation(int i)
+        {
+            Console.WriteLine("Base Station ID: " + DataSource.StationList[i].Id
+               + "\nBase Station  name: " + DataSource.StationList[i].Name
+               + "\nBase Station Longitude: " + DataSource.StationList[i].Longitude
+               + "\nBase Station Latitude: " + DataSource.StationList[i].Latitude
+               + "\nBase Station # of Charging slots: " + DataSource.StationList[i].ChargeSlots);
+        }
+
         //display base station
         public void DisplayBaseStation(int Id)
         {
             int p = GetStation(Id);
+            PrintStation(p);
+        }
 
-            Console.WriteLine("Base Station ID: " + DataSource.StationList[p].Id
-                + "\nBase Station  name: " + DataSource.StationList[p].Name 
-                + "\nBase Statoin Longitude: " + DataSource.StationList[p].Longitude
-                + "\nBase Station Latitude: " + DataSource.StationList[p].Latitude
-                + "\nBase Station # of Charging slots: " + DataSource.StationList[p].ChargeSlots);
+        /// <summary>
+        /// Print Drone from the index i
+        /// </summary>
+        /// <param name="i"></param>
+        public void PrintDrone(int i)
+        {
+            Console.WriteLine("Drone ID: " + DataSource.DroneList[i].Id
+                + "\nDrone Model: " + DataSource.DroneList[i].Model
+                + "\nDrone MaxWeight: " + DataSource.DroneList[i].MaxWeight.ToString()
+                + "\nDrone Status: " + DataSource.DroneList[i].Status.ToString()
+                + "\nDrone Battery: " + DataSource.DroneList[i].battery);
         }
 
         public void DisplayDrone(int Id)
         {
             int p = GetDrone(Id);
+            PrintDrone(p);
+        }
 
-            Console.WriteLine("Customer ID: " + DataSource.CustomerList[p].Id
-                + "\nCustomer Name: " + DataSource.CustomerList[p].Name
-                + "\nCustomer Phone: " + DataSource.CustomerList[p].Phone
-                + "\nCustomer Longitude: " + DataSource.CustomerList[p].Longitude
-                + "\nCustomer Latitude: " + DataSource.CustomerList[p].Latitude);
+        public void PrintCustomer(int i)
+        {
+            Console.WriteLine("Customer ID: " + DataSource.CustomerList[i].Id
+                + "\nCustomer Name: " + DataSource.CustomerList[i].Name
+                + "\nCustomer Phone: " + DataSource.CustomerList[i].Phone
+                + "\nCustomer Longitude: " + DataSource.CustomerList[i].Longitude
+                + "\nCustomer Latitude: " + DataSource.CustomerList[i].Latitude);
         }
 
         public void DisplayCustomer(int Id)
         {
             int p = GetCustomer(Id);
+            PrintCustomer(p);
+        }
 
-            Console.WriteLine("Drone ID: " + DataSource.DroneList[p].Id
-                + "\nDrone Model: " + DataSource.DroneList[p].Model
-                + "\nDrone MaxWeight: " + DataSource.DroneList[p].MaxWeight.ToString()
-                + "\nDrone Status: " + DataSource.DroneList[p].Status.ToString()
-                + "\nDrone Battery: " + DataSource.DroneList[p].battery);
+        /// <summary>
+        /// Prints a package given its' index in ParcelList
+        /// </summary>
+        /// <param name="i"></param>
+        public void PrintPackage(int i)
+        {
+            Console.WriteLine("Package ID: " + DataSource.ParcelList[i].Id
+                + "\nSender ID: " + DataSource.ParcelList[i].SenderId
+                + "\nReceiver ID: " + DataSource.ParcelList[i].ReceiverId
+                + "\nWeight: " + DataSource.ParcelList[i].Weight.ToString()
+                + "\nPriority: " + DataSource.ParcelList[i].Priority.ToString()
+                + "\nRequested Date: " + DataSource.ParcelList[i].Requested.ToString()
+                + "\nDrone ID: " + DataSource.ParcelList[i].DroneId
+                + "\nScheduled: " + DataSource.ParcelList[i].Scheduled.ToString()
+                + "\nPick up Date: " + DataSource.ParcelList[i].PickedUp.ToString()
+                + "\nDelivery Date: " + DataSource.ParcelList[i].Delivered.ToString());
         }
 
         /// <summary>
@@ -292,17 +330,63 @@ namespace DalObject
         public void DisplayPackage(int Id)
         {
             int i = GetPackage(Id);
+            PrintPackage(i);
+        }
 
-            Console.WriteLine("Package ID: " + DataSource.ParcelList[i].Id
-                + "\nSender ID: " + DataSource.ParcelList[i].SenderId
-                + "\nReceiver ID: " + DataSource.ParcelList[i].ReceiverId
-                + "\nWeight: " + DataSource.ParcelList[i].Weight.ToString() 
-                + "\nPriority: " + DataSource.ParcelList[i].Priority.ToString()
-                + "\nRequested Date: " + DataSource.ParcelList[i].Requested.ToString()
-                + "\nDrone ID: " + DataSource.ParcelList[i].DroneId
-                + "\nScheduled: " + DataSource.ParcelList[i].Scheduled.ToString()
-                + "\nPick up Date: " + DataSource.ParcelList[i].PickedUp.ToString()
-                + "\nDelivery Date: " + DataSource.ParcelList[i].Delivered.ToString());
+        /// <summary>
+        /// Displays all the stations in StationList.
+        /// </summary>
+        public void DisplayStationList()
+        {
+            for (int i = 0; i < DataSource.GetFreeStationI(); i++)
+                PrintStation(i);
+        }
+
+        /// <summary>
+        /// Displays all the drones in DroneList
+        /// </summary>
+        public void DisplayDroneList()
+        {
+            for (int i = 0; i < DataSource.GetFreeDroneI(); i++)
+                PrintDrone(i);
+        }
+
+        /// <summary>
+        /// Displays all the customers in CustomerList
+        /// </summary>
+        public void DisplayCustomerList()
+        {
+            for (int i = 0; i < DataSource.GetFreeCustomerI(); i++)
+                PrintCustomer(i);
+        }
+
+        /// <summary>
+        /// Displays all the Parcels in ParcelList
+        /// </summary>
+        public void DisplayParcelList()
+        {
+            for (int i = 0; i < DataSource.GetFreeParcelI(); i++)
+                PrintPackage(i);
+        }
+
+        /// <summary>
+        /// Displays packages that are not yet assigned to a drone
+        /// </summary>
+        public void DisplayUnassignedPackages()
+        {
+            for (int i = 0; i < DataSource.GetFreeParcelI(); i++)
+            {
+                if (DataSource.ParcelList[i].DroneId == 0)
+                    PrintPackage(i);
+            }
+        }
+
+        /// <summary>
+        /// Displays Stations with unoccupied charging stations
+        /// </summary>
+        public void DisplayFreeChargingStations()
+        {
+
         }
 
 
