@@ -43,14 +43,14 @@ using System.Threading.Tasks;
             //adding a drone to the existing drones list
             public void AddDrone()
             {
-              int Dronei = DataSource.GetFree
+                
             }
 
 
             //adding a new customer to the customers list
             public void AddCustomer()
             {
-
+                
             }
 
 
@@ -94,7 +94,10 @@ using System.Threading.Tasks;
 
             public void AssignDroneToPackage()
             {
-               
+                Console.WriteLine("Enter Package ID: ");
+                int packageId = Convert.ToInt32(Console.ReadLine());
+                
+                
             }
 
 
