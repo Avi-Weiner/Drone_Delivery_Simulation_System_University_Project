@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
     namespace DalObject
     {
-        public class DalObject
+        public class DalObjectClass
         {
             //creates a DAL object by intializing values accordign to Initialize
-            DalObject()
+            DalObjectClass()
             {
-                DataSource.Initialize();//constructor for DalObjects
+            DataSource.Initialize();//constructor for DalObjects
             }
             //I think the following methods need to be added.
             //Adding to lists methods
@@ -19,26 +20,33 @@ using System.Threading.Tasks;
             //adding base station to the stations list
             public void AddStation()
             {
-                if ()
-                DataSource.StationList
-            }
+            int ThisStationNumber = DataSource.GetFreeStationI();
+            var rand = new Random();
+            DataSource.StationList[ThisStationNumber].Id = DataSource.GetNextUniqueID();
+            DataSource.StationList[ThisStationNumber].Longitude = rand.NextDouble() *360 - 180;
+            DataSource.StationList[ThisStationNumber].Latitude =  rand.NextDouble() * 180 - 90;
+            DataSource.StationList[ThisStationNumber].ChargeSlots = rand.Next(2,10);
+            DataSource.SetNextUniqueID();
+            DataSource.SetFreeCustomer();
+
+        }
 
             //adding a drone to the existing drones list
-            public IDAL.DO.Drone AddDrone()
+            public void AddDrone()
             {
-                
+              
             }
 
 
             //adding a new customer to the customers list
-            public IDAL.DO.Customer AddCustomer()
+            public void AddCustomer()
             {
 
             }
 
 
             //receiving a package to deliver
-            public IDAL.DO.Parcel AddPackage()
+            public void AddPackage()
             {
 
             }
@@ -73,10 +81,10 @@ using System.Threading.Tasks;
             //        "\n   - the station is selected by the user in the main menu(It is" +
             //        "\n     recommended to provide a list of stations to the user)" +
             //        "\n - releasing a drone from charging in a base station");
-            public void ChargeDrone(IDAL.DO.Drone drone, IDAL.DO.DroneCharge)
-            {
+            //public void ChargeDrone(IDAL.DO.Drone drone, IDAL.DO.DroneCharge)
+            //{
 
-            }
+            //}
 
 
 
@@ -85,5 +93,5 @@ using System.Threading.Tasks;
 
         }
     }
-}
+
 

@@ -43,6 +43,24 @@ namespace DalObject
         public static IDAL.DO.Customer[] CustomerList = new IDAL.DO.Customer[100];
         public static IDAL.DO.Parcel[] ParcelList = new IDAL.DO.Parcel[1000];
 
+        //getters for knowing how many stations/drones/customer we have and have
+        //left. Mainly used for public access by DalObjects.
+        //!!!!It is the responsibilty of the user to use the set method as well
+        //when allocating a new station/drone/custoemr/parcel/ID
+        public static int GetFreeStationI() { return Config.FreeStationi; }  
+        public static int GetFreeCustomerI() { return Config.FreeCustomeri; }
+        public static int GetFreeParcelI() { return Config.FreeParceli; }
+        public static int GetNextUniqueID() {  return Config.NextUniqueId; }
+
+        //setters for new amount of station/drone/cutomer.
+        public static void SetFreeStation() { Config.FreeStationi += 1; }
+        public static void SetFreeDrone() { Config.FreeDronei += 1; }
+        public static void SetFreeCustomer() { Config.FreeCustomeri += 1; }
+        public static void SetFreeParcel() { Config.FreeParceli += 1; }
+        public static void SetNextUniqueID() { Config.NextUniqueId += 1; }
+
+
+
         /// <summary>
         /// Initialie all the arrays according to exercise 1 specs.
         /// </summary>
