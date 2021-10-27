@@ -7,38 +7,50 @@ namespace ConsoleUI
         /// <summary>
         /// Prints main menu
         /// </summary>
-        static void printMainMenu()
+        static void PrintMainMenu()
         {
             #region printing menue
-            Console.WriteLine("1. Adding options: " +
-                "\n - adding base station to the stations list" +
-                "\n - adding a drone to the existing drones list" +
-                "\n - adding a new customer to the customers list" +
-                "\n - receiving a package to deliver");
-            Console.WriteLine("2.Updating options" +
-                "\n - assigning a package to a drone" +
-                "\n - collecting a package by a drone" +
-                "\n - providing a package to a customer" +
-                "\n - sending a drone to a charge in a base station" +
-                "\n   - by changing the drone’s status and adding a record(instance) of" +
-                "\n     a drone battery charger entity" +
-                "\n   - the station is selected by the user in the main menu(It is" +
-                "\n     recommended to provide a list of stations to the user)" +
-                "\n - releasing a drone from charging in a base station");
-            Console.WriteLine("3. Display options (all chosen by a number):" +
-                "\n - Display a base station" +
-                "\n - Display a drone" +
-                "\n - Display a customer" +
-                "\n - Display a package");
-            Console.WriteLine("4. List display options" +
-                "\n - Displaying base stations list" +
-                "\n - Displaying drones list" +
-                "\n - Displaying customers list" +
-                "\n - Displaying packages list" +
-                "\n - Displaying packages not assigned yet to a drone" +
-                "\n - Displaying base stations with unoccupied charging stations");
+            Console.WriteLine("1. Adding options: ");
+            Console.WriteLine("2. Updating options: " );
+            Console.WriteLine("3. Display options: ");
+            Console.WriteLine("4. List display options: ");
             Console.WriteLine("5. Exit");
         #endregion
+        }
+
+        static void PrintAddingMenu()
+        {
+            Console.WriteLine("\n1. - adding base station to the stations list" +
+                "\n2. - adding a drone to the existing drones list" +
+                "\n3. - adding a new customer to the customers list" +
+                "\n4. - receiving a package to deliver");
+        }
+
+        static void PrintUpdatingMenu()
+        {
+            Console.WriteLine("\n1. - assigning a package to a drone" +
+                "\n2. - collecting a package by a drone" +
+                "\n3. - providing a package to a customer" +
+                "\n4. - sending a drone to a charge in a base station" +
+                "\n5. - releasing a drone from charging in a base station");
+        }
+
+        static void PrintDisplayMenu()
+        {
+            Console.WriteLine("\n1. - Display a base station" +
+                "\n2. - Display a drone" +
+                "\n3. - Display a customer" +
+                "\n4. - Display a package");
+        }
+
+        static void PrintListDisplayMenu()
+        {
+            Console.WriteLine("\n1. - Displaying base stations list" +
+                "\n2. - Displaying drones list" +
+                "\n3. - Displaying customers list" +
+                "\n4. - Displaying packages list" +
+                "\n5. - Displaying packages not assigned yet to a drone" +
+                "\n6. - Displaying base stations with unoccupied charging stations");
         }
         
 
@@ -48,9 +60,11 @@ namespace ConsoleUI
       
             while (option != 5) //Option = 5 for exit
             {
-                printMainMenu();
+                PrintMainMenu();
                 Console.WriteLine("Enter number of option: ");
                 option = Convert.ToInt32(Console.ReadLine());
+
+
             }
 
         }
