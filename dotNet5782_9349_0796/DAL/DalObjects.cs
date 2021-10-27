@@ -150,8 +150,7 @@ namespace DalObject
             DataSource.CustomerList[ThisCustomerNumber].Longitude = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine("Enter latitude: ");
             DataSource.CustomerList[ThisCustomerNumber].Latitude = Convert.ToDouble(Console.ReadLine());
-
-        }
+            }
         }
 
 
@@ -229,10 +228,13 @@ namespace DalObject
             int i = GetDrone(DroneId);
 
             DataSource.DroneList[i].Status = IDAL.DO.DroneStatus.free;
-        }
-
-            
-            
+        }     
+        
+        /// <summary>
+        /// Sends a drone to get charged at the specified station
+        /// </summary>
+        /// <param name="DroneId"></param>
+        /// <param name="StationId"></param>
         public void ChargeDrone(int DroneId, int StationId)
         {
             //Get Drone
@@ -240,15 +242,40 @@ namespace DalObject
 
             //Get station
             int j = GetStation(StationId);
+            if (DataSource.StationList[j].ChargeSlots == 0)
+            {
+                Console.WriteLine("Error: No free charge slots at specified station.");
+            }
+
+            //minus 1 to charge slots
+            DataSource.StationList[j].ChargeSlots--;
 
             //Make the battery full
             DataSource.DroneList[i].battery = 1;
             DataSource.DroneList[i].Status = IDAL.DO.DroneStatus.maintenance;
 
-            //Adding instance of Dronecharger
+            //Adding instance of Dronecharger (Need to save this somewhere or it will just get deleted...)
             IDAL.DO.DroneCharger newCharger = new IDAL.DO.DroneCharger();
             newCharger.DroneId = DataSource.DroneList[i].Id;
             newCharger.StationId = DataSource.StationList[j].Id;
+        }
+
+        /// <summary>
+        /// Releases Drone with ID DroneID from station with ID StationID
+        /// </summary>
+        /// <param name="DroneID"></param>
+        /// <param name="StationID"></param>
+        public void ReleaseDrone(int DroneId, int StationId)
+        {
+            //Get Drone
+            int i = GetDrone(DroneId);
+
+            //Get station
+            int j = GetStation(StationId);
+
+            //Free up charge slot
+            DataSource.StationList[j].ChargeSlots++;
+            
         }
 
         /// <summary>
@@ -386,7 +413,11 @@ namespace DalObject
         /// </summary>
         public void DisplayFreeChargingStations()
         {
-
+            for (int i = 0; i < DataSource.GetFreeStationI(); i++)
+            {
+                if (DataSource.StationList[i].ChargeSlots > 0)
+                    PrintStation(i);
+            }
         }
 
 
