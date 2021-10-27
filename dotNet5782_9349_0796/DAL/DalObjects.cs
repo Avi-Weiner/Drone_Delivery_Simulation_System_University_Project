@@ -284,6 +284,28 @@ namespace DalObject
                 + "\nDrone Status: " + DataSource.DroneList[p].Status.ToString()
                 + "\nDrone Battery: " + DataSource.DroneList[p].battery);
         }
+
+        /// <summary>
+        /// Displays the package info of the given package id.
+        /// </summary>
+        /// <param name="Id"></param>
+        public void DisplayPackage(int Id)
+        {
+            int i = GetPackage(Id);
+
+            Console.WriteLine("Package ID: " + DataSource.ParcelList[i].Id
+                + "\nSender ID: " + DataSource.ParcelList[i].SenderId
+                + "\nReceiver ID: " + DataSource.ParcelList[i].ReceiverId
+                + "\nWeight: " + DataSource.ParcelList[i].Weight.ToString() 
+                + "\nPriority: " + DataSource.ParcelList[i].Priority.ToString()
+                + "\nRequested Date: " + DataSource.ParcelList[i].Requested.ToString()
+                + "\nDrone ID: " + DataSource.ParcelList[i].DroneId
+                + "\nScheduled: " + DataSource.ParcelList[i].Scheduled.ToString()
+                + "\nPick up Date: " + DataSource.ParcelList[i].PickedUp.ToString()
+                + "\nDelivery Date: " + DataSource.ParcelList[i].Delivered.ToString());
+        }
+
+
     }
 }
 
