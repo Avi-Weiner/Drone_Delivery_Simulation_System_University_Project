@@ -187,14 +187,43 @@ using System.Threading.Tasks;
 
 
             //        "\n - collecting a package by a drone" +
-            public void DronePickUp()
+            public void DronePickUp(int PackageId, int DroneId)
             {
-
+                int i = 0;
+                while(i<DataSource.GetFreeDroneI() && DataSource.DroneList[i].Id!=DroneId)
+                    {
+                        i++;
+                    }
+                int p = 0;
+                while(p<DataSource.GetFreeParcelI() && DataSource.ParcelList[p].Id != PackageId)
+                {
+                    p++;
+                }
+                if(DataSource.ParcelList[p].Id == PackageId && DataSource.DroneList[i].Id == DroneId)
+            {
+                DataSource.ParcelList[p].PickedUp = DateTime.Now;
+                DataSource.DroneList[i].Status = IDAL.DO.DroneStatus.delivery;
+                DataSource.ParcelList[p].DroneId = DroneId;
+            }
             }
 
             //        "\n - providing a package to a customer" +
-            public void PackageDropOff()
+            public void PackageDropOff(int PackageId)
             {
+                int p = 0;
+                while (p < DataSource.GetFreeParcelI() && DataSource.ParcelList[p].Id != PackageId)
+                {
+                    p++;
+                }
+                DataSource.ParcelList[p].Delivered = DateTime.Now;
+                int DroneId = DataSource.ParcelList[p].DroneId;
+                int i = 0;
+                while (i < DataSource.GetFreeDroneI() && DataSource.DroneList[p].Id != DroneId)
+                {
+                    i++;
+                }
+                DataSource.DroneList[i].Status = IDAL.DO.DroneStatus.free;
+        }
 
             }
             
@@ -230,12 +259,52 @@ using System.Threading.Tasks;
 
             //}
 
-
-
-
-
-
+        //deisplay base station
+        public void DisplayBaseStation(int Id)
+        {
+            int p = 0;
+            while (p < DataSource.GetFreeStationI() && DataSource.StationList[p].Id != Id)
+            {
+                p++;
+            }
+            Console.WriteLine("Base Station ID: " + DataSource.StationList[p].Id
+                + "\nBase Station  name: " + DataSource.StationList[p].Name 
+                + "\nBase Statoin Longitude: " + DataSource.StationList[p].Longitude
+                + "\nBase Station Latitude: " + DataSource.StationList[p].Latitude
+                + "\nBase Station # of Charging slots: " + DataSource.StationList[p].ChargeSlots);
         }
+        public void DisplayDrone(int Id)
+        {
+            int p = 0;
+            while (p < DataSource.GetFreeDroneI() && DataSource.DroneList[p].Id != Id)
+            {
+                p++;
+            }
+            Console.WriteLine("Customer ID: " + DataSource.CustomerList[p].Id
+                + "\nCustomer Name: " + DataSource.CustomerList[p].Name
+                + "\nCustomer Phone: " + DataSource.CustomerList[p].Phone
+                + "\nCustomer Longitude: " + DataSource.CustomerList[p].Longitude
+                + "\nCustomer Latitude: " + DataSource.CustomerList[p].Latitude);
+        }
+
+        public void DisplayCustomer(int Id)
+        {
+            int p = 0;
+            while (p < DataSource.GetFreeCustomerI() && DataSource.CustomerList[p].Id != Id)
+            {
+                p++;
+            }
+            Console.WriteLine("Drone ID: " + DataSource.DroneList[p].Id
+                + "\nDrone Model: " + DataSource.DroneList[p].Model
+                + "\nDrone MaxWeight: " + DataSource.DroneList[p].MaxWeight.ToString()
+                + "\nDrone Status: " + DataSource.DroneList[p].Status.ToString()
+                + "\nDrone Battery: " + DataSource.DroneList[p].battery);
+        }
+
+
+
+
+    }
     }
 
 
