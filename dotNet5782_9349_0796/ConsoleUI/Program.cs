@@ -62,7 +62,7 @@ namespace ConsoleUI
 
             while (option != 5) //Option = 5 for exit
                 {
-
+                    PrintMainMenu();
                     Console.WriteLine("Enter number of option: ");
                     option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
