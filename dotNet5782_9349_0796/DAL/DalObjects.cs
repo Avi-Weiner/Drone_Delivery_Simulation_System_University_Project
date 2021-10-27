@@ -34,14 +34,45 @@ using System.Threading.Tasks;
             //adding a drone to the existing drones list
             public void AddDrone()
             {
-              
+                int ThisDroneNumber = DataSource.GetFreeDroneI();
+                if (ThisDroneNumber < 10)
+                {
+                DataSource.SetFreeDrone();
+                    DataSource.DroneList[ThisDroneNumber].Id = DataSource.GetNextUniqueID();
+                    DataSource.SetNextUniqueID();
+                    Console.WriteLine("Enter drone model:");
+                    DataSource.DroneList[ThisDroneNumber].Model = Console.ReadLine();
+                    Console.WriteLine("Enter weight category as string: option are light, medium and heavy:");
+                    IDAL.DO.WeightCategory ThisWeight = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), Console.ReadLine());
+               //All Drones start Free.
+                    DataSource.DroneList[ThisDroneNumber].Status = IDAL.DO.DroneStatus.free;
+                //Max battery. Drone arrives fully charged. 0 is empty 1 is full and everything in between.
+                    DataSource.DroneList[ThisDroneNumber].battery = 1;
+                }
+                else
+                {
+                    Console.WriteLine("Error: Too many drones.\n");
+                }
             }
 
 
             //adding a new customer to the customers list
             public void AddCustomer()
             {
+                int ThisCustomerNumber = DataSource.GetFreeCustomerI();
+                if(ThisCustomerNumber < 100)
+                {
+                DataSource.SetFreeCustomer();
+                DataSource.CustomerList[ThisCustomerNumber].Id = DataSource.GetNextUniqueID();
+                DataSource.SetNextUniqueID();
+                DataSource.CustomerList[ThisCustomerNumber].Name = Console.ReadLine();
+                DataSource.CustomerList[ThisCustomerNumber].Phone = Console.ReadLine();
+                Console.WriteLine("Enter longitude: ");
+                DataSource.CustomerList[ThisCustomerNumber].Longitude = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Enter latitude: ");
+                DataSource.CustomerList[ThisCustomerNumber].Latitude = Convert.ToDouble(Console.ReadLine());
 
+            }
             }
 
 
