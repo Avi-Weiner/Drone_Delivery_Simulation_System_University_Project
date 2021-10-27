@@ -19,13 +19,14 @@ using System.Threading.Tasks;
             //adding base station to the stations list
             public void AddStation()
             {
+                if ()
                 DataSource.StationList
             }
 
             //adding a drone to the existing drones list
             public IDAL.DO.Drone AddDrone()
             {
-
+                
             }
 
 
