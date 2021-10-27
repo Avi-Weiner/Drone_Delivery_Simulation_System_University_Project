@@ -17,8 +17,59 @@ using System.Threading.Tasks;
             //I think the following methods need to be added.
             //Adding to lists methods
 
-            //adding base station to the stations list
-            public void AddStation()
+            /// <summary>
+            /// Receives Station Id and returns index of station in StationList
+            /// </summary>
+            public int GetStation(int StationId)
+            {
+                int i = 0;
+                while (i < DataSource.GetFreeStationI() && DataSource.StationList[i].Id != StationId) //Cycle through StationList until StationId is found
+                    i++;
+                if (DataSource.StationList[i].Id != StationId)
+                {
+                    Console.WriteLine("Error: Station not found.");
+                    return 0;
+                }
+                return i;
+            }
+
+            /// <summary>
+            /// Receives Drone ID and returns its index in DroneList
+            /// </summary>
+            public int GetDrone(int DroneId)
+            {
+                int i = 0;
+                while (i < DataSource.GetFreeDroneI() && DataSource.DroneList[i].Id != DroneId) //Cycle through StationList until StationId is found
+                    i++;
+                if (DataSource.DroneList[i].Id != DroneId)
+                {
+                    Console.WriteLine("Error: Drone not found.");
+                    return 0;
+                }
+                return i;
+            }
+            
+            /// <summary>
+            /// Receives Package Id and returns its index in ParcelList
+            /// </summary>
+            /// <param name="PackageId"></param>
+            /// <returns></returns>
+            public int GetPackage(int PackageId)
+            {
+                int i = 0;
+                while (i < DataSource.GetFreeParcelI() && DataSource.ParcelList[i].Id != PackageId) //Cycle through ParcelList until Package is found
+                    i++;
+
+                if (DataSource.ParcelList[i].Id != PackageId)
+                {
+                    Console.WriteLine("Error: Package not found.");
+                    return 0;
+                }
+                return i;
+            }
+
+        //adding base station to the stations list
+        public void AddStation()
             {
                 if (DataSource.GetFreeStationI() < 5)
                 {
@@ -120,15 +171,18 @@ using System.Threading.Tasks;
         }
 
 
-        //Updating existing data
-        //assigning a package to a drone" +
+            //Updating existing data
+            //assigning a package to a drone" +
+            public void AssignDroneToPackage(int PackageId, int DroneId)
+            {   
+                //Checks if drone Id is valid
+                GetDrone(DroneId);
 
-            public void AssignDroneToPackage()
-            {
-                Console.WriteLine("Enter Package ID: ");
-                int packageId = Convert.ToInt32(Console.ReadLine());
+                int j = GetPackage(PackageId);
                 
-                
+                //Asign Drone to package
+                DataSource.ParcelList[j].DroneId = DroneId;
+                DataSource.ParcelList[j].Scheduled = DateTime.Now;
             }
 
 
@@ -143,7 +197,26 @@ using System.Threading.Tasks;
             {
 
             }
+            
+            public void ChargeDrone(int DroneId, int StationId)
+            {
+                //Get Drone
+                int i = GetDrone(DroneId);
 
+                //Get station
+                int j = GetStation(StationId);
+
+                //Make the battery full
+                DataSource.DroneList[i].battery = 1;
+                DataSource.DroneList[i].Status = IDAL.DO.DroneStatus.maintenance;
+
+                //Adding instance of Dronecharger
+                IDAL.DO.DroneCharger newCharger = new IDAL.DO.DroneCharger();
+                newCharger.DroneId = DataSource.DroneList[i].Id;
+                newCharger.StationId = DataSource.StationList[j].Id;
+            }
+
+            
 
             //        "\n - sending a drone to a charge in a base station" +
             //        "\n   - by changing the drone’s status and adding a record(instance) of" +
