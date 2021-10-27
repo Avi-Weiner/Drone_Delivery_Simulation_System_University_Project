@@ -125,7 +125,10 @@ using System.Threading.Tasks;
 
             public void AssignDroneToPackage()
             {
-               
+                Console.WriteLine("Enter Package ID: ");
+                int packageId = Convert.ToInt32(Console.ReadLine());
+                
+                
             }
 
 
