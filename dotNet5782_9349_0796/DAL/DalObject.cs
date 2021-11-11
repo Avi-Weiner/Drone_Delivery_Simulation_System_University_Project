@@ -125,8 +125,6 @@ namespace DalObject
                 DataSource.DroneList[ThisDroneNumber].Model = Console.ReadLine();
                 Console.WriteLine("Enter weight category as string: option are light, medium and heavy:");
                 IDAL.DO.WeightCategory ThisWeight = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), Console.ReadLine());
-                //Max battery. Drone arrives fully charged. 0 is empty 1 is full and everything in between.
-                DataSource.DroneList[ThisDroneNumber].battery = 1;
             }
             else
             {
@@ -262,9 +260,6 @@ namespace DalObject
             //minus 1 to charge slots
             DataSource.StationList[j].ChargeSlots--;
 
-            //Make the battery full
-            DataSource.DroneList[i].battery = 1;
-
             //Adding instance of Dronecharger (Need to save this somewhere or it will just get deleted...),
             //specs unspecific of where to save it so for the meantime it will be deleted
             IDAL.DO.DroneCharger newCharger = new IDAL.DO.DroneCharger();
@@ -322,7 +317,6 @@ namespace DalObject
             Console.WriteLine("\nDrone ID: " + DataSource.DroneList[i].Id
                 + "\nDrone Model: " + DataSource.DroneList[i].Model
                 + "\nDrone MaxWeight: " + DataSource.DroneList[i].MaxWeight.ToString()
-                + "\nDrone Battery: " + DataSource.DroneList[i].battery);
         }
 
         /// <summary>

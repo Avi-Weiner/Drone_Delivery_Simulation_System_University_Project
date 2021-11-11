@@ -91,8 +91,6 @@ namespace DalObject
                 DroneList[i].Model = "Model T";
                 //Make the weight catagory have a random value between 0 and 2
                 DroneList[i].MaxWeight = (IDAL.DO.WeightCategory)(rand.Next(0, 2));
-                //Max battery
-                DroneList[i].battery = 1;
                 Config.FreeDronei++;
                 Config.NextUniqueId++;
             }
