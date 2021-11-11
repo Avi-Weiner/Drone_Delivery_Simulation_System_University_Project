@@ -49,7 +49,7 @@ namespace ConsoleUI
                 "\n3. - Displaying customers list" +
                 "\n4. - Displaying packages list" +
                 "\n5. - Displaying packages not assigned yet to a drone" +
-                "\n6. - Displaying base stations with unoccupied charging stations");
+                "\n6. - Displaying base s1tations with unoccupied charging stations");
         }
 
 
