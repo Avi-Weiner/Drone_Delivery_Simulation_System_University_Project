@@ -14,13 +14,11 @@ namespace DalObject
         {
             DataSource.Initialize();//constructor for DalObjects
         }
-        //I think the following methods need to be added.
-        //Adding to lists methods
 
         /// <summary>
         /// Receives Station Id and returns index of station in StationList
         /// </summary>
-        public int GetStation(int StationId)
+        public static int GetStation(int StationId)
         {
             int i = 0;
             while (i < DataSource.GetFreeStationI() && DataSource.StationList[i].Id != StationId) //Cycle through StationList until StationId is found
@@ -36,7 +34,7 @@ namespace DalObject
         /// <summary>
         /// Receives Drone ID and returns its index in DroneList
         /// </summary>
-        public int GetDrone(int DroneId)
+        public static int GetDrone(int DroneId)
         {
             int i = 0;
             while (i < DataSource.GetFreeDroneI() && DataSource.DroneList[i].Id != DroneId) //Cycle through StationList until StationId is found
@@ -54,7 +52,7 @@ namespace DalObject
         /// </summary>
         /// <param name="PackageId"></param>
         /// <returns></returns>
-        public int GetPackage(int PackageId)
+        public static int GetPackage(int PackageId)
         {
             int i = 0;
             while (i < DataSource.GetFreeParcelI() && DataSource.ParcelList[i].Id != PackageId) //Cycle through ParcelList until Package is found
@@ -73,7 +71,7 @@ namespace DalObject
         /// </summary>
         /// <param name="CustomerId"></param>
         /// <returns></returns>
-        public int GetCustomer(int CustomerId)
+        public static int GetCustomer(int CustomerId)
         {
             int i = 0;
             while (i < DataSource.GetFreeCustomerI() && DataSource.CustomerList[i].Id != CustomerId)
@@ -90,7 +88,7 @@ namespace DalObject
         /// <summary>
         /// adding base station to the stations list
         /// </summary>
-        public void AddStation()
+        public static void AddStation()
         {
             if (DataSource.GetFreeStationI() < 5)
             {
@@ -115,7 +113,7 @@ namespace DalObject
         /// <summary>
         /// adding a drone to the existing drones list
         /// </summary>
-        public void AddDrone()
+        public static void AddDrone()
         {
             int ThisDroneNumber = DataSource.GetFreeDroneI();
             if (ThisDroneNumber < 10)
@@ -141,7 +139,7 @@ namespace DalObject
         /// <summary>
         /// adding a new customer to the customers list
         /// </summary>
-        public void AddCustomer()
+        public static void AddCustomer()
         {
             int ThisCustomerNumber = DataSource.GetFreeCustomerI();
             if(ThisCustomerNumber < 100)
@@ -161,7 +159,7 @@ namespace DalObject
         /// <summary>
         /// receiving a package to deliver
         /// </summary>
-        public void AddPackage()
+        public static void AddPackage()
         {
             if (DataSource.GetFreeParcelI() < 1000) // 1000 max customers
             {
@@ -199,7 +197,7 @@ namespace DalObject
         /// </summary>
         /// <param name="PackageId"></param>
         /// <param name="DroneId"></param>
-        public void AssignDroneToPackage(int PackageId, int DroneId)
+        public static void AssignDroneToPackage(int PackageId, int DroneId)
         {   
             //Checks if drone Id is valid
             GetDrone(DroneId);
@@ -217,7 +215,7 @@ namespace DalObject
         /// </summary>
         /// <param name="PackageId"></param>
         /// <param name="DroneId"></param>
-        public void DronePickUp(int PackageId, int DroneId)
+        public static void DronePickUp(int PackageId, int DroneId)
         {
             int i = GetDrone(DroneId);
             int p = GetPackage(PackageId);
@@ -234,7 +232,7 @@ namespace DalObject
         /// Receives a package from Id PackageId and "drops it off" with a customer
         /// </summary>
         /// <param name="PackageId"></param>
-        public void PackageDropOff(int PackageId)
+        public static void PackageDropOff(int PackageId)
         {
             int p = GetPackage(PackageId);
 
@@ -250,7 +248,7 @@ namespace DalObject
         /// </summary>
         /// <param name="DroneId"></param>
         /// <param name="StationId"></param>
-        public void ChargeDrone(int DroneId, int StationId)
+        public static void ChargeDrone(int DroneId, int StationId)
         {
             //Get Drone
             int i = GetDrone(DroneId);
@@ -281,7 +279,7 @@ namespace DalObject
         /// </summary>
         /// <param name="DroneID"></param>
         /// <param name="StationID"></param>
-        public void ReleaseDrone(int DroneId, int StationId)
+        public static void ReleaseDrone(int DroneId, int StationId)
         {
             //Get Drone
             int i = GetDrone(DroneId);
@@ -298,7 +296,7 @@ namespace DalObject
         /// Prints Station from index in StationList.
         /// </summary>
         /// <param name="i"></param>
-        public void PrintStation(int i)
+        public static void PrintStation(int i)
         {
             Console.WriteLine("Base Station ID: " + DataSource.StationList[i].Id
                + "\nBase Station  name: " + DataSource.StationList[i].Name
@@ -311,7 +309,7 @@ namespace DalObject
         /// Prints the base station from the given ID
         /// </summary>
         /// <param name="Id"></param>
-        public void DisplayBaseStation(int Id)
+        public static void DisplayBaseStation(int Id)
         {
             int p = GetStation(Id);
             PrintStation(p);
@@ -321,7 +319,7 @@ namespace DalObject
         /// Print Drone from the index i
         /// </summary>
         /// <param name="i"></param>
-        public void PrintDrone(int i)
+        public static void PrintDrone(int i)
         {
             Console.WriteLine("Drone ID: " + DataSource.DroneList[i].Id
                 + "\nDrone Model: " + DataSource.DroneList[i].Model
@@ -334,7 +332,7 @@ namespace DalObject
         /// Prints the details of the drone with the given ID
         /// </summary>
         /// <param name="Id"></param>
-        public void DisplayDrone(int Id)
+        public static void DisplayDrone(int Id)
         {
             int p = GetDrone(Id);
             PrintDrone(p);
@@ -344,7 +342,7 @@ namespace DalObject
         /// Prints a customer at indexx in CustomerList
         /// </summary>
         /// <param name="i"></param>
-        public void PrintCustomer(int i)
+        public static void PrintCustomer(int i)
         {
             Console.WriteLine("Customer ID: " + DataSource.CustomerList[i].Id
                 + "\nCustomer Name: " + DataSource.CustomerList[i].Name
@@ -357,7 +355,7 @@ namespace DalObject
         /// Prints the customer with ID Id
         /// </summary>
         /// <param name="Id"></param>
-        public void DisplayCustomer(int Id)
+        public static void DisplayCustomer(int Id)
         {
             int p = GetCustomer(Id);
             PrintCustomer(p);
@@ -367,7 +365,7 @@ namespace DalObject
         /// Prints a package given its' index in ParcelList
         /// </summary>
         /// <param name="i"></param>
-        public void PrintPackage(int i)
+        public static void PrintPackage(int i)
         {
             Console.WriteLine("Package ID: " + DataSource.ParcelList[i].Id
                 + "\nSender ID: " + DataSource.ParcelList[i].SenderId
@@ -385,7 +383,7 @@ namespace DalObject
         /// Displays the package info of the given package id.
         /// </summary>
         /// <param name="Id"></param>
-        public void DisplayPackage(int Id)
+        public static void DisplayPackage(int Id)
         {
             int i = GetPackage(Id);
             PrintPackage(i);
@@ -394,7 +392,7 @@ namespace DalObject
         /// <summary>
         /// Displays all the stations in StationList.
         /// </summary>
-        public void DisplayStationList()
+        public static void DisplayStationList()
         {
             for (int i = 0; i < DataSource.GetFreeStationI(); i++)
                 PrintStation(i);
@@ -403,7 +401,7 @@ namespace DalObject
         /// <summary>
         /// Displays all the drones in DroneList
         /// </summary>
-        public void DisplayDroneList()
+        public static void DisplayDroneList()
         {
             for (int i = 0; i < DataSource.GetFreeDroneI(); i++)
                 PrintDrone(i);
@@ -412,7 +410,7 @@ namespace DalObject
         /// <summary>
         /// Displays all the customers in CustomerList
         /// </summary>
-        public void DisplayCustomerList()
+        public static void DisplayCustomerList()
         {
             for (int i = 0; i < DataSource.GetFreeCustomerI(); i++)
                 PrintCustomer(i);
@@ -421,7 +419,7 @@ namespace DalObject
         /// <summary>
         /// Displays all the Parcels in ParcelList
         /// </summary>
-        public void DisplayParcelList()
+        public static void DisplayParcelList()
         {
             for (int i = 0; i < DataSource.GetFreeParcelI(); i++)
                 PrintPackage(i);
@@ -430,7 +428,7 @@ namespace DalObject
         /// <summary>
         /// Displays packages that are not yet assigned to a drone
         /// </summary>
-        public void DisplayUnassignedPackages()
+        public static void DisplayUnassignedPackages()
         {
             for (int i = 0; i < DataSource.GetFreeParcelI(); i++)
             {
@@ -442,7 +440,7 @@ namespace DalObject
         /// <summary>
         /// Displays Stations with unoccupied charging stations
         /// </summary>
-        public void DisplayFreeChargingStations()
+        public static void DisplayFreeChargingStations()
         {
             for (int i = 0; i < DataSource.GetFreeStationI(); i++)
             {
