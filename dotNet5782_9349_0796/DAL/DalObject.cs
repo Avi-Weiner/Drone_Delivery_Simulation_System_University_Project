@@ -125,9 +125,7 @@ namespace DalObject
                 DataSource.DroneList[ThisDroneNumber].Model = Console.ReadLine();
                 Console.WriteLine("Enter weight category as string: option are light, medium and heavy:");
                 IDAL.DO.WeightCategory ThisWeight = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), Console.ReadLine());
-            //All Drones start Free.
-                DataSource.DroneList[ThisDroneNumber].Status = IDAL.DO.DroneStatus.free;
-            //Max battery. Drone arrives fully charged. 0 is empty 1 is full and everything in between.
+                //Max battery. Drone arrives fully charged. 0 is empty 1 is full and everything in between.
                 DataSource.DroneList[ThisDroneNumber].battery = 1;
             }
             else
@@ -227,8 +225,7 @@ namespace DalObject
             if(DataSource.ParcelList[p].Id == PackageId && DataSource.DroneList[i].Id == DroneId)
             {
             DataSource.ParcelList[p].PickedUp = DateTime.Now;
-            DataSource.DroneList[i].Status = IDAL.DO.DroneStatus.delivery;
-            DataSource.ParcelList[p].DroneId = DroneId;
+                DataSource.ParcelList[p].DroneId = DroneId;
             }
         }
 
@@ -243,10 +240,8 @@ namespace DalObject
             DataSource.ParcelList[p].Delivered = DateTime.Now;
             int DroneId = DataSource.ParcelList[p].DroneId;
             int i = GetDrone(DroneId);
+        }
 
-            DataSource.DroneList[i].Status = IDAL.DO.DroneStatus.free;
-        }     
-        
         /// <summary>
         /// Sends a drone to get charged at the specified station
         /// </summary>
@@ -269,7 +264,6 @@ namespace DalObject
 
             //Make the battery full
             DataSource.DroneList[i].battery = 1;
-            DataSource.DroneList[i].Status = IDAL.DO.DroneStatus.maintenance;
 
             //Adding instance of Dronecharger (Need to save this somewhere or it will just get deleted...),
             //specs unspecific of where to save it so for the meantime it will be deleted
@@ -328,7 +322,6 @@ namespace DalObject
             Console.WriteLine("\nDrone ID: " + DataSource.DroneList[i].Id
                 + "\nDrone Model: " + DataSource.DroneList[i].Model
                 + "\nDrone MaxWeight: " + DataSource.DroneList[i].MaxWeight.ToString()
-                + "\nDrone Status: " + DataSource.DroneList[i].Status.ToString()
                 + "\nDrone Battery: " + DataSource.DroneList[i].battery);
         }
 
