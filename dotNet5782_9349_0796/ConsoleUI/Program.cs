@@ -9,8 +9,7 @@ namespace ConsoleUI
         /// </summary>
         static void PrintMainMenu()
         {
-
-            Console.WriteLine("1. Adding options: ");
+            Console.WriteLine("\n1. Adding options: ");
             Console.WriteLine("2. Updating options: ");
             Console.WriteLine("3. Display options: ");
             Console.WriteLine("4. List display options: ");
@@ -22,7 +21,7 @@ namespace ConsoleUI
             Console.WriteLine("\n1. - adding base station to the stations list" +
                 "\n2. - adding a drone to the existing drones list" +
                 "\n3. - adding a new customer to the customers list" +
-                "\n4. - receiving a package to deliver");
+                "\n4. - adding a package to the package list");
         }
 
         static void PrintUpdatingMenu()
@@ -60,16 +59,18 @@ namespace ConsoleUI
             //ID1 and ID2 are for all the ID pickups in the switches
             int ID1, ID2;
 
+            DalObject.DataSource.Initialize();
+
             while (option != 5) //Option = 5 for exit
                 {
-
-                    Console.WriteLine("Enter number of option: ");
+                    PrintMainMenu();
+                    Console.WriteLine("\nEnter number of option: ");
                     option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
                     case 1:
                         PrintAddingMenu();
-                        Console.WriteLine("Enter number of option: ");
+                        Console.WriteLine("\nEnter number of option: ");
                         InnerOption = Convert.ToInt32(Console.ReadLine());
                         switch(InnerOption)
                         {
@@ -90,7 +91,7 @@ namespace ConsoleUI
 
                     case 2:
                         PrintUpdatingMenu();
-                        Console.WriteLine("Enter number of option: ");
+                        Console.WriteLine("\nEnter number of option: ");
                         InnerOption = Convert.ToInt32(Console.ReadLine());
                         switch (InnerOption)
                         {
@@ -136,7 +137,7 @@ namespace ConsoleUI
 
                     case 3:
                         PrintDisplayMenu();
-                        Console.WriteLine("Enter number of option: ");
+                        Console.WriteLine("\nEnter number of option: ");
                         InnerOption = Convert.ToInt32(Console.ReadLine());
                         switch (InnerOption)
                         {
@@ -168,7 +169,7 @@ namespace ConsoleUI
 
                     case 4:
                         PrintListDisplayMenu();
-                        Console.WriteLine("Enter number of option: ");
+                        Console.WriteLine("\nEnter number of option: ");
                         InnerOption = Convert.ToInt32(Console.ReadLine());
                         switch (InnerOption)
                         {

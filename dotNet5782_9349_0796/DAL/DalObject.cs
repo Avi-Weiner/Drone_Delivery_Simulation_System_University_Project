@@ -125,9 +125,7 @@ namespace DalObject
                 DataSource.DroneList[ThisDroneNumber].Model = Console.ReadLine();
                 Console.WriteLine("Enter weight category as string: option are light, medium and heavy:");
                 IDAL.DO.WeightCategory ThisWeight = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), Console.ReadLine());
-            //All Drones start Free.
-                DataSource.DroneList[ThisDroneNumber].Status = IDAL.DO.DroneStatus.free;
-            //Max battery. Drone arrives fully charged. 0 is empty 1 is full and everything in between.
+                //Max battery. Drone arrives fully charged. 0 is empty 1 is full and everything in between.
                 DataSource.DroneList[ThisDroneNumber].battery = 1;
             }
             else
@@ -144,15 +142,19 @@ namespace DalObject
             int ThisCustomerNumber = DataSource.GetFreeCustomerI();
             if(ThisCustomerNumber < 100)
             {
-            DataSource.SetFreeCustomer();
-            DataSource.CustomerList[ThisCustomerNumber].Id = DataSource.GetNextUniqueID();
-            DataSource.SetNextUniqueID();
-            DataSource.CustomerList[ThisCustomerNumber].Name = Console.ReadLine();
-            DataSource.CustomerList[ThisCustomerNumber].Phone = Console.ReadLine();
-            Console.WriteLine("Enter longitude: ");
-            DataSource.CustomerList[ThisCustomerNumber].Longitude = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Enter latitude: ");
-            DataSource.CustomerList[ThisCustomerNumber].Latitude = Convert.ToDouble(Console.ReadLine());
+                DataSource.SetFreeCustomer();
+                DataSource.CustomerList[ThisCustomerNumber].Id = DataSource.GetNextUniqueID();
+                DataSource.SetNextUniqueID();
+
+                Console.WriteLine("Enter name: ");
+                DataSource.CustomerList[ThisCustomerNumber].Name = Console.ReadLine();
+
+                Console.WriteLine("Enter phone: ");
+                DataSource.CustomerList[ThisCustomerNumber].Phone = Console.ReadLine();
+                Console.WriteLine("Enter longitude: ");
+                DataSource.CustomerList[ThisCustomerNumber].Longitude = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("Enter latitude: ");
+                DataSource.CustomerList[ThisCustomerNumber].Latitude = Convert.ToDouble(Console.ReadLine());
             }
         }
 
@@ -223,8 +225,7 @@ namespace DalObject
             if(DataSource.ParcelList[p].Id == PackageId && DataSource.DroneList[i].Id == DroneId)
             {
             DataSource.ParcelList[p].PickedUp = DateTime.Now;
-            DataSource.DroneList[i].Status = IDAL.DO.DroneStatus.delivery;
-            DataSource.ParcelList[p].DroneId = DroneId;
+                DataSource.ParcelList[p].DroneId = DroneId;
             }
         }
 
@@ -239,10 +240,8 @@ namespace DalObject
             DataSource.ParcelList[p].Delivered = DateTime.Now;
             int DroneId = DataSource.ParcelList[p].DroneId;
             int i = GetDrone(DroneId);
+        }
 
-            DataSource.DroneList[i].Status = IDAL.DO.DroneStatus.free;
-        }     
-        
         /// <summary>
         /// Sends a drone to get charged at the specified station
         /// </summary>
@@ -265,7 +264,6 @@ namespace DalObject
 
             //Make the battery full
             DataSource.DroneList[i].battery = 1;
-            DataSource.DroneList[i].Status = IDAL.DO.DroneStatus.maintenance;
 
             //Adding instance of Dronecharger (Need to save this somewhere or it will just get deleted...),
             //specs unspecific of where to save it so for the meantime it will be deleted
@@ -298,7 +296,7 @@ namespace DalObject
         /// <param name="i"></param>
         public static void PrintStation(int i)
         {
-            Console.WriteLine("Base Station ID: " + DataSource.StationList[i].Id
+            Console.WriteLine("\nBase Station ID: " + DataSource.StationList[i].Id
                + "\nBase Station  name: " + DataSource.StationList[i].Name
                + "\nBase Station Longitude: " + DataSource.StationList[i].Longitude
                + "\nBase Station Latitude: " + DataSource.StationList[i].Latitude
@@ -321,10 +319,9 @@ namespace DalObject
         /// <param name="i"></param>
         public static void PrintDrone(int i)
         {
-            Console.WriteLine("Drone ID: " + DataSource.DroneList[i].Id
+            Console.WriteLine("\nDrone ID: " + DataSource.DroneList[i].Id
                 + "\nDrone Model: " + DataSource.DroneList[i].Model
                 + "\nDrone MaxWeight: " + DataSource.DroneList[i].MaxWeight.ToString()
-                + "\nDrone Status: " + DataSource.DroneList[i].Status.ToString()
                 + "\nDrone Battery: " + DataSource.DroneList[i].battery);
         }
 
@@ -344,7 +341,7 @@ namespace DalObject
         /// <param name="i"></param>
         public static void PrintCustomer(int i)
         {
-            Console.WriteLine("Customer ID: " + DataSource.CustomerList[i].Id
+            Console.WriteLine("\nCustomer ID: " + DataSource.CustomerList[i].Id
                 + "\nCustomer Name: " + DataSource.CustomerList[i].Name
                 + "\nCustomer Phone: " + DataSource.CustomerList[i].Phone
                 + "\nCustomer Longitude: " + DataSource.CustomerList[i].Longitude
@@ -367,7 +364,7 @@ namespace DalObject
         /// <param name="i"></param>
         public static void PrintPackage(int i)
         {
-            Console.WriteLine("Package ID: " + DataSource.ParcelList[i].Id
+            Console.WriteLine("\nPackage ID: " + DataSource.ParcelList[i].Id
                 + "\nSender ID: " + DataSource.ParcelList[i].SenderId
                 + "\nReceiver ID: " + DataSource.ParcelList[i].ReceiverId
                 + "\nWeight: " + DataSource.ParcelList[i].Weight.ToString()
