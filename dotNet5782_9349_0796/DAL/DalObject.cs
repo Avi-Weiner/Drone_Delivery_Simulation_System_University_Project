@@ -278,13 +278,13 @@ namespace DalObject
         /// Prints Station from index in StationList.
         /// </summary>
         /// <param name="i"></param>
-        public static void PrintStation(int i)
+        public static void PrintStation(IDAL.DO.Station s)
         {
-            Console.WriteLine("\nBase Station ID: " + DataSource.StationList[i].Id
-               + "\nBase Station  name: " + DataSource.StationList[i].Name
-               + "\nBase Station Longitude: " + DataSource.StationList[i].Longitude
-               + "\nBase Station Latitude: " + DataSource.StationList[i].Latitude
-               + "\nBase Station # of Charging slots: " + DataSource.StationList[i].ChargeSlots);
+            Console.WriteLine("\nBase Station ID: " + s.Id
+               + "\nBase Station  name: " + s.Name
+               + "\nBase Station Longitude: " + s.Longitude
+               + "\nBase Station Latitude: " + s.Latitude
+               + "\nBase Station # of Charging slots: " + s.ChargeSlots;
         }
 
         /// <summary>
@@ -422,14 +422,12 @@ namespace DalObject
         /// </summary>
         public static void DisplayFreeChargingStations()
         {
-            for (int i = 0; i < DataSource.GetFreeStationI(); i++)
+            foreach(IDAL.DO.Station s in DataSource.StationList)
             {
-                if (DataSource.StationList[i].ChargeSlots > 0)
-                    PrintStation(i);
+                if (s.ChargeSlots > 0)
+                    PrintStation(s);     
             }
         }
-
-
     }
 }
 
