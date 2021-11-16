@@ -249,6 +249,8 @@ namespace DalObject
 
             //minus 1 to charge slots
             S.ChargeSlots--;
+            int j = GetStation(StationId);
+            DataSource.StationList[j] = S;
 
             //Adding instance of Dronecharger (Need to save this somewhere or it will just get deleted...),
             //specs unspecific of where to save it so for the meantime it will be deleted
@@ -272,9 +274,9 @@ namespace DalObject
 
             //Free up charge slot 
             IDAL.DO.Station s = DataSource.StationList.Find(x => x.Id == StationId);
-            s.ChargeSlots++; //Not sure if this line actually increments the station or just a copy of the station in s
-            
-            //DataSource.StationList[j].ChargeSlots++;
+            s.ChargeSlots++; 
+            DataSource.StationList[j] = s;
+
             
         }
 
