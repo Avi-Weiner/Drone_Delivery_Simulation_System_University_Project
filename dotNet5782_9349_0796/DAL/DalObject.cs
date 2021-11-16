@@ -280,13 +280,16 @@ namespace DalObject
             //Get station
             int j = GetStation(StationId);
 
-            //Free up charge slot
-            DataSource.StationList[j].ChargeSlots++;
+            //Free up charge slot 
+            IDAL.DO.Station s = DataSource.StationList.Find(x => x.Id == StationId);
+            s.ChargeSlots++; //Not sure if this line actually increments the station or just a copy of the station in s
+            
+            //DataSource.StationList[j].ChargeSlots++;
             
         }
 
         /// <summary>
-        /// Prints Station from index in StationList.
+        /// Prints Station from received station s
         /// </summary>
         /// <param name="i"></param>
         public static void PrintStation(IDAL.DO.Station s)
@@ -295,7 +298,7 @@ namespace DalObject
                + "\nBase Station  name: " + s.Name
                + "\nBase Station Longitude: " + s.Longitude
                + "\nBase Station Latitude: " + s.Latitude
-               + "\nBase Station # of Charging slots: " + s.ChargeSlots;
+               + "\nBase Station # of Charging slots: " + s.ChargeSlots);
         }
 
         /// <summary>
@@ -304,8 +307,8 @@ namespace DalObject
         /// <param name="Id"></param>
         public static void DisplayBaseStation(int Id)
         {
-            int p = GetStation(Id);
-            PrintStation(p);
+            IDAL.DO.Station s = DataSource.StationList.Find(x => x.Id == Id);
+            PrintStation(s);
         }
 
         /// <summary>
@@ -316,7 +319,7 @@ namespace DalObject
         {
             Console.WriteLine("\nDrone ID: " + DataSource.DroneList[i].Id
                 + "\nDrone Model: " + DataSource.DroneList[i].Model
-                + "\nDrone MaxWeight: " + DataSource.DroneList[i].MaxWeight.ToString()
+                + "\nDrone MaxWeight: " + DataSource.DroneList[i].MaxWeight.ToString());
         }
 
         /// <summary>
@@ -385,8 +388,11 @@ namespace DalObject
         /// </summary>
         public static void DisplayStationList()
         {
-            for (int i = 0; i < DataSource.GetFreeStationI(); i++)
-                PrintStation(i);
+            foreach (IDAL.DO.Station s in DataSource.StationList)
+            {
+                PrintStation(s);
+            }
+
         }
 
         /// <summary>
