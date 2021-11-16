@@ -190,12 +190,11 @@ namespace DalObject
         {   
             //Checks if drone Id is valid
             GetDrone(DroneId);
-
-            int j = GetPackage(PackageId);
-                
-            //Asign Drone to package
-            DataSource.ParcelList[j].DroneId = DroneId;
-            DataSource.ParcelList[j].Scheduled = DateTime.Now;
+            IDAL.DO.Parcel P = DataSource.ParcelList.Find(x => x.Id == PackageId);
+            
+            P.DroneId = DroneId;
+            P.Scheduled = DateTime.Now;
+         
         }
 
 
@@ -206,13 +205,13 @@ namespace DalObject
         /// <param name="DroneId"></param>
         public static void DronePickUp(int PackageId, int DroneId)
         {
-            int i = GetDrone(DroneId);
-            int p = GetPackage(PackageId);
-
-            if(DataSource.ParcelList[p].Id == PackageId && DataSource.DroneList[i].Id == DroneId)
+            IDAL.DO.Parcel P = DataSource.ParcelList.Find(x => x.Id == PackageId);
+            IDAL.DO.Drone D = DataSource.DroneList.Find(x => x.Id == DroneId);
+            //Do we need to check if the drone is free?
+            if(P.Id == PackageId && D.Id == DroneId)
             {
-            DataSource.ParcelList[p].PickedUp = DateTime.Now;
-                DataSource.ParcelList[p].DroneId = DroneId;
+                P.PickedUp = DateTime.Now;
+                P.DroneId = DroneId;
             }
         }
 
@@ -222,11 +221,12 @@ namespace DalObject
         /// <param name="PackageId"></param>
         public static void PackageDropOff(int PackageId)
         {
-            int p = GetPackage(PackageId);
+            IDAL.DO.Parcel P = DataSource.ParcelList.Find(x => x.Id == PackageId);
+            P.Delivered = DateTime.Now;
 
-            DataSource.ParcelList[p].Delivered = DateTime.Now;
-            int DroneId = DataSource.ParcelList[p].DroneId;
-            int i = GetDrone(DroneId);
+            //DataSource.ParcelList[p].Delivered = DateTime.Now;
+            //int DroneId = DataSource.ParcelList[p].DroneId;
+            //int i = GetDrone(DroneId);
         }
 
         /// <summary>
@@ -240,20 +240,21 @@ namespace DalObject
             int i = GetDrone(DroneId);
 
             //Get station
-            int j = GetStation(StationId);
-            if (DataSource.StationList[j].ChargeSlots == 0)
+            IDAL.DO.Station S = DataSource.StationList.Find(x => x.Id == StationId);
+            IDAL.DO.Drone D = DataSource.DroneList.Find(x => x.Id == DroneId);
+            if (S.ChargeSlots == 0)
             {
                 Console.WriteLine("Error: No free charge slots at specified station.");
             }
 
             //minus 1 to charge slots
-            DataSource.StationList[j].ChargeSlots--;
+            S.ChargeSlots--;
 
             //Adding instance of Dronecharger (Need to save this somewhere or it will just get deleted...),
             //specs unspecific of where to save it so for the meantime it will be deleted
             IDAL.DO.DroneCharger newCharger = new IDAL.DO.DroneCharger();
-            newCharger.DroneId = DataSource.DroneList[i].Id;
-            newCharger.StationId = DataSource.StationList[j].Id;
+            newCharger.DroneId = D.Id;
+            newCharger.StationId = S.Id;
         }
 
         /// <summary>
