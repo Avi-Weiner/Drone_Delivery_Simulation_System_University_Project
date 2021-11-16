@@ -90,24 +90,21 @@ namespace DalObject
         /// </summary>
         public static void AddStation()
         {
-            if (DataSource.GetFreeStationI() < 5)
+            Console.WriteLine("Enter Longitude: ");
+            double longitude = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter Latitude: ");
+            double latitude = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter number of charge slots: ");
+            int slots = Convert.ToInt32(Console.ReadLine());
+            //assuming that no maximum amount of sattions
+            //add station to the back of the station list
+            DataSource.StationList.Add(new IDAL.DO.Station
             {
-                int ThisStationNumber = DataSource.GetFreeStationI();
-                DataSource.StationList[ThisStationNumber].Id = DataSource.GetNextUniqueID();
-                Console.WriteLine("Enter Longitude: ");
-                DataSource.StationList[ThisStationNumber].Longitude = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Enter Latitude: ");
-                DataSource.StationList[ThisStationNumber].Latitude = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Enter number of charge slots: ");
-                DataSource.StationList[ThisStationNumber].ChargeSlots = Convert.ToInt32(Console.ReadLine());
-                DataSource.SetNextUniqueID();
-                DataSource.SetFreeStation();
-            }
-            else
-            {
-            Console.WriteLine("Error: Too many Stations");
-            }
-
+                Id = DataSource.GetNextUniqueID(),
+                Longitude = longitude,
+                Latitude = latitude,
+                ChargeSlots = slots
+            });
         }
 
         /// <summary>
@@ -115,21 +112,17 @@ namespace DalObject
         /// </summary>
         public static void AddDrone()
         {
-            int ThisDroneNumber = DataSource.GetFreeDroneI();
-            if (ThisDroneNumber < 10)
+            Console.WriteLine("Enter drone model:");
+            string model = Console.ReadLine();
+            Console.WriteLine("Enter weight category as string: option are light, medium and heavy:");
+            IDAL.DO.WeightCategory ThisWeight = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), Console.ReadLine());
+            //add the new drone to the back of the list
+            DataSource.DroneList.Add(new IDAL.DO.Drone
             {
-            DataSource.SetFreeDrone();
-                DataSource.DroneList[ThisDroneNumber].Id = DataSource.GetNextUniqueID();
-                DataSource.SetNextUniqueID();
-                Console.WriteLine("Enter drone model:");
-                DataSource.DroneList[ThisDroneNumber].Model = Console.ReadLine();
-                Console.WriteLine("Enter weight category as string: option are light, medium and heavy:");
-                IDAL.DO.WeightCategory ThisWeight = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), Console.ReadLine());
-            }
-            else
-            {
-                Console.WriteLine("Error: Too many drones.\n");
-            }
+                Id = DataSource.GetNextUniqueID(),
+                Model = model,
+                MaxWeight = ThisWeight
+            });
         }
 
         /// <summary>
@@ -137,23 +130,25 @@ namespace DalObject
         /// </summary>
         public static void AddCustomer()
         {
-            int ThisCustomerNumber = DataSource.GetFreeCustomerI();
-            if(ThisCustomerNumber < 100)
+            Console.WriteLine("Enter name: ");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("Enter phone: ");
+            string phone = Console.ReadLine();
+            Console.WriteLine("Enter longitude: ");
+            double longitude = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter latitude: ");
+            double latitude = Convert.ToDouble(Console.ReadLine());
+            //add customer to the back of the customer list
+            DataSource.CustomerList.Add(new IDAL.DO.Customer
             {
-                DataSource.SetFreeCustomer();
-                DataSource.CustomerList[ThisCustomerNumber].Id = DataSource.GetNextUniqueID();
-                DataSource.SetNextUniqueID();
+                Id = DataSource.GetNextUniqueID(),
+                Name = name,
+                Phone = phone,
+                Longitude = longitude,
+                Latitude = latitude
 
-                Console.WriteLine("Enter name: ");
-                DataSource.CustomerList[ThisCustomerNumber].Name = Console.ReadLine();
-
-                Console.WriteLine("Enter phone: ");
-                DataSource.CustomerList[ThisCustomerNumber].Phone = Console.ReadLine();
-                Console.WriteLine("Enter longitude: ");
-                DataSource.CustomerList[ThisCustomerNumber].Longitude = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Enter latitude: ");
-                DataSource.CustomerList[ThisCustomerNumber].Latitude = Convert.ToDouble(Console.ReadLine());
-            }
+            });
         }
 
         /// <summary>
@@ -161,35 +156,29 @@ namespace DalObject
         /// </summary>
         public static void AddPackage()
         {
-            if (DataSource.GetFreeParcelI() < 1000) // 1000 max customers
+            Console.WriteLine("Enter Sender ID: ");
+            int InputSender = Convert.ToInt32(Console.ReadLine()); //Does not check if Customer exists as Exercise 1 says not to
+            Console.WriteLine("Enter Receiver ID: ");
+            int InputReciever = Convert.ToInt32(Console.ReadLine());//Does not check if Customer exists as Exercise 1 says not to
+            Console.WriteLine("Enter Weight Catagory ('light', 'medium', 'heavy'): ");
+            IDAL.DO.WeightCategory InputWeight = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), Console.ReadLine());
+            Console.WriteLine("Enter Priority ('regular', 'fast', 'emergency'): ");
+            IDAL.DO.Priority InputPriority = (IDAL.DO.Priority)Enum.Parse(typeof(IDAL.DO.Priority), Console.ReadLine());
+            DataSource.ParcelList.Add(new IDAL.DO.Parcel
             {
-                int ThisPackage = DataSource.GetFreeParcelI();
-                DataSource.ParcelList[ThisPackage].Id = DataSource.GetNextUniqueID();
+                Id = DataSource.GetNextUniqueID(),
+                SenderId = InputSender,
+                ReceiverId = InputReciever,
+                Weight = InputWeight,
+                Priority = InputPriority,
+                Requested = DateTime.Now,
+                DroneId = 0, //No drone assigned yet
+                Scheduled = null,
+                PickedUp = null,
+                Delivered = null
 
-                //User inputs:
-                Console.WriteLine("Enter Sender ID: ");
-                DataSource.ParcelList[ThisPackage].SenderId = Convert.ToInt32(Console.ReadLine()); //Does not check if Customer exists as Exercise 1 says not to
-                Console.WriteLine("Enter Receiver ID: ");
-                DataSource.ParcelList[ThisPackage].ReceiverId = Convert.ToInt32(Console.ReadLine());//Does not check if Customer exists as Exercise 1 says not to
-                Console.WriteLine("Enter Weight Catagory ('light', 'medium', 'heavy'): ");
-                DataSource.ParcelList[ThisPackage].Weight = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), Console.ReadLine());
-                Console.WriteLine("Enter Priority ('regular', 'fast', 'emergency'): ");
-                DataSource.ParcelList[ThisPackage].Priority = (IDAL.DO.Priority)Enum.Parse(typeof(IDAL.DO.Priority), Console.ReadLine());
-
-                //Rest are System inputs
-                DataSource.ParcelList[ThisPackage].Requested = DateTime.Now;
-                DataSource.ParcelList[ThisPackage].DroneId = 0; //No drone assigned yet
-                DataSource.ParcelList[ThisPackage].Scheduled = null;
-                DataSource.ParcelList[ThisPackage].PickedUp = null;
-                DataSource.ParcelList[ThisPackage].Delivered = null;
-
-                DataSource.SetNextUniqueID();
-                DataSource.SetFreeParcel();
-            }
-            else
-            {
-                Console.WriteLine("Error: Too many Packages \n");
-            }
+        });
+           
         }
 
         /// <summary>
@@ -201,12 +190,11 @@ namespace DalObject
         {   
             //Checks if drone Id is valid
             GetDrone(DroneId);
-
-            int j = GetPackage(PackageId);
-                
-            //Asign Drone to package
-            DataSource.ParcelList[j].DroneId = DroneId;
-            DataSource.ParcelList[j].Scheduled = DateTime.Now;
+            IDAL.DO.Parcel P = DataSource.ParcelList.Find(x => x.Id == PackageId);
+            
+            P.DroneId = DroneId;
+            P.Scheduled = DateTime.Now;
+         
         }
 
 
@@ -217,13 +205,13 @@ namespace DalObject
         /// <param name="DroneId"></param>
         public static void DronePickUp(int PackageId, int DroneId)
         {
-            int i = GetDrone(DroneId);
-            int p = GetPackage(PackageId);
-
-            if(DataSource.ParcelList[p].Id == PackageId && DataSource.DroneList[i].Id == DroneId)
+            IDAL.DO.Parcel P = DataSource.ParcelList.Find(x => x.Id == PackageId);
+            IDAL.DO.Drone D = DataSource.DroneList.Find(x => x.Id == DroneId);
+            //Do we need to check if the drone is free?
+            if(P.Id == PackageId && D.Id == DroneId)
             {
-            DataSource.ParcelList[p].PickedUp = DateTime.Now;
-                DataSource.ParcelList[p].DroneId = DroneId;
+                P.PickedUp = DateTime.Now;
+                P.DroneId = DroneId;
             }
         }
 
@@ -233,11 +221,12 @@ namespace DalObject
         /// <param name="PackageId"></param>
         public static void PackageDropOff(int PackageId)
         {
-            int p = GetPackage(PackageId);
+            IDAL.DO.Parcel P = DataSource.ParcelList.Find(x => x.Id == PackageId);
+            P.Delivered = DateTime.Now;
 
-            DataSource.ParcelList[p].Delivered = DateTime.Now;
-            int DroneId = DataSource.ParcelList[p].DroneId;
-            int i = GetDrone(DroneId);
+            //DataSource.ParcelList[p].Delivered = DateTime.Now;
+            //int DroneId = DataSource.ParcelList[p].DroneId;
+            //int i = GetDrone(DroneId);
         }
 
         /// <summary>
@@ -251,20 +240,21 @@ namespace DalObject
             int i = GetDrone(DroneId);
 
             //Get station
-            int j = GetStation(StationId);
-            if (DataSource.StationList[j].ChargeSlots == 0)
+            IDAL.DO.Station S = DataSource.StationList.Find(x => x.Id == StationId);
+            IDAL.DO.Drone D = DataSource.DroneList.Find(x => x.Id == DroneId);
+            if (S.ChargeSlots == 0)
             {
                 Console.WriteLine("Error: No free charge slots at specified station.");
             }
 
             //minus 1 to charge slots
-            DataSource.StationList[j].ChargeSlots--;
+            S.ChargeSlots--;
 
             //Adding instance of Dronecharger (Need to save this somewhere or it will just get deleted...),
             //specs unspecific of where to save it so for the meantime it will be deleted
             IDAL.DO.DroneCharger newCharger = new IDAL.DO.DroneCharger();
-            newCharger.DroneId = DataSource.DroneList[i].Id;
-            newCharger.StationId = DataSource.StationList[j].Id;
+            newCharger.DroneId = D.Id;
+            newCharger.StationId = S.Id;
         }
 
         /// <summary>
