@@ -11,7 +11,7 @@ namespace DalObject
     public partial class DalObject : IDAL.IDALInterface
     {
         //creates a DAL object by intializing values accordign to Initialize
-        DalObject()
+        public DalObject()
         {
             DataSource.Initialize();//constructor for DalObjects
         }
