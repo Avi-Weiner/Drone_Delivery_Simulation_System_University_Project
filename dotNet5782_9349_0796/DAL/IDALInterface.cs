@@ -7,8 +7,8 @@ using DalObject;
 
 namespace IDAL
 {
-    interface IDALInterface
+    public interface IDALInterface
     {
-
+        public double[] PowerConsumptions();
     }
 }

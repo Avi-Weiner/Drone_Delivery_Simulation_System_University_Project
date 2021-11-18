@@ -16,6 +16,17 @@ namespace DalObject
             DataSource.Initialize();//constructor for DalObjects
         }
 
+        public double[] PowerConsumptions()
+        {
+            double[] array = new double[5];
+            array[0] = DataSource.GetFree();
+            array[1] = DataSource.GetLightWeight();
+            array[2] = DataSource.GetMediumWeight();
+            array[3] = DataSource.GetHeavyWeight();
+            array[4] = DataSource.GetChargingRate();
+
+            return array;
+        }
     }
 }
 
