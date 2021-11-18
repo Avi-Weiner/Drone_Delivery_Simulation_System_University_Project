@@ -21,34 +21,36 @@ namespace DalObject
         }
 
         /// <summary>
-        /// adding a drone to the existing drones list
+        ///  adding a drone to the existing drones list
         /// </summary>
-        public static void AddDrone()
+        /// <param name="model"></param>
+        /// <param name="Weight"></param>
+        public static void AddDrone(string model, IDAL.DO.WeightCategory Weight)
         {
-            try
-            {
-                Console.WriteLine("Enter drone model:");
-                string model = Console.ReadLine();
-                Console.WriteLine("Enter weight category as string: option are light, medium and heavy:");
-                string weightString = Console.ReadLine();
+           // try
+            //{
+                //Console.WriteLine("Enter drone model:");
+                //string model = Console.ReadLine();
+                //Console.WriteLine("Enter weight category as string: option are light, medium and heavy:");
+                //string weightString = Console.ReadLine();
                 //Check if valid input
-                if (weightString != "light" && weightString != "medium" && weightString != "heavy")
-                    throw new IDAL.DO.MessageException("Error: Invalid weight.");
+                //if (weightString != "light" && weightString != "medium" && weightString != "heavy")
+                //  throw new IDAL.DO.MessageException("Error: Invalid weight.");
 
-                IDAL.DO.WeightCategory ThisWeight = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), weightString);
+                //IDAL.DO.WeightCategory ThisWeight = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), weightString);
 
                 //add the new drone to the back of the list
                 DataSource.DroneList.Add(new IDAL.DO.Drone
                 {
                     Id = DataSource.GetNextUniqueID(),
                     Model = model,
-                    MaxWeight = ThisWeight
+                    MaxWeight = Weight
                 });
-            }
-            catch (IDAL.DO.MessageException e)
-            {
-                Console.WriteLine(e);
-            }
+                //}
+                //catch (IDAL.DO.MessageException e)
+                //{
+                //  Console.WriteLine(e);
+                // }
         }
 
         /// <summary>
@@ -84,8 +86,8 @@ namespace DalObject
         /// <param name="StationId"></param>
         public static void ChargeDrone(int DroneId, int StationId)
         {
-            try
-            {
+            //try
+            //{
                 //Get Drone
                 int i = GetDrone(DroneId);
 
@@ -105,11 +107,11 @@ namespace DalObject
                 IDAL.DO.DroneCharger newCharger = new IDAL.DO.DroneCharger();
                 newCharger.DroneId = D.Id;
                 newCharger.StationId = S.Id;
-            }
-            catch (IDAL.DO.MessageException e)
-            {
-                Console.WriteLine(e);
-            }
+            //}
+            //catch (IDAL.DO.MessageException e)
+            //{
+              //  Console.WriteLine(e);
+            //}
         }
 
         /// <summary>
@@ -119,8 +121,8 @@ namespace DalObject
         /// <param name="StationID"></param>
         public static void ReleaseDrone(int DroneId, int StationId)
         {
-            try
-            {
+            //try
+            //{
                 //Get Drone
                 int i = GetDrone(DroneId);
 
@@ -131,51 +133,51 @@ namespace DalObject
                 IDAL.DO.Station s = DataSource.StationList.Find(x => x.Id == StationId);
                 s.ChargeSlots++;
                 DataSource.StationList[j] = s;
-            }
-            catch (IDAL.DO.MessageException e)
-            {
-                Console.WriteLine(e);
-            }
+            //}
+            //catch (IDAL.DO.MessageException e)
+            //{
+             //   Console.WriteLine(e);
+            //}
 
         }
-
+        //////////////////////////////////////////// Do in Main  ////////////////////////////////////////////////////
         /// <summary>
         /// Prints a drone d
         /// </summary>
         /// <param name="i"></param>
-        public static void PrintDrone(IDAL.DO.Drone d)
-        {
-            Console.WriteLine("\nDrone ID: " + d.Id
-                + "\nDrone Model: " + d.Model
-                + "\nDrone MaxWeight: " + d.MaxWeight.ToString());
-        }
+        //public static void PrintDrone(IDAL.DO.Drone d)
+        //{
+         //   Console.WriteLine("\nDrone ID: " + d.Id
+          ///      + "\nDrone Model: " + d.Model
+            //    + "\nDrone MaxWeight: " + d.MaxWeight.ToString());
+       // }
 
         /// <summary>
         /// Prints the details of the drone with the given ID
         /// </summary>
         /// <param name="Id"></param>
-        public static void DisplayDrone(int Id)
-        {
-            try
-            {
-                IDAL.DO.Drone d = DataSource.DroneList.Find(x => x.Id == Id);
-                PrintDrone(d);
-            }
-            catch (IDAL.DO.MessageException e)
-            {
-                Console.WriteLine(e);
-            }
-        }
+        //public static void DisplayDrone(int Id)
+        //{
+            //try
+            //{
+           //     IDAL.DO.Drone d = DataSource.DroneList.Find(x => x.Id == Id);
+              //  PrintDrone(d);
+            ///}
+            //catch (IDAL.DO.MessageException e)
+            //{
+              //  Console.WriteLine(e);
+            //}
+       // }
 
         /// <summary>
         /// Displays all the drones in DroneList
         /// </summary>
-        public static void DisplayDroneList()
-        {
-            foreach (IDAL.DO.Drone d in DataSource.DroneList)
-            {
-                PrintDrone(d);
-            }
-        }
+        //public static void DisplayDroneList()
+        //{
+          //  foreach (IDAL.DO.Drone d in DataSource.DroneList)
+            //{
+              //  PrintDrone(d);
+            //}
+        //}
     }
 }
