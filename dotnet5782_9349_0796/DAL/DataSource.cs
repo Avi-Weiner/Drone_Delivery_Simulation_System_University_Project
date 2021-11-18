@@ -24,9 +24,9 @@ namespace DalObject
             /// </summary>
             public static int FreeCustomeri { get; set; } = 0;
             /// <summary>
-            /// Index of first free element in ParcelList.
+            /// Index of first free element in PackageList.
             /// </summary>
-            public static int FreeParceli { get; set; } = 0;
+            public static int FreePackagei { get; set; } = 0;
 
             //Told to include the below field in exercise 1 but I am not sure what it is.
             //static int PackagesId;
@@ -41,19 +41,19 @@ namespace DalObject
         //public static IDAL.DO.Drone[] DroneList = new IDAL.DO.Drone[10];
         //public static IDAL.DO.Station[] StationList = new IDAL.DO.Station[5];
         //public static IDAL.DO.Customer[] CustomerList = new IDAL.DO.Customer[100];
-        //public static IDAL.DO.Parcel[] ParcelList = new IDAL.DO.Parcel[1000];
+        //public static IDAL.DO.Package[] PackageList = new IDAL.DO.Package[1000];
         public static List<IDAL.DO.Drone> DroneList = new List<IDAL.DO.Drone>();
         public static List<IDAL.DO.Station> StationList = new List<IDAL.DO.Station>();
         public static List<IDAL.DO.Customer> CustomerList = new List<IDAL.DO.Customer>();
-        public static List<IDAL.DO.Parcel> ParcelList = new List<IDAL.DO.Parcel>();
+        public static List<IDAL.DO.Package> PackageList = new List<IDAL.DO.Package>();
 
         //getters for knowing how many stations/drones/customer we have and have
         //left. Mainly used for public access by DalObjects.
         //!!!!It is the responsibilty of the user to use the set method as well
-        //when allocating a new station/drone/custoemr/parcel/ID
+        //when allocating a new station/drone/custoemr/package/ID
         public static int GetFreeStationI() { return Config.FreeStationi; }  
         public static int GetFreeCustomerI() { return Config.FreeCustomeri; }
-        public static int GetFreeParcelI() { return Config.FreeParceli; }
+        public static int GetFreePackageI() { return Config.FreePackagei; }
         public static int GetNextUniqueID() {  return Config.NextUniqueId; }
         public static int GetFreeDroneI() { return Config.FreeDronei; }
 
@@ -61,7 +61,7 @@ namespace DalObject
         public static void SetFreeStation() { Config.FreeStationi += 1; }
         public static void SetFreeDrone() { Config.FreeDronei += 1; }
         public static void SetFreeCustomer() { Config.FreeCustomeri += 1; }
-        public static void SetFreeParcel() { Config.FreeParceli += 1; }
+        public static void SetFreePackage() { Config.FreePackagei += 1; }
         public static void SetNextUniqueID() { Config.NextUniqueId += 1; }
 
 
@@ -120,7 +120,7 @@ namespace DalObject
             //10 packages
             for (int i = 0; i < 10; i++)
             {
-                ParcelList.Add(new IDAL.DO.Parcel()
+                PackageList.Add(new IDAL.DO.Package()
                 {
                     Id = Config.NextUniqueId,
                     SenderId = CustomerList[i].Id,

@@ -186,7 +186,7 @@ namespace ConsoleUI
                                 break;
 
                             case 4:
-                                DalObject.DalObject.DisplayParcelList();
+                                DalObject.DalObject.DisplayPackageList();
                                 break;
 
                             case 5:
