@@ -11,6 +11,26 @@ namespace DalObject
     {
         class Config
         {
+            /// <summary>
+            /// Zero electricity consumption per km
+            /// </summary>
+            public static double Free { get; set; } = 0;
+            /// <summary>
+            /// percentage light electricity consumption per km
+            /// </summary>
+            public static double LightWeight { get; set; } = 0.001;
+            /// <summary>
+            /// percentage medium electricity consumption per km
+            /// </summary>
+            public static double MediumWeight { get; set; } = 0.003;
+            /// <summary>
+            /// percentage heavy electricity consumption per km
+            /// </summary>
+            public static double HeavyWeight { get; set; } = 0.005;
+            /// <summary>
+            /// percent charge rate per hour
+            /// </summary>
+            public static double ChargingRate { get; set; } = 0.5;
 
             //Told to include the below field in exercise 1 but I am not sure what it is.
             //static int PackagesId;
@@ -22,18 +42,20 @@ namespace DalObject
 
         }
 
-        //public static IDAL.DO.Drone[] DroneList = new IDAL.DO.Drone[10];
-        //public static IDAL.DO.Station[] StationList = new IDAL.DO.Station[5];
-        //public static IDAL.DO.Customer[] CustomerList = new IDAL.DO.Customer[100];
-        //public static IDAL.DO.Package[] PackageList = new IDAL.DO.Package[1000];
         public static List<IDAL.DO.Drone> DroneList = new List<IDAL.DO.Drone>();
         public static List<IDAL.DO.Station> StationList = new List<IDAL.DO.Station>();
         public static List<IDAL.DO.Customer> CustomerList = new List<IDAL.DO.Customer>();
         public static List<IDAL.DO.Package> PackageList = new List<IDAL.DO.Package>();
 
+        //Config getters
+        public static double GetFree() { return Config.Free; }
+        public static double GetLightWeight() { return Config.LightWeight; }
+        public static double GetMediumWeight() { return Config.MediumWeight; }
+        public static double GetHeavyWeight() { return Config.HeavyWeight; }
+        public static double GetChargingRate() { return Config.ChargingRate; }
         public static int GetNextUniqueID() {  return Config.NextUniqueId; }
 
-        //setters for new amount of station/drone/cutomer.
+        //Config setters
         public static void SetNextUniqueID() { Config.NextUniqueId += 1; }
 
 
