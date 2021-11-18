@@ -58,7 +58,7 @@ namespace ConsoleUI
             int InnerOption;
             //ID1 and ID2 are for all the ID pickups in the switches
             int ID1, ID2;
-            DalObject.DalObject dalObject = new();
+            IDAL.IDAL IDAL = new DalObject.DalObject();
 
             while (option != 5) //Option = 5 for exit
                 {
