@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DalObject
 {
-    public partial class DalObject : IDAL.IDALInterface
+    public partial class DalObject : IDAL.IDAL
     {
         /// <summary>
         /// Receives Customer Id and returns its index in CustomerList

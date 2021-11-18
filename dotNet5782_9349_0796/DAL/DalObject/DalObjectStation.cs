@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DalObject
 {
-    public partial class DalObject : IDAL.IDALInterface
+    public partial class DalObject : IDAL.IDAL
     {
         /// <summary>
         /// Receives Station Id and returns index of station in StationList
