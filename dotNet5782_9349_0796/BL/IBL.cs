@@ -12,6 +12,5 @@ namespace BL
         void UpdateStation(string StationName = "", int chargingStation = 0);
         void UpdateCustomer(int Id, string Name = "", string Phone = "");
         void SendDroneToCharge(int DroneId);
-
     }
 }
