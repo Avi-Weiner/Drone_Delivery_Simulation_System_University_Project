@@ -13,9 +13,8 @@ namespace DalObject
         /// </summary>
         public static int GetDrone(int DroneId)
         {
-            int i = 0;
-            while (i < DataSource.GetFreeDroneI() && DataSource.DroneList[i].Id != DroneId) //Cycle through StationList until StationId is found
-                i++;
+            int i = DataSource.CustomerList.FindIndex(x => x.Id == DroneId);
+  
             if (DataSource.DroneList[i].Id != DroneId)
                 throw new IDAL.DO.MessageException("Error: Drone not found.");
             return i;

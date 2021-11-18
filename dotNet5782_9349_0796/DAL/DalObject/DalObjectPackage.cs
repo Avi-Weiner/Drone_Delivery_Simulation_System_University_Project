@@ -15,9 +15,7 @@ namespace DalObject
         /// <returns></returns>
         public static int GetPackage(int PackageId)
         {
-            int i = 0;
-            while (i < DataSource.GetFreePackageI() && DataSource.PackageList[i].Id != PackageId) //Cycle through PackageList until Package is found
-                i++;
+            int i = DataSource.CustomerList.FindIndex(x => x.Id == PackageId);
 
             if (DataSource.PackageList[i].Id != PackageId)
                 throw new IDAL.DO.MessageException("Error: Package not found.");

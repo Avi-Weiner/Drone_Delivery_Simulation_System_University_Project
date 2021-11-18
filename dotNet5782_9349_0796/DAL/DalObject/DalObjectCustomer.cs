@@ -13,11 +13,9 @@ namespace DalObject
         /// </summary>
         /// <param name="CustomerId"></param>
         /// <returns></returns>
-        public static int GetCustomer(int CustomerId)
+        public int GetCustomer(int CustomerId)
         {
-            int i = 0;
-            while (i < DataSource.GetFreeCustomerI() && DataSource.CustomerList[i].Id != CustomerId)
-                i++;
+            int i = DataSource.CustomerList.FindIndex(x => x.Id == CustomerId);
 
             if (DataSource.CustomerList[i].Id != CustomerId)
                 throw new IDAL.DO.MessageException("Error: Customer not found.");
@@ -27,7 +25,7 @@ namespace DalObject
         /// <summary>
         /// adding a new customer to the customers list
         /// </summary>
-        public static void AddCustomer()
+        static public void AddCustomer()
         {
             Console.WriteLine("Enter name: ");
             string name = Console.ReadLine();
@@ -54,7 +52,7 @@ namespace DalObject
         /// Prints a customer
         /// </summary>
         /// <param name="i"></param>
-        public static void PrintCustomer(IDAL.DO.Customer c)
+        static public void PrintCustomer(IDAL.DO.Customer c)
         {
             Console.WriteLine("\nCustomer ID: " + c.Id
                 + "\nCustomer Name: " + c.Name
@@ -67,7 +65,7 @@ namespace DalObject
         /// Prints the customer with ID Id
         /// </summary>
         /// <param name="Id"></param>
-        public static void DisplayCustomer(int Id)
+        static public void DisplayCustomer(int Id)
         {
             try
             {
@@ -83,7 +81,7 @@ namespace DalObject
         /// <summary>
         /// Displays all the customers in CustomerList
         /// </summary>
-        public static void DisplayCustomerList()
+        static public void DisplayCustomerList()
         {
             foreach (IDAL.DO.Customer c in DataSource.CustomerList)
             {

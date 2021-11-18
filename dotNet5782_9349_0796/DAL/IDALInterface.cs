@@ -9,6 +9,13 @@ namespace IDAL
 {
     public interface IDALInterface
     {
+        //General DalObject
         public double[] PowerConsumptions();
+
+        //Customer DalObject
+        public int GetCustomer(int CustomerId);
+
+        //No other methods work with static,
+        //Without static they don't work in the main.
     }
 }

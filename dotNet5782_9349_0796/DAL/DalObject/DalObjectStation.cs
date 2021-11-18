@@ -13,9 +13,8 @@ namespace DalObject
         /// </summary>
         public static int GetStation(int StationId)
         {
-            int i = 0;
-            while (i < DataSource.GetFreeStationI() && DataSource.StationList[i].Id != StationId) //Cycle through StationList until StationId is found
-                i++;
+            int i = DataSource.CustomerList.FindIndex(x => x.Id == StationId);
+
             if (DataSource.StationList[i].Id != StationId)
                 throw new IDAL.DO.MessageException("Error: Station not found.");
             return i;
