@@ -38,7 +38,7 @@ namespace DalObject
                 Console.WriteLine("Enter Weight Catagory ('light', 'medium', 'heavy'): ");
                 string weightString = Console.ReadLine();
                 //Check if valid input
-                if (weightString != "light" || weightString != "medium" || weightString != "heavy")
+                if (weightString != "light" && weightString != "medium" && weightString != "heavy")
                     throw new IDAL.DO.MessageException("Error: Invalid weight.");
 
                 IDAL.DO.WeightCategory InputWeight = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), weightString);
@@ -46,7 +46,7 @@ namespace DalObject
                 Console.WriteLine("Enter Priority ('regular', 'fast', 'emergency'): ");
                 string priorityString = Console.ReadLine();
                 //Check if valid input
-                if (priorityString != "regular" || priorityString != "fast" || priorityString != "emergency")
+                if (priorityString != "regular" && priorityString != "fast" && priorityString != "emergency")
                     throw new IDAL.DO.MessageException("Error: Invalid priority");
 
                 IDAL.DO.Priority InputPriority = (IDAL.DO.Priority)Enum.Parse(typeof(IDAL.DO.Priority), priorityString);
@@ -68,10 +68,6 @@ namespace DalObject
             catch (IDAL.DO.MessageException e)
             {
                 Console.WriteLine(e);
-            }
-            finally
-            {
-                Console.WriteLine("Unknown Error");
             }
 
         }
@@ -96,10 +92,6 @@ namespace DalObject
             {
                 Console.WriteLine(e);
             }
-            finally
-            {
-                Console.WriteLine("Unknown Error");
-            }
         }
 
         /// <summary>
@@ -123,10 +115,7 @@ namespace DalObject
             {
                 Console.WriteLine(e);
             }
-            finally
-            {
-                Console.WriteLine("Unknown Error");
-            }
+
         }
 
         /// <summary>
@@ -161,10 +150,6 @@ namespace DalObject
             catch (IDAL.DO.MessageException e)
             {
                 Console.WriteLine(e);
-            }
-            finally
-            {
-                Console.WriteLine("Unknown Error");
             }
         }
 

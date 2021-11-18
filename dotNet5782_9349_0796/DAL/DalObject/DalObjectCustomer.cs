@@ -78,10 +78,6 @@ namespace DalObject
             {
                 Console.WriteLine(e);
             }
-            finally
-            {
-                Console.WriteLine("Unknown Error");
-            }
         }
 
         /// <summary>

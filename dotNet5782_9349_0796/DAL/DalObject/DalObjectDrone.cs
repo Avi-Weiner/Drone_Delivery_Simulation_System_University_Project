@@ -33,7 +33,7 @@ namespace DalObject
                 Console.WriteLine("Enter weight category as string: option are light, medium and heavy:");
                 string weightString = Console.ReadLine();
                 //Check if valid input
-                if (weightString != "light" || weightString != "medium" || weightString != "heavy")
+                if (weightString != "light" && weightString != "medium" && weightString != "heavy")
                     throw new IDAL.DO.MessageException("Error: Invalid weight.");
 
                 IDAL.DO.WeightCategory ThisWeight = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), weightString);
@@ -49,10 +49,6 @@ namespace DalObject
             catch (IDAL.DO.MessageException e)
             {
                 Console.WriteLine(e);
-            }
-            finally
-            {
-                Console.WriteLine("Unknown Error");
             }
         }
 
@@ -78,10 +74,6 @@ namespace DalObject
             catch (IDAL.DO.MessageException e)
             {
                 Console.WriteLine(e);
-            }
-            finally
-            {
-                Console.WriteLine("Unknown Error");
             }
 
         }
@@ -119,10 +111,6 @@ namespace DalObject
             {
                 Console.WriteLine(e);
             }
-            finally
-            {
-                Console.WriteLine("Unknown Error");
-            }
         }
 
         /// <summary>
@@ -148,10 +136,6 @@ namespace DalObject
             catch (IDAL.DO.MessageException e)
             {
                 Console.WriteLine(e);
-            }
-            finally
-            {
-                Console.WriteLine("Unknown Error");
             }
 
         }
@@ -181,10 +165,6 @@ namespace DalObject
             catch (IDAL.DO.MessageException e)
             {
                 Console.WriteLine(e);
-            }
-            finally
-            {
-                Console.WriteLine("Unknown Error");
             }
         }
 
