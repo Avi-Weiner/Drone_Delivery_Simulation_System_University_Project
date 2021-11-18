@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BL
+namespace IBL
 {
     public interface IBL
     {
