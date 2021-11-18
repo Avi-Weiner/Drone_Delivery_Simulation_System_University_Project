@@ -51,16 +51,16 @@ namespace DalObject
         }
 
         /// <summary>
-        /// Prints a customer at indexx in CustomerList
+        /// Prints a customer
         /// </summary>
         /// <param name="i"></param>
-        public static void PrintCustomer(int i)
+        public static void PrintCustomer(IDAL.DO.Customer c)
         {
-            Console.WriteLine("\nCustomer ID: " + DataSource.CustomerList[i].Id
-                + "\nCustomer Name: " + DataSource.CustomerList[i].Name
-                + "\nCustomer Phone: " + DataSource.CustomerList[i].Phone
-                + "\nCustomer Longitude: " + DataSource.CustomerList[i].Longitude
-                + "\nCustomer Latitude: " + DataSource.CustomerList[i].Latitude);
+            Console.WriteLine("\nCustomer ID: " + c.Id
+                + "\nCustomer Name: " + c.Name
+                + "\nCustomer Phone: " + c.Phone
+                + "\nCustomer Longitude: " + c.Longitude
+                + "\nCustomer Latitude: " + c.Latitude);
         }
 
         /// <summary>
@@ -71,8 +71,8 @@ namespace DalObject
         {
             try
             {
-                int p = GetCustomer(Id);
-                PrintCustomer(p);
+                IDAL.DO.Customer c = DataSource.CustomerList.Find(x => x.Id == Id);
+                PrintCustomer(c);
             }
             catch (IDAL.DO.MessageException e)
             {
@@ -85,8 +85,10 @@ namespace DalObject
         /// </summary>
         public static void DisplayCustomerList()
         {
-            for (int i = 0; i < DataSource.GetFreeCustomerI(); i++)
-                PrintCustomer(i);
+            foreach (IDAL.DO.Customer c in DataSource.CustomerList)
+            {
+                PrintCustomer(c);
+            }
         }
     }
 }

@@ -141,14 +141,14 @@ namespace DalObject
         }
 
         /// <summary>
-        /// Print Drone from the index i
+        /// Prints a drone d
         /// </summary>
         /// <param name="i"></param>
-        public static void PrintDrone(int i)
+        public static void PrintDrone(IDAL.DO.Drone d)
         {
-            Console.WriteLine("\nDrone ID: " + DataSource.DroneList[i].Id
-                + "\nDrone Model: " + DataSource.DroneList[i].Model
-                + "\nDrone MaxWeight: " + DataSource.DroneList[i].MaxWeight.ToString());
+            Console.WriteLine("\nDrone ID: " + d.Id
+                + "\nDrone Model: " + d.Model
+                + "\nDrone MaxWeight: " + d.MaxWeight.ToString());
         }
 
         /// <summary>
@@ -159,8 +159,8 @@ namespace DalObject
         {
             try
             {
-                int p = GetDrone(Id);
-                PrintDrone(p);
+                IDAL.DO.Drone d = DataSource.DroneList.Find(x => x.Id == Id);
+                PrintDrone(d);
             }
             catch (IDAL.DO.MessageException e)
             {
@@ -173,8 +173,10 @@ namespace DalObject
         /// </summary>
         public static void DisplayDroneList()
         {
-            for (int i = 0; i < DataSource.GetFreeDroneI(); i++)
-                PrintDrone(i);
+            foreach (IDAL.DO.Drone d in DataSource.DroneList)
+            {
+                PrintDrone(d);
+            }
         }
     }
 }

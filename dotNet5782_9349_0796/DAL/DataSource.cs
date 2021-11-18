@@ -11,22 +11,6 @@ namespace DalObject
     {
         class Config
         {
-            /// <summary>
-            /// Index of first free element in DroneList. 
-            /// </summary>
-            public static int FreeDronei { get; set; } = 0;
-            /// <summary>
-            /// Index of first free element in StationList.
-            /// </summary>
-            public static int FreeStationi { get; set; } = 0;
-            /// <summary>
-            /// Index of first free element in CustomerList.
-            /// </summary>
-            public static int FreeCustomeri { get; set; } = 0;
-            /// <summary>
-            /// Index of first free element in PackageList.
-            /// </summary>
-            public static int FreePackagei { get; set; } = 0;
 
             //Told to include the below field in exercise 1 but I am not sure what it is.
             //static int PackagesId;
@@ -47,21 +31,9 @@ namespace DalObject
         public static List<IDAL.DO.Customer> CustomerList = new List<IDAL.DO.Customer>();
         public static List<IDAL.DO.Package> PackageList = new List<IDAL.DO.Package>();
 
-        //getters for knowing how many stations/drones/customer we have and have
-        //left. Mainly used for public access by DalObjects.
-        //!!!!It is the responsibilty of the user to use the set method as well
-        //when allocating a new station/drone/custoemr/package/ID
-        public static int GetFreeStationI() { return Config.FreeStationi; }  
-        public static int GetFreeCustomerI() { return Config.FreeCustomeri; }
-        public static int GetFreePackageI() { return Config.FreePackagei; }
         public static int GetNextUniqueID() {  return Config.NextUniqueId; }
-        public static int GetFreeDroneI() { return Config.FreeDronei; }
 
         //setters for new amount of station/drone/cutomer.
-        public static void SetFreeStation() { Config.FreeStationi += 1; }
-        public static void SetFreeDrone() { Config.FreeDronei += 1; }
-        public static void SetFreeCustomer() { Config.FreeCustomeri += 1; }
-        public static void SetFreePackage() { Config.FreePackagei += 1; }
         public static void SetNextUniqueID() { Config.NextUniqueId += 1; }
 
 

@@ -122,18 +122,18 @@ namespace DalObject
         /// Prints a package given its' index in PackageList
         /// </summary>
         /// <param name="i"></param>
-        public static void PrintPackage(int i)
+        public static void PrintPackage(IDAL.DO.Package p)
         {
-            Console.WriteLine("\nPackage ID: " + DataSource.PackageList[i].Id
-                + "\nSender ID: " + DataSource.PackageList[i].SenderId
-                + "\nReceiver ID: " + DataSource.PackageList[i].ReceiverId
-                + "\nWeight: " + DataSource.PackageList[i].Weight.ToString()
-                + "\nPriority: " + DataSource.PackageList[i].Priority.ToString()
-                + "\nRequested Date: " + DataSource.PackageList[i].Requested.ToString()
-                + "\nDrone ID: " + DataSource.PackageList[i].DroneId
-                + "\nScheduled: " + DataSource.PackageList[i].Scheduled.ToString()
-                + "\nPick up Date: " + DataSource.PackageList[i].PickedUp.ToString()
-                + "\nDelivery Date: " + DataSource.PackageList[i].Delivered.ToString());
+            Console.WriteLine("\nPackage ID: " + p.Id
+                + "\nSender ID: " + p.SenderId
+                + "\nReceiver ID: " + p.ReceiverId
+                + "\nWeight: " + p.ToString()
+                + "\nPriority: " + p.Priority.ToString()
+                + "\nRequested Date: " + p.Requested.ToString()
+                + "\nDrone ID: " + p.DroneId
+                + "\nScheduled: " + p.Scheduled.ToString()
+                + "\nPick up Date: " + p.PickedUp.ToString()
+                + "\nDelivery Date: " + p.Delivered.ToString());
         }
 
         /// <summary>
@@ -144,8 +144,8 @@ namespace DalObject
         {
             try
             {
-                int i = GetPackage(Id);
-                PrintPackage(i);
+                IDAL.DO.Package p = DataSource.PackageList.Find(x => x.Id == Id);
+                PrintPackage(p);
             }
             catch (IDAL.DO.MessageException e)
             {
@@ -158,8 +158,10 @@ namespace DalObject
         /// </summary>
         public static void DisplayPackageList()
         {
-            for (int i = 0; i < DataSource.GetFreePackageI(); i++)
-                PrintPackage(i);
+            foreach (IDAL.DO.Package p in DataSource.PackageList)
+            {
+                PrintPackage(p);
+            }
         }
 
         /// <summary>
@@ -167,10 +169,10 @@ namespace DalObject
         /// </summary>
         public static void DisplayUnassignedPackages()
         {
-            for (int i = 0; i < DataSource.GetFreePackageI(); i++)
+            foreach (IDAL.DO.Package p in DataSource.PackageList)
             {
-                if (DataSource.PackageList[i].DroneId == 0)
-                    PrintPackage(i);
+                if (p.DroneId == 0)
+                    PrintPackage(p);
             }
         }
     }
