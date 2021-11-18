@@ -8,15 +8,24 @@ namespace BL
 {
     public partial class BL : IBL.IBL
     {
-        void AddBaseStation(int Id, string name, double location, int slots)
+        void SendDroneToCharge(int DroneId)
         {
 
         }
 
-        void UpdateStation(string StationName = "", int chargingStation = 0)
+        void AssignPackageToDrone(int DroneId)
+        {
+
+        }
+
+        void DroneCollectsAPackage(int DroneId)
+        {
+
+        }
+
+        void DroneDeliversPakcage(int DroneId)
         {
 
         }
     }
 }
-
