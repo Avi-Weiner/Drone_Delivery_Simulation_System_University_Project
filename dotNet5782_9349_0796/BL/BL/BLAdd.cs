@@ -39,7 +39,7 @@ namespace BL
 
             //Create IBL.BO.BaseStation
             IBL.BO.BaseStation b = new();
-            IDAL.DO.Station S = DataSource.StationList.Find(x => x.name == name);
+            IDAL.DO.Station S = DalObject.DataSource.StationList.Find(x => x.Name == name);
             return b;
         }
 
