@@ -10,8 +10,8 @@ namespace IBL
     {
         public class CustomerInPackage
         {
-            int Id { get; set; }
-            String Name { get; set; }
+            public int Id { get; set; }
+            public String Name { get; set; }
         }
     }
 }

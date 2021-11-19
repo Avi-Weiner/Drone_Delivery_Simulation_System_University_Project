@@ -12,7 +12,7 @@ namespace IBL
         {
             public int Id { get; set; }
             public IDAL.DO.WeightCategory Weight { get; set; }
-            //Packagestatus;
+            public PackageStatus PakcageStatus { get; set; }
             public Customer SourceCustomer { get; set; }
             public Customer DestinationCustomer { get; set; }
         }
