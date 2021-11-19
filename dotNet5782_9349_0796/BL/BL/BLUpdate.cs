@@ -13,7 +13,7 @@ namespace BL
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="Model"></param>
-        void UpdateDrone(int Id, string Model)
+        public void UpdateDrone(int Id, string Model)
         {
 
             int DronePlacement = DalObject.DataSource.DroneList.FindIndex(x => x.Id == Id);
@@ -29,7 +29,7 @@ namespace BL
             //DalObject.DataSource.DroneList.
         }
 
-        void UpdateStation(int Id, int StationName = 0, int AmountOfChargingStation = -1)
+        public void UpdateStation(int Id, int StationName = 0, int AmountOfChargingStation = -1)
         {
             int StationPlacement = DalObject.DataSource.StationList.FindIndex(x => x.Id == Id);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
@@ -52,7 +52,7 @@ namespace BL
             //DalObject.DataSource.DroneList.
         }
 
-        void UpdateCustomer(int Id, string Name = "", string Phone = "")
+        public void UpdateCustomer(int Id, string Name = "", string Phone = "")
         {
             int CustomerPlacement = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == Id);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.

@@ -17,7 +17,8 @@ namespace BL
         /// <param name="longitude"></param>
         /// <param name="latitude"></param>
         /// <param name="slots"></param>
-        IBL.BO.BaseStation AddBaseStation(int name, double longitude, double latitude, int availableSlots)
+
+        public IBL.BO.BaseStation AddBaseStation(int name, double longitude, double latitude, int availableSlots)
         {//Took out id parameter as it is created automatically 
 
             //Console.WriteLine("Enter Longitude: ");
@@ -26,11 +27,11 @@ namespace BL
             //double latitude = Convert.ToDouble(Console.ReadLine());
             //Console.WriteLine("Enter number of charge slots: ");
             //int slots = Convert.ToInt32(Console.ReadLine());
-            
+
             //Input checking:
             if (longitude < -180 || longitude > 180)
                 throw new IBL.BO.MessageException("Error: Longitude exceeds bounds");
-            if (latitude <-90 || latitude > 90)
+            if (latitude < -90 || latitude > 90)
                 throw new IBL.BO.MessageException("Error: latitude exceeds bounds");
             if (availableSlots < 0)
                 throw new IBL.BO.MessageException("Error: ChargeSlots must be positive");
@@ -61,7 +62,7 @@ namespace BL
         /// <param name="model"></param>
         /// <param name="Weight"></param>
         /// <param name="chargingStation"></param>
-        IBL.BO.Drone AddDrone(string model, IDAL.DO.WeightCategory Weight, int StationId)
+        public IBL.BO.Drone AddDrone(string model, IDAL.DO.WeightCategory Weight, int StationId)
         {   //manufacturerId was also included as a parameter but our
             //Id's are automatically created in the data layer for each entered object
 
@@ -126,12 +127,14 @@ namespace BL
             return b;
         }
 
-    }
 
-    void AddPackage(int CustomerId, int ReceiverId, IDAL.DO.WeightCategory Weight, IDAL.DO.Priority Priority)
+
+        public void AddPackage(int CustomerId, int ReceiverId, IDAL.DO.WeightCategory Weight, IDAL.DO.Priority Priority)
         {
-            
+
         }
     }
+    
 }
+
 
