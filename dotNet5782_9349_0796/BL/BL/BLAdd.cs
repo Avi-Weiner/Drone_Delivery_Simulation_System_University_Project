@@ -38,9 +38,16 @@ namespace BL
 
         }
 
-        void AddDrone(int manufactureId, string model, IDAL.DO.WeightCategory Weight, int chargingStation)
-        {
-            DalObject.DalObject.AddDrone()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="Weight"></param>
+        /// <param name="chargingStation"></param>
+        void AddDrone(string model, IDAL.DO.WeightCategory Weight, int chargingStation)
+        { //manufacturerId was also included as a parameter but our
+          //Id's are automatically created in the data layer for each entered object
+            DalObject.DalObject.AddDrone(model, Weight);
         }
         void AddCustomer(int CustomerId, string name, string phone, double Longitude, double Latitude)
         {
