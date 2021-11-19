@@ -12,6 +12,7 @@ namespace IBL
         /// Status of a Drone
         /// </summary>
         public enum DroneStatus {free, maintenance, delivery }
+        public enum PackageStatus { created, assigned, collected, delivered }
 
     }
 }
