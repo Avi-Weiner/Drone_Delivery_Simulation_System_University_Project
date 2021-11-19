@@ -40,6 +40,18 @@ namespace BL
             //Create IBL.BO.BaseStation
             IBL.BO.BaseStation b = new();
             IDAL.DO.Station S = DalObject.DataSource.StationList.Find(x => x.Name == name);
+            b.Id = S.Id;
+            b.Name = name;
+
+            IBL.BO.Location l = new();
+            l.latitude = latitude;
+            l.longitude = longitude;
+            b.Location = l;
+            b.AvailableChargeSlots = availableSlots;
+
+            List<IBL.BO.DroneInCharge> DroneChargeList = new List<IBL.BO.DroneInCharge>();
+            b.ChargingDroneList = DroneChargeList;
+
             return b;
         }
 
