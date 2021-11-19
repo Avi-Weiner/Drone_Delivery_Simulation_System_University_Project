@@ -147,10 +147,10 @@ namespace DalObject
         /// <param name="i"></param>
         //public static void PrintDrone(IDAL.DO.Drone d)
         //{
-         //   Console.WriteLine("\nDrone ID: " + d.Id
-          ///      + "\nDrone Model: " + d.Model
-            //    + "\nDrone MaxWeight: " + d.MaxWeight.ToString());
-       // }
+        //    Console.WriteLine("\nDrone ID: " + d.Id
+        //  / +"\nDrone Model: " + d.Model
+        //        + "\nDrone MaxWeight: " + d.MaxWeight.ToString());
+        //}
 
         /// <summary>
         /// Prints the details of the drone with the given ID
@@ -158,26 +158,26 @@ namespace DalObject
         /// <param name="Id"></param>
         //public static void DisplayDrone(int Id)
         //{
-            //try
-            //{
-           //     IDAL.DO.Drone d = DataSource.DroneList.Find(x => x.Id == Id);
-              //  PrintDrone(d);
-            ///}
-            //catch (IDAL.DO.MessageException e)
-            //{
-              //  Console.WriteLine(e);
-            //}
-       // }
+        //try
+        //{
+        //     IDAL.DO.Drone d = DataSource.DroneList.Find(x => x.Id == Id);
+        //  PrintDrone(d);
+        ///}
+        //catch (IDAL.DO.MessageException e)
+        //{
+        //  Console.WriteLine(e);
+        //}
+        // }
 
         /// <summary>
         /// Displays all the drones in DroneList
         /// </summary>
         //public static void DisplayDroneList()
         //{
-          //  foreach (IDAL.DO.Drone d in DataSource.DroneList)
-            //{
-              //  PrintDrone(d);
-            //}
+        //  foreach (IDAL.DO.Drone d in DataSource.DroneList)
+        //{
+        //  PrintDrone(d);
+        //}
         //}
     }
 }

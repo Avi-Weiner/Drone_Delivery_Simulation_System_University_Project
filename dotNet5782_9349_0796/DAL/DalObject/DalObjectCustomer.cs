@@ -56,41 +56,41 @@ namespace DalObject
         /// Prints a customer
         /// </summary>
         /// <param name="i"></param>
-       // static public void PrintCustomer(IDAL.DO.Customer c)
+        // static public void PrintCustomer(IDAL.DO.Customer c)
         //{
-         //   Console.WriteLine("\nCustomer ID: " + c.Id
-          //      + "\nCustomer Name: " + c.Name
-           //     + "\nCustomer Phone: " + c.Phone
-            //    + "\nCustomer Longitude: " + c.Longitude
-             //   + "\nCustomer Latitude: " + c.Latitude);
-       // }
+        //   Console.WriteLine("\nCustomer ID: " + c.Id
+        //      + "\nCustomer Name: " + c.Name
+        //     + "\nCustomer Phone: " + c.Phone
+        //    + "\nCustomer Longitude: " + c.Longitude
+        //   + "\nCustomer Latitude: " + c.Latitude);
+        // }
 
         /// <summary>
         /// Prints the customer with ID Id
         /// </summary>
         /// <param name="Id"></param>
-       // static public void DisplayCustomer(int Id)
+        //static public void DisplayCustomer(int Id)
         //{
-          //  try
-           // {
-             //   IDAL.DO.Customer c = DataSource.CustomerList.Find(x => x.Id == Id);
-               // PrintCustomer(c);
-            //}
-            //catch (IDAL.DO.MessageException e)
-            //{
-              //  Console.WriteLine(e);
-            //}
+        //    try
+        //    {
+        //        IDAL.DO.Customer c = DataSource.CustomerList.Find(x => x.Id == Id);
+        //        PrintCustomer(c);
+        //    }
+        //    catch (IDAL.DO.MessageException e)
+        //    {
+        //        Console.WriteLine(e);
+        //    }
         //}
 
         /// <summary>
         /// Displays all the customers in CustomerList
         /// </summary>
         //static public void DisplayCustomerList()
-       /// {
-            //foreach (IDAL.DO.Customer c in DataSource.CustomerList)
-          //  {
+        /// {
+        //foreach (IDAL.DO.Customer c in DataSource.CustomerList)
+        //  {
         //        PrintCustomer(c);
-      //      }
-    //    }
+        //      }
+        //    }
     }
 }
