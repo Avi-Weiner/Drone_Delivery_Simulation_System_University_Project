@@ -12,6 +12,7 @@ namespace IBL
         {
             public int Id { get; set; }
             public string Name { get; set; }
+            public string Phone { get; set; }
             public Location Location { get; set; }
             public List<Package> PackagesFromCustomer { get; set; }
             public List<Package> PackagesToCustomer { get; set; }

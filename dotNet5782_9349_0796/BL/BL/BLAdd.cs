@@ -66,14 +66,46 @@ namespace BL
           //Id's are automatically created in the data layer for each entered object
             DalObject.DalObject.AddDrone(model, Weight);
         }
-        void AddCustomer(int CustomerId, string name, string phone, double Longitude, double Latitude)
-        {
 
+        /// <summary>
+        /// Add customerList to list and return customer IBL.BO
+        /// </summary>
+        /// <param name="CustomerId"></param>
+        /// <param name="name"></param>
+        /// <param name="phone"></param>
+        /// <param name="Longitude"></param>
+        /// <param name="Latitude"></param>
+        /// <returns></returns>
+        public IBL.BO.Customer AddCustomer(int CustomerId, string name, string phone, double Longitude, double Latitude)
+        {
+            if (Longitude < -180 || Longitude > 180)
+                throw new IBL.BO.MessageException("Error: Longitude exceeds bounds");
+            if (Latitude < -90 || Latitude > 90)
+                throw new IBL.BO.MessageException("Error: latitude exceeds bounds");
+
+
+            DalObject.DalObject.AddCustomer(name, phone, Longitude, Latitude);
+
+            //Create IBL.BO.BaseStation
+            IBL.BO.Customer b = new();
+            IDAL.DO.Customer S = DalObject.DataSource.CustomerList.Find(x => x.Name == name);
+            b.Id = S.Id;
+            b.Name = name;
+            b.Phone = phone;
+
+            IBL.BO.Location l = new();
+            l.latitude = Latitude;
+            l.longitude = Longitude;
+            b.Location = l;
+
+            return b;
         }
 
-        void AddPackage(int CustomerId, int ReceiverId, IDAL.DO.WeightCategory Weight, IDAL.DO.Priority Priority)
-        {
+    }
 
+    void AddPackage(int CustomerId, int ReceiverId, IDAL.DO.WeightCategory Weight, IDAL.DO.Priority Priority)
+        {
+            
         }
     }
 }
