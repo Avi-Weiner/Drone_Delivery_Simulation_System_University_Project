@@ -19,12 +19,28 @@ namespace BL
         /// <param name="slots"></param>
         void AddBaseStation(int Id, int name, double longitude, double latitude, int slots)
         {
-            DalObject.DalObject.AddStation(longitude, latitude, slots);
+            //Console.WriteLine("Enter Longitude: ");
+            //double longitude = Convert.ToDouble(Console.ReadLine());
+            //Console.WriteLine("Enter Latitude: ");
+            //double latitude = Convert.ToDouble(Console.ReadLine());
+            //Console.WriteLine("Enter number of charge slots: ");
+            //int slots = Convert.ToInt32(Console.ReadLine());
+
+            //Input checking:
+            if (longitude < -180 || longitude > 180)
+                throw new IBL.BO.MessageException("Error: Longitude exceeds bounds");
+            if (latitude <-90 || latitude > 90)
+                throw new IBL.BO.MessageException("Error: latitude exceeds bounds");
+            if (slots < 0)
+                throw new IBL.BO.MessageException("Error: ChargeSlots must be positive");
+
+            DalObject.DalObject.AddStation(name, longitude, latitude, slots);
+
         }
 
         void AddDrone(int manufactureId, string model, IDAL.DO.WeightCategory Weight, int chargingStation)
         {
-            
+            DalObject.DalObject.AddDrone()
         }
         void AddCustomer(int CustomerId, string name, string phone, double Longitude, double Latitude)
         {

@@ -23,27 +23,22 @@ namespace DalObject
         /// <summary>
         /// adding base station to the stations list
         /// </summary>
+        /// <param name="name"></param>
         /// <param name="longitude"></param>
         /// <param name="latitude"></param>
         /// <param name="slots"></param>
-        public static void AddStation(double longitude, double latitude, int slots)
+        public static void AddStation(int name, double longitude, double latitude, int slots)
         {
-            //Console.WriteLine("Enter Longitude: ");
-            //double longitude = Convert.ToDouble(Console.ReadLine());
-            //Console.WriteLine("Enter Latitude: ");
-            //double latitude = Convert.ToDouble(Console.ReadLine());
-            //Console.WriteLine("Enter number of charge slots: ");
-            //int slots = Convert.ToInt32(Console.ReadLine());
-
             //assuming that no maximum amount of sattions
             //add station to the back of the station list
             DataSource.StationList.Add(new IDAL.DO.Station
             {
                 Id = DataSource.GetNextUniqueID(),
+                Name = name,
                 Longitude = longitude,
                 Latitude = latitude,
                 ChargeSlots = slots
-            });
+            });;
         }
         ////-------------------------------------------Below this is printing which will be put in the main-------------------
         ///// <summary>
