@@ -8,8 +8,13 @@ namespace IBL
 {
     namespace BO
     {
-        class PackageAtCustomer
+        public class PackageAtCustomer
         {
+            public int Id { get; set; }
+            public IDAL.DO.WeightCategory Weight { get; set; }
+            //Packagestatus;
+            public Customer SourceCustomer { get; set; }
+            public Customer DestinationCustomer { get; set; }
         }
     }
 }

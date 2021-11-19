@@ -8,8 +8,14 @@ namespace IBL
 {
     namespace BO
     {
-        class Drone
+        public class Drone
         {
+            public int Id { get; set; }
+            public string Model { get; set; }
+            public IDAL.DO.WeightCategory Weight { get; set; }
+            public DroneStatus Status { get; set; }
+            public Package PackageInTransfer { get; set; }
+            public Location Locaation { get; set; }
         }
     }
 }

@@ -8,8 +8,12 @@ namespace IBL
 {
     namespace BO
     {
-        class BaseStationToList
+        public class BaseStationToList
         {
+            public int Id { get; set; }
+            public int name { get; set; }
+            public int NumberOfAvailableChargingSlots { get; set; }
+            public int NumberOfOccupiedChargingSlots { get; set; }
         }
     }
 }
