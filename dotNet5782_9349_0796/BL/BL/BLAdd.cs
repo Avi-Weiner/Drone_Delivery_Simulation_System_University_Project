@@ -10,7 +10,7 @@ namespace BL
     public partial class BL : IBL.IBL
     {
         /// <summary>
-        /// Adds Station List to list.
+        /// Adds a new IDAL base station and returns a new IBL.BO base station
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="name"></param>
@@ -56,16 +56,42 @@ namespace BL
         }
 
         /// <summary>
-        /// 
+        /// StationId for charging
         /// </summary>
         /// <param name="model"></param>
         /// <param name="Weight"></param>
         /// <param name="chargingStation"></param>
-        void AddDrone(string model, IDAL.DO.WeightCategory Weight, int chargingStation)
-        { //manufacturerId was also included as a parameter but our
-          //Id's are automatically created in the data layer for each entered object
+        IBL.BO.Drone AddDrone(string model, IDAL.DO.WeightCategory Weight, int StationId)
+        {   //manufacturerId was also included as a parameter but our
+            //Id's are automatically created in the data layer for each entered object
+
+            //Input checking:
+            int Stationi = DalObject.DataSource.StationList.FindIndex(x => x.Id == StationId);
+            //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
+            if (Stationi == -1)
+            {
+                throw new IBL.BO.MessageException("Error: Station not found\n");
+            }
+
+
             DalObject.DalObject.AddDrone(model, Weight);
+            //Creading new IBL.BO.Drone 
+            IBL.BO.Drone d = new();
+            d.Model = model;
+            d.Weight = Weight;
+
+            IBL.BO.Location l = new();
+            l.latitude = DalObject.DataSource.StationList[Stationi].Latitude;
+            l.longitude = DalObject.DataSource.StationList[Stationi].Longitude;
+            d.Location = l;
+
+            var rand = new Random();
+            d.BatteryStatus = rand.NextDouble() * (0.2) + 0.2; //create random battery status between 0.2 and 0.4
+            d.Status = (IBL.BO.DroneStatus)(1); //put in maintenance status
+
+            return d;
         }
+
         void AddCustomer(int CustomerId, string name, string phone, double Longitude, double Latitude)
         {
 
