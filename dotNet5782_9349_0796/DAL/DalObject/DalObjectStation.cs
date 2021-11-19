@@ -15,8 +15,8 @@ namespace DalObject
         {
             int i = DataSource.CustomerList.FindIndex(x => x.Id == StationId);
 
-            if (DataSource.StationList[i].Id != StationId)
-                throw new IDAL.DO.MessageException("Error: Station not found.");
+            //if (DataSource.StationList[i].Id != StationId)
+            //    throw new IDAL.DO.MessageException("Error: Station not found.");
             return i;
         }
 

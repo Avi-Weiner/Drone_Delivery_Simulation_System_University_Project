@@ -17,18 +17,18 @@ namespace DalObject
         {
             int i = DataSource.CustomerList.FindIndex(x => x.Id == PackageId);
 
-            if (DataSource.PackageList[i].Id != PackageId)
-                throw new IDAL.DO.MessageException("Error: Package not found.");
+            //if (DataSource.PackageList[i].Id != PackageId)
+            //    throw new IDAL.DO.MessageException("Error: Package not found.");
             return i;
         }
 
         /// <summary>
         /// receiving a package to deliver
         /// </summary>
-        public static void AddPackage(int InputSender, int InputReceiver, IDAL.DO.WeightCategory InputWeight)
+        public static void AddPackage(int InputSender, int InputReceiver, IDAL.DO.WeightCategory InputWeight, IDAL.DO.Priority InputPriority)
         {
-            try
-            {
+            //try
+            //{
                 //Console.WriteLine("Enter Sender ID: ");
                 //int InputSender = Convert.ToInt32(Console.ReadLine()); //Does not check if Customer exists as Exercise 1 says not to
                 //Console.WriteLine("Enter Receiver ID: ");
@@ -41,13 +41,13 @@ namespace DalObject
 
                 //IDAL.DO.WeightCategory InputWeight = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), weightString);
 
-                Console.WriteLine("Enter Priority ('regular', 'fast', 'emergency'): ");
-                string priorityString = Console.ReadLine();
-                //Check if valid input
-                if (priorityString != "regular" && priorityString != "fast" && priorityString != "emergency")
-                    throw new IDAL.DO.MessageException("Error: Invalid priority");
+                //Console.WriteLine("Enter Priority ('regular', 'fast', 'emergency'): ");
+                //string priorityString = Console.ReadLine();
+                ////Check if valid input <-- this needs to be put in the main
+                //if (priorityString != "regular" && priorityString != "fast" && priorityString != "emergency")
+                //    throw new IDAL.DO.MessageException("Error: Invalid priority");
+                //IDAL.DO.Priority InputPriority = (IDAL.DO.Priority)Enum.Parse(typeof(IDAL.DO.Priority), priorityString);
 
-                IDAL.DO.Priority InputPriority = (IDAL.DO.Priority)Enum.Parse(typeof(IDAL.DO.Priority), priorityString);
                 DataSource.PackageList.Add(new IDAL.DO.Package
                 {
                     Id = DataSource.GetNextUniqueID(),
@@ -62,11 +62,11 @@ namespace DalObject
                     Delivered = null
 
                 });
-            }
-            catch (IDAL.DO.MessageException e)
-            {
-                Console.WriteLine(e);
-            }
+            //}
+            //catch (IDAL.DO.MessageException e)
+            //{
+            //    Console.WriteLine(e);
+            //}
 
         }
 

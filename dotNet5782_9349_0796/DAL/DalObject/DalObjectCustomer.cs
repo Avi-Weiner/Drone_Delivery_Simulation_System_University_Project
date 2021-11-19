@@ -17,8 +17,8 @@ namespace DalObject
         {
             int i = DataSource.CustomerList.FindIndex(x => x.Id == CustomerId);
 
-            if (DataSource.CustomerList[i].Id != CustomerId)
-                throw new IDAL.DO.MessageException("Error: Customer not found.");
+            //if (DataSource.CustomerList[i].Id != CustomerId)
+            //    throw new IDAL.DO.MessageException("Error: Customer not found.");
             return i;
         }
 

@@ -94,8 +94,8 @@ namespace DalObject
                 //Get station
                 IDAL.DO.Station S = DataSource.StationList.Find(x => x.Id == StationId);
                 IDAL.DO.Drone D = DataSource.DroneList.Find(x => x.Id == DroneId);
-                if (S.ChargeSlots == 0)
-                    throw new IDAL.DO.MessageException("Error: No free charge slots at specified station.");
+                //if (S.ChargeSlots == 0)
+                //    throw new IDAL.DO.MessageException("Error: No free charge slots at specified station.");
 
                 //minus 1 to charge slots
                 S.ChargeSlots--;
