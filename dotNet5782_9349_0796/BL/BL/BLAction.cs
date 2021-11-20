@@ -10,20 +10,22 @@ namespace BL
     {
         public void SendDroneToCharge(int DroneId)
         {
-            int DronePlacement = DalObject.DataSource.DroneList.FindIndex(x => x.Id == DroneId);
+            int Dronei = DalObject.DataSource.DroneList.FindIndex(x => x.Id == DroneId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
-            if (DronePlacement == -1)
+            if (Dronei == -1)
             {
                 throw new IBL.BO.MessageException("Error: Drone not found\n");
             }
+
+
 
         }
 
         public void ReleaseDroneFromCharge(int DroneId)
         {
-            int DronePlacement = DalObject.DataSource.DroneList.FindIndex(x => x.Id == DroneId);
+            int Dronei = DalObject.DataSource.DroneList.FindIndex(x => x.Id == DroneId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
-            if (DronePlacement == -1)
+            if (Dronei == -1)
             {
                 throw new IBL.BO.MessageException("Error: Drone not found\n");
             }
@@ -31,9 +33,9 @@ namespace BL
 
         public void AssignPackageToDrone(int DroneId)
         {
-            int DronePlacement = DalObject.DataSource.DroneList.FindIndex(x => x.Id == DroneId);
+            int Dronei = DalObject.DataSource.DroneList.FindIndex(x => x.Id == DroneId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
-            if (DronePlacement == -1)
+            if (Dronei == -1)
             {
                 throw new IBL.BO.MessageException("Error: Drone not found\n");
             }
@@ -42,9 +44,9 @@ namespace BL
 
         public void DroneCollectsAPackage(int DroneId)
         {
-            int DronePlacement = DalObject.DataSource.DroneList.FindIndex(x => x.Id == DroneId);
+            int Dronei = DalObject.DataSource.DroneList.FindIndex(x => x.Id == DroneId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
-            if (DronePlacement == -1)
+            if (Dronei == -1)
             {
                 throw new IBL.BO.MessageException("Error: Drone not found\n");
             }
@@ -54,9 +56,9 @@ namespace BL
 
         public void DroneDeliversPakcage(int DroneId)
         {
-            int DronePlacement = DalObject.DataSource.DroneList.FindIndex(x => x.Id == DroneId);
+            int Dronei = DalObject.DataSource.DroneList.FindIndex(x => x.Id == DroneId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
-            if (DronePlacement == -1)
+            if (Dronei == -1)
             {
                 throw new IBL.BO.MessageException("Error: Drone not found\n");
             }
