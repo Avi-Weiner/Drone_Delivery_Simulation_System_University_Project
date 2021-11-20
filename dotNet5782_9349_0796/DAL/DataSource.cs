@@ -53,6 +53,11 @@ namespace DalObject
         public static double GetMediumWeight() { return Config.MediumWeight; }
         public static double GetHeavyWeight() { return Config.HeavyWeight; }
         public static double GetChargingRate() { return Config.ChargingRate; }
+        /// <summary>
+        /// Gets the next unique Id to be given out. 
+        /// Does not increment NextUniqueID which is done by SetNextUniqueID()
+        /// </summary>
+        /// <returns></returns>
         public static int GetNextUniqueID() {  return Config.NextUniqueId; }
 
         //Config setters

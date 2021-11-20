@@ -15,7 +15,10 @@ namespace IBL
             public Customer Receiver { get; set; }
             public IDAL.DO.WeightCategory Weight { get; set; }
             public IDAL.DO.Priority Priority { get; set; }
-            public Drone Drone { get; set; }
+            /// <summary>
+            /// #nullable
+            /// </summary>
+            public Drone? Drone { get; set; } 
             public DateTime CreationTime { get; set; }
             public DateTime AssigningTime { get; set; }
             public DateTime CollectingTime { get; set; }

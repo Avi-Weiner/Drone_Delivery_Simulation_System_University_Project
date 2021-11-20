@@ -128,10 +128,40 @@ namespace BL
         }
 
 
-
-        public void AddPackage(int CustomerId, int ReceiverId, IDAL.DO.WeightCategory Weight, IDAL.DO.Priority Priority)
+        public IBL.BO.Package AddPackage(int SenderId, int ReceiverId, IDAL.DO.WeightCategory Weight, IDAL.DO.Priority Priority)
         {
+            //Input checking:
+            int senderi = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == SenderId);
+            //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
+            if (senderi == -1)
+            {
+                throw new IBL.BO.MessageException("Error: Sender not found.\n");
+            }
 
+            int receiveri = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == ReceiverId);
+            //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
+            if (receiveri == -1)
+            {
+                throw new IBL.BO.MessageException("Error: Receiver not found.\n");
+            }
+
+            int id = DalObject.DataSource.GetNextUniqueID(); //Get the next UniqueID which will be the ID of this package
+            DalObject.DalObject.AddPackage(SenderId, ReceiverId, Weight, Priority);
+
+            IBL.BO.Package p = new();
+
+            p.Id = id;
+            p.Weight = Weight;
+            p.Priority = Priority;
+
+            p.CreationTime = DateTime.Now;
+            p.AssigningTime = DateTime.MinValue;
+            p.CollectingTime = DateTime.MinValue;
+            p.DeliveringTime = DateTime.MinValue;
+
+            p.Drone = null;
+
+            return p;
         }
     }
     
