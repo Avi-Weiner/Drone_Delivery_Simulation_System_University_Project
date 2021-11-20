@@ -62,7 +62,7 @@ namespace BL
         /// <param name="model"></param>
         /// <param name="Weight"></param>
         /// <param name="chargingStation"></param>
-        public IBL.BO.Drone AddDrone(string model, IDAL.DO.WeightCategory Weight, int StationId)
+        public IBL.BO.Drone AddDrone(string Model, IDAL.DO.WeightCategory Weight, int StationId)
         {   //manufacturerId was also included as a parameter but our
             //Id's are automatically created in the data layer for each entered object
 
@@ -74,11 +74,11 @@ namespace BL
                 throw new IBL.BO.MessageException("Error: Station not found\n");
             }
 
-
-            DalObject.DalObject.AddDrone(model, Weight);
+            int UniqueId = DalObject.DataSource.GetNextUniqueID(); //getting next unique id for immediate access
+            DalObject.DalObject.AddDrone(Model, Weight);
             //Creading new IBL.BO.Drone 
             IBL.BO.Drone d = new();
-            d.Model = model;
+            d.Model = Model;
             d.Weight = Weight;
 
             IBL.BO.Location l = new();
@@ -87,8 +87,17 @@ namespace BL
             d.Location = l;
 
             var rand = new Random();
+
             d.BatteryStatus = rand.NextDouble() * (0.2) + 0.2; //create random battery status between 0.2 and 0.4
             d.Status = (IBL.BO.DroneStatus)(1); //put in maintenance status
+
+            //Adding to DroneToList
+            IBL.BO.DroneToList DTL = new();
+            DTL.Id = UniqueId;
+            DTL.Model = Model;
+            DTL.Weight = Weight;
+            DTL.BatteryStatus = 
+            //BLObject.DroneList.Add
 
             return d;
         }

@@ -17,7 +17,7 @@ namespace BL
                 throw new IBL.BO.MessageException("Error: Drone not found\n");
             }
 
-
+            IBL.BO.Drone D = DalObject.DataSource.DroneList[Dronei;
 
         }
 
