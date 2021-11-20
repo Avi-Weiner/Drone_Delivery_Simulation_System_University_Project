@@ -78,6 +78,7 @@ namespace BL
             DalObject.DalObject.AddDrone(Model, Weight);
             //Creading new IBL.BO.Drone 
             IBL.BO.Drone d = new();
+            d.Id = UniqueId;
             d.Model = Model;
             d.Weight = Weight;
 

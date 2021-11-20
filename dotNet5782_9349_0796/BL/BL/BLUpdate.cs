@@ -9,11 +9,11 @@ namespace BL
     public partial class BL : IBL.IBL
     {
         /// <summary>
-        /// If drone Id given exists, the Drone Model will be updated param Model
+        /// If drone Id given exists, the Drone Model will be updated and a BL.Drone will be returned
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="Model"></param>
-        public void UpdateDrone(int Id, string Model)
+        public IBL.BO.Drone UpdateDrone(int Id, string Model)
         {
 
             int Dronei = DalObject.DataSource.DroneList.FindIndex(x => x.Id == Id);
@@ -30,8 +30,25 @@ namespace BL
             int Listi = BLObject.DroneList.FindIndex(x => x.Id == Id);
             BLObject.DroneList[Listi].Model = Model;
 
+
+            //Create IBL.BO.Drone to return
+            IBL.BO.Drone d = new();
+            d.Id = Drone.Id;
+            d.Model = Model;
+            d.Weight = BLObject.DroneList[Listi].Weight;
+            d.Location = BLObject.DroneList[Listi].Location;
+            d.BatteryStatus = BLObject.DroneList[Listi].BatteryStatus;
+            d.Status = BLObject.DroneList[Listi].DroneStatus;
+
+            return d;
         }
 
+        /// <summary>
+        /// Updates 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="StationName"></param>
+        /// <param name="AmountOfChargingStation"></param>
         public void UpdateStation(int Id, int StationName = 0, int AmountOfChargingStation = -1)
         {
             int Stationi = DalObject.DataSource.StationList.FindIndex(x => x.Id == Id);
@@ -52,7 +69,7 @@ namespace BL
             }
             
             DalObject.DataSource.StationList[Stationi] = Station;
-            //DalObject.DataSource.DroneList.
+
         }
 
         public void UpdateCustomer(int Id, string Name = "", string Phone = "")
