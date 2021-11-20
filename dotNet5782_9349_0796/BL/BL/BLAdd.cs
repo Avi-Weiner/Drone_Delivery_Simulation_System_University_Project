@@ -96,8 +96,12 @@ namespace BL
             DTL.Id = UniqueId;
             DTL.Model = Model;
             DTL.Weight = Weight;
-            DTL.BatteryStatus = 
-            //BLObject.DroneList.Add
+            DTL.BatteryStatus = d.BatteryStatus;
+            DTL.DroneStatus = d.Status;
+            DTL.Location = d.Location;
+            DTL.PackageId = 0; //No package yet on a new drone
+
+            BLObject.DroneList.Add(DTL);
 
             return d;
         }
