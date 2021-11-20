@@ -16,29 +16,32 @@ namespace BL
         public void UpdateDrone(int Id, string Model)
         {
 
-            int DronePlacement = DalObject.DataSource.DroneList.FindIndex(x => x.Id == Id);
+            int Dronei = DalObject.DataSource.DroneList.FindIndex(x => x.Id == Id);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
-            if(DronePlacement == -1)
+            if(Dronei == -1)
             {
                 throw new IBL.BO.MessageException("Error: Drone not found\n");
             }
             
-            IDAL.DO.Drone Drone = DalObject.DataSource.DroneList[DronePlacement];
+            IDAL.DO.Drone Drone = DalObject.DataSource.DroneList[Dronei];
             Drone.Model = Model;
-            DalObject.DataSource.DroneList[DronePlacement] = Drone;
-            //DalObject.DataSource.DroneList.
+            DalObject.DataSource.DroneList[Dronei] = Drone;
+
+            int Listi = BLObject.DroneList.FindIndex(x => x.Id == Id);
+            BLObject.DroneList[Listi].Model = Model;
+
         }
 
         public void UpdateStation(int Id, int StationName = 0, int AmountOfChargingStation = -1)
         {
-            int StationPlacement = DalObject.DataSource.StationList.FindIndex(x => x.Id == Id);
+            int Stationi = DalObject.DataSource.StationList.FindIndex(x => x.Id == Id);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
-            if (StationPlacement == -1)
+            if (Stationi == -1)
             {
                 throw new IBL.BO.MessageException("Error: Station not found\n");
             }
 
-            IDAL.DO.Station Station = DalObject.DataSource.StationList[StationPlacement];
+            IDAL.DO.Station Station = DalObject.DataSource.StationList[Stationi];
             if(StationName != 0)
             {
                 Station.Name = StationName;
@@ -48,20 +51,20 @@ namespace BL
                 Station.ChargeSlots = AmountOfChargingStation;
             }
             
-            DalObject.DataSource.StationList[StationPlacement] = Station;
+            DalObject.DataSource.StationList[Stationi] = Station;
             //DalObject.DataSource.DroneList.
         }
 
         public void UpdateCustomer(int Id, string Name = "", string Phone = "")
         {
-            int CustomerPlacement = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == Id);
+            int Customeri = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == Id);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
-            if (CustomerPlacement == -1)
+            if (Customeri == -1)
             {
                 throw new IBL.BO.MessageException("Error: Customer not found\n");
             }
 
-            IDAL.DO.Customer Customer = DalObject.DataSource.CustomerList[CustomerPlacement];
+            IDAL.DO.Customer Customer = DalObject.DataSource.CustomerList[Customeri];
             if (Name != "")
             {
                 Customer.Name = Name;
@@ -71,7 +74,7 @@ namespace BL
                 Customer.Phone = Phone;
             }
 
-            DalObject.DataSource.CustomerList[CustomerPlacement] = Customer;
+            DalObject.DataSource.CustomerList[Customeri] = Customer;
         }
     }
 }

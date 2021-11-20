@@ -16,7 +16,11 @@ namespace DalObject
             DataSource.Initialize();//constructor for DalObjects
         }
 
-        public double[] PowerConsumptions()
+        /// <summary>
+        /// Returns an array of the power consumptions { Free, Light, Medium, Heavy, ChargingRate }
+        /// </summary>
+        /// <returns></returns>
+        public double[] GetPowerConsumptions()
         {
             double[] array = new double[5];
             array[0] = DataSource.GetFree();
