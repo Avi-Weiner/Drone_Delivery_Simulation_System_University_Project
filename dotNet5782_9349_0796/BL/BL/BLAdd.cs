@@ -128,8 +128,8 @@ namespace BL
 
             //Create IBL.BO.BaseStation
             IBL.BO.Customer b = new();
-            IDAL.DO.Customer S = DalObject.DataSource.CustomerList.Find(x => x.Name == name);
-            b.Id = S.Id;
+            IDAL.DO.Customer c = DalObject.DataSource.CustomerList.Find(x => x.Name == name);
+            b.Id = c.Id;
             b.Name = name;
             b.Phone = phone;
 
