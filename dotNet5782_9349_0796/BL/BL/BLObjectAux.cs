@@ -19,7 +19,7 @@ namespace BL
             /// <param name="first"></param>
             /// <param name="second"></param>
             /// <returns></returns>
-            public double DistanceBetween(IBL.BO.Location first, IBL.BO.Location second)
+            public static double DistanceBetween(IBL.BO.Location first, IBL.BO.Location second)
             {
                 return Math.Sqrt((first.latitude) - (second.latitude) + (first.longitude) - (second.longitude));
             }
@@ -43,7 +43,7 @@ namespace BL
             /// </summary>
             /// <param name="location"></param>
             /// <returns></returns>
-            public IDAL.DO.Station ClosestStation(IBL.BO.Location location )
+            public static IDAL.DO.Station ClosestStation(IBL.BO.Location location )
             {
                 //starting minDistance is bigger then highest possible distance, the diagonal between 360 and 180 = 402
                 double minDistance = 420;
@@ -72,7 +72,7 @@ namespace BL
             /// <param name="weightClass"></param>
             /// <param name="distance"></param>
             /// <returns></returns>
-            public double ChargeForDistance(IDAL.DO.WeightCategory weight, double distance)
+            public static double ChargeForDistance(IDAL.DO.WeightCategory weight, double distance)
             {
                 int weightClass = (int)weight;
                 if (weightClass < 0 || weightClass > 2)
