@@ -10,7 +10,6 @@ namespace IDAL
     public interface IDAL
     {
         //General DalObject
-        public double[] GetPowerConsumptions();
 
         //Customer DalObject
         public int GetCustomer(int CustomerId);
