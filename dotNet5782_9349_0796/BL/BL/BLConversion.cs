@@ -9,7 +9,11 @@ namespace BL
 
     public partial class BL : IBL.IBL
     {
-
+        /// <summary>
+        /// Returns BL BaseStation from given id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IBL.BO.BaseStation DalToBLStation(int id)
         {
             IBL.BO.BaseStation b = new();
