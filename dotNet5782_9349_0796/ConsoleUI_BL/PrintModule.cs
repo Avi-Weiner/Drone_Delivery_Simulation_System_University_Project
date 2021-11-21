@@ -71,11 +71,28 @@ namespace ConsoleUI_BL
         static void PrintListDisplayOptions()
         {
             Console.WriteLine("\n\t\t1. - Base Station list." +
-                "n\t\t2. - Drones list." +
+                "\n\t\t2. - Drones list." +
                 "\n\t\t3. - Customers list." +
                 "\n\t\t4. - Packages list." +
                 "\n\t\t5. - Unassigned Packages." +
                 "\n\\t\t6. - Display base Stations with available charging slots.");
+        }
+
+        //static string PrintLocation(BL.BL Bl, IBL.BO.Location location)
+        //{
+        //    return
+        //}
+
+        /// <summary>
+        /// Prints BL Base station from given id, need to use ToString!!!!!!!!!!!!!!!!!!!!!!!!!
+        /// </summary>
+        /// <param name="id"></param>
+        static void PrintBaseStation(BL.BL Bl, int id)
+        {
+            IBL.BO.BaseStation b = Bl.DalToBLStation(id);
+            Console.WriteLine("Base Station ID: " + b.Id +
+                "\nName: " + b.Name +
+                "\nLocation");
         }
     }
 }
