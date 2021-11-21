@@ -30,7 +30,7 @@ namespace BL
             /// <param name="longitude"></param>
             /// <param name="latitude"></param>
             /// <returns></returns>
-            IBL.BO.Location MakeLocation(double longitude, double latitude)
+            public static IBL.BO.Location MakeLocation(double longitude, double latitude)
             {
                 IBL.BO.Location l = new();
                 l.latitude = latitude;

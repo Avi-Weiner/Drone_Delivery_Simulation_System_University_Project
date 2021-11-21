@@ -17,7 +17,8 @@ namespace BL
 
             b.Id = s.Id;
             b.Name = s.Name;
-            b.Location = 
+            b.Location = BL.BLObject.MakeLocation(s.Longitude, s.Latitude);
+
 
 
             return b;
