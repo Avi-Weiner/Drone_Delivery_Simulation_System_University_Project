@@ -162,7 +162,7 @@ namespace ConsoleUI_BL
                 option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
-                    case 1:
+                    case 1://adding options
                         PrintAddingMenu();
                         Console.WriteLine("\nEnter number of option: ");
                         InnerOption = Convert.ToInt32(Console.ReadLine());
@@ -183,7 +183,7 @@ namespace ConsoleUI_BL
                         }
                         break;
 
-                    case 2:
+                    case 2://updating uptions
                         PrintUpdatingOptionsMenu();
                         Console.WriteLine("Enter number of option: ");
                         InnerOption = Convert.ToInt32(Console.ReadLine());
@@ -203,7 +203,7 @@ namespace ConsoleUI_BL
 
                         break;
 
-                    case 3:
+                    case 3://Drone actions
                         PrintDroneActionsMenu();
                         Console.WriteLine("Enter number of option: ");
                         InnerOption = Convert.ToInt32(Console.ReadLine());
@@ -227,7 +227,7 @@ namespace ConsoleUI_BL
 
                         break;
 
-                    case 4:
+                    case 4://Dispaly option
 
                         Console.WriteLine("\nEnter number of option: ");
                         InnerOption = Convert.ToInt32(Console.ReadLine());
