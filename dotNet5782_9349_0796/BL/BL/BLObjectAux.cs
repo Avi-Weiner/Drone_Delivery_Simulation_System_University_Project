@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Auxiliary BLClass methods
+/// </summary>
+
 namespace BL
 {
     public partial class BL : IBL.IBL
