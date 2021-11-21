@@ -62,34 +62,45 @@ namespace BL
 
             public void AssignPackageToDrone(int DroneId)
         {
-            int DronePlacement = DalObject.DataSource.DroneList.FindIndex(x => x.Id == DroneId);
+            int DroneIndex = BLObject.DroneList.FindIndex(x => x.Id == DroneId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
-            if (DronePlacement == -1)
+            if (DroneIndex == -1)
             {
-                throw new IBL.BO.MessageException("Error: Drone not found\n");
+                throw new IBL.BO.MessageException("Error: Drone not found.\n");
+            }
+            if (BL.BLObject.DroneList[DroneIndex].DroneStatus != IBL.BO.DroneStatus.maintenance)
+            {
+                throw new IBL.BO.MessageException("Error: Drone is not in maintenance.\n");
             }
         }
         
 
         public void DroneCollectsAPackage(int DroneId)
         {
-            int DronePlacement = DalObject.DataSource.DroneList.FindIndex(x => x.Id == DroneId);
+            int DroneIndex = BLObject.DroneList.FindIndex(x => x.Id == DroneId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
-            if (DronePlacement == -1)
+            if (DroneIndex == -1)
             {
-                throw new IBL.BO.MessageException("Error: Drone not found\n");
+                throw new IBL.BO.MessageException("Error: Drone not found.\n");
             }
-            //ifDroneisUnavailable
-            
+            if (BL.BLObject.DroneList[DroneIndex].DroneStatus != IBL.BO.DroneStatus.maintenance)
+            {
+                throw new IBL.BO.MessageException("Error: Drone is not in maintenance.\n");
+            }
+
         }
 
         public void DroneDeliversPakcage(int DroneId)
         {
-            int DronePlacement = DalObject.DataSource.DroneList.FindIndex(x => x.Id == DroneId);
+            int DroneIndex = BLObject.DroneList.FindIndex(x => x.Id == DroneId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
-            if (DronePlacement == -1)
+            if (DroneIndex == -1)
             {
-                throw new IBL.BO.MessageException("Error: Drone not found\n");
+                throw new IBL.BO.MessageException("Error: Drone not found.\n");
+            }
+            if (BL.BLObject.DroneList[DroneIndex].DroneStatus != IBL.BO.DroneStatus.maintenance)
+            {
+                throw new IBL.BO.MessageException("Error: Drone is not in maintenance.\n");
             }
         }
     }
