@@ -33,9 +33,6 @@ namespace BL
                     NewDrone.Id = Drone.Id;
                     NewDrone.Model = Drone.Model;
                     NewDrone.Weight = Drone.MaxWeight;
-
-                    //Avi Weiner - battery status////////////////////////////////////////////////////////////////////////////// 
-                    //Avi Weiner - location////////////////////////////////////////////////////////////////
                     NewDrone.PackageId = 0;
 
                     DroneList.Add(NewDrone);

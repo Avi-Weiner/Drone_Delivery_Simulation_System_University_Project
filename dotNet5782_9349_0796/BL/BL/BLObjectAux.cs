@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 /// <summary>
 /// Auxiliary BLClass methods
 /// </summary>
-
 namespace BL
 {
     public partial class BL : IBL.IBL
@@ -82,10 +81,7 @@ namespace BL
                 double powerPerKm = DalObject.DalObject.GetPowerConsumptions()[weightClass + 1];
 
                 return distance * powerPerKm;
-            }
-
-
-            
+            }       
         }
     }
 }
