@@ -18,7 +18,7 @@ namespace BL
         /// <param name="latitude"></param>
         /// <param name="slots"></param>
 
-        public IBL.BO.BaseStation AddBaseStation(int name, double longitude, double latitude, int availableSlots)
+        public  IBL.BO.BaseStation AddBaseStation(int name, double longitude, double latitude, int availableSlots)
         {//Took out id parameter as it is created automatically 
 
             //Console.WriteLine("Enter Longitude: ");
@@ -62,7 +62,7 @@ namespace BL
         /// <param name="model"></param>
         /// <param name="Weight"></param>
         /// <param name="chargingStation"></param>
-        public IBL.BO.Drone AddDrone(string Model, IDAL.DO.WeightCategory Weight, int StationId)
+        public  IBL.BO.Drone AddDrone(string Model, IDAL.DO.WeightCategory Weight, int StationId)
         {   //manufacturerId was also included as a parameter but our
             //Id's are automatically created in the data layer for each entered object
 
@@ -116,7 +116,7 @@ namespace BL
         /// <param name="Longitude"></param>
         /// <param name="Latitude"></param>
         /// <returns></returns>
-        public IBL.BO.Customer AddCustomer(int CustomerId, string name, string phone, double Longitude, double Latitude)
+        public  IBL.BO.Customer AddCustomer(int CustomerId, string name, string phone, double Longitude, double Latitude)
         {
             if (Longitude < -180 || Longitude > 180)
                 throw new IBL.BO.MessageException("Error: Longitude exceeds bounds");
@@ -142,7 +142,7 @@ namespace BL
         }
 
 
-        public IBL.BO.Package AddPackage(int SenderId, int ReceiverId, IDAL.DO.WeightCategory Weight, IDAL.DO.Priority Priority)
+        public  IBL.BO.Package AddPackage(int SenderId, int ReceiverId, IDAL.DO.WeightCategory Weight, IDAL.DO.Priority Priority)
         {
             //Input checking:
             int senderi = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == SenderId);

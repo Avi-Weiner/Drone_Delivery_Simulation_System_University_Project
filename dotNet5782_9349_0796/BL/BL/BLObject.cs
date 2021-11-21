@@ -14,7 +14,7 @@ namespace BL
         {
             public static List<IBL.BO.DroneToList> DroneList = new List<IBL.BO.DroneToList>();
 
-            BLObject()
+            public BLObject()
             {
                 IDAL.IDAL Dal = new DalObject.DalObject();
                 var rand = new Random();
