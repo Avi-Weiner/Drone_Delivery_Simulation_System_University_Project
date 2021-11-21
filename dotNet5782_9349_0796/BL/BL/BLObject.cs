@@ -135,7 +135,7 @@ namespace BL
 
             }//BLObject constructor
         }//Class BLObject
-        BL()
+        public BL()
         {
             BLObject Object = new BLObject();
         }
