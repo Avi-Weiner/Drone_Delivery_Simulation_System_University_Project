@@ -131,12 +131,16 @@ namespace BL
                             throw new IBL.BO.MessageException("Error: BLObject Constructor: DroneStatus incorrect\n");
                         }
 
-                    }
-                }
+                    }//if(DroneL.DroneStatus != IBL.BO.DroneStatus.delivery)
+                }//end of foreach
                 
 
 
-            }
+            }//BLObject constructor
+        }//Class BLObject
+        BL()
+        {
+            BLObject Object = new BLObject();
         }
-    }
-}
+    }//Class BL
+}//namespace BL

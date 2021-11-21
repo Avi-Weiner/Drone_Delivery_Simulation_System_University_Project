@@ -4,6 +4,9 @@ namespace ConsoleUI_BL
 {
     class Program
     {
+        /// <summary>
+        /// prints the outer main menu
+        /// </summary>
         static void PrintMainMenu()
         {
             Console.WriteLine("\n1. Adding options: ");
@@ -13,6 +16,9 @@ namespace ConsoleUI_BL
             Console.WriteLine("\n5. List display options: ");
             Console.WriteLine("\n6. Exit");
         }
+        /// <summary>
+        /// prints the adding menu
+        /// </summary>
         static void PrintAddingMenu()
         {
             Console.WriteLine("\n1. - adding base station to the stations list" +
@@ -20,6 +26,9 @@ namespace ConsoleUI_BL
                 "\n3. - adding a new customer to the customers list" +
                 "\n4. - adding a package to the package list");
         }
+        /// <summary>
+        /// prints the updating menu
+        /// </summary>
         static void PrintUpdatingOptionsMenu()
         {
             Console.WriteLine("\n1. - Update drone: name only." +
@@ -29,6 +38,9 @@ namespace ConsoleUI_BL
                                       "\n\t\t ii. New phone");
         }
 
+        /// <summary>
+        /// prints the Drone Action menu
+        /// </summary>
         static void PrintDroneActionsMenu()
         {
             Console.WriteLine("\n\t1. - Send a Drone to charge\n"
@@ -37,6 +49,10 @@ namespace ConsoleUI_BL
                 + "\t4. - Collect a pakcage by a drone\n"
                 + "\t5. - Deliver a package by a drone\n");
         }
+        /// <summary>
+        /// print the display menu 1-4 display specific field by id
+        /// 5 another menu will be printed for options to print out a whole list
+        /// </summary>
         static void PrintDisplayOptions()
         {
             Console.WriteLine("\n\t1. - Base Station by Id." +
@@ -45,6 +61,9 @@ namespace ConsoleUI_BL
                 "\n\t4. - Base Station by Id." +
                 "\n\t5. - Display list.\n");
         }
+        /// <summary>
+        /// prints printing a list menu
+        /// </summary>
         static void PrintListDisplayOptions()
         {
             Console.WriteLine("\n\t\t1. - Base Station list." +
@@ -54,6 +73,10 @@ namespace ConsoleUI_BL
                 "\n\t\t5. - Unassigned Packages." +
                 "\n\\t\t6. - Display base Stations with available charging slots.");
         }
+        /// <summary>
+        /// Adds a base station
+        /// </summary>
+        /// <param name="Bl"></param>
         static void AddBaseStation(BL.BL Bl)
         {
             int name; double longitude, latitude; int availableSlots;
@@ -65,6 +88,10 @@ namespace ConsoleUI_BL
 
             Bl.AddBaseStation(name, longitude, latitude, availableSlots);
         }
+        /// <summary>
+        /// adds a drone
+        /// </summary>
+        /// <param name="Bl"></param>
         static void AddDrone(BL.BL Bl)
         {
             Console.WriteLine("Enter Model:\n");
@@ -75,6 +102,10 @@ namespace ConsoleUI_BL
             int stationId = Convert.ToInt32(Console.ReadLine());
             Bl.AddDrone(Model, Weight, stationId);
         }
+        /// <summary>
+        /// adds a new customer
+        /// </summary>
+        /// <param name="Bl"></param>
         static void AddNewCustomer(BL.BL Bl)
         {
             Console.WriteLine("Enter CustomerId:\n");
@@ -89,6 +120,10 @@ namespace ConsoleUI_BL
             double Latitude = Convert.ToDouble(Console.ReadLine());
             Bl.AddCustomer(CustomerId, name, phone, Longitude, Latitude);
         }
+        /// <summary>
+        /// Adds a new package
+        /// </summary>
+        /// <param name="Bl"></param>
         static void AddAPakcage(BL.BL Bl)
         {
             Console.WriteLine("Enter SenderId:\n");
@@ -99,7 +134,11 @@ namespace ConsoleUI_BL
             IDAL.DO.Priority Priority = (IDAL.DO.Priority)Enum.Parse(typeof(IDAL.DO.Priority), Console.ReadLine());
             Bl.AddPackage(SenderId, RecieiverId, Weight, Priority);
         }
-
+        /// <summary>
+        /// update a drone
+        /// Model could be updated
+        /// </summary>
+        /// <param name="Bl"></param>
         static void UpdateDrone(BL.BL Bl)
         {
             Console.WriteLine("Enter Drone Id:\n");
@@ -114,6 +153,8 @@ namespace ConsoleUI_BL
             int option = 0;
             int InnerOption;
             BL.BL Bl = new BL.BL();
+            
+            
             while (option != 6) //Option = 6 for exit
             {
                 PrintMainMenu();
@@ -152,7 +193,7 @@ namespace ConsoleUI_BL
                                 UpdateDrone(Bl);
                                 break;
                             case 2:
-                                //not sure about the funciton to update Station
+                                //not sure about the funciton to update Station 
                                 break;
                             case 3:
                                 //not sure about the function to update Customer the question is how to I make the adding optional?
