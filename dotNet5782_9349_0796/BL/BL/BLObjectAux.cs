@@ -82,6 +82,10 @@ namespace BL
 
                 return distance * powerPerKm;
             }       
+            public static double ChargeForTime(DateTime ChargeTime)
+            {
+
+            }
         }
     }
 }

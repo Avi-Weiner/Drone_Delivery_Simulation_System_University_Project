@@ -71,7 +71,9 @@ namespace ConsoleUI_BL
                                 Bl.SendDroneToCharge(DroneId);
                                 break;
                             case 2:
-                                Bl.ReleaseDroneFromCharge(DroneId);
+                                Console.WriteLine("Enter charge time in dateTime Format.\n");
+                                DateTime ChargeTime = Convert.ToDateTime(Console.ReadLine());
+                                Bl.ReleaseDroneFromCharge(DroneId, ChargeTime);
                                 break;
                             case 3:
                                 Bl.DroneCollectsAPackage(DroneId);

@@ -44,7 +44,7 @@ namespace BL
             ///iii adding a mathcing instance///////////////////////////////////////////////////////////////////////////////////////
         }
 
-        public void ReleaseDroneFromCharge(int DroneId, DateTime dateTime)//supposed to take in a time not sure whatit's supposed to do so skipped it for now.
+        public void ReleaseDroneFromCharge(int DroneId, DateTime ChargeTime)//supposed to take in a time not sure whatit's supposed to do so skipped it for now.
         {
             int DroneIndex = BLObject.DroneList.FindIndex(x => x.Id == DroneId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
@@ -162,11 +162,25 @@ namespace BL
             {
                 throw new IBL.BO.MessageException("Error: Drone not found.\n");
             }
-            if (BL.BLObject.DroneList[DroneIndex].DroneStatus != IBL.BO.DroneStatus.maintenance)
+            if (BL.BLObject.DroneList[DroneIndex].DroneStatus != IBL.BO.DroneStatus.delivery)
             {
-                throw new IBL.BO.MessageException("Error: Drone is not in maintenance.\n");
+                throw new IBL.BO.MessageException("Error: Drone is not in delivery.\n");
             }
-
+            IBL.BO.DroneToList Drone = BLObject.DroneList[DroneId];
+            int PackageIndex = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Drone.PackageId);
+            IDAL.DO.Package Package = DalObject.DataSource.PackageList[PackageIndex];
+            if(Package.PickedUp != null)
+            {
+                throw new IBL.BO.MessageException("Error: Package was picked up already.\n");
+            }
+            IDAL.DO.Customer Sender = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.SenderId);
+            IBL.BO.Location SenderLocation = BLObject.MakeLocation(Sender.Longitude, Sender.Latitude);
+            double DistanceBetween = BLObject.DistanceBetween(SenderLocation, Drone.Location);
+            Drone.BatteryStatus -= BLObject.ChargeForDistance(Package.Weight, DistanceBetween);
+            Drone.Location = SenderLocation;
+            Package.PickedUp = DateTime.Now;
+            BLObject.DroneList[DroneIndex] = Drone;
+            DalObject.DataSource.PackageList[PackageIndex] = Package;
         }
 
         public void DroneDeliversPakcage(int DroneId)
@@ -177,10 +191,11 @@ namespace BL
             {
                 throw new IBL.BO.MessageException("Error: Drone not found.\n");
             }
-            if (BL.BLObject.DroneList[DroneIndex].DroneStatus != IBL.BO.DroneStatus.maintenance)
+            if (BL.BLObject.DroneList[DroneIndex].DroneStatus != IBL.BO.DroneStatus.delivery)
             {
-                throw new IBL.BO.MessageException("Error: Drone is not in maintenance.\n");
+                throw new IBL.BO.MessageException("Error: Drone is not in delivery.\n");
             }
+
         }
     }
 }
