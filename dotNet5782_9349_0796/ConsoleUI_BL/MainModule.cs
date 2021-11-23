@@ -52,7 +52,7 @@ namespace ConsoleUI_BL
                                 UpdateStation(Bl);
                                 break;
                             case 3:
-                                //not sure about the function to update Customer the question is how to I make the adding optional?
+                                UpdateCustomer(Bl);
                                 break;
 
                         }
@@ -86,16 +86,11 @@ namespace ConsoleUI_BL
                         break;
 
                     case 4://Dispaly option
-
+                        PrintDisplayMenu();
                         Console.WriteLine("\nEnter number of option: ");
                         InnerOption = Convert.ToInt32(Console.ReadLine());
                         switch (InnerOption)
                         {
-                            //            Console.WriteLine("\n\t1. - Base Station by Id." +
-                            //"\n\t2. - Drone by Id." +
-                            //"\n\t3. - Package by Id." +
-                            //"\n\t4. - Base Station by Id." +
-                            //"\n\t5. - List display option: ");
                             case 1:
                                 Console.WriteLine("Enter Base Station Id:\n");
                                 int Id = Convert.ToInt32(Console.ReadLine());
@@ -107,27 +102,27 @@ namespace ConsoleUI_BL
                                 break;
                             case 4:
                                 break;
+                        }
+                        break;
+
+                    case 5:
+                        PrintListDisplayMenu();
+                        Console.WriteLine("Enter number of option:");
+                        InnerOption = Convert.ToInt32(Console.ReadLine());
+                        switch (InnerOption)
+                        {
+                            case 1:
+
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
                             case 5:
-                                PrintListDisplayOptions();
-                                Console.WriteLine("Enter number of option:");
-                                InnerOption = Convert.ToInt32(Console.ReadLine());
-                                switch (InnerOption)
-                                {
-                                    case 1:
-
-                                        break;
-                                    case 2:
-                                        break;
-                                    case 3:
-                                        break;
-                                    case 4:
-                                        break;
-                                    case 5:
-                                        break;
-                                    case 6:
-                                        break;
-                                }
-
+                                break;
+                            case 6:
                                 break;
                         }
                         break;

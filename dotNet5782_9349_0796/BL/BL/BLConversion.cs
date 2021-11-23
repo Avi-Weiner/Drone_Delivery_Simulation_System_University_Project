@@ -41,6 +41,44 @@ namespace BL
             return b;
         }
 
-    }
+        /// <summary>
+        /// Returns BL Drone from given id, converting it from the DroneToList list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IBL.BO.Drone DroneToListToDrone(int id)
+        {
+            IBL.BO.Drone d = new();
+            IBL.BO.DroneToList DroneToList = BLObject.DroneList.Find(x => x.Id == id);
 
+            d.Id = DroneToList.Id;
+            d.Model = DroneToList.Model;
+            d.Weight = DroneToList.Weight;
+            d.BatteryStatus = DroneToList.BatteryStatus;
+            d.Status = DroneToList.DroneStatus;
+            d.Location = DroneToList.Location;
+
+            IDAL.DO.Package p = DalObject.DataSource.PackageList.Find(x => x.Id == DroneToList.PackageId);
+            // need to do a package conversion
+            d.PackageInTransfer = p;
+
+            return d;
+        }
+
+        /// <summary>
+        /// Returns a BL package from the DalPackage from the given id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IBL.BO.Package DalToBLPackage(int id)
+        {
+            IBL.BO.Package p = new();
+            IDAL.DO.Package DalP = DalObject.DataSource.PackageList.Find(x => x.Id == id);
+
+            p.Id = DalP.Id;
+
+
+            return p;
+        }
+    }
 }

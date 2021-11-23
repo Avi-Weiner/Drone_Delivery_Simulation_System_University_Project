@@ -15,6 +15,7 @@ namespace IBL
             public IDAL.DO.WeightCategory Weight { get; set; }
             public double BatteryStatus { get; set; }
             public DroneStatus Status { get; set; }
+            public Location Location { get; set; }
             public Package PackageInTransfer { get; set; }
             public Location Location { get; set; }
             public override string ToString()
