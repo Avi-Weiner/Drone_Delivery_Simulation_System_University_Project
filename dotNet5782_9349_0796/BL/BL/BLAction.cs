@@ -195,7 +195,23 @@ namespace BL
             {
                 throw new IBL.BO.MessageException("Error: Drone is not in delivery.\n");
             }
-
+            IBL.BO.DroneToList Drone = BLObject.DroneList[DroneId];
+            int PackageIndex = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Drone.PackageId);
+            IDAL.DO.Package Package = DalObject.DataSource.PackageList[PackageIndex];
+            if(Package.Delivered != null)
+            {
+                throw new IBL.BO.MessageException("Error: Package was delivered already");
+            }
+            IDAL.DO.Customer Sender = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.SenderId);
+            IBL.BO.Location SenderLocation = BLObject.MakeLocation(Sender.Longitude, Sender.Latitude);
+            IDAL.DO.Customer Reciever = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.ReceiverId);
+            IBL.BO.Location RecieverLocation = BLObject.MakeLocation(Reciever.Longitude, Sender.Latitude);
+            Drone.BatteryStatus -= BLObject.ChargeForDistance(Package.Weight, BLObject.DistanceBetween(SenderLocation, RecieverLocation));
+            Drone.Location = RecieverLocation;
+            Drone.DroneStatus = IBL.BO.DroneStatus.free;
+            Package.Delivered = DateTime.Now;
+            BLObject.DroneList[DroneIndex] = Drone;
+            DalObject.DataSource.PackageList[PackageIndex] = Package;
         }
     }
 }
