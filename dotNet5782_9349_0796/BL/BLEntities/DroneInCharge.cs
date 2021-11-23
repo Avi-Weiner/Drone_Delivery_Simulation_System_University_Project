@@ -12,6 +12,10 @@ namespace IBL
         {
             public int Id{ get; set; }
             public double BatteryStatus { get; set; }
+            public override string ToString()
+            {
+                return "Drone in charge ID: " + Id + "\nBattery Status: " + BatteryStatus + "\n";
+            }
         }
     }
 }

@@ -17,6 +17,17 @@ namespace IBL
             public DroneStatus Status { get; set; }
             public Package PackageInTransfer { get; set; }
             public Location Location { get; set; }
+            public override string ToString()
+            {
+                return "Drone ID: " + Id +
+                    "\nModel: " + Model +
+                    "\nWeight: " + Weight.ToString() +
+                    "\nBattery status: " + BatteryStatus +
+                    "\nDrone status: " + Status.ToString() +
+                    "\n Pakage: " + PackageInTransfer.ToString() +
+                    "\nLocation: " + Location.ToString() + '\n';
+
+            }
         }
     }
 }
