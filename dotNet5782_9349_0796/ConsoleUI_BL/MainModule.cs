@@ -49,7 +49,7 @@ namespace ConsoleUI_BL
                                 UpdateDrone(Bl);
                                 break;
                             case 2:
-                                //not sure about the funciton to update Station 
+                                UpdateStation(Bl);
                                 break;
                             case 3:
                                 //not sure about the function to update Customer the question is how to I make the adding optional?

@@ -49,7 +49,7 @@ namespace BL
         /// <param name="Id"></param>
         /// <param name="StationName"></param>
         /// <param name="AmountOfChargingStation"></param>
-        public  void UpdateStation(int Id, int StationName = 0, int AmountOfChargingStation = -1)
+        public  void UpdateStation(int Id, int StationName = -1, int AmountOfChargingStation = -1)
         {
             int Stationi = DalObject.DataSource.StationList.FindIndex(x => x.Id == Id);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
@@ -59,7 +59,7 @@ namespace BL
             }
 
             IDAL.DO.Station Station = DalObject.DataSource.StationList[Stationi];
-            if(StationName != 0)
+            if(StationName != -1)
             {
                 Station.Name = StationName;
             }

@@ -36,10 +36,10 @@ namespace ConsoleUI_BL
         static void PrintUpdatingOptionsMenu()
         {
             Console.WriteLine("\n1. - Update drone: name only." +
-                "\n2. - Update Station." + " i. Station name." +
-                                        "\n\t\tii. Total NumberOf charging Stations." +
-                "\n3. - Update Customer." + " i. New Name." +
-                                      "\n\t\t ii. New phone");
+                "\n2. - Update Station:" + " i. Station name." +
+                "\n\t\tii. Total NumberOf charging Stations." +
+                "\n3. - Update Customer:" + " i. New Name." +
+                "\n\t\t ii. New phone");
         }
 
         /// <summary>

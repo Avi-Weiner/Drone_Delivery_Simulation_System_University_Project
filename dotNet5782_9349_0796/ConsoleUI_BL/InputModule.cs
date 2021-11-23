@@ -82,5 +82,20 @@ namespace ConsoleUI_BL
             string Model = Console.ReadLine();
             Bl.UpdateDrone(Id, Model);
         }
+
+        /// <summary>
+        /// Gives the user input for updating the station and calls BL UpdateStation
+        /// </summary>
+        /// <param name="Bl"></param>
+        static void UpdateStation(BL.BL Bl)
+        {
+            Console.WriteLine("Enter Station ID: ");
+            int Id = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter new station name or -1 to not change: ");
+            int stationName = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter new charge station amount or -1 to not change: ");
+            int chargeStations = Convert.ToInt32(Console.ReadLine());
+            Bl.UpdateStation(Id, stationName, chargeStations);
+        }
     }
 }
