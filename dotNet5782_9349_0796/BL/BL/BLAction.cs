@@ -58,8 +58,12 @@ namespace BL
             {
                 throw new IBL.BO.MessageException("Error: Drone is not in maintenance.\n");
             }
-            Random rd = new Random();
-            BLObject.DroneList[DroneIndex].BatteryStatus += rd.NextDouble();//this is becasue I'm not sure what the dateTime is supposed to affect the charge.
+
+            double Charge = BLObject.DroneList[DroneIndex].BatteryStatus;
+            Charge += BLObject.ChargeForTime(ChargeTime);
+            if (Charge > 1)
+                Charge = 1;
+            BLObject.DroneList[DroneIndex].BatteryStatus = Charge;
             BLObject.DroneList[DroneIndex].DroneStatus = IBL.BO.DroneStatus.free;
             IDAL.DO.Station StationClose = BLObject.ClosestStation(BL.BLObject.DroneList[DroneIndex].Location);
 
