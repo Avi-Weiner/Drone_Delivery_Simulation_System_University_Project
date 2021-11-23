@@ -12,7 +12,13 @@ namespace IDAL
             public int ReceiverId { get; set; }
             public WeightCategory Weight { get; set; }
             public Priority Priority { get; set; }
+            /// <summary>
+            /// Same as creation time
+            /// </summary>
             public DateTime Requested { get; set; }
+            /// <summary>
+            /// 0 if not allocated
+            /// </summary>
             public int DroneId { get; set; }
             public Nullable<DateTime> Scheduled { get; set; }
             public Nullable<DateTime> PickedUp { get; set; }

@@ -97,5 +97,16 @@ namespace ConsoleUI_BL
             int chargeStations = Convert.ToInt32(Console.ReadLine());
             Bl.UpdateStation(Id, stationName, chargeStations);
         }
+
+        static void UpdateCustomer(BL.BL Bl)
+        {
+            Console.WriteLine("Enter Customer ID: ");
+            int Id = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter new customer name or -1 to not change: ");
+            string Name = Console.ReadLine();
+            Console.WriteLine("Enter new phone number amount or -1 to not change: ");
+            string phone = Console.ReadLine();
+            Bl.UpdateCustomer(Id, Name, phone);
+        }
     }
 }

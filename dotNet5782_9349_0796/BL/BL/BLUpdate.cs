@@ -72,7 +72,7 @@ namespace BL
 
         }
 
-        public  void UpdateCustomer(int Id, string Name = "", string Phone = "")
+        public  void UpdateCustomer(int Id, string Name = "-1", string Phone = "-1")
         {
             int Customeri = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == Id);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
@@ -82,11 +82,11 @@ namespace BL
             }
 
             IDAL.DO.Customer Customer = DalObject.DataSource.CustomerList[Customeri];
-            if (Name != "")
+            if (Name != "-1")
             {
                 Customer.Name = Name;
             }
-            if (Phone != "")
+            if (Phone != "-1")
             {
                 Customer.Phone = Phone;
             }
