@@ -8,7 +8,7 @@ namespace IBL
 {
     namespace BO
     {
-        class PackageToList
+        public class PackageToList
         {
             public int Id { get; set; }
             public string SenderName { get; set; }
@@ -16,6 +16,16 @@ namespace IBL
             public IDAL.DO.WeightCategory Weight { get; set; }
             public IDAL.DO.Priority Priority { get; set; }
             public PackageStatus PackageStatus { get; set; }
+
+            public override string ToString()
+            {
+                return "PackageToList ID: " + Id +
+                    "\nSender Name: " + SenderName +
+                    "\nReceiver Name: " + ReceiverName +
+                    "\nWeight: " + Weight.ToString() +
+                    "\nPriority: " + Priority.ToString() +
+                    "\nStatus: " + PackageStatus.ToString() + '\n';
+            }
         }
     }
 }

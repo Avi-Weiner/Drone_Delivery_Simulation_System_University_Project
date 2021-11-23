@@ -14,7 +14,7 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.BaseStation DalToBLStation(int id)
+        public IBL.BO.BaseStation DalToBlStation(int id)
         {
             IBL.BO.BaseStation b = new();
             IDAL.DO.Station s = DalObject.DataSource.StationList.Find(x => x.Id == id);
@@ -70,15 +70,27 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.Package DalToBLPackage(int id)
+        public IBL.BO.Package DalToBlPackage(int id)
         {
             IBL.BO.Package p = new();
             IDAL.DO.Package DalP = DalObject.DataSource.PackageList.Find(x => x.Id == id);
 
             p.Id = DalP.Id;
+            p.Sender = DalObject.DataSource.CustomerList.Find(x => x.Id == DalP.Id);
 
 
             return p;
+        }
+
+        public IBL.BO.Customer DatToBlCustomer(int id)
+        {
+            IBL.BO.Customer c = new();
+            IDAL.DO.Customer DalC = DalObject.DataSource.CustomerList.Find(x => x.Id == id);
+
+            c.Id = DalC.Id;
+
+
+            return c;
         }
     }
 }

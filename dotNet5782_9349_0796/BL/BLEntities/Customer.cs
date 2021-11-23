@@ -14,16 +14,17 @@ namespace IBL
             public string Name { get; set; }
             public string Phone { get; set; }
             public Location Location { get; set; }
-            public List<Package> PackagesFromCustomer { get; set; }
-            public List<Package> PackagesToCustomer { get; set; }
+            public List<PackageToList> PackagesFromCustomer { get; set; }
+            public List<PackageToList> PackagesToCustomer { get; set; }
+
             public override string ToString()
             {
                 string toReturn = "Customer ID: " + Id + "\nName: " + Name + "\nPhone: " + Phone + "\nLocation: " + Location;
-                foreach(Package Pack in PackagesFromCustomer)
+                foreach(PackageToList Pack in PackagesFromCustomer)
                 {
                     toReturn += "\n" + Pack.ToString();
                 }
-                foreach(Package pack in PackagesToCustomer)
+                foreach(PackageToList pack in PackagesToCustomer)
                 {
                     toReturn += "\n" + pack.ToString();
                 }

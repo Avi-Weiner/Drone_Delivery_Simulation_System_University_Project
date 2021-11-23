@@ -95,7 +95,7 @@ namespace ConsoleUI_BL
         /// <param name="id"></param>
         static void PrintBaseStation(BL.BL Bl, int id)
         {
-            IBL.BO.BaseStation b = Bl.DalToBLStation(id);
+            IBL.BO.BaseStation b = Bl.DalToBlStation(id);
             Console.WriteLine("Base Station ID: " + b.Id +
                 "\nName: " + b.Name +
                 "\nLocation");

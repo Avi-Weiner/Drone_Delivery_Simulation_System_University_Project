@@ -29,6 +29,7 @@ namespace IBL
             public DateTime AssigningTime { get; set; }
             public DateTime CollectingTime { get; set; }
             public DateTime DeliveringTime { get; set; }
+
             public override string ToString()
             {
                 string toReturn = "Package Id: " + Id + "\nSender: " + Sender.ToString() +
