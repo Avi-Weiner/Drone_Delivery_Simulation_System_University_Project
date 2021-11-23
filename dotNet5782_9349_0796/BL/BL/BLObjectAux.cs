@@ -84,7 +84,11 @@ namespace BL
             }       
             public static double ChargeForTime(DateTime ChargeTime)
             {
-
+                int Hours = ChargeTime.Hour;
+                int Minutes = ChargeTime.Minute;
+                double Charge = Hours * 0.1;
+                Charge += Minutes * 0.016666;
+                return Charge;
             }
         }
     }
