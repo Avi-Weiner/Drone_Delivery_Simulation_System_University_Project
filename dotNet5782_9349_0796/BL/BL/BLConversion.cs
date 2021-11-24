@@ -18,6 +18,8 @@ namespace BL
         {
             IBL.BO.Drone d = new();
             IBL.BO.DroneToList DroneToList = BLObject.DroneList.Find(x => x.Id == id);
+            if (DroneToList == null)
+                throw new IBL.BO.MessageException("Error: Object of id" + id + " not found.");
 
             d.Id = DroneToList.Id;
             d.Model = DroneToList.Model;
@@ -42,6 +44,11 @@ namespace BL
         {
             IBL.BO.Package p = new();
             IDAL.DO.Package DalP = DalObject.DataSource.PackageList.Find(x => x.Id == id);
+            
+            /* Not sure how to implement the following
+            if (DalP == default(IDAL.DO.Package)
+                throw new IBL.BO.MessageException("Error: Object of id" + id + " not found.");
+            */
 
             p.Id = DalP.Id;
             //Get the senders and receivers ID's from customerList and convert to BL Customers
@@ -89,6 +96,11 @@ namespace BL
             IBL.BO.PackageToList PList = new();
             IDAL.DO.Package p = DalObject.DataSource.PackageList.Find(x => x.Id == id);
 
+            /* Not sure how to implement the following
+            if (p == default(IDAL.DO.Package)
+                throw new IBL.BO.MessageException("Error: Object of id" + id + " not found.");
+            */
+
             PList.Id = p.Id;
             PList.SenderId = p.SenderId;
             PList.ReceiverId = p.ReceiverId;
@@ -107,6 +119,11 @@ namespace BL
         {
             IBL.BO.Customer c = new();
             IDAL.DO.Customer DalC = DalObject.DataSource.CustomerList.Find(x => x.Id == id);
+
+            /* Not sure how to implement the following
+            if (DalC == default(IDAL.DO.Customer)
+                throw new IBL.BO.MessageException("Error: Object of id" + id + " not found.");
+            */
 
             c.Id = DalC.Id;
             c.Name = DalC.Name;
@@ -135,8 +152,12 @@ namespace BL
         /// <returns></returns>
         public IBL.BO.DroneInCharge DroneToListToInCharge(int id)
         {
-            IBL.BO.DroneToList DroneToList = BLObject.DroneList.Find(x => x.Id == id);
+            
             IBL.BO.DroneInCharge d = new();
+            IBL.BO.DroneToList DroneToList = BLObject.DroneList.Find(x => x.Id == id);
+
+            if (DroneToList == null)
+                throw new IBL.BO.MessageException("Error: Object of id" + id + " not found.");
 
             d.Id = DroneToList.Id;
             d.BatteryStatus = DroneToList.BatteryStatus;
@@ -153,6 +174,11 @@ namespace BL
             IBL.BO.BaseStation b = new();
             IDAL.DO.Station s = DalObject.DataSource.StationList.Find(x => x.Id == id);
 
+            /* Not sure how to implement the following
+            if (s == default(IDAL.DO.Station)
+                throw new IBL.BO.MessageException("Error: Object of id" + id + " not found.");
+            */
+
             b.Id = s.Id;
             b.Name = s.Name;
             b.Location = BLObject.MakeLocation(s.Longitude, s.Latitude);
@@ -168,6 +194,12 @@ namespace BL
 
             b.ChargingDroneList = ChargeList;
             return b;
+        }
+
+        public IBL.BO.BaseStationToList StationToStationToList(int id)
+        {
+            IBL.BO.BaseStation s = DalToBlStation(id);
+
         }
     }
 }

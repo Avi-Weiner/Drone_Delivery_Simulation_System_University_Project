@@ -127,17 +127,22 @@ namespace ConsoleUI_BL
                         switch (InnerOption)
                         {
                             case 1:
-
+                                //Base Station List
                                 break;
                             case 2:
+                                //Drone List
                                 break;
                             case 3:
+                                //Customer List
                                 break;
                             case 4:
+                                //Package List
                                 break;
                             case 5:
+                                //Unassigned Package List
                                 break;
                             case 6:
+                                //Base stations with available charge slot/s list
                                 break;
                         }
                         break;
