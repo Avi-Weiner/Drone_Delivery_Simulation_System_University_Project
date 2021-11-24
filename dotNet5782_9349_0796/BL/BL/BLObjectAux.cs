@@ -82,6 +82,11 @@ namespace BL
 
                 return distance * powerPerKm;
             }       
+            /// <summary>
+            /// function retunrs how much charge you get for how much time inputed
+            /// </summary>
+            /// <param name="ChargeTime"></param>
+            /// <returns></returns>
             public static double ChargeForTime(DateTime ChargeTime)
             {
                 int Hours = ChargeTime.Hour;

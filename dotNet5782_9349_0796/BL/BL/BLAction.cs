@@ -8,6 +8,12 @@ namespace BL
 {
     public partial class BL : IBL.IBL
     {
+        /// <summary>
+        /// sends drone to charge 
+        /// if the id is not valid or the drone is not free drone exception will be thrown
+        /// drone will be updated and station chargers will be updated.
+        /// </summary>
+        /// <param name="DroneId"></param>
         public void SendDroneToCharge(int DroneId)
         {
             int DroneIndex = BLObject.DroneList.FindIndex(x => x.Id == DroneId);
@@ -45,7 +51,12 @@ namespace BL
             DalObject.DataSource.StationList[StationIndex] = StationClose;
             ///iii adding a mathcing instance///////////////////////////////////////////////////////////////////////////////////////
         }
-
+        /// <summary>
+        /// drone will be released from charging station and appropriate battery will be added
+        /// 
+        /// </summary>
+        /// <param name="DroneId"></param>
+        /// <param name="ChargeTime"></param>
         public void ReleaseDroneFromCharge(int DroneId, DateTime ChargeTime)//supposed to take in a time not sure whatit's supposed to do so skipped it for now.
         {
             int DroneIndex = BLObject.DroneList.FindIndex(x => x.Id == DroneId);
