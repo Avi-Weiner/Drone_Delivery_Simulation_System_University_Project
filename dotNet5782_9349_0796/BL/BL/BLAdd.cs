@@ -180,7 +180,7 @@ namespace BL
             p.CollectingTime = DateTime.MinValue;
             p.DeliveringTime = DateTime.MinValue;
 
-            p.Drone = null;
+            p.DroneId = 0;
 
             return p;
         }
