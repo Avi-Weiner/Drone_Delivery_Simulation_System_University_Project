@@ -136,15 +136,19 @@ namespace ConsoleUI_BL
                                 break;
                             case 3:
                                 //Customer List
+                                PrintCustomerList(Bl);
                                 break;
                             case 4:
                                 //Package List
+                                PrintPackageList(Bl);
                                 break;
                             case 5:
                                 //Unassigned Package List
+                                PrintUnassignedPackages(Bl);
                                 break;
                             case 6:
                                 //Base stations with available charge slot/s list
+                                PrintStationsWithAvailableChargeSlots(Bl);
                                 break;
                         }
                         break;

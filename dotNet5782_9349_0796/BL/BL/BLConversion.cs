@@ -209,6 +209,11 @@ namespace BL
             return ListS;
         }
 
+        /// <summary>
+        /// Receives ID of customer and returns CustomerToList Customer
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IBL.BO.CustomerToList CustomerToCustomerToList(int id)
         {
             IBL.BO.Customer c = DalToBlCustomer(id);
@@ -218,10 +223,26 @@ namespace BL
             listC.Name = c.Name;
             listC.phone = c.Phone;
 
+            //initialise ints to be counted from packages in c.Pack
             listC.NumberOfDeliveredPackagesSent = 0;
+            listC.NumberOfUndeliveredPackagesSent = 0;
+            listC.NumberOfRecievedPackages = 0;
+            listC.NumberOfExpectedPackages = 0;
+            
             foreach(IBL.BO.PackageToList p in c.PackagesFromCustomer)
             {
+                if (p.SenderId == id && p.PackageStatus == IBL.BO.PackageStatus.delivered)
+                    listC.NumberOfDeliveredPackagesSent++;
+                if (p.SenderId == id && p.PackageStatus != IBL.BO.PackageStatus.delivered)
+                    listC.NumberOfUndeliveredPackagesSent++;
+            }
 
+            foreach (IBL.BO.PackageToList p in c.PackagesToCustomer)
+            {
+                if (p.ReceiverId == id && p.PackageStatus == IBL.BO.PackageStatus.delivered)
+                    listC.NumberOfRecievedPackages++;
+                if (p.ReceiverId == id && p.PackageStatus != IBL.BO.PackageStatus.delivered)
+                    listC.NumberOfExpectedPackages++;
             }
 
             return listC;

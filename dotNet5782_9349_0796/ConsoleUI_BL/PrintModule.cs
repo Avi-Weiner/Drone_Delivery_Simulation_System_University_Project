@@ -96,11 +96,63 @@ namespace ConsoleUI_BL
             }
         }
 
+        /// <summary>
+        /// Prints list of drones
+        /// </summary>
+        /// <param name="bl"></param>
         static void PrintDroneList(BL.BL bl)
         {
             foreach(IBL.BO.DroneToList d in BL.BL.BLObject.DroneList)
             {
                 Console.WriteLine(d.ToString() + '\n');
+            }
+        }
+
+        /// <summary>
+        /// Prints list of customers
+        /// </summary>
+        /// <param name="bl"></param>
+        static void PrintCustomerList(BL.BL bl)
+        {
+            foreach(IBL.BO.CustomerToList c in bl.ListOfCustomers())
+            {
+                Console.WriteLine(c.ToString() + '\n');
+            }
+        }
+
+        /// <summary>
+        /// Prints a list of packages
+        /// </summary>
+        /// <param name="bl"></param>
+        static void PrintPackageList(BL.BL bl)
+        {
+            foreach(IBL.BO.PackageToList p in bl.ListOfPackages())
+            {
+                Console.WriteLine(p.ToString() + '\n');
+            }
+        }
+
+        /// <summary>
+        /// Prints list of unassigned packages
+        /// </summary>
+        /// <param name="bl"></param>
+        static void PrintUnassignedPackages(BL.BL bl)
+        {
+            foreach(IBL.BO.PackageToList p in bl.ListOfUnassignedPackages())
+            {
+                Console.WriteLine(p.ToString() + '\n');
+            }
+        }
+
+        /// <summary>
+        /// prints list of stations with available charge slots
+        /// </summary>
+        /// <param name="bl"></param>
+        static void PrintStationsWithAvailableChargeSlots(BL.BL bl)
+        {
+            foreach(IBL.BO.BaseStationToList b in bl.ListOfStationsWithChargeSlots())
+            {
+                Console.WriteLine(b.ToString() + '\n');
             }
         }
     }
