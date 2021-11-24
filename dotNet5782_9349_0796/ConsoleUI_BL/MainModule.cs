@@ -128,9 +128,11 @@ namespace ConsoleUI_BL
                         {
                             case 1:
                                 //Base Station List
+                                PrintStationList(Bl);
                                 break;
                             case 2:
                                 //Drone List
+                                PrintDroneList(Bl);
                                 break;
                             case 3:
                                 //Customer List
