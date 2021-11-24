@@ -71,7 +71,12 @@ namespace BL
             DalObject.DataSource.StationList[Stationi] = Station;
 
         }
-
+        /// <summary>
+        /// updates a customer: opriotns to udate are name and or phone.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="Name"></param>
+        /// <param name="Phone"></param>
         public  void UpdateCustomer(int Id, string Name = "-1", string Phone = "-1")
         {
             int Customeri = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == Id);
