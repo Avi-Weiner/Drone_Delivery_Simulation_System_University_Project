@@ -141,7 +141,14 @@ namespace BL
             return b;
         }
 
-
+        /// <summary>
+        /// adds a package to the package list in DataSource.customerlist.
+        /// </summary>
+        /// <param name="SenderId"></param>
+        /// <param name="ReceiverId"></param>
+        /// <param name="Weight"></param>
+        /// <param name="Priority"></param>
+        /// <returns></returns>
         public  IBL.BO.Package AddPackage(int SenderId, int ReceiverId, IDAL.DO.WeightCategory Weight, IDAL.DO.Priority Priority)
         {
             //Input checking:

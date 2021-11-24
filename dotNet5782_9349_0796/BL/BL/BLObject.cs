@@ -13,7 +13,7 @@ namespace BL
         public partial class BLObject
         {
             public static List<IBL.BO.DroneToList> DroneList = new List<IBL.BO.DroneToList>();
-
+            
             public BLObject()
             {
                 IDAL.IDAL Dal = new DalObject.DalObject();
