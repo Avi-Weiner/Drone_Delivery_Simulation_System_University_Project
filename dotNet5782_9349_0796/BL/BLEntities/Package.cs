@@ -16,25 +16,32 @@ namespace IBL
             public IDAL.DO.WeightCategory Weight { get; set; }
             public IDAL.DO.Priority Priority { get; set; }
             /// <summary>
-            /// #nullable
+            /// Drone changed to just droneId due to possible creation
+            /// of endless loop between BL Package and BL Drone.
             /// </summary>
-            public Drone? Drone { get; set; } 
+            public int DroneId { get; set; } 
             /// <summary>
-            /// Time package was created
+            /// Time package was created (same as requested in DAL)
             /// </summary>
             public DateTime CreationTime { get; set; }
             /// <summary>
-            /// Time assigned to a drone
+            /// Time assigned to a drone (same as scheduled in DAL)
             /// </summary>
-            public DateTime AssigningTime { get; set; }
-            public DateTime CollectingTime { get; set; }
-            public DateTime DeliveringTime { get; set; }
+            public DateTime? AssigningTime { get; set; }
+            /// <summary>
+            /// Same as PickedUp in DAL
+            /// </summary>
+            public DateTime? CollectingTime { get; set; }
+            /// <summary>
+            /// Same as Delivered in DAL
+            /// </summary>
+            public DateTime? DeliveringTime { get; set; }
 
             public override string ToString()
             {
-                string toReturn = "Package Id: " + Id + "\nSender: " + Sender.ToString() +
+                string toReturn = "Package ID: " + Id + "\nSender: " + Sender.ToString() +
                     "\nReceiver: " + Receiver.ToString() + "\nWeight: " + Weight.ToString() + 
-                    "\nPriority: " + Priority.ToString() + "\nDrone: " + Drone.ToString() + 
+                    "\nPriority: " + Priority.ToString() + "\nDrone ID: " + DroneId + 
                     "\nCreation time: " + CreationTime + "\n Assigning time: " + AssigningTime 
                     + "\ncollecting time: " + CollectingTime + "\nDelivering time: " + DeliveringTime + "\n";
                 return toReturn;

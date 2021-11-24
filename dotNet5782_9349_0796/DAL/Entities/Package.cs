@@ -4,7 +4,6 @@ namespace IDAL
 {
     namespace DO
     {
-        
         public struct Package
         {
             public int Id { get; set; }
@@ -23,8 +22,6 @@ namespace IDAL
             public Nullable<DateTime> Scheduled { get; set; }
             public Nullable<DateTime> PickedUp { get; set; }
             public Nullable<DateTime> Delivered { get; set; }
-            
         }
-        
     }
 }

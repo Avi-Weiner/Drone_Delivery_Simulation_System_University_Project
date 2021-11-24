@@ -11,8 +11,14 @@ namespace IBL
         public class PackageToList
         {
             public int Id { get; set; }
-            public string SenderName { get; set; }
-            public string ReceiverName { get; set; }
+            /// <summary>
+            /// Changed to Id (int) which makes a lot more sense then name
+            /// </summary>
+            public int SenderId { get; set; }
+            /// <summary>
+            /// Changed to Id (int) which makes a lot more sense then name
+            /// </summary>
+            public int ReceiverId { get; set; }
             public IDAL.DO.WeightCategory Weight { get; set; }
             public IDAL.DO.Priority Priority { get; set; }
             public PackageStatus PackageStatus { get; set; }
@@ -20,8 +26,8 @@ namespace IBL
             public override string ToString()
             {
                 return "PackageToList ID: " + Id +
-                    "\nSender Name: " + SenderName +
-                    "\nReceiver Name: " + ReceiverName +
+                    "\nSender Name: " + SenderId +
+                    "\nReceiver Name: " + ReceiverId +
                     "\nWeight: " + Weight.ToString() +
                     "\nPriority: " + Priority.ToString() +
                     "\nStatus: " + PackageStatus.ToString() + '\n';
