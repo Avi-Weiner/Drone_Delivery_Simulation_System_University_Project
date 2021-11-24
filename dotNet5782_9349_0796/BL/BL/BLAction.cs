@@ -53,7 +53,7 @@ namespace BL
         }
         /// <summary>
         /// drone will be released from charging station and appropriate battery will be added
-        /// 
+        /// location will be the statoin where it was charged.
         /// </summary>
         /// <param name="DroneId"></param>
         /// <param name="ChargeTime"></param>
@@ -85,7 +85,11 @@ namespace BL
             //again not sure what the mathcing instance is.
         
         }
-
+        /// <summary>
+        /// if input is valid the heviest closest package will be assgined to the drone
+        /// if anything goes wrong appropriate exception will be thrown.
+        /// </summary>
+        /// <param name="DroneId"></param>
         public void AssignPackageToDrone(int DroneId)
         {
             int DroneIndex = BLObject.DroneList.FindIndex(x => x.Id == DroneId);
@@ -169,7 +173,12 @@ namespace BL
             BLObject.DroneList[DroneIndex] = drone;
         }
         
-
+        /// <summary>
+        /// if a package was assinged to a drone the drone will be sent to collect the package it was assigned
+        /// and collect the package. appropriate battery percentage will drop.
+        /// otherwise an exception will be thrown.
+        /// </summary>
+        /// <param name="DroneId"></param>
         public void DroneCollectsAPackage(int DroneId)
         {
             int DroneIndex = BLObject.DroneList.FindIndex(x => x.Id == DroneId);
@@ -198,7 +207,12 @@ namespace BL
             BLObject.DroneList[DroneIndex] = Drone;
             DalObject.DataSource.PackageList[PackageIndex] = Package;
         }
-
+        /// <summary>
+        /// If the drone picked up a package the package will be delivered the new location will be 
+        /// the recievers location and the battery percentage will decrese approriately 
+        /// if the drone doesn't have a package appropriate message will be thrown.
+        /// </summary>
+        /// <param name="DroneId"></param>
         public void DroneDeliversPakcage(int DroneId)
         {
             int DroneIndex = BLObject.DroneList.FindIndex(x => x.Id == DroneId);
