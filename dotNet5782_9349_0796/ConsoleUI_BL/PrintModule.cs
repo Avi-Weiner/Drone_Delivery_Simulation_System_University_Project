@@ -65,10 +65,10 @@ namespace ConsoleUI_BL
         static void PrintDisplayMenu()
         {
             Console.WriteLine("\nDisplay Menu: " +
-                "\n\t1. - Base Station by Id." +
-                "\n\t2. - Drone by Id." +
-                "\n\t3. - Package by Id." +
-                "\n\t4. - Base Station by Id.");
+                "\n\t1. - Base Station by ID." +
+                "\n\t2. - Drone by ID." +
+                "\n\t3. - Package by ID" +
+                "\n\t4. - Package by ID.");
         }
         /// <summary>
         /// prints printing a list menu

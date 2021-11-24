@@ -15,6 +15,7 @@ namespace IBL
             public Location Location { get; set; }
             public int AvailableChargeSlots { get; set; }
             public List<DroneInCharge> ChargingDroneList { get; set; }
+
             public override string ToString()
             {
                 String ToReturn = "Base Station ID: " + Id + "\nName: " + Name

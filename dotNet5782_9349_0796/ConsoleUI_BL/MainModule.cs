@@ -10,6 +10,8 @@ namespace ConsoleUI_BL
             int InnerOption;
             BL.BL Bl = new BL.BL();
             
+            //ID for all the Id's to be entered by the user
+            int id;
             
             while (option != 6) //Option = 6 for exit
             {
@@ -41,7 +43,7 @@ namespace ConsoleUI_BL
 
                     case 2://updating uptions
                         PrintUpdatingOptionsMenu();
-                        Console.WriteLine("Enter number of option: ");
+                        Console.WriteLine("\nEnter number of option: ");
                         InnerOption = Convert.ToInt32(Console.ReadLine());
                         switch (InnerOption)
                         {
@@ -61,9 +63,9 @@ namespace ConsoleUI_BL
 
                     case 3://Drone actions
                         PrintDroneActionsMenu();
-                        Console.WriteLine("Enter number of option: ");
+                        Console.WriteLine("\nEnter number of option: ");
                         InnerOption = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("Enter drone Id:\n");
+                        Console.WriteLine("\nEnter drone Id: ");
                         int DroneId = Convert.ToInt32(Console.ReadLine());
                         switch (InnerOption)
                         {
@@ -71,7 +73,7 @@ namespace ConsoleUI_BL
                                 Bl.SendDroneToCharge(DroneId);
                                 break;
                             case 2:
-                                Console.WriteLine("Enter charge time in dateTime Format.\n");
+                                Console.WriteLine("\nEnter charge time in dateTime Format: ");
                                 DateTime ChargeTime = Convert.ToDateTime(Console.ReadLine());
                                 Bl.ReleaseDroneFromCharge(DroneId, ChargeTime);
                                 break;
@@ -92,22 +94,35 @@ namespace ConsoleUI_BL
                         switch (InnerOption)
                         {
                             case 1:
-                                Console.WriteLine("Enter Base Station Id:\n");
-                                int Id = Convert.ToInt32(Console.ReadLine());
-                                //are there any print functions?
+                                //Base Station Print
+                                Console.WriteLine("\nEnter Base Station Id: ");
+                                id = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine(Bl.DalToBlStation(id).ToString());
                                 break;
                             case 2:
+                                //Drone Print
+                                Console.WriteLine("\nEnter Drone Id: ");
+                                id = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine(Bl.DroneToListToDrone(id).ToString());
                                 break;
                             case 3:
+                                //Customer Print
+                                Console.WriteLine("\nEnter Customer Id: ");
+                                id = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine(Bl.DalToBlCustomer(id).ToString());
                                 break;
                             case 4:
+                                //Package print
+                                Console.WriteLine("\nEnter Package Id: ");
+                                id = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine(Bl.DalToBlPackage(id).ToString());
                                 break;
                         }
                         break;
 
                     case 5:
                         PrintListDisplayMenu();
-                        Console.WriteLine("Enter number of option:");
+                        Console.WriteLine("\nEnter number of option: ");
                         InnerOption = Convert.ToInt32(Console.ReadLine());
                         switch (InnerOption)
                         {
