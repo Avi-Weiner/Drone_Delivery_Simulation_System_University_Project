@@ -8,7 +8,7 @@ namespace ConsoleUI_BL
         {
             int option = 0;
             int InnerOption;
-            BL.BL Bl = new BL.BL();
+            BL.BL Bl = new();
             
             //ID for all the Id's to be entered by the user
             int id;
