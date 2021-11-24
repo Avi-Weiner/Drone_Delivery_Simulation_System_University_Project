@@ -43,8 +43,6 @@ namespace ConsoleUI_BL
         /// <param name="Bl"></param>
         static void AddNewCustomer(BL.BL Bl)
         {
-            Console.WriteLine("Enter CustomerId:\n");
-            int CustomerId = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine(" Enter Name:\n");
             string name = Console.ReadLine();
             Console.WriteLine(" Enter Phone:\n");
@@ -53,7 +51,7 @@ namespace ConsoleUI_BL
             double Longitude = Convert.ToDouble(Console.ReadLine());
             Console.WriteLine(" Enter Latitude:\n");
             double Latitude = Convert.ToDouble(Console.ReadLine());
-            Bl.AddCustomer(CustomerId, name, phone, Longitude, Latitude);
+            Bl.AddCustomer(name, phone, Longitude, Latitude);
         }
         /// <summary>
         /// Adds a new package

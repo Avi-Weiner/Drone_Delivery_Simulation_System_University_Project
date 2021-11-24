@@ -116,8 +116,8 @@ namespace BL
         /// <param name="Longitude"></param>
         /// <param name="Latitude"></param>
         /// <returns></returns>
-        public  IBL.BO.Customer AddCustomer(int CustomerId, string name, string phone, double Longitude, double Latitude)
-        {
+        public  IBL.BO.Customer AddCustomer(string name, string phone, double Longitude, double Latitude)
+        {//Customer id created automatically and therefore removed
             if (Longitude < -180 || Longitude > 180)
                 throw new IBL.BO.MessageException("Error: Longitude exceeds bounds");
             if (Latitude < -90 || Latitude > 90)
