@@ -62,10 +62,11 @@ namespace BL
         /// <param name="model"></param>
         /// <param name="Weight"></param>
         /// <param name="chargingStation"></param>
-        public  IBL.BO.Drone AddDrone(string Model, IDAL.DO.WeightCategory Weight, int StationId)
+        public  IBL.BO.Drone AddDrone(string Model, string Weight, int StationId)
         {   //manufacturerId was also included as a parameter but our
             //Id's are automatically created in the data layer for each entered object
 
+            #region Input Checking
             //Input checking:
             int Stationi = DalObject.DataSource.StationList.FindIndex(x => x.Id == StationId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
@@ -74,13 +75,20 @@ namespace BL
                 throw new IBL.BO.MessageException("Error: Station not found\n");
             }
 
+            //Check if Weight is valid
+            if (Weight != "light" || Weight != "medium" || Weight != "heavy")
+                throw new IBL.BO.MessageException("Error: Weight status invalid\n");
+            //If valid, convert to WeightCatagory
+            IDAL.DO.WeightCategory WeightCatagory = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), Weight);
+            #endregion
+
             int UniqueId = DalObject.DataSource.GetNextUniqueID(); //getting next unique id for immediate access
-            DalObject.DalObject.AddDrone(Model, Weight);
+            DalObject.DalObject.AddDrone(Model, WeightCatagory);
             //Creading new IBL.BO.Drone 
             IBL.BO.Drone d = new();
             d.Id = UniqueId;
             d.Model = Model;
-            d.Weight = Weight;
+            d.Weight = WeightCatagory;
 
             IBL.BO.Location l = new();
             l.latitude = DalObject.DataSource.StationList[Stationi].Latitude;
@@ -96,7 +104,7 @@ namespace BL
             IBL.BO.DroneToList DTL = new();
             DTL.Id = UniqueId;
             DTL.Model = Model;
-            DTL.Weight = Weight;
+            DTL.Weight = WeightCatagory;
             DTL.BatteryStatus = d.BatteryStatus;
             DTL.DroneStatus = d.Status;
             DTL.Location = d.Location;
@@ -149,31 +157,41 @@ namespace BL
         /// <param name="Weight"></param>
         /// <param name="Priority"></param>
         /// <returns></returns>
-        public  IBL.BO.Package AddPackage(int SenderId, int ReceiverId, IDAL.DO.WeightCategory Weight, IDAL.DO.Priority Priority)
+        public  IBL.BO.Package AddPackage(int SenderId, int ReceiverId, string Weight, string Priority)
         {
-            //Input checking:
+            #region InputChecking
+            //------------------Input checking:----------------
             int senderi = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == SenderId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (senderi == -1)
             {
                 throw new IBL.BO.MessageException("Error: Sender not found.\n");
             }
-
             int receiveri = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == ReceiverId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (receiveri == -1)
             {
                 throw new IBL.BO.MessageException("Error: Receiver not found.\n");
             }
+            //Check if Weight is valid
+            if (Weight != "light" || Weight != "medium" || Weight != "heavy")
+                throw new IBL.BO.MessageException("Error: Weight status invalid\n");
+            //Check if Priority is valid
+            if (Priority != "regular" || Priority != "fast" || Priority != "emergency")
+                throw new IBL.BO.MessageException("Error: Priority invalide");
+            #endregion
+
+            IDAL.DO.WeightCategory WeightCatagory = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), Weight);
+            IDAL.DO.Priority priorityStatus = (IDAL.DO.Priority)Enum.Parse(typeof(IDAL.DO.Priority), Priority);
 
             int id = DalObject.DataSource.GetNextUniqueID(); //Get the next UniqueID which will be the ID of this package
-            DalObject.DalObject.AddPackage(SenderId, ReceiverId, Weight, Priority);
+            DalObject.DalObject.AddPackage(SenderId, ReceiverId, WeightCatagory, priorityStatus);
 
             IBL.BO.Package p = new();
 
             p.Id = id;
-            p.Weight = Weight;
-            p.Priority = Priority;
+            p.Weight = WeightCatagory;
+            p.Priority = priorityStatus;
 
             p.CreationTime = DateTime.Now;
             p.AssigningTime = DateTime.MinValue;

@@ -9,11 +9,11 @@ namespace IBL
     namespace BO
     {
         /// <summary>
-        /// Status of a Drone: free, maintenance, deliver
+        /// Status of a Drone: {free, maintenance, delivery }
         /// </summary>
         public enum DroneStatus {free, maintenance, delivery }
         /// <summary>
-        /// Status of Package: created, assigned, collected, delivered
+        /// Status of Package: { created, assigned, collected, delivered }
         /// </summary>
         public enum PackageStatus { created, assigned, collected, delivered }
 
