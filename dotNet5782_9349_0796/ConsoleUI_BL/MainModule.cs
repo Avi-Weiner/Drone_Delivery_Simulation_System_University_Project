@@ -6,16 +6,17 @@ namespace ConsoleUI_BL
     {
         static void Main(string[] args)
         {
-            try
+            
+            int option = 0;
+            int InnerOption;
+            BL.BL Bl = new();
+
+            //ID for all the Id's to be entered by the user
+            int id;
+
+            while (option != 6) //Option = 6 for exit
             {
-                int option = 0;
-                int InnerOption;
-                BL.BL Bl = new();
-
-                //ID for all the Id's to be entered by the user
-                int id;
-
-                while (option != 6) //Option = 6 for exit
+                try 
                 {
                     PrintMainMenu();
                     Console.WriteLine("\nEnter number of option: ");
@@ -156,10 +157,10 @@ namespace ConsoleUI_BL
                             break;
                     }
                 }
-            }
-            catch (IBL.BO.MessageException e)
-            {
-                Console.WriteLine(e);
+                catch (IBL.BO.MessageException e)
+                {
+                    Console.WriteLine(e);
+                }
             }
         }
     }
