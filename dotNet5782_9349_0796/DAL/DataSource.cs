@@ -133,9 +133,8 @@ namespace DalObject
                     Delivered = null
                 });
                 Config.NextUniqueId++;
-
-            }
-        }
-    }
-}
+            }//end of for loop for pakcages
+        }//end of intialize;
+    }//end of dataSource
+}//end of dalObject
 
