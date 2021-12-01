@@ -101,18 +101,18 @@ namespace DalObject
             }
 
             //10 customers
-            char letter = 'A'; //Customer names will just be letters of the alphabet, incremented.
+            int ASCIIvalue = 65;
             for (int i = 0; i < 10; i++)
             {
                 CustomerList.Add(new IDAL.DO.Customer()
                 {
                     Id = Config.NextUniqueId,
-                    Name = letter.ToString(),
+                    Name = ((char)ASCIIvalue).ToString(),
                     Longitude = rand.NextDouble() * 360 - 180,
                     Latitude = rand.NextDouble() * 180 - 90,
                     Phone = "000-0000-0000"
                 });
-                
+                ASCIIvalue++;
                 Config.NextUniqueId++;
             }
 
@@ -131,13 +131,10 @@ namespace DalObject
                     Scheduled = (DateTime.Now).AddDays(5),
                     PickedUp = null,
                     Delivered = null
-                }); ;
-               
-                
+                }); 
+
             }
-
         }
-
     }
 }
 
