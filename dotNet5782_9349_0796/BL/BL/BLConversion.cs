@@ -17,7 +17,7 @@ namespace BL
         public IBL.BO.Drone DroneToListToDrone(int id)
         {
             IBL.BO.Drone d = new();
-            IBL.BO.DroneToList DroneToList = BLObject.DroneList.Find(x => x.Id == id);
+            IBL.BO.DroneToList DroneToList = BLObject.BLDroneList.Find(x => x.Id == id);
             if (DroneToList == null)
                 throw new IBL.BO.MessageException("Error: Object of id " + id + " not found.");
 
@@ -151,7 +151,7 @@ namespace BL
         {
             
             IBL.BO.DroneInCharge d = new();
-            IBL.BO.DroneToList DroneToList = BLObject.DroneList.Find(x => x.Id == id);
+            IBL.BO.DroneToList DroneToList = BLObject.BLDroneList.Find(x => x.Id == id);
 
             if (DroneToList == null)
                 throw new IBL.BO.MessageException("Error: Object of id " + id + " not found.");
@@ -181,7 +181,7 @@ namespace BL
 
             //create list of DroneInCharge
             List<IBL.BO.DroneInCharge> ChargeList = new();
-            foreach(IBL.BO.DroneToList Drone in BLObject.DroneList)
+            foreach(IBL.BO.DroneToList Drone in BLObject.BLDroneList)
             {
                 if (Drone.Location == b.Location && Drone.DroneStatus == IBL.BO.DroneStatus.maintenance)
                     ChargeList.Add(DroneToListToInCharge(Drone.Id));
