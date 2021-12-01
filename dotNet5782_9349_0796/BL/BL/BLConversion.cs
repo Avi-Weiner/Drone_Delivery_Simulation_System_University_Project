@@ -130,7 +130,7 @@ namespace BL
             List<IBL.BO.PackageToList> PackagesFromCustomer = new();
             List<IBL.BO.PackageToList> PackagesToCustomer = new();
 
-            //Go throw packageList and see if the customer is receiving or sending packages
+            //Go through packageList and see if the customer is receiving or sending packages
             foreach(IDAL.DO.Package package in DalObject.DataSource.PackageList)
             {
                 if (package.ReceiverId == c.Id)
@@ -138,6 +138,9 @@ namespace BL
                 if (package.SenderId == c.Id)
                     PackagesFromCustomer.Add(DalPackageToList(package.Id));
             }
+
+            c.PackagesFromCustomer = PackagesFromCustomer;
+            c.PackagesToCustomer = PackagesToCustomer;
 
             return c;
         }
