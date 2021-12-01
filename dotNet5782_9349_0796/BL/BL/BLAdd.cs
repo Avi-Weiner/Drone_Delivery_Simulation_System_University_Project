@@ -110,7 +110,7 @@ namespace BL
             DTL.Location = d.Location;
             DTL.PackageId = 0; //No package yet on a new drone
 
-            BLObject.DroneList.Add(DTL);
+            BLObject.BLDroneList.Add(DTL);
 
             return d;
         }

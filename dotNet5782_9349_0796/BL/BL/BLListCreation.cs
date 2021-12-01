@@ -66,8 +66,9 @@ namespace BL
             foreach (IDAL.DO.Package p in DalObject.DataSource.PackageList)
             {
                 //converts DAP package to BL package to packageToList and adds to list
-                if (p.DroneId == 0)
-                    list.Add(DalPackageToList(p.Id));
+                IBL.BO.PackageToList Plist = DalPackageToList(p.Id);
+                if (Plist.PackageStatus != IBL.BO.PackageStatus.assigned)
+                    list.Add(Plist);
             }
             return list;
         }

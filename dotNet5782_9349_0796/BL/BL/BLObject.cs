@@ -12,7 +12,7 @@ namespace BL
     {
         public partial class BLObject
         {
-            public static List<IBL.BO.DroneToList> DroneList = new List<IBL.BO.DroneToList>();
+            public static List<IBL.BO.DroneToList> BLDroneList = new List<IBL.BO.DroneToList>();
             
             public BLObject()
             {
@@ -35,7 +35,7 @@ namespace BL
                     NewDrone.Weight = Drone.MaxWeight;
                     NewDrone.PackageId = 0;
 
-                    DroneList.Add(NewDrone);
+                    BLDroneList.Add(NewDrone);
                 }
 
                 List<IDAL.DO.Package> deliveredPackages = new();
@@ -45,9 +45,9 @@ namespace BL
                 {
                     if(Pack.DroneId != 0 && Pack.Delivered == null)
                     {
-                        int index = DroneList.FindIndex(x => x.Id == Pack.DroneId);
-                        DroneList[index].DroneStatus = IBL.BO.DroneStatus.delivery;
-                        DroneList[index].PackageId = Pack.Id;
+                        int index = BLDroneList.FindIndex(x => x.Id == Pack.DroneId);
+                        BLDroneList[index].DroneStatus = IBL.BO.DroneStatus.delivery;
+                        BLDroneList[index].PackageId = Pack.Id;
                         
                         //Find sender Location
                         IDAL.DO.Customer sender = DataSource.CustomerList.Find(x => x.Id == Pack.SenderId);
@@ -56,13 +56,13 @@ namespace BL
                         {
                             //If package not picked up, Drone at the station closest to the sender
                             IDAL.DO.Station station = ClosestStation(senderLocation);
-                            DroneList[index].Location = MakeLocation(station.Longitude, station.Latitude);
+                            BLDroneList[index].Location = MakeLocation(station.Longitude, station.Latitude);
 
                         }
                         else if(Pack.Delivered == null)
                         {
                             //if package has been collected but hasn't been delivered - location of drone will be at sender.
-                            DroneList[index].Location = senderLocation;
+                            BLDroneList[index].Location = senderLocation;
                         }
                         else
                         {
@@ -74,11 +74,11 @@ namespace BL
                         IBL.BO.Location receiverLocation = MakeLocation(receiver.Longitude, receiver.Latitude);
                         IBL.BO.Location closestStationLocation 
                             = MakeLocation(ClosestStation(receiverLocation).Longitude, ClosestStation(receiverLocation).Latitude);
-                        double DistanceNeeded = DistanceBetween(DroneList[index].Location, receiverLocation) 
+                        double DistanceNeeded = DistanceBetween(BLDroneList[index].Location, receiverLocation) 
                             + DistanceBetween(receiverLocation, closestStationLocation);
-                        double minCharge = ChargeForDistance(DroneList[index].Weight, DistanceNeeded);
+                        double minCharge = ChargeForDistance(BLDroneList[index].Weight, DistanceNeeded);
 
-                        DroneList[index].BatteryStatus = rand.NextDouble() * (1 - minCharge) + minCharge;
+                        BLDroneList[index].BatteryStatus = rand.NextDouble() * (1 - minCharge) + minCharge;
                     }
                     else if (Pack.Delivered != null)
                     {
@@ -87,7 +87,7 @@ namespace BL
                 }
                 
                 //Finally going back through DroneList to deal with Drones not on Delivery
-                foreach(IBL.BO.DroneToList DroneL in DroneList)
+                foreach(IBL.BO.DroneToList DroneL in BLDroneList)
                 {
                     if(DroneL.DroneStatus != IBL.BO.DroneStatus.delivery)
                     {

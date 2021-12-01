@@ -13,13 +13,13 @@ namespace ConsoleUI_BL
         /// </summary>
         static void PrintMainMenu()
         {
-            Console.WriteLine("\n\n  Main Menu:   ");
-            Console.WriteLine("\n1. Adding options: ");
-            Console.WriteLine("\n2. Updating options: ");
-            Console.WriteLine("\n3. Drone Actions: ");
-            Console.WriteLine("\n4. Display options: ");
-            Console.WriteLine("\n5. List display options: ");
-            Console.WriteLine("\n6. Exit");
+            Console.WriteLine("\n  Main Menu:   ");
+            Console.WriteLine("1. Adding options: ");
+            Console.WriteLine("2. Updating options: ");
+            Console.WriteLine("3. Drone Actions: ");
+            Console.WriteLine("4. Display options: ");
+            Console.WriteLine("5. List display options: ");
+            Console.WriteLine("6. Exit");
         }
         /// <summary>
         /// prints the adding menu
@@ -75,13 +75,13 @@ namespace ConsoleUI_BL
         /// </summary>
         static void PrintListDisplayMenu()
         {
-            Console.WriteLine("\nList Display Menu: " +
-                "\n\t\t1. - Base Station list." +
-                "\n\t\t2. - Drones list." +
-                "\n\t\t3. - Customers list." +
-                "\n\t\t4. - Packages list." +
-                "\n\t\t5. - Unassigned Packages." +
-                "\n\\t\t6. - Display base Stations with available charging slots.");
+            Console.WriteLine("\n\tList Display Menu: " +
+                "\n\t1. - Base Station list." +
+                "\n\t2. - Drones list." +
+                "\n\t3. - Customers list." +
+                "\n\t4. - Packages list." +
+                "\n\t5. - Unassigned Packages." +
+                "\n\t6. - Display base Stations with available charging slots.");
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace ConsoleUI_BL
         /// <param name="bl"></param>
         static void PrintDroneList(BL.BL bl)
         {
-            foreach(IBL.BO.DroneToList d in BL.BL.BLObject.DroneList)
+            foreach(IBL.BO.DroneToList d in BL.BL.BLObject.BLDroneList)
             {
                 Console.WriteLine(d.ToString() + '\n');
             }

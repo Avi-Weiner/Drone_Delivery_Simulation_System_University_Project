@@ -27,18 +27,18 @@ namespace BL
             Drone.Model = Model;
             DalObject.DataSource.DroneList[Dronei] = Drone;
 
-            int Listi = BLObject.DroneList.FindIndex(x => x.Id == Id);
-            BLObject.DroneList[Listi].Model = Model;
+            int Listi = BLObject.BLDroneList.FindIndex(x => x.Id == Id);
+            BLObject.BLDroneList[Listi].Model = Model;
 
 
             //Create IBL.BO.Drone to return
             IBL.BO.Drone d = new();
             d.Id = Drone.Id;
             d.Model = Model;
-            d.Weight = BLObject.DroneList[Listi].Weight;
-            d.Location = BLObject.DroneList[Listi].Location;
-            d.BatteryStatus = BLObject.DroneList[Listi].BatteryStatus;
-            d.Status = BLObject.DroneList[Listi].DroneStatus;
+            d.Weight = BLObject.BLDroneList[Listi].Weight;
+            d.Location = BLObject.BLDroneList[Listi].Location;
+            d.BatteryStatus = BLObject.BLDroneList[Listi].BatteryStatus;
+            d.Status = BLObject.BLDroneList[Listi].DroneStatus;
 
             return d;
         }
