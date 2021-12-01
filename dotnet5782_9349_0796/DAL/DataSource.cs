@@ -123,7 +123,7 @@ namespace DalObject
                 {
                     Id = Config.NextUniqueId,
                     SenderId = CustomerList[i].Id,
-                    ReceiverId = CustomerList[i%10].Id,
+                    ReceiverId = CustomerList[i % 10].Id,
                     Weight = (IDAL.DO.WeightCategory)(rand.Next(0, 2)),
                     Priority = (IDAL.DO.Priority)(rand.Next(0, 2)),
                     Requested = DateTime.Now,
