@@ -7,6 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Image Source="/benyamin-bohlouli-ysT4Bo9LvXU-unsplash.jpg" Stretch="UniformToFill"></Image>
+        <Image HorizontalAlignment="Left" Height="217" Margin="51,50,0,0" VerticalAlignment="Top" Width="284" Source="/Screenshot 2021-12-02 185005.png"/>
+        <Button Content="ClickMe" HorizontalAlignment="Left" Margin="124,150,0,0" VerticalAlignment="Top" Height="63" Width="103" Click="Button_Click"/>
+        <Button Content="Login" Margin="452,289,264,106" Click="Button_Click_1"/>
+        
 
     </Grid>
 </Window>

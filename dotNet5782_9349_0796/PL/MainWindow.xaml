@@ -31,7 +31,7 @@
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
-            <Button x:Name="DroneList" Content="DroneList" />
+            <Button x:Name="DroneList" Content="DroneList" Click="DroneList_Click" />
         </ListView>
     </Grid>
 </Window>

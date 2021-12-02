@@ -6,4 +6,18 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="benyamin-bohlouli-ysT4Bo9LvXU-unsplash.jpg" />
+    <None Remove="Screenshot 2021-12-02 185005.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BL\BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="benyamin-bohlouli-ysT4Bo9LvXU-unsplash.jpg" />
+    <Resource Include="Screenshot 2021-12-02 185005.png" />
+  </ItemGroup>
+
 </Project>

@@ -28,6 +28,11 @@ namespace PL
 
         private void DronesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+         
+        }
+
+        private void DroneList_Click(object sender, RoutedEventArgs e)
+        {
             DroneDisplay DroneDisplayWindow = new DroneDisplay();
             DroneDisplayWindow.Show();
         }
