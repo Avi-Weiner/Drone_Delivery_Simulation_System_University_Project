@@ -23,7 +23,7 @@ namespace IBL
             /// <summary>
             /// Time package was created (same as requested in DAL)
             /// </summary>
-            public DateTime CreationTime { get; set; }
+            public DateTime? CreationTime { get; set; }
             /// <summary>
             /// Time assigned to a drone (same as scheduled in DAL)
             /// </summary>
