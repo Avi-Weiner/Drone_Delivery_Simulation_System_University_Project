@@ -6,7 +6,31 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="195*"/>
+            <RowDefinition Height="190*"/>
+        </Grid.RowDefinitions>
 
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Name="StatusSelector" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
+            <TextBox Grid.Column="0"/>
+        </Grid>
+        <ListBox Grid.Row="2"/>
+        <ListView x:Name="DronesListView" Grid.Row="1">
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
