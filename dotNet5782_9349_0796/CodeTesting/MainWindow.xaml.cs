@@ -13,23 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PL
+namespace CodeTesting
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void DronesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DroneDisplay DroneDisplayWindow = new DroneDisplay();
-            DroneDisplayWindow.Show();
         }
     }
 }
