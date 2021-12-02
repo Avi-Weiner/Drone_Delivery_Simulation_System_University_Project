@@ -93,7 +93,7 @@ namespace BL
                 int Hours = ChargeTime.Hour;
                 int Minutes = ChargeTime.Minute;
                 double Charge = Hours * DalObject.DataSource.GetChargingRate();
-                Charge += Minutes * 0.016666;
+                Charge += Minutes * (0.016666* DalObject.DataSource.GetChargingRate());
                 return Charge;
             }
         }
