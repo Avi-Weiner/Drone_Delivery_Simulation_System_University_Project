@@ -82,6 +82,7 @@ namespace BL
 
                 return distance * powerPerKm;
             }       
+
             /// <summary>
             /// function retunrs how much charge you get for how much time inputed
             /// </summary>
@@ -91,7 +92,7 @@ namespace BL
             {
                 int Hours = ChargeTime.Hour;
                 int Minutes = ChargeTime.Minute;
-                double Charge = Hours * 0.1;
+                double Charge = Hours * DalObject.DataSource.GetChargingRate();
                 Charge += Minutes * 0.016666;
                 return Charge;
             }

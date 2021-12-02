@@ -16,6 +16,7 @@ namespace BL
         /// <param name="DroneId"></param>
         public void SendDroneToCharge(int DroneId)
         {
+            #region Input Checking
             int DroneIndex = BLObject.BLDroneList.FindIndex(x => x.Id == DroneId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (DroneIndex == -1)
@@ -40,6 +41,8 @@ namespace BL
             {
                 throw new IBL.BO.MessageException("Error: not enough charging slots");
             }
+            #endregion
+
             //update battery state 
             BL.BLObject.BLDroneList[DroneIndex].BatteryStatus -= 
                 BLObject.ChargeForDistance(BL.BLObject.BLDroneList[DroneIndex].Weight, 
@@ -51,6 +54,7 @@ namespace BL
             DalObject.DataSource.StationList[StationIndex] = StationClose;
             ///iii adding a mathcing instance///////////////////////////////////////////////////////////////////////////////////////
         }
+
         /// <summary>
         /// drone will be released from charging station and appropriate battery will be added
         /// location will be the statoin where it was charged.
@@ -59,6 +63,7 @@ namespace BL
         /// <param name="ChargeTime"></param>
         public void ReleaseDroneFromCharge(int DroneId, DateTime ChargeTime)//supposed to take in a time not sure whatit's supposed to do so skipped it for now.
         {
+
             int DroneIndex = BLObject.BLDroneList.FindIndex(x => x.Id == DroneId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (DroneIndex == -1)
@@ -85,6 +90,7 @@ namespace BL
             //again not sure what the mathcing instance is.
         
         }
+
         /// <summary>
         /// if input is valid the heviest closest package will be assgined to the drone
         /// if anything goes wrong appropriate exception will be thrown.
@@ -207,6 +213,7 @@ namespace BL
             BLObject.BLDroneList[DroneIndex] = Drone;
             DalObject.DataSource.PackageList[PackageIndex] = Package;
         }
+
         /// <summary>
         /// If the drone picked up a package the package will be delivered the new location will be 
         /// the recievers location and the battery percentage will decrese approriately 
