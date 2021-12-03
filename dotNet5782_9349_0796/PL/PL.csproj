@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="benyamin-bohlouli-ysT4Bo9LvXU-unsplash.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="benyamin-bohlouli-ysT4Bo9LvXU-unsplash.jpg" />
   </ItemGroup>
 
 </Project>

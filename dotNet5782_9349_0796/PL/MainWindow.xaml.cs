@@ -31,7 +31,13 @@ namespace PL
          
         }
 
-        private void DroneList_Click(object sender, RoutedEventArgs e)
+        //private void DroneList_Click(object sender, RoutedEventArgs e)
+        //{
+        //    DroneDisplay DroneDisplayWindow = new DroneDisplay();
+        //    DroneDisplayWindow.Show();
+        //}
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             DroneDisplay DroneDisplayWindow = new DroneDisplay();
             DroneDisplayWindow.Show();
