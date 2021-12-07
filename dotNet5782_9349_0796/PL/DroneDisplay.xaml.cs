@@ -21,6 +21,7 @@ namespace PL
     {
         public DroneDisplay(IBL.IBL BlObj)
         {
+            MessageBox.Show(BlObj.ToString());
             InitializeComponent();
         }
     }

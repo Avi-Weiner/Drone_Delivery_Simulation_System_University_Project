@@ -21,7 +21,9 @@ namespace PL
     {
         public DroneLIst(IBL.IBL BLObj)
         {
+            
             InitializeComponent();
+            DroneListView.ItemsSource = BL.BL.BLObject.BLDroneList;
         }
     }
 }

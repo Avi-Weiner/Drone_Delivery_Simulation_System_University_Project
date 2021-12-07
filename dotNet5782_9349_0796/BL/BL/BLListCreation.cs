@@ -9,6 +9,7 @@ namespace BL
     public partial class BL : IBL.IBL
     {
         
+        
         /// <summary>
         /// Returns a list of base stations
         /// </summary>

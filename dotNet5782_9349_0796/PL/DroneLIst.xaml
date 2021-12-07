@@ -20,8 +20,18 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ComboBox Name="StatusSelector" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
-            <TextBox Grid.Column="0"/>
+            <ComboBox Name="StatusSelector"   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1">
+                <ComboBoxItem Content="Filter list by drone state"/>
+                <ComboBox Name="sub">
+                    <ComboBoxItem Content="Free"/>
+                    <ComboBoxItem Content="Maintenance"/>
+                    <ComboBoxItem Content="Delivery"/>
+                </ComboBox>
+                <ComboBoxItem Content="Filter list by max weight"/>
+
+            </ComboBox>
+
+                <TextBox Grid.Column="0"/>
         </Grid>
         <ListBox Grid.Row="2"/>
         <ListView x:Name="DronesListView" Grid.Row="1">
@@ -31,6 +41,13 @@
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
+            <ListView x:Name="DroneListView" Height="188" Width="800" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </ListView>
     </Grid>
 </Window>
