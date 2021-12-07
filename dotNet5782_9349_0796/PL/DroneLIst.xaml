@@ -11,7 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="48*"/>
             <RowDefinition Height="195*"/>
-            <RowDefinition Height="190*"/>
+            
         </Grid.RowDefinitions>
 
         <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto">
@@ -35,23 +35,16 @@
             <!--<TextBox x:Name="testTextBox" Grid.Column="0" Background="#FFF12828"/>-->
         </Grid>
         <ListBox Grid.Row="2">
-            <ListBox x:Name="DroneLIstView" Height="188" Width="800" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                <ListBox x:Name="DroneLIstView" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionChanged="DroneLIstView_SelectionChanged"/>
         </ListBox>
-        <ListView x:Name="DronesListView" Grid.Row="1">
+        <!--<ListView x:Name="DronesListView" Grid.Row="1">
 
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
-            <ListView x:Name="DroneListView" Height="188" Width="800"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </ListView>
+            </ListView>-->
     </Grid>
         </ScrollViewer>
 </Window>

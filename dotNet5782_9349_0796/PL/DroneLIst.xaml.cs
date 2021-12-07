@@ -25,5 +25,10 @@ namespace PL
             InitializeComponent();
             DroneLIstView.ItemsSource = BLObj.DroneListFilter("free");
         }
+
+        private void DroneLIstView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
     }
 }
