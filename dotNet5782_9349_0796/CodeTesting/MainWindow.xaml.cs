@@ -39,5 +39,27 @@ namespace CodeTesting
         {
             
         }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //avi.SelectedItem.ToString();
+            MessageBox.Show(avi.SelectedItem.ToString());
+        }
+
+        private void avi_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (avi.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last())
+            {
+                case "free":
+                    MessageBox.Show("this work avi");
+                    break;
+                case "2":
+                    //Handle for the second combobox
+                    break;
+                case "3":
+                    //Handle for the third combobox
+                    break;
+            }
+        }
     }
 }

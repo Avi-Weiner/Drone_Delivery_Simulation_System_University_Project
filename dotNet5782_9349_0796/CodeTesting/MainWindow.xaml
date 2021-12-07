@@ -11,7 +11,13 @@
         <Image HorizontalAlignment="Left" Height="217" Margin="51,50,0,0" VerticalAlignment="Top" Width="284" Source="/Screenshot 2021-12-02 185005.png"/>
         <Button Content="ClickMe" HorizontalAlignment="Left" Margin="124,150,0,0" VerticalAlignment="Top" Height="63" Width="103" Click="Button_Click"/>
         <Button Content="Login" Margin="452,289,264,106" Click="Button_Click_1"/>
-        
+        <ComboBox x:Name="avi" HorizontalAlignment="Left" Margin="536,100,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="avi_SelectionChanged">
+
+            <ComboBoxItem>free</ComboBoxItem>
+                <ComboBoxItem>2</ComboBoxItem>
+                <ComboBoxItem>3</ComboBoxItem>
+            </ComboBox>
+
 
     </Grid>
 </Window>

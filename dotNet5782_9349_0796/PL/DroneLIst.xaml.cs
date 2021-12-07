@@ -15,19 +15,26 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for DroneLIst.xaml
+    /// Interaction logic for DroneList.xaml
     /// </summary>
-    public partial class DroneLIst : Window
+    public partial class DroneList : Window
     {
-        public DroneLIst(IBL.IBL BLObj)
+        IBL.IBL bl;
+        public DroneList(IBL.IBL BLObj)
         {
-            
-            InitializeComponent();
-            DroneLIstView.ItemsSource = BLObj.DroneListFilter("free");
-        }
 
-        private void DroneLIstView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            InitializeComponent();
+            //StatusSelector.SelectedItem = AllDrones;
+            //DroneListView.ItemsSource = BLObj.DroneListFilter("free");
+            bl = BLObj;
+        }
+        private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+            string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
+            
+            MessageBox.Show(x);
+            DroneListView.ItemsSource = bl.DroneListFilter(x);
             
         }
     }
