@@ -15,7 +15,7 @@ namespace IBL
 
             public override string ToString()
             {
-                return "Longitude: " + longitude + "    Latitude: " + latitude; 
+                return "Longitude: " + string.Format("{0:0.00}%", longitude) + " Latitude: " + string.Format("{0:0.00}%", latitude); 
             }
         }
     }
