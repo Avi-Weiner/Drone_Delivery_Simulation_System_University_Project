@@ -89,5 +89,50 @@ namespace BL
             return list;
         }
 
+        /// <summary>
+        /// Returns a filtered DroneToList depending on the entered option:
+        /// States:
+        ///     1: "free"
+        ///     2: "maintenance" 
+        ///     3: "delivery"
+        /// Max Weight:
+        ///     1: "light"
+        ///     2: "medium"
+        ///     3: "heavy"
+        /// </summary>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        public List<IBL.BO.DroneToList> DroneListFilter(string option)
+        {
+            Predicate<IBL.BO.DroneToList> predicate;
+
+            switch (option)
+            {
+                case "free":
+                    predicate = d => d.DroneStatus == IBL.BO.DroneStatus.free;
+                    break;
+                case "maintenance":
+                    predicate = d => d.DroneStatus == IBL.BO.DroneStatus.maintenance;
+                    break;
+                case "delivery":
+                    predicate = d => d.DroneStatus == IBL.BO.DroneStatus.delivery;
+                    break;
+                case "light":
+                    predicate = d => d.Weight == IDAL.DO.WeightCategory.light;
+                    break;
+                case "medium":
+                    predicate = d => d.Weight == IDAL.DO.WeightCategory.medium; 
+                    break;
+                case "heavy":
+                    predicate = d => d.Weight == IDAL.DO.WeightCategory.heavy; 
+                    break;
+                default:
+                    throw new IBL.BO.MessageException("Error: Invalid drone list filter option entered.");
+            }
+
+            return BLObject.BLDroneList.FindAll(predicate);
+        }
+
+
     }
 }

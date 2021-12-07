@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using IBL.BO;
+
 namespace IBL
 {
     public interface IBL
@@ -16,5 +21,19 @@ namespace IBL
         void DroneCollectsAPackage(int DroneId);
         void DroneDeliversPakcage(int DroneId);
 
+        /// <summary>
+        /// Returns a filtered DroneToList depending on the entered option:
+        /// States:
+        ///     1: "free"
+        ///     2: "maintenance" 
+        ///     3: "delivery"
+        /// Max Weight:
+        ///     1: "light"
+        ///     2: "medium"
+        ///     3: "heavy"
+        /// </summary>
+        /// <param name="option"></param>
+        /// <returns></returns>
+        List<DroneToList> DroneListFilter(string option);
     }
 }
