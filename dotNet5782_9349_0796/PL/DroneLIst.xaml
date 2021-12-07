@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="DroneLIst" Height="450" Width="800">
+        Title="DroneLIst" Height="450" Width="830">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="48*"/>
@@ -31,9 +32,11 @@
 
             </ComboBox>
 
-                <TextBox Grid.Column="0"/>
+            <!--<TextBox x:Name="testTextBox" Grid.Column="0" Background="#FFF12828"/>-->
         </Grid>
-        <ListBox Grid.Row="2"/>
+        <ListBox Grid.Row="2">
+            <ListBox x:Name="DroneLIstView" Height="188" Width="800" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        </ListBox>
         <ListView x:Name="DronesListView" Grid.Row="1">
 
             <ListView.View>
@@ -41,7 +44,7 @@
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
-            <ListView x:Name="DroneListView" Height="188" Width="800" >
+            <ListView x:Name="DroneListView" Height="188" Width="800"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>
@@ -50,4 +53,5 @@
             </ListView>
         </ListView>
     </Grid>
+        </ScrollViewer>
 </Window>
