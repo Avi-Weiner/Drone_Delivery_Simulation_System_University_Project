@@ -109,25 +109,25 @@ namespace BL
 
             switch (option)
             {
-                case "all":
+                case "All Drones":
                     predicate = d => true;
                     break;
-                case "free":
+                case "Free Drones":
                     predicate = d => d.DroneStatus == IBL.BO.DroneStatus.free;
                     break;
-                case "maintenance":
+                case "Maintenance Drones":
                     predicate = d => d.DroneStatus == IBL.BO.DroneStatus.maintenance;
                     break;
-                case "delivery":
+                case "Delivery Drones":
                     predicate = d => d.DroneStatus == IBL.BO.DroneStatus.delivery;
                     break;
-                case "light":
+                case "Light":
                     predicate = d => d.Weight == IDAL.DO.WeightCategory.light;
                     break;
-                case "medium":
+                case "Medium":
                     predicate = d => d.Weight == IDAL.DO.WeightCategory.medium; 
                     break;
-                case "heavy":
+                case "Heavy":
                     predicate = d => d.Weight == IDAL.DO.WeightCategory.heavy; 
                     break;
                 default:
