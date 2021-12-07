@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Image Source="/benyamin-bohlouli-ysT4Bo9LvXU-unsplash.jpg" Stretch="UniformToFill"></Image>
-        <Button Content="DroneLIst" Margin="147,167,591,217" Click="Button_Click"/>
+        <Button Content="DroneLIst" Margin="349,187,349,197" Click="Button_Click" Background="#FFB92EBF"/>
 
         <!--<Grid Name="MainGrid">
         <Grid.RowDefinitions>

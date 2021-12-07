@@ -23,7 +23,13 @@ namespace PL
         {
             
             InitializeComponent();
-            DroneListView.ItemsSource = BL.BL.BLObject.BLDroneList;
+            DroneLIstView.ItemsSource = BL.BL.BLObject.BLDroneList;
+        }
+        
+        private void DroneLIstView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            InitializeComponent();
+            DroneLIstView.ItemsSource = BL.BL.BLObject.BLDroneList;
         }
     }
 }
