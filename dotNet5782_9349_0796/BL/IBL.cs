@@ -35,5 +35,19 @@ namespace IBL
         /// <param name="option"></param>
         /// <returns></returns>
         List<DroneToList> DroneListFilter(string option);
+
+        /// <summary>
+        /// Returns BL Drone from given id, converting it from the DroneToList list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Drone DroneToListToDrone(int id);
+
+        /// <summary>
+        /// Returns a BL package from the DalPackage from the given id 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Package DalToBlPackage(int id);
     }
 }
