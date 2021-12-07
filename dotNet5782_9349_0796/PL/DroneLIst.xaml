@@ -37,8 +37,10 @@
 
                 <!--<TextBox x:Name="testTextBox" Grid.Column="0" Background="#FFF12828"/>-->
             </Grid>
+
             <ListBox Margin="0,75,0,0" Grid.RowSpan="2">
-                <ListBox x:Name="DroneListView" Background="#FFF34258" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="325" Width="807"/>
+                
+                <ListBox x:Name="DroneListView" Background="#FFF34258" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="325" Width="807" MouseDoubleClick="DroneListView_MouseDoubleClick"/>
             </ListBox>
             <!--<ListView x:Name="DronesListView" Grid.Row="1">
 

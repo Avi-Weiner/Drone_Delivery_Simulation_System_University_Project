@@ -19,9 +19,8 @@ namespace PL
     /// </summary>
     public partial class DroneDisplay : Window
     {
-        public DroneDisplay(IBL.IBL BlObj)
+        public DroneDisplay(IBL.BO.Drone Drone)
         {
-            MessageBox.Show(BlObj.ToString());
             InitializeComponent();
         }
     }
