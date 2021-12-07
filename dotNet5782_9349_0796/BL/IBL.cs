@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using IBL.BO;
+
 namespace IBL
 {
     public interface IBL
@@ -15,6 +20,6 @@ namespace IBL
         void AssignPackageToDrone(int DroneId);
         void DroneCollectsAPackage(int DroneId);
         void DroneDeliversPakcage(int DroneId);
-
+        List<DroneToList> DroneListFilter(string option);
     }
 }
