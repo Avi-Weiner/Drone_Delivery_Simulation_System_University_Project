@@ -21,12 +21,12 @@ namespace IBL
             public override string ToString()
             {
                 return "\nDrone ID: " + Id +
-                    " Model: " + Model +
-                    " Weight: " + Weight.ToString() +
-                    "\nBattery status: " + string.Format("{0:0.00}%", BatteryStatus) +
-                    " Drone status: " + DroneStatus.ToString() +
-                    " Location: " + Location.ToString() +
-                    " Package: " + PackageId;
+                    "   Model: " + Model +
+                    "   Weight: " + Weight.ToString() +
+                    "   Battery status: " + string.Format("{0:0.00}%", BatteryStatus) +
+                    "\nDrone status: " + DroneStatus.ToString() +
+                    "   Location: " + Location.ToString() +
+                    "   Package: " + PackageId;
             }
         }
     }
