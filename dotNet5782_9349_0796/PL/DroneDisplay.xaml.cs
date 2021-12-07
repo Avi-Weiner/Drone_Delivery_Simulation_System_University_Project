@@ -19,7 +19,7 @@ namespace PL
     /// </summary>
     public partial class DroneDisplay : Window
     {
-        public DroneDisplay()
+        public DroneDisplay(IBL.IBL BlObj)
         {
             InitializeComponent();
         }

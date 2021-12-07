@@ -20,10 +20,11 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        
+        IBL.IBL BLObj;
         public MainWindow()
         {
             InitializeComponent();
+            BLObj = new BL.BL();
         }
 
         private void DronesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,7 +40,7 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DroneDisplay DroneDisplayWindow = new DroneDisplay();
+            DroneDisplay DroneDisplayWindow = new DroneDisplay(BLObj);
             DroneDisplayWindow.Show();
         }
     }

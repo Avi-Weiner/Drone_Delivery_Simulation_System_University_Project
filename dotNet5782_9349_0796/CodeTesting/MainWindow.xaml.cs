@@ -21,15 +21,16 @@ namespace CodeTesting
     /// </summary>
     public partial class MainWindow : Window
     {
+        IBL.IBL BLObj;
         public MainWindow()
         {
             InitializeComponent();
+            BLObj = new BL.BL();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Isn't this cool?");
-            IBL.IBL BLObj = new BL.BL();
             
             
         }
