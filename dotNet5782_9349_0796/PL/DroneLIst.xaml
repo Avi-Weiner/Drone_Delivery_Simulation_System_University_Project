@@ -33,6 +33,7 @@
 
                 </ComboBox>
                 <TextBlock HorizontalAlignment="Center" Margin="0,23,0,0" Text="Drone list filter options:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <Button Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="148,11,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Button_Click"/>
 
                 <!--<TextBox x:Name="testTextBox" Grid.Column="0" Background="#FFF12828"/>-->
             </Grid>

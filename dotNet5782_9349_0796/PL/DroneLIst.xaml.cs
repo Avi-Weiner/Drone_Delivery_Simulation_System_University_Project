@@ -39,5 +39,10 @@ namespace PL
             DroneListView.ItemsSource = bl.DroneListFilter(x);
             
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
