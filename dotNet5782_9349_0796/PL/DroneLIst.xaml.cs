@@ -32,8 +32,10 @@ namespace PL
         {
 
             string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
-            
-            MessageBox.Show(x);
+            if (x == "All Drones")
+            {
+                MessageBox.Show(x);
+            }
             DroneListView.ItemsSource = bl.DroneListFilter(x);
             
         }
