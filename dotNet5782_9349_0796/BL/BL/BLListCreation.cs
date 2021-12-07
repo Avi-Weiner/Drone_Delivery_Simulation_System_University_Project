@@ -91,6 +91,7 @@ namespace BL
 
         /// <summary>
         /// Returns a filtered DroneToList depending on the entered option:
+        /// "all"
         /// States:
         ///     1: "free"
         ///     2: "maintenance" 
@@ -108,6 +109,9 @@ namespace BL
 
             switch (option)
             {
+                case "all":
+                    predicate = d => true;
+                    break;
                 case "free":
                     predicate = d => d.DroneStatus == IBL.BO.DroneStatus.free;
                     break;
