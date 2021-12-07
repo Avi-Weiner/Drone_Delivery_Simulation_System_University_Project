@@ -165,7 +165,7 @@ namespace BL
                 IDAL.DO.Package package = Packages.Find(x => x.Id == drone.PackageId);
                 IDAL.DO.Customer thisPackageSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == package.SenderId)];
                 IBL.BO.Location thisSenderLocation = BLObject.MakeLocation(thisPackageSender.Longitude, thisPackageSender.Latitude);
-                if (BLObject.DistanceBetween(senderLocation, drone.Location) < BLObject.DistanceBetween(thisSenderLocation, drone.Location)) ;
+                if (BLObject.DistanceBetween(senderLocation, drone.Location) < BLObject.DistanceBetween(thisSenderLocation, drone.Location))
                 {
                     drone.PackageId = pack.Id;
                 }

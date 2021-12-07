@@ -83,7 +83,7 @@ namespace BL
             List<IBL.BO.BaseStationToList> list = new();
             foreach (IDAL.DO.Station station in DalObject.DataSource.StationList)
             {
-                if( DalToBlStation(station.Id).AvailableChargeSlots > 0);
+                if( DalToBlStation(station.Id).AvailableChargeSlots > 0)
                     list.Add(StationToStationToList(station.Id));
             }
             return list;

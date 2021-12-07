@@ -20,7 +20,7 @@ namespace IBL
 
             public override string ToString()
             {
-                return "\nDrone ID: " + Id +
+                return "\niiiDrone ID: " + Id +
                     " Model: " + Model +
                     " Weight: " + Weight.ToString() +
                     "\nBattery status: " + string.Format("{0:0.00}%", BatteryStatus) +

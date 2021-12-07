@@ -23,7 +23,7 @@ namespace IBL
                 return "Drone ID: " + Id +
                     "\nModel: " + Model +
                     "\nWeight: " + Weight.ToString() +
-                    "\nBattery status: " + BatteryStatus +
+                    "\nBattery status: " + BatteryStatus.ToString("P") +
                     "\nDrone status: " + Status.ToString() +
                     "\nLocation: " + Location.ToString() +
                     "\nPackage: " + PackageInTransfer.ToString() + '\n';
