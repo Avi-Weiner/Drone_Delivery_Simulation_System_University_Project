@@ -69,6 +69,7 @@ namespace PL
                 
                 bl.AssignPackageToDrone(drone.Id);
                 MessageBox.Show("Packge was assigned succefully");
+                
             }
             catch(IBL.BO.MessageException m)
             {

@@ -127,6 +127,7 @@ namespace BL
             }
             List<IDAL.DO.Package> Packages = DalObject.DataSource.PackageList;
             List<IDAL.DO.Package> tempPack = new List<IDAL.DO.Package>();
+            Packages.RemoveAll(x => x.Delivered != null);
 
             Packages.RemoveAll(x => CheckCloseEnough(x, DroneIndex));
             
