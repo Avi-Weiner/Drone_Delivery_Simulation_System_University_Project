@@ -59,8 +59,8 @@ namespace PL
         {
             bl.UpdateDrone(drone.Id, newModel.Text);
             MessageBox.Show("Drone Model updated Successfully");
-            //next 2 lines only done for asthetics. showing the cutomer the drone was updated in a tricky way.
-            drone.Model = newModel.Text;
+            
+            drone = bl.DroneToListToDrone(drone.Id);
             DroneView.Text = drone.ToString();
         }
 
@@ -71,7 +71,9 @@ namespace PL
                 
                 bl.AssignPackageToDrone(drone.Id);
                 MessageBox.Show("Packge was assigned succefully");
-                
+                drone = bl.DroneToListToDrone(drone.Id);
+                DroneView.Text = drone.ToString();
+
             }
             catch(IBL.BO.MessageException m)
             {
@@ -85,6 +87,8 @@ namespace PL
             {
                 bl.DroneCollectsAPackage(drone.Id);
                 MessageBox.Show("Drone Collected Package Succefully");
+                drone = bl.DroneToListToDrone(drone.Id);
+                DroneView.Text = drone.ToString();
             }
             catch(IBL.BO.MessageException m)
             {
@@ -98,6 +102,8 @@ namespace PL
             {
                 bl.DroneDeliversPakcage(drone.Id);
                 MessageBox.Show("Drone Delivered Package succefully");
+                drone = bl.DroneToListToDrone(drone.Id);
+                DroneView.Text = drone.ToString();
             }
             catch(IBL.BO.MessageException m)
             {
@@ -111,6 +117,8 @@ namespace PL
             {
                 bl.SendDroneToCharge(drone.Id);
                 MessageBox.Show("Drone Sent to Charger Succefully");
+                drone = bl.DroneToListToDrone(drone.Id);
+                DroneView.Text = drone.ToString();
             }
             catch(IBL.BO.MessageException m)
             {
@@ -127,6 +135,8 @@ namespace PL
                 MessageBox.Show("Drone released from charge successfully");
                 
                 bl.ReleaseDroneFromCharge(drone.Id, x);
+                drone = bl.DroneToListToDrone(drone.Id);
+                DroneView.Text = drone.ToString();
             }
             catch(IBL.BO.MessageException m)
             {
