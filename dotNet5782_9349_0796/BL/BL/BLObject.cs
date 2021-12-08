@@ -109,8 +109,6 @@ namespace BL
                         }
                         else if (DroneL.DroneStatus == IBL.BO.DroneStatus.free)
                         {
-                            //Avi Weiner - battery state will be between the minimum allows it to get the closest station and 100(random)///////////////////////////
-
                             //location: random customer that has already received a package
                             int deliveredCount = 0;
                             foreach (IDAL.DO.Package p in deliveredPackages) { deliveredCount++; }

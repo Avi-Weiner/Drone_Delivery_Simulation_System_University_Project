@@ -76,8 +76,9 @@ namespace BL
             }
 
             //Check if Weight is valid
-            if (Weight != "light" || Weight != "medium" || Weight != "heavy")
+            if (Weight != "light" && Weight != "medium" && Weight != "heavy")
                 throw new IBL.BO.MessageException("Error: Weight status invalid\n");
+
             //If valid, convert to WeightCatagory
             IDAL.DO.WeightCategory WeightCatagory = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), Weight);
             #endregion
