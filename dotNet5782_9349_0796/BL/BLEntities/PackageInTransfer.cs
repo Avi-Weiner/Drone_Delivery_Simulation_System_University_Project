@@ -23,6 +23,17 @@ namespace IBL
             public Location DeliveryLocation { get; set; }
             public int DeliveryDistance { get; set; }
 
+            public override string ToString()
+            {
+                return "Package ID: " + ID +
+                    "\nWeight Category: " + Weight.ToString() +
+                    "\nPriority: " + Priority.ToString() +
+                    "\nDelivery Status (true = delivered, false = undelivered): " + DeliveryStatus.ToString() +
+                    "\nSender: " + Sender.ToString() +
+                    "\nReceiver: " + Receiver.ToString() +
+                    "\nCollection Location: " + CollectLocation.ToString() + 
+                    "\nDelivery LocationL " + DeliveryLocation + '\n';
+            }
         }
     }
 }
