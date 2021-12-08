@@ -50,6 +50,7 @@ namespace PL
             DroneView.Visibility = Visibility.Visible;
             HoursChargedPrompt.Visibility = Visibility.Visible;
             HoursCharged.Visibility = Visibility.Visible;
+            DroneUpdateOptions.Visibility = Visibility.Visible;
 
             DroneView.Text = Drone.ToString();
         }
@@ -174,7 +175,6 @@ namespace PL
             BaseStationTextBox.Visibility = Visibility.Visible;
             AddDroneTitle.Visibility = Visibility.Visible;
             AddDroneButton.Visibility = Visibility.Visible;
-            DroneUpdateOptions.Visibility = Visibility.Visible;
             UpdateModel.Visibility = Visibility.Visible;
 
 
