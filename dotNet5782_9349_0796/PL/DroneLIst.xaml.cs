@@ -45,7 +45,7 @@ namespace PL
         {
             IBL.BO.DroneToList drone = (IBL.BO.DroneToList)DroneListView.SelectedItem;
             int x = drone.Id;
-            DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(drone.Id));
+            DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
             droneDisplayWindow.Show();
         }
     }
