@@ -14,9 +14,6 @@ namespace DalObject
         public static int GetStation(int StationId)
         {
             int i = DataSource.CustomerList.FindIndex(x => x.Id == StationId);
-
-            //if (DataSource.StationList[i].Id != StationId)
-            //    throw new IDAL.DO.MessageException("Error: Station not found.");
             return i;
         }
 
@@ -29,7 +26,6 @@ namespace DalObject
         /// <param name="slots"></param>
         public static void AddStation(int name, double longitude, double latitude, int slots)
         {
-            //assuming that no maximum amount of sattions
             //add station to the back of the station list
             DataSource.StationList.Add(new IDAL.DO.Station
             {
@@ -40,59 +36,5 @@ namespace DalObject
                 ChargeSlots = slots
             });;
         }
-        ////-------------------------------------------Below this is printing which will be put in the main-------------------
-        ///// <summary>
-        ///// Prints Station from received station s
-        ///// </summary>
-        ///// <param name="i"></param>
-        //public static void PrintStation(IDAL.DO.Station s)
-        //{
-        //    Console.WriteLine("\nBase Station ID: " + s.Id
-        //       + "\nBase Station  name: " + s.Name
-        //       + "\nBase Station Longitude: " + s.Longitude
-        //       + "\nBase Station Latitude: " + s.Latitude
-        //       + "\nBase Station # of Charging slots: " + s.ChargeSlots);
-        //}
-
-        ///// <summary>
-        ///// Prints the base station from the given ID
-        ///// </summary>
-        ///// <param name="Id"></param>
-        //public static void DisplayBaseStation(int Id)
-        //{
-        //    try
-        //    {
-        //        IDAL.DO.Station s = DataSource.StationList.Find(x => x.Id == Id);
-        //        PrintStation(s);
-        //    }
-        //    catch (IDAL.DO.MessageException e)
-        //    {
-        //        Console.WriteLine(e);
-        //    }
-        //}
-
-        ///// <summary>
-        ///// Displays all the stations in StationList.
-        ///// </summary>
-        //public static void DisplayStationList()
-        //{
-        //    foreach (IDAL.DO.Station s in DataSource.StationList)
-        //    {
-        //        PrintStation(s);
-        //    }
-
-        //}
-
-        ///// <summary>
-        ///// Displays Stations with unoccupied charging stations
-        ///// </summary>
-        //public static void DisplayFreeChargingStations()
-        //{
-        //    foreach (IDAL.DO.Station s in DataSource.StationList)
-        //    {
-        //        if (s.ChargeSlots > 0)
-        //            PrintStation(s);
-        //    }
-        //}
     }
 }
