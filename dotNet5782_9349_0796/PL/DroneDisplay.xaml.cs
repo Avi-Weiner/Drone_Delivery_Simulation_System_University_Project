@@ -19,18 +19,26 @@ namespace PL
     /// </summary>
     public partial class DroneDisplay : Window
     {
+
+        #region DroneAction
         IBL.IBL bl;
         IBL.BO.Drone drone;
         public Visibility SendButton { get; set; }
+        /// <summary>
+        /// Constructor for updating a drone
+        /// </summary>
+        /// <param name="Drone"></param>
+        /// <param name="BL"></param>
         public DroneDisplay(IBL.BO.Drone Drone, IBL.IBL BL)
         {
-            
             bl = BL;
             drone = Drone;
             //droneView.Content = drone.ToString();
             //droneView.Inlines.Add(Drone.ToString());
             
             InitializeComponent();
+
+            //Make Elements visible
             Update.Visibility = Visibility.Visible;
             Send.Visibility = Visibility.Visible;
             Charge.Visibility = Visibility.Visible;
@@ -41,11 +49,7 @@ namespace PL
             DroneView.Text = Drone.ToString();
         }
 
-        public DroneDisplay()
-        {
-            InitializeComponent();
-        }
-
+        
         private void Update_ButtonClick(object sender, RoutedEventArgs e)
         {
             bl.UpdateDrone(drone.Id, newModel.Text);
@@ -110,16 +114,46 @@ namespace PL
                 MessageBox.Show(m.ToString());
             }
         }
+        #endregion
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        #region AddDrone
+
+        //Variables for input
+        string modelString;
+        string weightString;
+        int stationId;
+
+        /// <summary>
+        /// Constructor for adding a drone
+        /// </summary>
+        public DroneDisplay()
+        {
+            InitializeComponent();
+
+            //Make Elements visible
+            Model.Visibility = Visibility.Visible;
+            ModelTextBox.Visibility = Visibility.Visible;
+            Weight.Visibility = Visibility.Visible;
+            WeightComboBox.Visibility = Visibility.Visible;
+            BaseStationId.Visibility = Visibility.Visible;
+            BaseStationTextBox.Visibility = Visibility.Visible;
+            AddDroneTitle.Visibility = Visibility.Visible;
+
+
+            //Add drone by just accepting the information, (valid only on the most basic level, rest of the validation done by BL)
+            //Send info to logic layer to be added to the system
+        }
+
         private void Model_TextBox_Changed(object sender, TextChangedEventArgs e)
         {
-
+            modelString = ModelTextBox.Text;
         }
+
         /// <summary>
         /// Combo Box Weight selection changed
         /// </summary>
@@ -127,32 +161,20 @@ namespace PL
         /// <param name="e"></param>
         private void CMB_Weight_Changed(object sender, SelectionChangedEventArgs e)
         {
-
-        }
-        /// <summary>
-        /// ComboBox status selection changed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CMB_Status_Changed(object sender, SelectionChangedEventArgs e)
-        {
-
+            weightString = WeightComboBox.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
         }
 
         private void LocationValidation(object sender, TextCompositionEventArgs e)
         {
-            int max = 100;
-
-            //do not allow futher incorrect typing
-            e.Handled = !(int.TryParse(((TextBox)sender).Text + e.Text, out int i) && i >= 1 && i <= max);
+            //do not allow futher incorrect typing, got rid of max
+            e.Handled = !(int.TryParse(((TextBox)sender).Text + e.Text, out int i) && i >= 1);
         }
 
         private void Location_TextBox_Changed(object sender, TextChangedEventArgs e)
         {
             #region validation
-            int max = 100;
-
-            if (!int.TryParse(((TextBox)sender).Text, out int j) || j < 1 || j > max)
+            //got rid of max
+            if (!int.TryParse(((TextBox)sender).Text, out int j) || j < 1)
             {
                 //delete incoret input
                 ((TextBox)sender).Text = "";
@@ -163,7 +185,19 @@ namespace PL
                 ((TextBox)sender).Text = j.ToString();
             }
             #endregion
-            
+
+            stationId = j;
+
         }
+
+        private void AddDroneButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            bl.AddDrone(modelString, weightString, stationId);
+        }
+
+        #endregion
+
+
     }
 }

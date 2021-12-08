@@ -22,6 +22,9 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+
+
+
                 <ComboBox x:Name="StatusSelector" Margin="0,44,207,141" SelectionChanged="StatusSelector_SelectionChanged" Grid.ColumnSpan="2">
                     <ComboBoxItem x:Name="AllDrones" Content="All Drones" />
                     <ComboBoxItem x:Name="Free" Content="Free Drones"/>
@@ -33,11 +36,12 @@
 
                 </ComboBox>
                 <TextBlock HorizontalAlignment="Center" Margin="0,23,0,0" Text="Drone list filter options:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                <Button Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="148,11,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Button_Click"/>
+                <Button Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="164,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Button_Click"/>
+                <Button Content="Add Drone" Grid.Column="3" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Height="28" Width="94" Click="Add_Drone_ButtonClick"/>
             </Grid>
 
             <ListBox Margin="0,75,0,0" Grid.RowSpan="2">
-                
+
                 <ListBox x:Name="DroneListView" Background="#FFF34258" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="325" Width="807" MouseDoubleClick="DroneListView_MouseDoubleClick"/>
             </ListBox>
 

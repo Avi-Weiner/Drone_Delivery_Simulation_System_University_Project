@@ -48,5 +48,16 @@ namespace PL
             DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
             droneDisplayWindow.Show();
         }
+
+        /// <summary>
+        /// Opens an add drone screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Add_Drone_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            DroneDisplay droneDisplayWindow = new DroneDisplay();
+            droneDisplayWindow.Show();
+        }
     }
 }
