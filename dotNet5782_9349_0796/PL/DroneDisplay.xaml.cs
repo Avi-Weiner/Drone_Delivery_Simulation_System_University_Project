@@ -28,6 +28,7 @@ namespace PL
             bl = BL;
             drone = Drone;
             SendButton = Visibility.Hidden;
+            //droneView.Content = drone.ToString();
             //droneView.Inlines.Add(Drone.ToString());
             
             InitializeComponent();

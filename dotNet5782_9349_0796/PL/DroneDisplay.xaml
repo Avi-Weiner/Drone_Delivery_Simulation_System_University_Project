@@ -6,42 +6,41 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="DroneDisplay" Height="450" Width="800">
-    <Grid>
-        <Grid Grid.RowSpan="2">
-            <Grid.Background>
+
+    <Grid Grid.RowSpan="2">
+        <!--<Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black"/>
                     <GradientStop Color="#FF2F2F79" Offset="1"/>
                 </LinearGradientBrush>
-            </Grid.Background>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="257*"/>
-                <RowDefinition Height="177*"/>
-            </Grid.RowDefinitions>
-            <Button x:Name="Update" Content="Update Model" Visibility="Hidden" HorizontalAlignment="Left" Margin="185,34,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
-            <Button x:Name="Send" Content="Send a drone for a delivery" Visibility="{Binding SendButton}" HorizontalAlignment="Left" Margin="38,88,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
-            <Button Content="Close" HorizontalAlignment="Left" Margin="738,26,0,0" VerticalAlignment="Top" Background="#FFE60B0B" RenderTransformOrigin="3.972,-2.555" Click="Button_Click"/>
-            <Button Content="Send to charge" HorizontalAlignment="Left" Margin="515,78,0,0" VerticalAlignment="Top" Click="Button_Click_5"/>
-            <Button Content="Release from charge" HorizontalAlignment="Left" Margin="515,139,0,0" VerticalAlignment="Top" Click="Button_Click_6"/>
-            <Button Content="Collect Package" HorizontalAlignment="Left" Margin="65,129,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
-            <Button Content="Deliver Pakcage" HorizontalAlignment="Left" Margin="68,180,0,0" VerticalAlignment="Top" Click="Button_Click_4"/>
-            <TextBox x:Name="newModel" HorizontalAlignment="Left" Margin="65,36,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            </Grid.Background>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="23*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="Update" Content="Update Model" Visibility="Hidden" HorizontalAlignment="Left" Margin="185,34,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="20" Width="80"/>
+        <Button x:Name="Send" Content="Send a drone for a delivery" Visibility="{Binding SendButton}" HorizontalAlignment="Left" Margin="38,88,0,0" VerticalAlignment="Top" Click="Button_Click_2" Height="20" Width="147"/>
+        <Button Content="Send to charge" HorizontalAlignment="Left" Margin="194,73,0,0" VerticalAlignment="Top" Click="Button_Click_5" Height="20" Width="84"/>
+        <Button Content="Release from charge" HorizontalAlignment="Left" Margin="194,134,0,0" VerticalAlignment="Top" Click="Button_Click_6" Height="20" Width="112"/>
+        <Button Content="Collect Package" HorizontalAlignment="Left" Margin="65,129,0,0" VerticalAlignment="Top" Click="Button_Click_3" Height="20" Width="87"/>
+        <Button Content="Deliver Pakcage" HorizontalAlignment="Left" Margin="68,180,0,0" VerticalAlignment="Top" Click="Button_Click_4" Height="20" Width="87"/>
+        <TextBox x:Name="newModel" HorizontalAlignment="Left" Margin="65,36,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
 
 
-        <Button Content="Close" HorizontalAlignment="Left" Margin="757,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Close_Button"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="757,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Close_Button" Height="20" Width="33"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="355,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Text="Model:"/>
-        <TextBox HorizontalAlignment="Left" Margin="396,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" TextChanged="Model_TextBox_Changed"/>
+        <TextBlock HorizontalAlignment="Left" Margin="592,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Text="Model:" Height="16"/>
+        <TextBox HorizontalAlignment="Left" Margin="632,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" TextChanged="Model_TextBox_Changed" Height="18"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="299,198,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"><Run Language="en-au" Text="Weight Catagory:"/></TextBlock>
-        <ComboBox HorizontalAlignment="Left" Margin="396,195,0,0" VerticalAlignment="Top" Width="145" SelectionChanged="CMB_Weight_Changed">
+        <TextBlock HorizontalAlignment="Left" Margin="536,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" Height="16"><Run Language="en-au" Text="Weight Catagory:"/></TextBlock>
+        <ComboBox HorizontalAlignment="Left" Margin="632,130,0,0" VerticalAlignment="Top" Width="146" SelectionChanged="CMB_Weight_Changed" Height="22">
             <ComboBoxItem Content="Light" />
             <ComboBoxItem Content="Medium"/>
             <ComboBoxItem Content="Heavy"/>
         </ComboBox>
 
-        <TextBlock HorizontalAlignment="Left" Margin="315,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" Text="Battery Status:"/></TextBlock>
-        <DockPanel VerticalAlignment="Top" Margin="396,222,259,0" Height="24">
+        <TextBlock HorizontalAlignment="Left" Margin="546,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="90"><Run Language="en-au" Text="Battery Status:"/></TextBlock>
+        <DockPanel VerticalAlignment="Top" Margin="632,157,22,0" Height="24">
             <TextBox Text="{Binding ElementName=slValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="34" RenderTransformOrigin="0.5,0.5" Height="20" >
                 <TextBox.RenderTransform>
                     <TransformGroup>
@@ -55,16 +54,17 @@
             <Slider Maximum="100" Minimum="0" DockPanel.Dock="Bottom" Height="18" Width="100" />
         </DockPanel>
 
-        <TextBlock HorizontalAlignment="Left" Margin="320,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" Text="Drone Status:"/></TextBlock>
-        <ComboBox HorizontalAlignment="Left" Margin="396,251,0,0" VerticalAlignment="Top" Width="145" SelectionChanged="CMB_Status_Changed">
+        <TextBlock HorizontalAlignment="Left" Margin="556,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="72"><Run Language="en-au" Text="Drone Status:"/></TextBlock>
+        <ComboBox HorizontalAlignment="Left" Margin="632,186,0,0" VerticalAlignment="Top" Width="146" SelectionChanged="CMB_Status_Changed" Height="19">
             <ComboBoxItem Content="Free" />
             <ComboBoxItem Content="Maintenance"/>
             <ComboBoxItem Content="Delivery"/>
         </ComboBox>
 
-        <TextBlock HorizontalAlignment="Left" Margin="220,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" Text="Starting Basestation Location ID:"/></TextBlock>
-        <TextBox PreviewTextInput="LocationValidation" TextChanged="Location_TextBox_Changed" HorizontalAlignment="Left" Margin="396,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
-        <TextBlock HorizontalAlignment="Left" Margin="400,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137"><Run Language="en-au" Text="Enter new Drone details:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="456,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="172"><Run Language="en-au" Text="Starting Basestation Location ID:"/></TextBlock>
+        <TextBox PreviewTextInput="LocationValidation" TextChanged="Location_TextBox_Changed" HorizontalAlignment="Left" Margin="632,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" Height="21"/>
+        <TextBlock HorizontalAlignment="Left" Margin="636,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Height="16"><Run Language="en-au" Text="Enter new Drone details:"/></TextBlock>
+        <Label x:Name="droneView"/>
 
     </Grid>
 </Window>
