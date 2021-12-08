@@ -48,7 +48,7 @@ namespace BL
         public IBL.BO.Package DalToBlPackage(int id)
         {
             IBL.BO.Package p = new();
-            IDAL.DO.Package DalP = DalObject.DataSource.PackageList.Find(x => x.Id == id);
+            IDAL.DO.Package DalP = DalObject.DataSource.PackageList.Find(x => x.DroneId == id);
             
 
             if (DalP.Id == 0)

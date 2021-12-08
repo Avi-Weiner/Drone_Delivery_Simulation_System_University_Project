@@ -66,7 +66,9 @@ namespace PL
         {
             try
             {
-                bl.DroneCollectsAPackage(drone.Id);
+                
+                bl.AssignPackageToDrone(drone.Id);
+                MessageBox.Show("Packge was assigned succefully");
             }
             catch(IBL.BO.MessageException m)
             {
@@ -119,6 +121,7 @@ namespace PL
             {
                 DateTime x = DateTime.MinValue;
                 x = x.AddHours(ChargingTime);
+                MessageBox.Show("Drone released from charge successfully");
                 
                 bl.ReleaseDroneFromCharge(drone.Id, x);
             }
@@ -224,7 +227,11 @@ namespace PL
         int ChargingTime;
         private void HoursCharged_TextChanged(object sender, TextChangedEventArgs e)
         {
-            e.Handled = !(int.TryParse(((TextBox)sender).Text, out int i) && i >= 1 && i <= 23);
+            if(!(int.TryParse(((TextBox)sender).Text, out int i) && i >= 1 && i <= 23))
+            {
+                ((TextBox)sender).Text = "";
+            }
+            
             ChargingTime = i;
         }
     }

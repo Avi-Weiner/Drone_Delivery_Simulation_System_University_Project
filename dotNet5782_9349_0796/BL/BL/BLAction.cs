@@ -55,6 +55,9 @@ namespace BL
             ///iii adding a mathcing instance///////////////////////////////////////////////////////////////////////////////////////
         }
 
+
+
+
         /// <summary>
         /// drone will be released from charging station and appropriate battery will be added
         /// location will be the statoin where it was charged.
@@ -91,6 +94,20 @@ namespace BL
         
         }
 
+        public bool CheckCloseEnough(IDAL.DO.Package pack, int id)
+        {
+            IDAL.DO.Customer customerSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.SenderId)];
+            IDAL.DO.Customer customerReciever = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.ReceiverId)];
+            IBL.BO.Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
+            IBL.BO.Location recieverLocation = BLObject.MakeLocation(customerReciever.Longitude, customerReciever.Latitude);
+
+            if (BL.BLObject.BLDroneList[id].BatteryStatus < BLObject.ChargeForDistance(pack.Weight, BLObject.DistanceBetween(senderLocation, recieverLocation)))
+            {
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// if input is valid the heviest closest package will be assgined to the drone
         /// if anything goes wrong appropriate exception will be thrown.
@@ -109,48 +126,25 @@ namespace BL
                 throw new IBL.BO.MessageException("Error: Drone is not free.\n");
             }
             List<IDAL.DO.Package> Packages = DalObject.DataSource.PackageList;
+            List<IDAL.DO.Package> tempPack = new List<IDAL.DO.Package>();
 
-            foreach(IDAL.DO.Package pack in Packages)
-            {
-                //drone can reach sender and deliver to the reciever and make it to the nearest
-                //charging station if() not delete the packages.
-                IDAL.DO.Customer customerSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.SenderId)];
-                IDAL.DO.Customer customerReciever = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.ReceiverId)];
-                IBL.BO.Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
-                IBL.BO.Location recieverLocation = BLObject.MakeLocation(customerReciever.Longitude, customerReciever.Latitude);
-
-                if (BL.BLObject.BLDroneList[DroneIndex].BatteryStatus < BLObject.ChargeForDistance(pack.Weight, BLObject.DistanceBetween(senderLocation, recieverLocation)))
-                {
-                    Packages.Remove(pack);
-                }
-            }
-
+            Packages.RemoveAll(x => CheckCloseEnough(x, DroneIndex));
+            
             int PackIndex = Packages.FindIndex(x => x.Priority == IDAL.DO.Priority.emergency);
             if (PackIndex != -1)
             {
-                foreach (IDAL.DO.Package pack in Packages)
-                {
-                    if(pack.Priority != IDAL.DO.Priority.emergency)
-                    {
-                        Packages.Remove(pack);
-                    }
-
-                }//remove all non emergency this is if there are available emergency
+                Packages.RemoveAll(x => x.Priority != IDAL.DO.Priority.emergency);
             }
             else
             {
                 PackIndex = Packages.FindIndex(x => x.Priority == IDAL.DO.Priority.fast);
                 if(PackIndex != -1)
                 {
-                    foreach(IDAL.DO.Package pack in Packages)
-                    {
-                        if(pack.Priority != IDAL.DO.Priority.fast)
-                        {
-                            Packages.Remove(pack);
-                        }
-                    }//end fore each to remove all not fast packs is becasue there are no faster ones
+                    Packages.RemoveAll(x => x.Priority != IDAL.DO.Priority.fast);
+                   
                 }
             }
+            
 
             IBL.BO.DroneToList drone = BL.BLObject.BLDroneList[DroneIndex];
             if(Packages == null)
@@ -197,7 +191,7 @@ namespace BL
             {
                 throw new IBL.BO.MessageException("Error: Drone is not in delivery.\n");
             }
-            IBL.BO.DroneToList Drone = BLObject.BLDroneList[DroneId];
+            IBL.BO.DroneToList Drone = BLObject.BLDroneList[DroneIndex];
             int PackageIndex = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Drone.PackageId);
             IDAL.DO.Package Package = DalObject.DataSource.PackageList[PackageIndex];
             if(Package.PickedUp != null)
@@ -232,7 +226,7 @@ namespace BL
             {
                 throw new IBL.BO.MessageException("Error: Drone is not in delivery.\n");
             }
-            IBL.BO.DroneToList Drone = BLObject.BLDroneList[DroneId];
+            IBL.BO.DroneToList Drone = BLObject.BLDroneList[DroneIndex];
             int PackageIndex = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Drone.PackageId);
             IDAL.DO.Package Package = DalObject.DataSource.PackageList[PackageIndex];
             if(Package.Delivered != null)
