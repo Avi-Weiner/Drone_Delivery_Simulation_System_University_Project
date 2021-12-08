@@ -28,9 +28,9 @@ namespace BL
             d.Status = DroneToList.DroneStatus;
             d.Location = DroneToList.Location;
 
-            IDAL.DO.Package p = DalObject.DataSource.PackageList.Find(x => x.Id == DroneToList.PackageId);
-            // need to do a package conversion
-            d.PackageInTransfer = DalToBlPackage(DroneToList.Id);
+            //IDAL.DO.Package p = DalObject.DataSource.PackageList.Find(x => x.Id == DroneToList.PackageId);
+            //// need to do a package conversion
+            //d.PackageInTransfer = DalToBlPackage(DroneToList.Id);
 
             return d;
         }
