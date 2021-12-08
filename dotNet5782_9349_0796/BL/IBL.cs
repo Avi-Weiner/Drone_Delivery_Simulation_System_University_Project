@@ -20,6 +20,7 @@ namespace IBL
         void AssignPackageToDrone(int DroneId);
         void DroneCollectsAPackage(int DroneId);
         void DroneDeliversPakcage(int DroneId);
+        public void ReleaseDroneFromCharge(int DroneId, DateTime ChargeTime);
 
         /// <summary>
         /// Returns a filtered DroneToList depending on the entered option:

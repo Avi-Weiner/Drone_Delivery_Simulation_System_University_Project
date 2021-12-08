@@ -7,6 +7,32 @@
         mc:Ignorable="d"
         Title="DroneDisplay" Height="450" Width="800">
     <Grid>
-        
+        <Grid Grid.RowSpan="2">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="#FF2F2F79" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="257*"/>
+                <RowDefinition Height="177*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="Update" Content="Update Model" Visibility="Hidden" HorizontalAlignment="Left" Margin="185,34,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+            <Button x:Name="Send" Content="Send a drone for a delivery" Visibility="{Binding SendButton}" HorizontalAlignment="Left" Margin="38,88,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
+            <Button Content="Close" HorizontalAlignment="Left" Margin="738,26,0,0" VerticalAlignment="Top" Background="#FFE60B0B" RenderTransformOrigin="3.972,-2.555" Click="Button_Click"/>
+            <Button Content="Send to charge" HorizontalAlignment="Left" Margin="515,78,0,0" VerticalAlignment="Top" Click="Button_Click_5"/>
+            <Button Content="Release from charge" HorizontalAlignment="Left" Margin="515,139,0,0" VerticalAlignment="Top" Click="Button_Click_6"/>
+            <Button Content="Collect Package" HorizontalAlignment="Left" Margin="65,129,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
+            <Button Content="Deliver Pakcage" HorizontalAlignment="Left" Margin="68,180,0,0" VerticalAlignment="Top" Click="Button_Click_4"/>
+            <TextBox x:Name="newModel" HorizontalAlignment="Left" Margin="65,36,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+
+        </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="255*"></RowDefinition>
+            <RowDefinition Height="179*"/>
+        </Grid.RowDefinitions>
+
     </Grid>
 </Window>
