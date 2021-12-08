@@ -56,7 +56,7 @@ namespace PL
         /// <param name="e"></param>
         private void Add_Drone_ButtonClick(object sender, RoutedEventArgs e)
         {
-            DroneDisplay droneDisplayWindow = new DroneDisplay();
+            DroneDisplay droneDisplayWindow = new DroneDisplay(bl);
             droneDisplayWindow.Show();
         }
     }
