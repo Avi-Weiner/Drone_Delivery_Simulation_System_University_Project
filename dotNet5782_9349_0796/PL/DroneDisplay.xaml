@@ -24,17 +24,20 @@
         <Button Content="Close" HorizontalAlignment="Left" Margin="741,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Close_ButtonClick" Height="20" Width="33"/>
 
         <!--Update drone Section -->
-        <TextBlock Visibility="Hidden" x:Name="DroneView" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
-        <TextBlock Visibility="Hidden" x:Name="HoursChargedPrompt" HorizontalAlignment="Left" Margin="571,0,0,0" Text="Enter Amount of hours charged 1- 24" TextWrapping="Wrap" VerticalAlignment="Center" RenderTransformOrigin="0.619,1.694" Width="203"/>
-        <TextBox Visibility="Hidden" x:Name="HoursCharged" HorizontalAlignment="Left" Margin="632,137,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="HoursCharged_TextChanged"/>
+        <TextBlock  x:Name="DroneView" Visibility="Hidden" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+        <TextBlock  x:Name="HoursChargedPrompt" Visibility="Hidden" HorizontalAlignment="Left" Margin="33,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.619,1.694" Width="203"><Run Text="Enter Amount of hours charged 1- 24"/><Run Language="en-au" Text=":"/></TextBlock>
+        <TextBlock  x:Name="DroneUpdateOptions" Visibility="Hidden" HorizontalAlignment="Left" Margin="352,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.619,1.694" Width="123"><Run Language="en-au" Text="Drone Update Options"/></TextBlock>
 
-        <Button x:Name="Update" Content="Update Model" Visibility="Hidden" HorizontalAlignment="Left" Margin="185,34,0,0" VerticalAlignment="Top" Click="Update_ButtonClick"/>
-        <Button x:Name="Send" Content="Send a drone for a delivery" Visibility="Hidden" HorizontalAlignment="Left" Margin="38,88,0,0" VerticalAlignment="Top" Click="Send_ButtonClick"/>
-        <Button x:Name="Charge" Content="Send to charge" HorizontalAlignment="Left" Visibility="Hidden" Margin="515,78,0,0" VerticalAlignment="Top" Click="Charge_ButtonClick"/>
-        <Button x:Name="Release" Content="Release from charge" HorizontalAlignment="Left" Visibility="Hidden" Margin="515,139,0,0" VerticalAlignment="Top" Click="Release_ButtonClick"/>
-        <Button x:Name="CollectPakcage" Content="Collect Package" HorizontalAlignment="Left" Visibility="Hidden" Margin="65,129,0,0" VerticalAlignment="Top" Click="Collect_Package_ButtonClick"/>
-        <Button x:Name="DeliverPackage" Content="Deliver Pakcage" HorizontalAlignment="Left" Visibility="Hidden" Margin="68,180,0,0" VerticalAlignment="Top" Click="Deliver_Package_ButtonClick"/>
-        <TextBox x:Name="newModel" HorizontalAlignment="Left" Visibility="Hidden" Margin="65,36,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox  x:Name="HoursCharged" Visibility="Hidden" HorizontalAlignment="Left" Margin="236,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="HoursCharged_TextChanged"/>
+        <TextBlock  x:Name="UpdateModel" Visibility="Hidden" HorizontalAlignment="Left" Margin="33,34,0,0" Text="Enter New Model Name:" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.619,1.694" Width="137"/>
+
+        <Button x:Name="Update" Visibility="Hidden" Content="Update Model" HorizontalAlignment="Left" Margin="371,32,0,0" VerticalAlignment="Top" Click="Update_ButtonClick"/>
+        <Button x:Name="Send" Visibility="Hidden" Content="Send a drone for a delivery" HorizontalAlignment="Left" Margin="371,106,0,0" VerticalAlignment="Top" Click="Send_ButtonClick"/>
+        <Button x:Name="Charge" Visibility="Hidden" Content="Send to charge" HorizontalAlignment="Left" Margin="371,81,0,0" VerticalAlignment="Top" Click="Charge_ButtonClick"/>
+        <Button x:Name="Release" Visibility="Hidden" Content="Release from charge" HorizontalAlignment="Left" Margin="371,56,0,0" VerticalAlignment="Top" Click="Release_ButtonClick"/>
+        <Button x:Name="CollectPakcage" Visibility="Hidden" Content="Collect Package" HorizontalAlignment="Left" Margin="371,131,0,0" VerticalAlignment="Top" Click="Collect_Package_ButtonClick"/>
+        <Button x:Name="DeliverPackage" Visibility="Hidden" Content="Deliver Pakcage" HorizontalAlignment="Left" Margin="371,156,0,0" VerticalAlignment="Top" Click="Deliver_Package_ButtonClick"/>
+        <TextBox x:Name="newModel" Visibility="Hidden" HorizontalAlignment="Left" Margin="165,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <!--End Update drone Section -->
 
         <!--Add drone Section -->
