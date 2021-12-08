@@ -16,7 +16,12 @@ namespace IBL
             public double BatteryStatus { get; set; }
             public DroneStatus Status { get; set; }
             public Location Location { get; set; }
-            public Package PackageInTransfer { get; set; }
+#nullable enable
+            /// <summary>
+            /// Nullable package, if the drone isn't assigned to a package it is null
+            /// </summary>
+            public Package? PackageInTransfer { get; set; }
+#nullable disable
 
             public override string ToString()
             {
