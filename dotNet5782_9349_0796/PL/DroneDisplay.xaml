@@ -30,19 +30,19 @@
 
         <Button Content="Close" HorizontalAlignment="Left" Margin="757,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Close_Button" Height="20" Width="33"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="592,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Text="Model:" Height="16"/>
-        <TextBox HorizontalAlignment="Left" Margin="632,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" TextChanged="Model_TextBox_Changed" Height="18"/>
+        <TextBlock Visibility="Hidden" HorizontalAlignment="Left" Margin="592,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Text="Model:" Height="16"/>
+        <TextBox Visibility="Hidden" HorizontalAlignment="Left" Margin="632,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" TextChanged="Model_TextBox_Changed" Height="18"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="536,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" Height="16"><Run Language="en-au" Text="Weight Catagory:"/></TextBlock>
-        <ComboBox HorizontalAlignment="Left" Margin="632,130,0,0" VerticalAlignment="Top" Width="146" SelectionChanged="CMB_Weight_Changed" Height="22">
+        <TextBlock HorizontalAlignment="Left " Visibility="Hidden" Margin="536,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" Height="16"><Run Language="en-au" Text="Weight Catagory:"/></TextBlock>
+        <ComboBox HorizontalAlignment="Left" Visibility="Hidden" Margin="632,130,0,0" VerticalAlignment="Top" Width="146" SelectionChanged="CMB_Weight_Changed" Height="22">
             <ComboBoxItem Content="Light" />
             <ComboBoxItem Content="Medium"/>
             <ComboBoxItem Content="Heavy"/>
         </ComboBox>
 
-        <TextBlock HorizontalAlignment="Left" Margin="546,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="90"><Run Language="en-au" Text="Battery Status:"/></TextBlock>
-        <DockPanel VerticalAlignment="Top" Margin="632,157,22,0" Height="24">
-            <TextBox Text="{Binding ElementName=slValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="34" RenderTransformOrigin="0.5,0.5" Height="20" >
+        <TextBlock HorizontalAlignment="Left" Visibility="Hidden" Margin="546,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="90"><Run Language="en-au" Text="Battery Status:"/></TextBlock>
+        <DockPanel VerticalAlignment="Top"  Visibility="Hidden" Margin="632,157,22,0" Height="24">
+            <TextBox Visibility="Hidden" Text="{Binding ElementName=slValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="34" RenderTransformOrigin="0.5,0.5" Height="20" >
                 <TextBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="-1"/>
@@ -55,16 +55,16 @@
             <Slider Maximum="100" Minimum="0" DockPanel.Dock="Bottom" Height="18" Width="100" />
         </DockPanel>
 
-        <TextBlock HorizontalAlignment="Left" Margin="556,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="72"><Run Language="en-au" Text="Drone Status:"/></TextBlock>
-        <ComboBox HorizontalAlignment="Left" Margin="632,186,0,0" VerticalAlignment="Top" Width="146" SelectionChanged="CMB_Status_Changed" Height="19">
+        <TextBlock Visibility="Hidden" HorizontalAlignment="Left" Margin="556,187,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="72"><Run Language="en-au" Text="Drone Status:"/></TextBlock>
+        <ComboBox Visibility="Hidden" HorizontalAlignment="Left" Margin="632,186,0,0" VerticalAlignment="Top" Width="146" SelectionChanged="CMB_Status_Changed" Height="19">
             <ComboBoxItem Content="Free" />
             <ComboBoxItem Content="Maintenance"/>
             <ComboBoxItem Content="Delivery"/>
         </ComboBox>
 
-        <TextBlock HorizontalAlignment="Left" Margin="456,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="172"><Run Language="en-au" Text="Starting Basestation Location ID:"/></TextBlock>
-        <TextBox PreviewTextInput="LocationValidation" TextChanged="Location_TextBox_Changed" HorizontalAlignment="Left" Margin="632,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" Height="21"/>
-        <TextBlock HorizontalAlignment="Left" Margin="636,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Height="16"><Run Language="en-au" Text="Enter new Drone details:"/></TextBlock>
+        <TextBlock Visibility="Hidden" HorizontalAlignment="Left" Margin="456,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="172"><Run Language="en-au" Text="Starting Basestation Location ID:"/></TextBlock>
+        <TextBox Visibility="Hidden" PreviewTextInput="LocationValidation" TextChanged="Location_TextBox_Changed" HorizontalAlignment="Left" Margin="632,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" Height="21"/>
+        <TextBlock  Visibility="Hidden" HorizontalAlignment="Left" Margin="636,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Height="16"><Run Language="en-au" Text="Enter new Drone details:"/></TextBlock>
         <TextBlock x:Name="DroneView" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
 
     </Grid>

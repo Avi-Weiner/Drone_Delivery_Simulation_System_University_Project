@@ -30,8 +30,8 @@ namespace IBL
                     "\nWeight: " + Weight.ToString() +
                     "\nBattery status: " + BatteryStatus.ToString("P") +
                     "\nDrone status: " + Status.ToString() +
-                    "\nLocation: " + Location.ToString() +
-                    "\nPackage: " + PackageInTransfer.ToString() + '\n';
+                    "\nLocation: " + Location.ToString();
+                   // "\nPackage: " + PackageInTransfer.ToString() + '\n';
 
             }
         }
