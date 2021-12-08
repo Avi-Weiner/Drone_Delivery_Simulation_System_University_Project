@@ -27,11 +27,18 @@ namespace PL
             
             bl = BL;
             drone = Drone;
-            SendButton = Visibility.Hidden;
             //droneView.Content = drone.ToString();
             //droneView.Inlines.Add(Drone.ToString());
             
             InitializeComponent();
+            Update.Visibility = Visibility.Visible;
+            Send.Visibility = Visibility.Visible;
+            Charge.Visibility = Visibility.Visible;
+            Release.Visibility = Visibility.Visible;
+            CollectPakcage.Visibility = Visibility.Visible;
+            DeliverPackage.Visibility = Visibility.Visible;
+            newModel.Visibility = Visibility.Visible;
+            DroneView.Text = Drone.ToString();
         }
 
         public DroneDisplay()

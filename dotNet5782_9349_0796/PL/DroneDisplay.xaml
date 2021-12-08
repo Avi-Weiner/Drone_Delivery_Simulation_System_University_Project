@@ -19,13 +19,13 @@
             <RowDefinition Height="177*"/>
         </Grid.RowDefinitions>
         <Button x:Name="Update" Content="Update Model" Visibility="Hidden" HorizontalAlignment="Left" Margin="185,34,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
-        <Button x:Name="Send" Content="Send a drone for a delivery"  HorizontalAlignment="Left" Margin="38,88,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
-        <Button Content="Close" HorizontalAlignment="Left" Margin="738,26,0,0" VerticalAlignment="Top" Background="#FFE60B0B" RenderTransformOrigin="3.972,-2.555" Click="Button_Click"/>
-        <Button Content="Send to charge" HorizontalAlignment="Left" Margin="515,78,0,0" VerticalAlignment="Top" Click="Button_Click_5"/>
-        <Button Content="Release from charge" HorizontalAlignment="Left" Margin="515,139,0,0" VerticalAlignment="Top" Click="Button_Click_6"/>
-        <Button Content="Collect Package" HorizontalAlignment="Left" Margin="65,129,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
-        <Button Content="Deliver Pakcage" HorizontalAlignment="Left" Margin="68,180,0,0" VerticalAlignment="Top" Click="Button_Click_4"/>
-        <TextBox x:Name="newModel" HorizontalAlignment="Left" Margin="65,36,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="Send" Content="Send a drone for a delivery" Visibility="Hidden" HorizontalAlignment="Left" Margin="38,88,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
+        <Button Content="Close" HorizontalAlignment="Left" Visibility="Hidden" Margin="738,26,0,0" VerticalAlignment="Top" Background="#FFE60B0B" RenderTransformOrigin="3.972,-2.555" Click="Button_Click"/>
+        <Button x:Name="Charge" Content="Send to charge" HorizontalAlignment="Left" Visibility="Hidden" Margin="515,78,0,0" VerticalAlignment="Top" Click="Button_Click_5"/>
+        <Button x:Name="Release" Content="Release from charge" HorizontalAlignment="Left" Visibility="Hidden" Margin="515,139,0,0" VerticalAlignment="Top" Click="Button_Click_6"/>
+        <Button x:Name="CollectPakcage" Content="Collect Package" HorizontalAlignment="Left" Visibility="Hidden" Margin="65,129,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
+        <Button x:Name="DeliverPackage" Content="Deliver Pakcage" HorizontalAlignment="Left" Visibility="Hidden" Margin="68,180,0,0" VerticalAlignment="Top" Click="Button_Click_4"/>
+        <TextBox x:Name="newModel" HorizontalAlignment="Left" Visibility="Hidden" Margin="65,36,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
 
         <Button Content="Close" HorizontalAlignment="Left" Margin="757,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Close_Button" Height="20" Width="33"/>
@@ -65,7 +65,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="456,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="172"><Run Language="en-au" Text="Starting Basestation Location ID:"/></TextBlock>
         <TextBox PreviewTextInput="LocationValidation" TextChanged="Location_TextBox_Changed" HorizontalAlignment="Left" Margin="632,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" Height="21"/>
         <TextBlock HorizontalAlignment="Left" Margin="636,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Height="16"><Run Language="en-au" Text="Enter new Drone details:"/></TextBlock>
-        <Label x:Name="droneView"/>
+        <TextBlock x:Name="DroneView" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
 
     </Grid>
 </Window>
