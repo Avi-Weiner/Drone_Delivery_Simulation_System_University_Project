@@ -40,6 +40,7 @@ namespace PL
 
             //Make Elements visible
             Update.Visibility = Visibility.Visible;
+            UpdateModel.Visibility = Visibility.Visible;
             Send.Visibility = Visibility.Visible;
             Charge.Visibility = Visibility.Visible;
             Release.Visibility = Visibility.Visible;
@@ -49,6 +50,7 @@ namespace PL
             DroneView.Visibility = Visibility.Visible;
             HoursChargedPrompt.Visibility = Visibility.Visible;
             HoursCharged.Visibility = Visibility.Visible;
+
             DroneView.Text = Drone.ToString();
         }
 
