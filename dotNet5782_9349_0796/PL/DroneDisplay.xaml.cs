@@ -46,17 +46,12 @@ namespace PL
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Update_ButtonClick(object sender, RoutedEventArgs e)
         {
             bl.UpdateDrone(drone.Id, newModel.Text);
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Send_ButtonClick(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -68,7 +63,7 @@ namespace PL
             }
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Collect_Package_ButtonClick(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -80,7 +75,7 @@ namespace PL
             }
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void Deliver_Package_ButtonClick(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -92,7 +87,7 @@ namespace PL
             }
         }
 
-        private void Button_Click_5(object sender, RoutedEventArgs e)
+        private void Charge_ButtonClick(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -104,7 +99,7 @@ namespace PL
             }
         }
 
-        private void Button_Click_6(object sender, RoutedEventArgs e)
+        private void Release_ButtonClick(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -116,7 +111,7 @@ namespace PL
             }
         }
 
-        private void Close_Button(object sender, RoutedEventArgs e)
+        private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
             Close();
         }

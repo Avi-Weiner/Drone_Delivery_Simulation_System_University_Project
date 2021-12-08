@@ -18,17 +18,16 @@
             <RowDefinition Height="257*"/>
             <RowDefinition Height="177*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="Update" Content="Update Model" Visibility="Hidden" HorizontalAlignment="Left" Margin="185,34,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
-        <Button x:Name="Send" Content="Send a drone for a delivery" Visibility="Hidden" HorizontalAlignment="Left" Margin="38,88,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
-        <Button Content="Close" HorizontalAlignment="Left" Visibility="Hidden" Margin="738,26,0,0" VerticalAlignment="Top" Background="#FFE60B0B" RenderTransformOrigin="3.972,-2.555" Click="Button_Click"/>
-        <Button x:Name="Charge" Content="Send to charge" HorizontalAlignment="Left" Visibility="Hidden" Margin="515,78,0,0" VerticalAlignment="Top" Click="Button_Click_5"/>
-        <Button x:Name="Release" Content="Release from charge" HorizontalAlignment="Left" Visibility="Hidden" Margin="515,139,0,0" VerticalAlignment="Top" Click="Button_Click_6"/>
-        <Button x:Name="CollectPakcage" Content="Collect Package" HorizontalAlignment="Left" Visibility="Hidden" Margin="65,129,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
-        <Button x:Name="DeliverPackage" Content="Deliver Pakcage" HorizontalAlignment="Left" Visibility="Hidden" Margin="68,180,0,0" VerticalAlignment="Top" Click="Button_Click_4"/>
+        <Button x:Name="Update" Content="Update Model" Visibility="Hidden" HorizontalAlignment="Left" Margin="185,34,0,0" VerticalAlignment="Top" Click="Update_ButtonClick"/>
+        <Button x:Name="Send" Content="Send a drone for a delivery" Visibility="Hidden" HorizontalAlignment="Left" Margin="38,88,0,0" VerticalAlignment="Top" Click="Send_ButtonClick"/>
+        <Button x:Name="Charge" Content="Send to charge" HorizontalAlignment="Left" Visibility="Hidden" Margin="515,78,0,0" VerticalAlignment="Top" Click="Charge_ButtonClick"/>
+        <Button x:Name="Release" Content="Release from charge" HorizontalAlignment="Left" Visibility="Hidden" Margin="515,139,0,0" VerticalAlignment="Top" Click="Release_ButtonClick"/>
+        <Button x:Name="CollectPakcage" Content="Collect Package" HorizontalAlignment="Left" Visibility="Hidden" Margin="65,129,0,0" VerticalAlignment="Top" Click="Collect_Package_ButtonClick"/>
+        <Button x:Name="DeliverPackage" Content="Deliver Pakcage" HorizontalAlignment="Left" Visibility="Hidden" Margin="68,180,0,0" VerticalAlignment="Top" Click="Deliver_Package_ButtonClick"/>
         <TextBox x:Name="newModel" HorizontalAlignment="Left" Visibility="Hidden" Margin="65,36,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
 
-        <Button Content="Close" HorizontalAlignment="Left" Margin="757,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Close_Button" Height="20" Width="33"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="757,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Close_ButtonClick" Height="20" Width="33"/>
 
         <TextBlock Visibility="Hidden" HorizontalAlignment="Left" Margin="592,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Text="Model:" Height="16"/>
         <TextBox Visibility="Hidden" HorizontalAlignment="Left" Margin="632,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" TextChanged="Model_TextBox_Changed" Height="18"/>
