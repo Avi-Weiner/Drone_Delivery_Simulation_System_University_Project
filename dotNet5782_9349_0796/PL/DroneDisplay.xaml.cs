@@ -209,7 +209,7 @@ namespace PL
             try
             {
                 drone = bl.AddDrone(modelString, weightString, stationId);
-                MessageBox.Show("Drone Succesfully added.");
+                MessageBox.Show("Drone Succesfully Added.");
                 Close();
             }
             catch (IBL.BO.MessageException m)
