@@ -161,6 +161,9 @@ namespace PL
             BaseStationTextBox.Visibility = Visibility.Visible;
             AddDroneTitle.Visibility = Visibility.Visible;
             AddDroneButton.Visibility = Visibility.Visible;
+            DroneUpdateOptions.Visibility = Visibility.Visible;
+            UpdateModel.Visibility = Visibility.Visible;
+
 
             //Add drone by just accepting the information, (valid only on the most basic level, rest of the validation done by BL)
             //Send info to logic layer to be added to the system
