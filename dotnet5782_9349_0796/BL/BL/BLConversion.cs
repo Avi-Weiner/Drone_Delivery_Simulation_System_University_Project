@@ -28,9 +28,14 @@ namespace BL
             d.Status = DroneToList.DroneStatus;
             d.Location = DroneToList.Location;
 
-            //IDAL.DO.Package p = DalObject.DataSource.PackageList.Find(x => x.Id == DroneToList.PackageId);
-            //// need to do a package conversion
-            //d.PackageInTransfer = DalToBlPackage(DroneToList.Id);
+            IDAL.DO.Package p = DalObject.DataSource.PackageList.Find(x => x.Id == DroneToList.PackageId);
+            // need to do a package conversion
+            if (p.Id != default(IDAL.DO.Package).Id)
+                d.PackageInTransfer = DalToBlPackage(DroneToList.Id);
+            else
+            {
+                d.PackageInTransfer = null;
+            }
 
             return d;
         }
@@ -95,10 +100,10 @@ namespace BL
             IBL.BO.PackageToList PList = new();
             IDAL.DO.Package p = DalObject.DataSource.PackageList.Find(x => x.Id == id);
 
-            /* Not sure how to implement the following
-            if (p == default(IDAL.DO.Package)
+            // Not sure how to implement the following
+            if (p.Id == default(IDAL.DO.Package).Id)
                 throw new IBL.BO.MessageException("Error: Object of id" + id + " not found.");
-            */
+            
 
             PList.Id = p.Id;
             PList.SenderId = p.SenderId;
