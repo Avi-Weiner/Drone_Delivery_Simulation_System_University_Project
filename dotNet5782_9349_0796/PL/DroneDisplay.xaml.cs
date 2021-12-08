@@ -131,8 +131,9 @@ namespace PL
         /// <summary>
         /// Constructor for adding a drone
         /// </summary>
-        public DroneDisplay()
+        public DroneDisplay(IBL.IBL BL)
         {
+            bl = BL;
             InitializeComponent();
 
             //Make Elements visible
@@ -162,6 +163,7 @@ namespace PL
         private void CMB_Weight_Changed(object sender, SelectionChangedEventArgs e)
         {
             weightString = WeightComboBox.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
+            MessageBox.Show(weightString);
         }
 
         private void LocationValidation(object sender, TextCompositionEventArgs e)
@@ -192,8 +194,16 @@ namespace PL
 
         private void AddDroneButton_Click(object sender, RoutedEventArgs e)
         {
-
-            bl.AddDrone(modelString, weightString, stationId);
+            try
+            {
+                drone = bl.AddDrone(modelString, weightString, stationId);
+                DroneView.Text = drone.ToString();
+            }
+            catch (IBL.BO.MessageException m)
+            {
+                MessageBox.Show(m.ToString());
+            }
+            
         }
 
         #endregion
