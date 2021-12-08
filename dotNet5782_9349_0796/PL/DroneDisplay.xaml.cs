@@ -23,7 +23,7 @@ namespace PL
         #region DroneAction
         IBL.IBL bl;
         IBL.BO.Drone drone;
-        public Visibility SendButton { get; set; }
+        // this line should probalby be deleted...............public Visibility SendButton { get; set; }
         /// <summary>
         /// Constructor for updating a drone
         /// </summary>
@@ -46,6 +46,9 @@ namespace PL
             CollectPakcage.Visibility = Visibility.Visible;
             DeliverPackage.Visibility = Visibility.Visible;
             newModel.Visibility = Visibility.Visible;
+            DroneView.Visibility = Visibility.Visible;
+            HoursChargedPrompt.Visibility = Visibility.Visible;
+            HoursCharged.Visibility = Visibility.Visible;
             DroneView.Text = Drone.ToString();
         }
 
@@ -53,6 +56,10 @@ namespace PL
         private void Update_ButtonClick(object sender, RoutedEventArgs e)
         {
             bl.UpdateDrone(drone.Id, newModel.Text);
+            MessageBox.Show("Drone Model updated Successfully");
+            //next 2 lines only done for asthetics. showing the cutomer the drone was updated in a tricky way.
+            drone.Model = newModel.Text;
+            DroneView.Text = drone.ToString();
         }
 
         private void Send_ButtonClick(object sender, RoutedEventArgs e)
@@ -72,6 +79,7 @@ namespace PL
             try
             {
                 bl.DroneCollectsAPackage(drone.Id);
+                MessageBox.Show("Drone Collected Package Succefully");
             }
             catch(IBL.BO.MessageException m)
             {
@@ -84,6 +92,7 @@ namespace PL
             try
             {
                 bl.DroneDeliversPakcage(drone.Id);
+                MessageBox.Show("Drone Delivered Package succefully");
             }
             catch(IBL.BO.MessageException m)
             {
@@ -96,6 +105,7 @@ namespace PL
             try
             {
                 bl.SendDroneToCharge(drone.Id);
+                MessageBox.Show("Drone Sent to Charger Succefully");
             }
             catch(IBL.BO.MessageException m)
             {
@@ -107,7 +117,10 @@ namespace PL
         {
             try
             {
-                bl.ReleaseDroneFromCharge(drone.Id, DateTime.Now);
+                DateTime x = DateTime.MinValue;
+                x = x.AddHours(ChargingTime);
+                
+                bl.ReleaseDroneFromCharge(drone.Id, x);
             }
             catch(IBL.BO.MessageException m)
             {
@@ -196,8 +209,13 @@ namespace PL
             bl.AddDrone(modelString, weightString, stationId);
         }
 
+
         #endregion
-
-
+        int ChargingTime;
+        private void HoursCharged_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            e.Handled = !(int.TryParse(((TextBox)sender).Text, out int i) && i >= 1 && i <= 23);
+            ChargingTime = i;
+        }
     }
 }
