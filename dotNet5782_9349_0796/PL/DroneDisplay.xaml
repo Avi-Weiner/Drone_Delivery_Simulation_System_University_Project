@@ -21,7 +21,7 @@
             <RowDefinition Height="177*"/>
         </Grid.RowDefinitions>
 
-        <Button Content="Close" HorizontalAlignment="Left" Margin="757,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Close_ButtonClick" Height="20" Width="33"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="741,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Close_ButtonClick" Height="20" Width="33"/>
 
         <!--Update drone Section -->
         <TextBlock Visibility="Hidden" x:Name="DroneView" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" Text="TextBlock" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
@@ -54,6 +54,6 @@
         <Button x:Name="AddDroneButton" Visibility="Hidden" Content="Add Drone" HorizontalAlignment="Left" Margin="234,139,0,0" VerticalAlignment="Top" Width="88" Height="32" Click="AddDroneButton_Click"/>
         <!--End Add drone Section -->
 
-        
+
     </Grid>
 </Window>

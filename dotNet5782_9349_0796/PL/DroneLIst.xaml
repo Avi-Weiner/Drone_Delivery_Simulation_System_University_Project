@@ -36,7 +36,7 @@
 
                 </ComboBox>
                 <TextBlock HorizontalAlignment="Center" Margin="0,23,0,0" Text="Drone list filter options:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                <Button Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="164,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Button_Click"/>
+                <Button Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="146,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Button_Click"/>
                 <Button Content="Add Drone" Grid.Column="3" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Height="28" Width="94" Click="Add_Drone_ButtonClick"/>
             </Grid>
 
@@ -44,7 +44,7 @@
 
                 <ListBox x:Name="DroneListView" Background="#FFF34258" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="325" Width="807" MouseDoubleClick="DroneListView_MouseDoubleClick"/>
             </ListBox>
-            
+
         </Grid>
     </ScrollViewer>
 </Window>
