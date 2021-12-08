@@ -24,6 +24,11 @@ namespace PL
             InitializeComponent();
         }
 
+        public DroneDisplay()
+        {
+            InitializeComponent();
+        }
+
         private void Close_Button(object sender, RoutedEventArgs e)
         {
             Close();
