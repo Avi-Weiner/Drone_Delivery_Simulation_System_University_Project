@@ -28,9 +28,9 @@ namespace BL
             d.Status = DroneToList.DroneStatus;
             d.Location = DroneToList.Location;
 
-            IDAL.DO.Package p = DalObject.DataSource.PackageList.Find(x => x.Id == DroneToList.PackageId);
+            DO.Package p = DalObject.DataSource.PackageList.Find(x => x.Id == DroneToList.PackageId);
             // need to do a package conversion
-            if (p.Id != default(IDAL.DO.Package).Id)
+            if (p.Id != default(DO.Package).Id)
                 d.PackageInTransfer = DalToBlPackage(DroneToList.Id);
             else
             {
@@ -48,7 +48,7 @@ namespace BL
         public IBL.BO.Package DalToBlPackage(int id)
         {
             IBL.BO.Package p = new();
-            IDAL.DO.Package DalP = DalObject.DataSource.PackageList.Find(x => x.DroneId == id);
+            DO.Package DalP = DalObject.DataSource.PackageList.Find(x => x.DroneId == id);
             
 
             if (DalP.Id == 0)
@@ -98,10 +98,10 @@ namespace BL
         public IBL.BO.PackageToList DalPackageToList(int id)
         {
             IBL.BO.PackageToList PList = new();
-            IDAL.DO.Package p = DalObject.DataSource.PackageList.Find(x => x.Id == id);
+            DO.Package p = DalObject.DataSource.PackageList.Find(x => x.Id == id);
 
             // Not sure how to implement the following
-            if (p.Id == default(IDAL.DO.Package).Id)
+            if (p.Id == default(DO.Package).Id)
                 throw new IBL.BO.MessageException("Error: Object of id" + id + " not found.");
             
 
@@ -122,7 +122,7 @@ namespace BL
         public IBL.BO.Customer DalToBlCustomer(int id)
         {
             IBL.BO.Customer c = new();
-            IDAL.DO.Customer DalC = DalObject.DataSource.CustomerList.Find(x => x.Id == id);
+            DO.Customer DalC = DalObject.DataSource.CustomerList.Find(x => x.Id == id);
 
             if (DalC.Id == 0)
                 throw new IBL.BO.MessageException("Error: Object of id " + id + " not found.");
@@ -136,7 +136,7 @@ namespace BL
             List<IBL.BO.PackageToList> PackagesToCustomer = new();
 
             //Go through packageList and see if the customer is receiving or sending packages
-            foreach(IDAL.DO.Package package in DalObject.DataSource.PackageList)
+            foreach(DO.Package package in DalObject.DataSource.PackageList)
             {
                 if (package.ReceiverId == c.Id)
                     PackagesToCustomer.Add(DalPackageToList(package.Id));
@@ -177,7 +177,7 @@ namespace BL
         public IBL.BO.BaseStation DalToBlStation(int id)
         {
             IBL.BO.BaseStation b = new();
-            IDAL.DO.Station s = DalObject.DataSource.StationList.Find(x => x.Id == id);
+            DO.Station s = DalObject.DataSource.StationList.Find(x => x.Id == id);
 
             if (s.Id == 0)
                 throw new IBL.BO.MessageException("Error: Object of id " + id + " not found.");
