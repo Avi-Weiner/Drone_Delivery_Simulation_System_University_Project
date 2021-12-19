@@ -38,6 +38,7 @@ namespace PL
             
             InitializeComponent();
 
+            #region Element Visibility 
             //Make Elements visible
             Update.Visibility = Visibility.Visible;
             UpdateModel.Visibility = Visibility.Visible;
@@ -51,6 +52,7 @@ namespace PL
             HoursChargedPrompt.Visibility = Visibility.Visible;
             HoursCharged.Visibility = Visibility.Visible;
             DroneUpdateOptions.Visibility = Visibility.Visible;
+            #endregion
 
             DroneView.Text = Drone.ToString();
         }
