@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DalObject;
 
-namespace IDAL
+namespace DalApi
 {
     public interface IDAL
     {

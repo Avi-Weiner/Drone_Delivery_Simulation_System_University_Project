@@ -1,7 +1,7 @@
 ﻿using System;
 
-namespace IDAL
-{
+
+
     namespace DO
     {
         public struct DroneCharger
@@ -10,4 +10,4 @@ namespace IDAL
             public int StationId { get; set; }
         }
     }
-}
+

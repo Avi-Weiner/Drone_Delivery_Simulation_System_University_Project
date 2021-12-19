@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DalObject
 {
-    public partial class DalObject : IDAL.IDAL
+    public partial class DalObject : DalApi.IDAL
     {
         //creates a DAL object by intializing values accordign to Initialize
         public DalObject()

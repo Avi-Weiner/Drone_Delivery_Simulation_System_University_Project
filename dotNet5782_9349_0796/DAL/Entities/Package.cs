@@ -1,7 +1,6 @@
 ﻿using System;
 
-namespace IDAL
-{
+
     namespace DO
     {
         public struct Package
@@ -24,4 +23,4 @@ namespace IDAL
             public Nullable<DateTime> Delivered { get; set; }
         }
     }
-}
+

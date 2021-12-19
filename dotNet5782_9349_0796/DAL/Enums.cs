@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IDAL
-{
     namespace DO
     {
         /// <summary>
@@ -17,4 +15,4 @@ namespace IDAL
         /// </summary>
         public enum Priority { regular, fast, emergency}
     }
-}
+

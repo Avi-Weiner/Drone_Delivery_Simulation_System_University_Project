@@ -28,7 +28,7 @@ namespace BL
                 throw new IBL.BO.MessageException("Error: Drone is not free.\n");
             }
 
-            IDAL.DO.Station StationClose = BLObject.ClosestStation(BL.BLObject.BLDroneList[DroneIndex].Location);
+            DO.Station StationClose = BLObject.ClosestStation(BL.BLObject.BLDroneList[DroneIndex].Location);
 
             if (BLObject.ChargeForDistance(BL.BLObject.BLDroneList[DroneIndex].Weight, 
                 BLObject.DistanceBetween(BL.BLObject.BLDroneList[DroneIndex].Location, BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude)))
@@ -84,20 +84,20 @@ namespace BL
                 Charge = 1;
             BLObject.BLDroneList[DroneIndex].BatteryStatus = Charge;
             BLObject.BLDroneList[DroneIndex].DroneStatus = IBL.BO.DroneStatus.free;
-            IDAL.DO.Station StationClose = BLObject.ClosestStation(BL.BLObject.BLDroneList[DroneIndex].Location);
+            DO.Station StationClose = BLObject.ClosestStation(BL.BLObject.BLDroneList[DroneIndex].Location);
 
             int StationIndex = DalObject.DataSource.StationList.FindIndex(x => x.Id == StationClose.Id);
-            IDAL.DO.Station station = DalObject.DataSource.StationList[StationIndex];
+            DO.Station station = DalObject.DataSource.StationList[StationIndex];
             station.ChargeSlots++;
             DalObject.DataSource.StationList[StationIndex] = station;
             //again not sure what the mathcing instance is.
         
         }
 
-        public bool CheckCloseEnough(IDAL.DO.Package pack, int id)
+        public bool CheckCloseEnough(DO.Package pack, int id)
         {
-            IDAL.DO.Customer customerSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.SenderId)];
-            IDAL.DO.Customer customerReciever = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.ReceiverId)];
+            DO.Customer customerSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.SenderId)];
+            DO.Customer customerReciever = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.ReceiverId)];
             IBL.BO.Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
             IBL.BO.Location recieverLocation = BLObject.MakeLocation(customerReciever.Longitude, customerReciever.Latitude);
 
@@ -125,23 +125,23 @@ namespace BL
             {
                 throw new IBL.BO.MessageException("Error: Drone is not free.\n");
             }
-            List<IDAL.DO.Package> Packages = DalObject.DataSource.PackageList;
-            List<IDAL.DO.Package> tempPack = new List<IDAL.DO.Package>();
+            List<DO.Package> Packages = DalObject.DataSource.PackageList;
+            List<DO.Package> tempPack = new List<DO.Package>();
             Packages.RemoveAll(x => x.Delivered != null);
 
             Packages.RemoveAll(x => CheckCloseEnough(x, DroneIndex));
             
-            int PackIndex = Packages.FindIndex(x => x.Priority == IDAL.DO.Priority.emergency);
+            int PackIndex = Packages.FindIndex(x => x.Priority == DO.Priority.emergency);
             if (PackIndex != -1)
             {
-                Packages.RemoveAll(x => x.Priority != IDAL.DO.Priority.emergency);
+                Packages.RemoveAll(x => x.Priority != DO.Priority.emergency);
             }
             else
             {
-                PackIndex = Packages.FindIndex(x => x.Priority == IDAL.DO.Priority.fast);
+                PackIndex = Packages.FindIndex(x => x.Priority == DO.Priority.fast);
                 if(PackIndex != -1)
                 {
-                    Packages.RemoveAll(x => x.Priority != IDAL.DO.Priority.fast);
+                    Packages.RemoveAll(x => x.Priority != DO.Priority.fast);
                    
                 }
             }
@@ -153,12 +153,12 @@ namespace BL
                 throw new IBL.BO.MessageException("Error: Drone can't take any Package.\n");
             }
             drone.PackageId = Packages[0].Id;
-            foreach(IDAL.DO.Package pack in Packages)
+            foreach(DO.Package pack in Packages)
             {
-                IDAL.DO.Customer customerSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.SenderId)];
+                DO.Customer customerSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.SenderId)];
                 IBL.BO.Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
-                IDAL.DO.Package package = Packages.Find(x => x.Id == drone.PackageId);
-                IDAL.DO.Customer thisPackageSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == package.SenderId)];
+                DO.Package package = Packages.Find(x => x.Id == drone.PackageId);
+                DO.Customer thisPackageSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == package.SenderId)];
                 IBL.BO.Location thisSenderLocation = BLObject.MakeLocation(thisPackageSender.Longitude, thisPackageSender.Latitude);
                 if (BLObject.DistanceBetween(senderLocation, drone.Location) < BLObject.DistanceBetween(thisSenderLocation, drone.Location))
                 {
@@ -166,7 +166,7 @@ namespace BL
                 }
             }
             drone.DroneStatus = IBL.BO.DroneStatus.delivery;
-            IDAL.DO.Package  finalPackage = Packages.Find(x => x.Id == drone.PackageId);
+            DO.Package  finalPackage = Packages.Find(x => x.Id == drone.PackageId);
             finalPackage.DroneId = drone.Id;
             finalPackage.Scheduled = DateTime.Now;
             int finalPackageIndex = DalObject.DataSource.PackageList.FindIndex(x => x.Id == drone.PackageId);
@@ -194,12 +194,12 @@ namespace BL
             }
             IBL.BO.DroneToList Drone = BLObject.BLDroneList[DroneIndex];
             int PackageIndex = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Drone.PackageId);
-            IDAL.DO.Package Package = DalObject.DataSource.PackageList[PackageIndex];
+            DO.Package Package = DalObject.DataSource.PackageList[PackageIndex];
             if(Package.PickedUp != null)
             {
                 throw new IBL.BO.MessageException("Error: Package was picked up already.\n");
             }
-            IDAL.DO.Customer Sender = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.SenderId);
+            DO.Customer Sender = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.SenderId);
             IBL.BO.Location SenderLocation = BLObject.MakeLocation(Sender.Longitude, Sender.Latitude);
             double DistanceBetween = BLObject.DistanceBetween(SenderLocation, Drone.Location);
             Drone.BatteryStatus -= BLObject.ChargeForDistance(Package.Weight, DistanceBetween);
@@ -229,14 +229,14 @@ namespace BL
             }
             IBL.BO.DroneToList Drone = BLObject.BLDroneList[DroneIndex];
             int PackageIndex = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Drone.PackageId);
-            IDAL.DO.Package Package = DalObject.DataSource.PackageList[PackageIndex];
+            DO.Package Package = DalObject.DataSource.PackageList[PackageIndex];
             if(Package.Delivered != null)
             {
                 throw new IBL.BO.MessageException("Error: Package was delivered already");
             }
-            IDAL.DO.Customer Sender = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.SenderId);
+            DO.Customer Sender = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.SenderId);
             IBL.BO.Location SenderLocation = BLObject.MakeLocation(Sender.Longitude, Sender.Latitude);
-            IDAL.DO.Customer Reciever = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.ReceiverId);
+            DO.Customer Reciever = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.ReceiverId);
             IBL.BO.Location RecieverLocation = BLObject.MakeLocation(Reciever.Longitude, Sender.Latitude);
             Drone.BatteryStatus -= BLObject.ChargeForDistance(Package.Weight, BLObject.DistanceBetween(SenderLocation, RecieverLocation));
             Drone.Location = RecieverLocation;

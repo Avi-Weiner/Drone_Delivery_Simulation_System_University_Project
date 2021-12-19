@@ -23,7 +23,7 @@ namespace BL
                 throw new IBL.BO.MessageException("Error: Drone not found\n");
             }
             
-            IDAL.DO.Drone Drone = DalObject.DataSource.DroneList[Dronei];
+            DO.Drone Drone = DalObject.DataSource.DroneList[Dronei];
             Drone.Model = Model;
             DalObject.DataSource.DroneList[Dronei] = Drone;
 
@@ -58,7 +58,7 @@ namespace BL
                 throw new IBL.BO.MessageException("Error: Station not found\n");
             }
 
-            IDAL.DO.Station Station = DalObject.DataSource.StationList[Stationi];
+            DO.Station Station = DalObject.DataSource.StationList[Stationi];
             if(StationName != -1)
             {
                 Station.Name = StationName;
@@ -86,7 +86,7 @@ namespace BL
                 throw new IBL.BO.MessageException("Error: Customer not found\n");
             }
 
-            IDAL.DO.Customer Customer = DalObject.DataSource.CustomerList[Customeri];
+            DO.Customer Customer = DalObject.DataSource.CustomerList[Customeri];
             if (Name != "-1")
             {
                 Customer.Name = Name;

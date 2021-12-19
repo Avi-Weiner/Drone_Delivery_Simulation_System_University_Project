@@ -1,7 +1,6 @@
 ﻿using System;
 
-namespace IDAL
-{
+
     namespace DO
     {
         #region Customer struct
@@ -16,4 +15,4 @@ namespace IDAL
         }
         #endregion
     }
-}
+

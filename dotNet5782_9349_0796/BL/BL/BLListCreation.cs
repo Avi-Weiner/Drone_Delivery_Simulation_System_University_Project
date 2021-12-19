@@ -17,7 +17,7 @@ namespace BL
         public List<IBL.BO.BaseStationToList> ListOfStations()
         {
             List<IBL.BO.BaseStationToList> list = new();
-            foreach(IDAL.DO.Station station in DalObject.DataSource.StationList)
+            foreach(DO.Station station in DalObject.DataSource.StationList)
             {
                 //converts DAL station to BL station to StationToList and adds to list
                 list.Add(StationToStationToList(station.Id));
@@ -33,7 +33,7 @@ namespace BL
         public List<IBL.BO.CustomerToList> ListOfCustomers()
         {
             List<IBL.BO.CustomerToList> list = new();
-            foreach (IDAL.DO.Customer c in DalObject.DataSource.CustomerList)
+            foreach (DO.Customer c in DalObject.DataSource.CustomerList)
             {
                 //converts DAL customer to BL Customer to CustomerToList and adds to list
                 list.Add(CustomerToCustomerToList(c.Id));
@@ -49,7 +49,7 @@ namespace BL
         public List<IBL.BO.PackageToList> ListOfPackages()
         {
             List<IBL.BO.PackageToList> list = new();
-            foreach(IDAL.DO.Package p in DalObject.DataSource.PackageList)
+            foreach(DO.Package p in DalObject.DataSource.PackageList)
             {
                 //converts DAP package to BL package to packageToList and adds to list
                 list.Add(DalPackageToList(p.Id));
@@ -64,7 +64,7 @@ namespace BL
         public List<IBL.BO.PackageToList> ListOfUnassignedPackages()
         {
             List<IBL.BO.PackageToList> list = new();
-            foreach (IDAL.DO.Package p in DalObject.DataSource.PackageList)
+            foreach (DO.Package p in DalObject.DataSource.PackageList)
             {
                 //converts DAP package to BL package to packageToList and adds to list
                 IBL.BO.PackageToList Plist = DalPackageToList(p.Id);
@@ -81,7 +81,7 @@ namespace BL
         public List<IBL.BO.BaseStationToList> ListOfStationsWithChargeSlots()
         {
             List<IBL.BO.BaseStationToList> list = new();
-            foreach (IDAL.DO.Station station in DalObject.DataSource.StationList)
+            foreach (DO.Station station in DalObject.DataSource.StationList)
             {
                 if( DalToBlStation(station.Id).AvailableChargeSlots > 0)
                     list.Add(StationToStationToList(station.Id));
@@ -122,13 +122,13 @@ namespace BL
                     predicate = d => d.DroneStatus == IBL.BO.DroneStatus.delivery;
                     break;
                 case "Light":
-                    predicate = d => d.Weight == IDAL.DO.WeightCategory.light;
+                    predicate = d => d.Weight == DO.WeightCategory.light;
                     break;
                 case "Medium":
-                    predicate = d => d.Weight == IDAL.DO.WeightCategory.medium; 
+                    predicate = d => d.Weight == DO.WeightCategory.medium; 
                     break;
                 case "Heavy":
-                    predicate = d => d.Weight == IDAL.DO.WeightCategory.heavy; 
+                    predicate = d => d.Weight == DO.WeightCategory.heavy; 
                     break;
                 default:
                     throw new IBL.BO.MessageException("Error: Invalid drone list filter option entered.");

@@ -1,7 +1,7 @@
 ﻿using System;
 
-namespace IDAL
-{
+
+
     namespace DO
     {
         public struct Drone
@@ -11,4 +11,4 @@ namespace IDAL
             public WeightCategory MaxWeight { get; set; }            
         }
     }
-}
+

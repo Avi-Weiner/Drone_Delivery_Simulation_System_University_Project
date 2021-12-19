@@ -11,8 +11,8 @@ namespace IBL
         public class PackageInTransfer
         {
             public int ID { get; set; }
-            public IDAL.DO.WeightCategory Weight { get; set; }
-            public IDAL.DO.Priority Priority { get; set; }
+            public DO.WeightCategory Weight { get; set; }
+            public DO.Priority Priority { get; set; }
             /// <summary>
             /// 0 = waiting for delivery, 1 = on delivery
             /// </summary>

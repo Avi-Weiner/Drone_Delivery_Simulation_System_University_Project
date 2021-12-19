@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DalObject
 {
-    public partial class DalObject : IDAL.IDAL
+    public partial class DalObject : DalApi.IDAL
     {
         /// <summary>
         /// Receives Drone ID and returns its index in DroneList
@@ -16,7 +16,7 @@ namespace DalObject
             int i = DataSource.CustomerList.FindIndex(x => x.Id == DroneId);
   
             if (DataSource.DroneList[i].Id != DroneId)
-                throw new IDAL.DO.MessageException("Error: Drone not found.");
+                throw new DO.MessageException("Error: Drone not found.");
             return i;
         }
 
@@ -25,10 +25,10 @@ namespace DalObject
         /// </summary>
         /// <param name="model"></param>
         /// <param name="Weight"></param>
-        public static void AddDrone(string model, IDAL.DO.WeightCategory Weight)
+        public static void AddDrone(string model, DO.WeightCategory Weight)
         {
                 //add the new drone to the back of the list
-                DataSource.DroneList.Add(new IDAL.DO.Drone
+                DataSource.DroneList.Add(new DO.Drone
                 {
                     Id = DataSource.GetNextUniqueID(),
                     Model = model,
@@ -45,15 +45,15 @@ namespace DalObject
         {
             try
             {
-                IDAL.DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
-                IDAL.DO.Drone D = DataSource.DroneList.Find(x => x.Id == DroneId);
+                DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
+                DO.Drone D = DataSource.DroneList.Find(x => x.Id == DroneId);
                 if (P.Id == PackageId && D.Id == DroneId)
                 {
                     P.PickedUp = DateTime.Now;
                     P.DroneId = DroneId;
                 }
             }
-            catch (IDAL.DO.MessageException e)
+            catch (DO.MessageException e)
             {
                 Console.WriteLine(e);
             }
@@ -71,8 +71,8 @@ namespace DalObject
                 int i = GetDrone(DroneId);
 
                 //Get station
-                IDAL.DO.Station S = DataSource.StationList.Find(x => x.Id == StationId);
-                IDAL.DO.Drone D = DataSource.DroneList.Find(x => x.Id == DroneId);
+                DO.Station S = DataSource.StationList.Find(x => x.Id == StationId);
+                DO.Drone D = DataSource.DroneList.Find(x => x.Id == DroneId);
 
                 //minus 1 to charge slots
                 S.ChargeSlots--;
@@ -81,7 +81,7 @@ namespace DalObject
 
                 //Adding instance of Dronecharger (Need to save this somewhere or it will just get deleted...),
                 //specs unspecific of where to save it so for the meantime it will be deleted
-                IDAL.DO.DroneCharger newCharger = new IDAL.DO.DroneCharger();
+                DO.DroneCharger newCharger = new DO.DroneCharger();
                 newCharger.DroneId = D.Id;
                 newCharger.StationId = S.Id;
         }
@@ -100,7 +100,7 @@ namespace DalObject
                 int j = GetStation(StationId);
 
                 //Free up charge slot 
-                IDAL.DO.Station s = DataSource.StationList.Find(x => x.Id == StationId);
+                DO.Station s = DataSource.StationList.Find(x => x.Id == StationId);
                 s.ChargeSlots++;
                 DataSource.StationList[j] = s;
 

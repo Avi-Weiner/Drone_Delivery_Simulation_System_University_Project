@@ -40,7 +40,7 @@ namespace BL
 
             //Create IBL.BO.BaseStation
             IBL.BO.BaseStation b = new();
-            IDAL.DO.Station S = DalObject.DataSource.StationList.Find(x => x.Name == name);
+            DO.Station S = DalObject.DataSource.StationList.Find(x => x.Name == name);
             b.Id = S.Id;
             b.Name = name;
 
@@ -80,7 +80,7 @@ namespace BL
                 throw new IBL.BO.MessageException("Error: Weight status invalid\n");
 
             //If valid, convert to WeightCatagory
-            IDAL.DO.WeightCategory WeightCatagory = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), Weight);
+            DO.WeightCategory WeightCatagory = (DO.WeightCategory)Enum.Parse(typeof(DO.WeightCategory), Weight);
             #endregion
 
             int UniqueId = DalObject.DataSource.GetNextUniqueID(); //getting next unique id for immediate access
@@ -137,7 +137,7 @@ namespace BL
 
             //Create IBL.BO.BaseStation
             IBL.BO.Customer b = new();
-            IDAL.DO.Customer c = DalObject.DataSource.CustomerList.Find(x => x.Name == name);
+            DO.Customer c = DalObject.DataSource.CustomerList.Find(x => x.Name == name);
             b.Id = c.Id;
             b.Name = name;
             b.Phone = phone;
@@ -182,8 +182,8 @@ namespace BL
                 throw new IBL.BO.MessageException("Error: Priority invalide");
             #endregion
 
-            IDAL.DO.WeightCategory WeightCatagory = (IDAL.DO.WeightCategory)Enum.Parse(typeof(IDAL.DO.WeightCategory), Weight);
-            IDAL.DO.Priority priorityStatus = (IDAL.DO.Priority)Enum.Parse(typeof(IDAL.DO.Priority), Priority);
+            DO.WeightCategory WeightCatagory = (DO.WeightCategory)Enum.Parse(typeof(DO.WeightCategory), Weight);
+            DO.Priority priorityStatus = (DO.Priority)Enum.Parse(typeof(DO.Priority), Priority);
 
             int id = DalObject.DataSource.GetNextUniqueID(); //Get the next UniqueID which will be the ID of this package
             DalObject.DalObject.AddPackage(SenderId, ReceiverId, WeightCatagory, priorityStatus);

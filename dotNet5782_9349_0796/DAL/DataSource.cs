@@ -42,10 +42,10 @@ namespace DalObject
 
         }
 
-        public static List<IDAL.DO.Drone> DroneList = new List<IDAL.DO.Drone>();
-        public static List<IDAL.DO.Station> StationList = new List<IDAL.DO.Station>();
-        public static List<IDAL.DO.Customer> CustomerList = new List<IDAL.DO.Customer>();
-        public static List<IDAL.DO.Package> PackageList = new List<IDAL.DO.Package>();
+        public static List<DO.Drone> DroneList = new List<DO.Drone>();
+        public static List<DO.Station> StationList = new List<DO.Station>();
+        public static List<DO.Customer> CustomerList = new List<DO.Customer>();
+        public static List<DO.Package> PackageList = new List<DO.Package>();
 
         //Config getters
         public static double GetFree() { return Config.Free; }
@@ -75,7 +75,7 @@ namespace DalObject
             //2 base stations
             for (int i = 0; i < 2; i++)
             {
-                StationList.Add(new IDAL.DO.Station() { 
+                StationList.Add(new DO.Station() { 
                     Id = Config.NextUniqueId,
                     Name = i,
                     Longitude = rand.NextDouble() * 360 - 180,
@@ -90,11 +90,11 @@ namespace DalObject
             //5 drones
             for (int i = 0; i < 5; i++)
             {
-                DroneList.Add(new IDAL.DO.Drone()
+                DroneList.Add(new DO.Drone()
                 {
                     Id = Config.NextUniqueId,
                     Model = "Model T",
-                    MaxWeight = (IDAL.DO.WeightCategory)(rand.Next(0, 2)),
+                    MaxWeight = (DO.WeightCategory)(rand.Next(0, 2)),
                 });
                 
                 Config.NextUniqueId++;
@@ -104,7 +104,7 @@ namespace DalObject
             int ASCIIvalue = 65;
             for (int i = 0; i < 10; i++)
             {
-                CustomerList.Add(new IDAL.DO.Customer()
+                CustomerList.Add(new DO.Customer()
                 {
                     Id = Config.NextUniqueId,
                     Name = ((char)ASCIIvalue).ToString(),
@@ -119,13 +119,13 @@ namespace DalObject
             //10 packages
             for (int i = 0; i < 10; i++)
             {
-                PackageList.Add(new IDAL.DO.Package()
+                PackageList.Add(new DO.Package()
                 {
                     Id = Config.NextUniqueId,
                     SenderId = CustomerList[i].Id,
                     ReceiverId = CustomerList[i % 10].Id,
-                    Weight = (IDAL.DO.WeightCategory)(rand.Next(0, 2)),
-                    Priority = (IDAL.DO.Priority)(rand.Next(0, 2)),
+                    Weight = (DO.WeightCategory)(rand.Next(0, 2)),
+                    Priority = (DO.Priority)(rand.Next(0, 2)),
                     Requested = DateTime.Now,
                     DroneId = 0, //Not picked up yet = 0
                     Scheduled = (DateTime.Now).AddDays(5),

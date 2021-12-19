@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DalObject
 {
-    public partial class DalObject : IDAL.IDAL
+    public partial class DalObject : DalApi.IDAL
     {
         /// <summary>
         /// Receives Customer Id and returns its index in CustomerList
@@ -29,7 +29,7 @@ namespace DalObject
         static public void AddCustomer(string name, string phone, double longitude, double latitude)
         {
             ////add customer to the back of the customer list
-            DataSource.CustomerList.Add(new IDAL.DO.Customer
+            DataSource.CustomerList.Add(new DO.Customer
             {
                 Id = DataSource.GetNextUniqueID(),
                 Name = name,

@@ -13,8 +13,8 @@ namespace IBL
             public int Id { get; set; }
             public Customer Sender { get; set; }
             public Customer Receiver { get; set; }
-            public IDAL.DO.WeightCategory Weight { get; set; }
-            public IDAL.DO.Priority Priority { get; set; }
+            public DO.WeightCategory Weight { get; set; }
+            public DO.Priority Priority { get; set; }
             /// <summary>
             /// Drone changed to just droneId due to possible creation
             /// of endless loop between BL Package and BL Drone.

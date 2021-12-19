@@ -19,8 +19,8 @@ namespace IBL
             /// Changed to Id (int) which makes a lot more sense then name
             /// </summary>
             public int ReceiverId { get; set; }
-            public IDAL.DO.WeightCategory Weight { get; set; }
-            public IDAL.DO.Priority Priority { get; set; }
+            public DO.WeightCategory Weight { get; set; }
+            public DO.Priority Priority { get; set; }
             public PackageStatus PackageStatus { get; set; }
 
             public override string ToString()

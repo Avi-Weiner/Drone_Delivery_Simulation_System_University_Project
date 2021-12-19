@@ -43,12 +43,12 @@ namespace BL
             /// </summary>
             /// <param name="location"></param>
             /// <returns></returns>
-            public static IDAL.DO.Station ClosestStation(IBL.BO.Location location )
+            public static DO.Station ClosestStation(IBL.BO.Location location )
             {
                 //starting minDistance is bigger then highest possible distance, the diagonal between 360 and 180 = 402
                 double minDistance = 420;
 
-                List<IDAL.DO.Station>.Enumerator enumerator = DalObject.DataSource.StationList.GetEnumerator();
+                List<DO.Station>.Enumerator enumerator = DalObject.DataSource.StationList.GetEnumerator();
                 int closestStationId = -1;
 
                 while (enumerator.MoveNext())
@@ -72,7 +72,7 @@ namespace BL
             /// <param name="weightClass"></param>
             /// <param name="distance"></param>
             /// <returns></returns>
-            public static double ChargeForDistance(IDAL.DO.WeightCategory weight, double distance)
+            public static double ChargeForDistance(DO.WeightCategory weight, double distance)
             {
                 int weightClass = (int)weight;
                 if (weightClass < 0 || weightClass > 2)

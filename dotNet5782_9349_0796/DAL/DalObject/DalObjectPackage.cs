@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DalObject
 {
-    public partial class DalObject : IDAL.IDAL
+    public partial class DalObject : DalApi.IDAL
     {
         /// <summary>
         /// Receives Package Id and returns its index in packageList
@@ -22,9 +22,9 @@ namespace DalObject
         /// <summary>
         /// receiving a package to deliver
         /// </summary>
-        public static void AddPackage(int InputSender, int InputReceiver, IDAL.DO.WeightCategory InputWeight, IDAL.DO.Priority InputPriority)
+        public static void AddPackage(int InputSender, int InputReceiver, DO.WeightCategory InputWeight, DO.Priority InputPriority)
         {
-                DataSource.PackageList.Add(new IDAL.DO.Package
+                DataSource.PackageList.Add(new DO.Package
                 {
                     Id = DataSource.GetNextUniqueID(),
                     SenderId = InputSender,
@@ -49,7 +49,7 @@ namespace DalObject
         public static void AssignDroneToPackage(int PackageId, int DroneId)
         {
                 GetDrone(DroneId);
-                IDAL.DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
+                DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
 
                 P.DroneId = DroneId;
                 P.Scheduled = DateTime.Now;
@@ -61,7 +61,7 @@ namespace DalObject
         /// <param name="PackageId"></param>
         public static void PackageDropOff(int PackageId)
         {
-                IDAL.DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
+                DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
                 P.Delivered = DateTime.Now;
         }
     }

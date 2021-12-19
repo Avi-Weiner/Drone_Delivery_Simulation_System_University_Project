@@ -16,7 +16,7 @@ namespace BL
             
             public BLObject()
             {
-                IDAL.IDAL Dal = new DalObject.DalObject();
+                DalApi.IDAL Dal = new DalObject.DalObject();
                 var rand = new Random();
 
                 double[] PowerConsumptions = DalObject.DalObject.GetPowerConsumptions();//Returns an array of the power consumptions { Free, Light, Medium, Heavy, ChargingRate }
@@ -26,8 +26,8 @@ namespace BL
                 double Heavy = PowerConsumptions[3];
                 double ChargingRate = PowerConsumptions[4];
 
-                List<IDAL.DO.Drone> Drones = DataSource.DroneList;
-                foreach (IDAL.DO.Drone Drone in Drones)
+                List<DO.Drone> Drones = DataSource.DroneList;
+                foreach (DO.Drone Drone in Drones)
                 {
                     IBL.BO.DroneToList NewDrone = new IBL.BO.DroneToList();
                     NewDrone.Id = Drone.Id;
@@ -38,10 +38,10 @@ namespace BL
                     BLDroneList.Add(NewDrone);
                 }
 
-                List<IDAL.DO.Package> deliveredPackages = new();
+                List<DO.Package> deliveredPackages = new();
 
                 //For Drone that is delivering:
-                foreach (IDAL.DO.Package Pack in DataSource.PackageList)
+                foreach (DO.Package Pack in DataSource.PackageList)
                 {
                     if(Pack.DroneId != 0 && Pack.Delivered == null)
                     {
@@ -50,12 +50,12 @@ namespace BL
                         BLDroneList[index].PackageId = Pack.Id;
                         
                         //Find sender Location
-                        IDAL.DO.Customer sender = DataSource.CustomerList.Find(x => x.Id == Pack.SenderId);
+                        DO.Customer sender = DataSource.CustomerList.Find(x => x.Id == Pack.SenderId);
                         IBL.BO.Location senderLocation = MakeLocation(sender.Longitude, sender.Latitude);
                         if (Pack.PickedUp == null)
                         {
                             //If package not picked up, Drone at the station closest to the sender
-                            IDAL.DO.Station station = ClosestStation(senderLocation);
+                            DO.Station station = ClosestStation(senderLocation);
                             BLDroneList[index].Location = MakeLocation(station.Longitude, station.Latitude);
 
                         }
@@ -70,7 +70,7 @@ namespace BL
                         }
 
                         //battery state shall be randomized minimum charge for distance between: drone, receiver and then the closest station
-                        IDAL.DO.Customer receiver = DataSource.CustomerList.Find(x => x.Id == Pack.ReceiverId);
+                        DO.Customer receiver = DataSource.CustomerList.Find(x => x.Id == Pack.ReceiverId);
                         IBL.BO.Location receiverLocation = MakeLocation(receiver.Longitude, receiver.Latitude);
                         IBL.BO.Location closestStationLocation 
                             = MakeLocation(ClosestStation(receiverLocation).Longitude, ClosestStation(receiverLocation).Latitude);
@@ -98,7 +98,7 @@ namespace BL
                         {
                             //Count stations
                             int stationCount = 0;
-                            foreach(IDAL.DO.Station s in DataSource.StationList) { stationCount++; }
+                            foreach(DO.Station s in DataSource.StationList) { stationCount++; }
                             //Get random station 
                             int stationi = rand.Next(0, stationCount);
                             //Drone location is at random location
@@ -111,8 +111,8 @@ namespace BL
                         {
                             //location: random customer that has already received a package
                             int deliveredCount = 0;
-                            foreach (IDAL.DO.Package p in deliveredPackages) { deliveredCount++; }
-                            IDAL.DO.Customer c = DataSource.CustomerList[rand.Next(0, deliveredCount)];
+                            foreach (DO.Package p in deliveredPackages) { deliveredCount++; }
+                            DO.Customer c = DataSource.CustomerList[rand.Next(0, deliveredCount)];
                             DroneL.Location = MakeLocation(c.Longitude, c.Latitude);
 
                             //Battery: mimimum to get to closest station

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DalObject
 {
-    public partial class DalObject : IDAL.IDAL
+    public partial class DalObject : DalApi.IDAL
     {
         /// <summary>
         /// Receives Station Id and returns index of station in StationList
@@ -27,7 +27,7 @@ namespace DalObject
         public static void AddStation(int name, double longitude, double latitude, int slots)
         {
             //add station to the back of the station list
-            DataSource.StationList.Add(new IDAL.DO.Station
+            DataSource.StationList.Add(new DO.Station
             {
                 Id = DataSource.GetNextUniqueID(),
                 Name = name,
