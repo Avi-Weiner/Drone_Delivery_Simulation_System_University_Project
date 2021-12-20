@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 namespace BL
 {
 
-    public partial class BL : IBL.IBL
+    public partial class BL : BlApi.IBL
     {
         /// <summary>
         /// Returns BL Drone from given id, converting it from the DroneToList list
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.Drone DroneToListToDrone(int id)
+        public Drone DroneToListToDrone(int id)
         {
-            IBL.BO.Drone d = new();
-            IBL.BO.DroneToList DroneToList = BLObject.BLDroneList.Find(x => x.Id == id);
+            Drone d = new();
+            DroneToList DroneToList = BLObject.BLDroneList.Find(x => x.Id == id);
             if (DroneToList == null)
-                throw new IBL.BO.MessageException("Error: Object of id " + id + " not found.");
+                throw new MessageException("Error: Object of id " + id + " not found.");
 
             d.Id = DroneToList.Id;
             d.Model = DroneToList.Model;
@@ -45,14 +45,14 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.Package DalToBlPackage(int id)
+        public Package DalToBlPackage(int id)
         {
-            IBL.BO.Package p = new();
+            Package p = new();
             DO.Package DalP = DalObject.DataSource.PackageList.Find(x => x.DroneId == id);
             
 
             if (DalP.Id == 0)
-                throw new IBL.BO.MessageException("Error: Object of id " + id + " not found.");
+                throw new MessageException("Error: Object of id " + id + " not found.");
 
             p.Id = DalP.Id;
             //Get the senders and receivers ID's from customerList and convert to BL Customers
@@ -76,33 +76,33 @@ namespace BL
         /// <param name="PickedUp"></param>
         /// <param name="Delivered"></param>
         /// <returns></returns>
-        public IBL.BO.PackageStatus TimesToStatus(DateTime? scheduled, DateTime? PickedUp, DateTime? Delivered)
+        public PackageStatus TimesToStatus(DateTime? scheduled, DateTime? PickedUp, DateTime? Delivered)
         {
             if (scheduled == null)
-                return IBL.BO.PackageStatus.created;
+                return PackageStatus.created;
             else if (scheduled != null && PickedUp == null)
-                return IBL.BO.PackageStatus.assigned;
+                return PackageStatus.assigned;
             else if (PickedUp != null && Delivered == null)
-                return IBL.BO.PackageStatus.collected;
+                return PackageStatus.collected;
             else if (Delivered != null)
-                return IBL.BO.PackageStatus.delivered;
+                return PackageStatus.delivered;
             else 
-                throw new IBL.BO.MessageException("Error: TimesToStatus() failed");
+                throw new MessageException("Error: TimesToStatus() failed");
         }
 
         /// <summary>
-        /// Receives the ID of a DAl package and returns the corresponding IBL.BO.PackageToList item
+        /// Receives the ID of a DAl package and returns the corresponding PackageToList item
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.PackageToList DalPackageToList(int id)
+        public PackageToList DalPackageToList(int id)
         {
-            IBL.BO.PackageToList PList = new();
+            PackageToList PList = new();
             DO.Package p = DalObject.DataSource.PackageList.Find(x => x.Id == id);
 
             // Not sure how to implement the following
             if (p.Id == default(DO.Package).Id)
-                throw new IBL.BO.MessageException("Error: Object of id" + id + " not found.");
+                throw new MessageException("Error: Object of id" + id + " not found.");
             
 
             PList.Id = p.Id;
@@ -119,21 +119,21 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.Customer DalToBlCustomer(int id)
+        public Customer DalToBlCustomer(int id)
         {
-            IBL.BO.Customer c = new();
+            Customer c = new();
             DO.Customer DalC = DalObject.DataSource.CustomerList.Find(x => x.Id == id);
 
             if (DalC.Id == 0)
-                throw new IBL.BO.MessageException("Error: Object of id " + id + " not found.");
+                throw new MessageException("Error: Object of id " + id + " not found.");
 
             c.Id = DalC.Id;
             c.Name = DalC.Name;
             c.Phone = DalC.Phone;
             c.Location = BLObject.MakeLocation(DalC.Longitude, DalC.Latitude);
 
-            List<IBL.BO.PackageToList> PackagesFromCustomer = new();
-            List<IBL.BO.PackageToList> PackagesToCustomer = new();
+            List<PackageToList> PackagesFromCustomer = new();
+            List<PackageToList> PackagesToCustomer = new();
 
             //Go through packageList and see if the customer is receiving or sending packages
             foreach(DO.Package package in DalObject.DataSource.PackageList)
@@ -155,14 +155,14 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.DroneInCharge DroneToListToInCharge(int id)
+        public DroneInCharge DroneToListToInCharge(int id)
         {
             
-            IBL.BO.DroneInCharge d = new();
-            IBL.BO.DroneToList DroneToList = BLObject.BLDroneList.Find(x => x.Id == id);
+            DroneInCharge d = new();
+            DroneToList DroneToList = BLObject.BLDroneList.Find(x => x.Id == id);
 
             if (DroneToList == null)
-                throw new IBL.BO.MessageException("Error: Object of id " + id + " not found.");
+                throw new MessageException("Error: Object of id " + id + " not found.");
 
             d.Id = DroneToList.Id;
             d.BatteryStatus = DroneToList.BatteryStatus;
@@ -174,13 +174,13 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.BaseStation DalToBlStation(int id)
+        public BaseStation DalToBlStation(int id)
         {
-            IBL.BO.BaseStation b = new();
+            BaseStation b = new();
             DO.Station s = DalObject.DataSource.StationList.Find(x => x.Id == id);
 
             if (s.Id == 0)
-                throw new IBL.BO.MessageException("Error: Object of id " + id + " not found.");
+                throw new MessageException("Error: Object of id " + id + " not found.");
 
             b.Id = s.Id;
             b.Name = s.Name;
@@ -188,10 +188,10 @@ namespace BL
             b.AvailableChargeSlots = s.ChargeSlots;
 
             //create list of DroneInCharge
-            List<IBL.BO.DroneInCharge> ChargeList = new();
-            foreach(IBL.BO.DroneToList Drone in BLObject.BLDroneList)
+            List<DroneInCharge> ChargeList = new();
+            foreach(DroneToList Drone in BLObject.BLDroneList)
             {
-                if (Drone.Location == b.Location && Drone.DroneStatus == IBL.BO.DroneStatus.maintenance)
+                if (Drone.Location == b.Location && Drone.DroneStatus == DroneStatus.maintenance)
                     ChargeList.Add(DroneToListToInCharge(Drone.Id));
             }
 
@@ -204,10 +204,10 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.BaseStationToList StationToStationToList(int id)
+        public BaseStationToList StationToStationToList(int id)
         {
-            IBL.BO.BaseStation s = DalToBlStation(id);
-            IBL.BO.BaseStationToList ListS = new();
+            BaseStation s = DalToBlStation(id);
+            BaseStationToList ListS = new();
 
             ListS.Id = s.Id;
             ListS.Name = s.Name;
@@ -222,10 +222,10 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public IBL.BO.CustomerToList CustomerToCustomerToList(int id)
+        public CustomerToList CustomerToCustomerToList(int id)
         {
-            IBL.BO.Customer c = DalToBlCustomer(id);
-            IBL.BO.CustomerToList listC = new();
+            Customer c = DalToBlCustomer(id);
+            CustomerToList listC = new();
 
             listC.Id = c.Id;
             listC.Name = c.Name;
@@ -237,19 +237,19 @@ namespace BL
             listC.NumberOfRecievedPackages = 0;
             listC.NumberOfExpectedPackages = 0;
             
-            foreach(IBL.BO.PackageToList p in c.PackagesFromCustomer)
+            foreach(PackageToList p in c.PackagesFromCustomer)
             {
-                if (p.SenderId == id && p.PackageStatus == IBL.BO.PackageStatus.delivered)
+                if (p.SenderId == id && p.PackageStatus == PackageStatus.delivered)
                     listC.NumberOfDeliveredPackagesSent++;
-                if (p.SenderId == id && p.PackageStatus != IBL.BO.PackageStatus.delivered)
+                if (p.SenderId == id && p.PackageStatus != PackageStatus.delivered)
                     listC.NumberOfUndeliveredPackagesSent++;
             }
 
-            foreach (IBL.BO.PackageToList p in c.PackagesToCustomer)
+            foreach (PackageToList p in c.PackagesToCustomer)
             {
-                if (p.ReceiverId == id && p.PackageStatus == IBL.BO.PackageStatus.delivered)
+                if (p.ReceiverId == id && p.PackageStatus == PackageStatus.delivered)
                     listC.NumberOfRecievedPackages++;
-                if (p.ReceiverId == id && p.PackageStatus != IBL.BO.PackageStatus.delivered)
+                if (p.ReceiverId == id && p.PackageStatus != PackageStatus.delivered)
                     listC.NumberOfExpectedPackages++;
             }
 
