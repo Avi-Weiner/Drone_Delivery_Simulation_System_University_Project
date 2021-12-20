@@ -8,10 +8,16 @@ namespace BL
 {
     public static class BlFactory
     {
+
+        /// <summary>
+        /// Creates and returns a DalObject (Singleton)
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
         public static BlApi.IBL GetBl()
         {
-
-
+            return BL.GetBLObject();
         }
+
     }
 }

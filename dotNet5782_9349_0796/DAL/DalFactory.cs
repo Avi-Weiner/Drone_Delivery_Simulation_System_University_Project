@@ -8,6 +8,11 @@ namespace DAL
 {
     public class DalFactory
     {
+        /// <summary>
+        /// Creates and returns a DalObject (Singleton)
+        /// </summary>
+        /// <param name="param"></param>
+        /// <returns></returns>
         public static DalApi.IDAL GetDal(string param)
         {
             return DalObject.DalObject.GetDalObject();

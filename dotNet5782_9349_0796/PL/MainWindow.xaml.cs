@@ -24,7 +24,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            BLObj = new BL.BL();
+            BLObj = BL.BlFactory.GetBl();
         }
 
         private void DronesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
