@@ -9,30 +9,30 @@ using System.Threading.Tasks;
 /// </summary>
 namespace BL
 {
-    public partial class BL : IBL.IBL
+    public partial class BL : BlApi.IBL
     {
         public partial class BLObject
         {
             /// <summary>
-            /// Returns the distance (double) between 2 IBL.BO.Location s
+            /// Returns the distance (double) between 2 Location s
             /// </summary>
             /// <param name="first"></param>
             /// <param name="second"></param>
             /// <returns></returns>
-            public static double DistanceBetween(IBL.BO.Location first, IBL.BO.Location second)
+            public static double DistanceBetween(Location first, Location second)
             {
                 return Math.Sqrt((first.latitude) - (second.latitude) + (first.longitude) - (second.longitude));
             }
 
             /// <summary>
-            /// Receives the doubles longitude and latitude and returns their IBL.BO.Location
+            /// Receives the doubles longitude and latitude and returns their Location
             /// </summary>
             /// <param name="longitude"></param>
             /// <param name="latitude"></param>
             /// <returns></returns>
-            public static IBL.BO.Location MakeLocation(double longitude, double latitude)
+            public static Location MakeLocation(double longitude, double latitude)
             {
-                IBL.BO.Location l = new();
+                Location l = new();
                 l.latitude = latitude;
                 l.longitude = longitude;
                 return l;
@@ -43,7 +43,7 @@ namespace BL
             /// </summary>
             /// <param name="location"></param>
             /// <returns></returns>
-            public static DO.Station ClosestStation(IBL.BO.Location location )
+            public static DO.Station ClosestStation(Location location )
             {
                 //starting minDistance is bigger then highest possible distance, the diagonal between 360 and 180 = 402
                 double minDistance = 420;
@@ -76,7 +76,7 @@ namespace BL
             {
                 int weightClass = (int)weight;
                 if (weightClass < 0 || weightClass > 2)
-                    throw new IBL.BO.MessageException("Error: powerConsumption exceeds bounds");
+                    throw new MessageException("Error: powerConsumption exceeds bounds");
                 //Get specific power of weight class
                 double powerPerKm = DalObject.DalObject.GetPowerConsumptions()[weightClass + 1];
 

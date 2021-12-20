@@ -21,15 +21,15 @@ namespace PL
     {
 
         #region DroneAction
-        IBL.IBL bl;
-        IBL.BO.Drone drone;
+        BlApi.IBL bl;
+        BL.Drone drone;
         // this line should probalby be deleted...............public Visibility SendButton { get; set; }
         /// <summary>
         /// Constructor for updating a drone
         /// </summary>
         /// <param name="Drone"></param>
         /// <param name="BL"></param>
-        public DroneDisplay(IBL.BO.Drone Drone, IBL.IBL BL)
+        public DroneDisplay(BL.Drone Drone, BlApi.IBL BL)
         {
             bl = BL;
             drone = Drone;
@@ -78,7 +78,7 @@ namespace PL
                 DroneView.Text = drone.ToString();
 
             }
-            catch(IBL.BO.MessageException m)
+            catch(BL.MessageException m)
             {
                 MessageBox.Show(m.ToString());
             }
@@ -93,7 +93,7 @@ namespace PL
                 drone = bl.DroneToListToDrone(drone.Id);
                 DroneView.Text = drone.ToString();
             }
-            catch(IBL.BO.MessageException m)
+            catch(BL.MessageException m)
             {
                 MessageBox.Show(m.ToString());
             }
@@ -108,7 +108,7 @@ namespace PL
                 drone = bl.DroneToListToDrone(drone.Id);
                 DroneView.Text = drone.ToString();
             }
-            catch(IBL.BO.MessageException m)
+            catch(BL.MessageException m)
             {
                 MessageBox.Show(m.ToString());
             }
@@ -123,7 +123,7 @@ namespace PL
                 drone = bl.DroneToListToDrone(drone.Id);
                 DroneView.Text = drone.ToString();
             }
-            catch(IBL.BO.MessageException m)
+            catch(BL.MessageException m)
             {
                 MessageBox.Show(m.ToString());
             }
@@ -141,7 +141,7 @@ namespace PL
                 drone = bl.DroneToListToDrone(drone.Id);
                 DroneView.Text = drone.ToString();
             }
-            catch(IBL.BO.MessageException m)
+            catch(BL.MessageException m)
             {
                 MessageBox.Show(m.ToString());
             }
@@ -163,7 +163,7 @@ namespace PL
         /// <summary>
         /// Constructor for adding a drone
         /// </summary>
-        public DroneDisplay(IBL.IBL BL)
+        public DroneDisplay(BlApi.IBL BL)
         {
             bl = BL;
             InitializeComponent();
@@ -233,7 +233,7 @@ namespace PL
                 MessageBox.Show("Drone Succesfully Added.");
                 Close();
             }
-            catch (IBL.BO.MessageException m)
+            catch (BL.MessageException m)
             {
                 MessageBox.Show(m.ToString());
             }

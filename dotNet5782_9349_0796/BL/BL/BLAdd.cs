@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace BL
 {
 
-    public partial class BL : IBL.IBL
+    public partial class BL : BlApi.IBL
     {
         /// <summary>
-        /// Adds a new IDAL base station and returns a new IBL.BO base station
+        /// Adds a new IDAL base station and returns a new BL base station
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="name"></param>
@@ -18,7 +18,7 @@ namespace BL
         /// <param name="latitude"></param>
         /// <param name="slots"></param>
 
-        public  IBL.BO.BaseStation AddBaseStation(int name, double longitude, double latitude, int availableSlots)
+        public  BaseStation AddBaseStation(int name, double longitude, double latitude, int availableSlots)
         {//Took out id parameter as it is created automatically 
 
             //Console.WriteLine("Enter Longitude: ");
@@ -30,27 +30,27 @@ namespace BL
 
             //Input checking:
             if (longitude < -180 || longitude > 180)
-                throw new IBL.BO.MessageException("Error: Longitude exceeds bounds");
+                throw new MessageException("Error: Longitude exceeds bounds");
             if (latitude < -90 || latitude > 90)
-                throw new IBL.BO.MessageException("Error: latitude exceeds bounds");
+                throw new MessageException("Error: latitude exceeds bounds");
             if (availableSlots < 0)
-                throw new IBL.BO.MessageException("Error: ChargeSlots must be positive");
+                throw new MessageException("Error: ChargeSlots must be positive");
 
             DalObject.DalObject.AddStation(name, longitude, latitude, availableSlots);
 
-            //Create IBL.BO.BaseStation
-            IBL.BO.BaseStation b = new();
+            //Create BaseStation
+            BaseStation b = new();
             DO.Station S = DalObject.DataSource.StationList.Find(x => x.Name == name);
             b.Id = S.Id;
             b.Name = name;
 
-            IBL.BO.Location l = new();
+            Location l = new();
             l.latitude = latitude;
             l.longitude = longitude;
             b.Location = l;
             b.AvailableChargeSlots = availableSlots;
 
-            List<IBL.BO.DroneInCharge> DroneChargeList = new List<IBL.BO.DroneInCharge>();
+            List<DroneInCharge> DroneChargeList = new List<DroneInCharge>();
             b.ChargingDroneList = DroneChargeList;
 
             return b;
@@ -62,7 +62,7 @@ namespace BL
         /// <param name="model"></param>
         /// <param name="Weight"></param>
         /// <param name="chargingStation"></param>
-        public  IBL.BO.Drone AddDrone(string Model, string Weight, int StationId)
+        public  Drone AddDrone(string Model, string Weight, int StationId)
         {   //manufacturerId was also included as a parameter but our
             //Id's are automatically created in the data layer for each entered object
 
@@ -72,12 +72,12 @@ namespace BL
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (Stationi == -1)
             {
-                throw new IBL.BO.MessageException("Error: Station not found\n");
+                throw new MessageException("Error: Station not found\n");
             }
 
             //Check if Weight is valid
             if (Weight != "light" && Weight != "medium" && Weight != "heavy")
-                throw new IBL.BO.MessageException("Error: Weight status invalid\n");
+                throw new MessageException("Error: Weight status invalid\n");
 
             //If valid, convert to WeightCatagory
             DO.WeightCategory WeightCatagory = (DO.WeightCategory)Enum.Parse(typeof(DO.WeightCategory), Weight);
@@ -85,13 +85,13 @@ namespace BL
 
             int UniqueId = DalObject.DataSource.GetNextUniqueID(); //getting next unique id for immediate access
             DalObject.DalObject.AddDrone(Model, WeightCatagory);
-            //Creading new IBL.BO.Drone 
-            IBL.BO.Drone d = new();
+            //Creading new Drone 
+            Drone d = new();
             d.Id = UniqueId;
             d.Model = Model;
             d.Weight = WeightCatagory;
 
-            IBL.BO.Location l = new();
+            Location l = new();
             l.latitude = DalObject.DataSource.StationList[Stationi].Latitude;
             l.longitude = DalObject.DataSource.StationList[Stationi].Longitude;
             d.Location = l;
@@ -99,10 +99,10 @@ namespace BL
             var rand = new Random();
 
             d.BatteryStatus = rand.NextDouble() * (0.2) + 0.2; //create random battery status between 0.2 and 0.4
-            d.Status = (IBL.BO.DroneStatus)(1); //put in maintenance status
+            d.Status = (DroneStatus)(1); //put in maintenance status
 
             //Adding to DroneToList
-            IBL.BO.DroneToList DTL = new();
+            DroneToList DTL = new();
             DTL.Id = UniqueId;
             DTL.Model = Model;
             DTL.Weight = WeightCatagory;
@@ -117,7 +117,7 @@ namespace BL
         }
 
         /// <summary>
-        /// Add customerList to list and return customer IBL.BO
+        /// Add customerList to list and return customer BL
         /// </summary>
         /// <param name="CustomerId"></param>
         /// <param name="name"></param>
@@ -125,24 +125,24 @@ namespace BL
         /// <param name="Longitude"></param>
         /// <param name="Latitude"></param>
         /// <returns></returns>
-        public  IBL.BO.Customer AddCustomer(string name, string phone, double Longitude, double Latitude)
+        public  Customer AddCustomer(string name, string phone, double Longitude, double Latitude)
         {//Customer id created automatically and therefore removed
             if (Longitude < -180 || Longitude > 180)
-                throw new IBL.BO.MessageException("Error: Longitude exceeds bounds");
+                throw new MessageException("Error: Longitude exceeds bounds");
             if (Latitude < -90 || Latitude > 90)
-                throw new IBL.BO.MessageException("Error: latitude exceeds bounds");
+                throw new MessageException("Error: latitude exceeds bounds");
 
 
             DalObject.DalObject.AddCustomer(name, phone, Longitude, Latitude);
 
-            //Create IBL.BO.BaseStation
-            IBL.BO.Customer b = new();
+            //Create BaseStation
+            Customer b = new();
             DO.Customer c = DalObject.DataSource.CustomerList.Find(x => x.Name == name);
             b.Id = c.Id;
             b.Name = name;
             b.Phone = phone;
 
-            IBL.BO.Location l = new();
+            Location l = new();
             l.latitude = Latitude;
             l.longitude = Longitude;
             b.Location = l;
@@ -158,7 +158,7 @@ namespace BL
         /// <param name="Weight"></param>
         /// <param name="Priority"></param>
         /// <returns></returns>
-        public  IBL.BO.Package AddPackage(int SenderId, int ReceiverId, string Weight, string Priority)
+        public  Package AddPackage(int SenderId, int ReceiverId, string Weight, string Priority)
         {
             #region InputChecking
             //------------------Input checking:----------------
@@ -166,20 +166,20 @@ namespace BL
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (senderi == -1)
             {
-                throw new IBL.BO.MessageException("Error: Sender not found.\n");
+                throw new MessageException("Error: Sender not found.\n");
             }
             int receiveri = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == ReceiverId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (receiveri == -1)
             {
-                throw new IBL.BO.MessageException("Error: Receiver not found.\n");
+                throw new MessageException("Error: Receiver not found.\n");
             }
             //Check if Weight is valid
             if (Weight != "light" || Weight != "medium" || Weight != "heavy")
-                throw new IBL.BO.MessageException("Error: Weight status invalid\n");
+                throw new MessageException("Error: Weight status invalid\n");
             //Check if Priority is valid
             if (Priority != "regular" || Priority != "fast" || Priority != "emergency")
-                throw new IBL.BO.MessageException("Error: Priority invalide");
+                throw new MessageException("Error: Priority invalide");
             #endregion
 
             DO.WeightCategory WeightCatagory = (DO.WeightCategory)Enum.Parse(typeof(DO.WeightCategory), Weight);
@@ -188,7 +188,7 @@ namespace BL
             int id = DalObject.DataSource.GetNextUniqueID(); //Get the next UniqueID which will be the ID of this package
             DalObject.DalObject.AddPackage(SenderId, ReceiverId, WeightCatagory, priorityStatus);
 
-            IBL.BO.Package p = new();
+            Package p = new();
 
             p.Id = id;
             p.Weight = WeightCatagory;

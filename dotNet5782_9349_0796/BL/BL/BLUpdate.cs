@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BL : IBL.IBL
+    public partial class BL : BlApi.IBL
     {
         /// <summary>
-        /// If drone Id given exists, the Drone Model will be updated and a BL.Drone will be returned
+        /// If drone Id given exists, the Drone Model will be updated and a Drone will be returned
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="Model"></param>
-        public  IBL.BO.Drone UpdateDrone(int Id, string Model)
+        public  Drone UpdateDrone(int Id, string Model)
         {
 
             int Dronei = DalObject.DataSource.DroneList.FindIndex(x => x.Id == Id);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if(Dronei == -1)
             {
-                throw new IBL.BO.MessageException("Error: Drone not found\n");
+                throw new MessageException("Error: Drone not found\n");
             }
             
             DO.Drone Drone = DalObject.DataSource.DroneList[Dronei];
@@ -31,8 +31,8 @@ namespace BL
             BLObject.BLDroneList[Listi].Model = Model;
 
 
-            //Create IBL.BO.Drone to return
-            IBL.BO.Drone d = new();
+            //Create Drone to return
+            Drone d = new();
             d.Id = Drone.Id;
             d.Model = Model;
             d.Weight = BLObject.BLDroneList[Listi].Weight;
@@ -55,7 +55,7 @@ namespace BL
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (Stationi == -1)
             {
-                throw new IBL.BO.MessageException("Error: Station not found\n");
+                throw new MessageException("Error: Station not found\n");
             }
 
             DO.Station Station = DalObject.DataSource.StationList[Stationi];
@@ -83,7 +83,7 @@ namespace BL
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (Customeri == -1)
             {
-                throw new IBL.BO.MessageException("Error: Customer not found\n");
+                throw new MessageException("Error: Customer not found\n");
             }
 
             DO.Customer Customer = DalObject.DataSource.CustomerList[Customeri];

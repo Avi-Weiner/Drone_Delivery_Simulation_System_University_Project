@@ -157,7 +157,7 @@ namespace ConsoleUI_BL
                             break;
                     }
                 }
-                catch (IBL.BO.MessageException e)
+                catch (BL.MessageException e)
                 {
                     Console.WriteLine(e);
                 }
