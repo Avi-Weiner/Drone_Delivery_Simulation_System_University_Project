@@ -8,7 +8,7 @@ namespace DAL
 {
     public class DalFactory
     {
-        static DalApi.IDAL GetDal(string param)
+        public static DalApi.IDAL GetDal(string param)
         {
             return DalObject.DalObject.GetDalObject();
         }

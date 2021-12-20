@@ -16,7 +16,7 @@ namespace BL
             
             public BLObject()
             {
-                DalApi.IDAL Dal = DalObject.DalObject.GetDalObject();
+                DalApi.IDAL Dal = DAL.DalFactory.GetDal("");
                 var rand = new Random();
 
                 double[] PowerConsumptions = DalObject.DalObject.GetPowerConsumptions();//Returns an array of the power consumptions { Free, Light, Medium, Heavy, ChargingRate }
