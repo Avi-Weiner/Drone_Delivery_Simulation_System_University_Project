@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BL : IBL.IBL
+    public partial class BL : BlApi.IBL
     {
         /// <summary>
         /// sends drone to charge 
@@ -21,34 +21,34 @@ namespace BL
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (DroneIndex == -1)
             {
-                throw new IBL.BO.MessageException("Error: Drone not found.\n");
+                throw new MessageException("Error: Drone not found.\n");
             }
-            if(BL.BLObject.BLDroneList[DroneIndex].DroneStatus != IBL.BO.DroneStatus.free)
+            if(BLObject.BLDroneList[DroneIndex].DroneStatus != DroneStatus.free)
             {
-                throw new IBL.BO.MessageException("Error: Drone is not free.\n");
+                throw new MessageException("Error: Drone is not free.\n");
             }
 
-            DO.Station StationClose = BLObject.ClosestStation(BL.BLObject.BLDroneList[DroneIndex].Location);
+            DO.Station StationClose = BLObject.ClosestStation(BLObject.BLDroneList[DroneIndex].Location);
 
-            if (BLObject.ChargeForDistance(BL.BLObject.BLDroneList[DroneIndex].Weight, 
-                BLObject.DistanceBetween(BL.BLObject.BLDroneList[DroneIndex].Location, BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude)))
-                > BL.BLObject.BLDroneList[DroneIndex].BatteryStatus)
+            if (BLObject.ChargeForDistance(BLObject.BLDroneList[DroneIndex].Weight, 
+                BLObject.DistanceBetween(BLObject.BLDroneList[DroneIndex].Location, BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude)))
+                > BLObject.BLDroneList[DroneIndex].BatteryStatus)
             {
-                throw new IBL.BO.MessageException("Error: Not enough charge.\n");
+                throw new MessageException("Error: Not enough charge.\n");
             }
 
             if(StationClose.ChargeSlots<=0)
             {
-                throw new IBL.BO.MessageException("Error: not enough charging slots");
+                throw new MessageException("Error: not enough charging slots");
             }
             #endregion
 
             //update battery state 
-            BL.BLObject.BLDroneList[DroneIndex].BatteryStatus -= 
-                BLObject.ChargeForDistance(BL.BLObject.BLDroneList[DroneIndex].Weight, 
-                BLObject.DistanceBetween(BL.BLObject.BLDroneList[DroneIndex].Location, BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude)));
-            BL.BLObject.BLDroneList[DroneIndex].Location = BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude);
-            BL.BLObject.BLDroneList[DroneIndex].DroneStatus = IBL.BO.DroneStatus.maintenance;
+            BLObject.BLDroneList[DroneIndex].BatteryStatus -= 
+                BLObject.ChargeForDistance(BLObject.BLDroneList[DroneIndex].Weight, 
+                BLObject.DistanceBetween(BLObject.BLDroneList[DroneIndex].Location, BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude)));
+            BLObject.BLDroneList[DroneIndex].Location = BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude);
+            BLObject.BLDroneList[DroneIndex].DroneStatus = DroneStatus.maintenance;
             int StationIndex = DalObject.DataSource.StationList.FindIndex(x => x.Id == StationClose.Id);
             StationClose.ChargeSlots -= 1;
             DalObject.DataSource.StationList[StationIndex] = StationClose;
@@ -71,11 +71,11 @@ namespace BL
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (DroneIndex == -1)
             {
-                throw new IBL.BO.MessageException("Error: Drone not found.\n");
+                throw new MessageException("Error: Drone not found.\n");
             }
-            if (BL.BLObject.BLDroneList[DroneIndex].DroneStatus != IBL.BO.DroneStatus.maintenance)
+            if (BLObject.BLDroneList[DroneIndex].DroneStatus != DroneStatus.maintenance)
             {
-                throw new IBL.BO.MessageException("Error: Drone is not in maintenance.\n");
+                throw new MessageException("Error: Drone is not in maintenance.\n");
             }
 
             double Charge = BLObject.BLDroneList[DroneIndex].BatteryStatus;
@@ -83,8 +83,8 @@ namespace BL
             if (Charge > 1)
                 Charge = 1;
             BLObject.BLDroneList[DroneIndex].BatteryStatus = Charge;
-            BLObject.BLDroneList[DroneIndex].DroneStatus = IBL.BO.DroneStatus.free;
-            DO.Station StationClose = BLObject.ClosestStation(BL.BLObject.BLDroneList[DroneIndex].Location);
+            BLObject.BLDroneList[DroneIndex].DroneStatus = DroneStatus.free;
+            DO.Station StationClose = BLObject.ClosestStation(BLObject.BLDroneList[DroneIndex].Location);
 
             int StationIndex = DalObject.DataSource.StationList.FindIndex(x => x.Id == StationClose.Id);
             DO.Station station = DalObject.DataSource.StationList[StationIndex];
@@ -98,10 +98,10 @@ namespace BL
         {
             DO.Customer customerSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.SenderId)];
             DO.Customer customerReciever = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.ReceiverId)];
-            IBL.BO.Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
-            IBL.BO.Location recieverLocation = BLObject.MakeLocation(customerReciever.Longitude, customerReciever.Latitude);
+            Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
+            Location recieverLocation = BLObject.MakeLocation(customerReciever.Longitude, customerReciever.Latitude);
 
-            if (BL.BLObject.BLDroneList[id].BatteryStatus < BLObject.ChargeForDistance(pack.Weight, BLObject.DistanceBetween(senderLocation, recieverLocation)))
+            if (BLObject.BLDroneList[id].BatteryStatus < BLObject.ChargeForDistance(pack.Weight, BLObject.DistanceBetween(senderLocation, recieverLocation)))
             {
                 return true;
             }
@@ -119,11 +119,11 @@ namespace BL
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (DroneIndex == -1)
             {
-                throw new IBL.BO.MessageException("Error: Drone not found.\n");
+                throw new MessageException("Error: Drone not found.\n");
             }
-            if (BL.BLObject.BLDroneList[DroneIndex].DroneStatus != IBL.BO.DroneStatus.free)
+            if (BLObject.BLDroneList[DroneIndex].DroneStatus != DroneStatus.free)
             {
-                throw new IBL.BO.MessageException("Error: Drone is not free.\n");
+                throw new MessageException("Error: Drone is not free.\n");
             }
             List<DO.Package> Packages = DalObject.DataSource.PackageList;
             List<DO.Package> tempPack = new List<DO.Package>();
@@ -147,25 +147,25 @@ namespace BL
             }
             
 
-            IBL.BO.DroneToList drone = BL.BLObject.BLDroneList[DroneIndex];
+            DroneToList drone = BLObject.BLDroneList[DroneIndex];
             if(Packages == null)
             {
-                throw new IBL.BO.MessageException("Error: Drone can't take any Package.\n");
+                throw new MessageException("Error: Drone can't take any Package.\n");
             }
             drone.PackageId = Packages[0].Id;
             foreach(DO.Package pack in Packages)
             {
                 DO.Customer customerSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.SenderId)];
-                IBL.BO.Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
+                Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
                 DO.Package package = Packages.Find(x => x.Id == drone.PackageId);
                 DO.Customer thisPackageSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == package.SenderId)];
-                IBL.BO.Location thisSenderLocation = BLObject.MakeLocation(thisPackageSender.Longitude, thisPackageSender.Latitude);
+                Location thisSenderLocation = BLObject.MakeLocation(thisPackageSender.Longitude, thisPackageSender.Latitude);
                 if (BLObject.DistanceBetween(senderLocation, drone.Location) < BLObject.DistanceBetween(thisSenderLocation, drone.Location))
                 {
                     drone.PackageId = pack.Id;
                 }
             }
-            drone.DroneStatus = IBL.BO.DroneStatus.delivery;
+            drone.DroneStatus = DroneStatus.delivery;
             DO.Package  finalPackage = Packages.Find(x => x.Id == drone.PackageId);
             finalPackage.DroneId = drone.Id;
             finalPackage.Scheduled = DateTime.Now;
@@ -186,21 +186,21 @@ namespace BL
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (DroneIndex == -1)
             {
-                throw new IBL.BO.MessageException("Error: Drone not found.\n");
+                throw new MessageException("Error: Drone not found.\n");
             }
-            if (BL.BLObject.BLDroneList[DroneIndex].DroneStatus != IBL.BO.DroneStatus.delivery)
+            if (BLObject.BLDroneList[DroneIndex].DroneStatus != DroneStatus.delivery)
             {
-                throw new IBL.BO.MessageException("Error: Drone is not in delivery.\n");
+                throw new MessageException("Error: Drone is not in delivery.\n");
             }
-            IBL.BO.DroneToList Drone = BLObject.BLDroneList[DroneIndex];
+            DroneToList Drone = BLObject.BLDroneList[DroneIndex];
             int PackageIndex = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Drone.PackageId);
             DO.Package Package = DalObject.DataSource.PackageList[PackageIndex];
             if(Package.PickedUp != null)
             {
-                throw new IBL.BO.MessageException("Error: Package was picked up already.\n");
+                throw new MessageException("Error: Package was picked up already.\n");
             }
             DO.Customer Sender = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.SenderId);
-            IBL.BO.Location SenderLocation = BLObject.MakeLocation(Sender.Longitude, Sender.Latitude);
+            Location SenderLocation = BLObject.MakeLocation(Sender.Longitude, Sender.Latitude);
             double DistanceBetween = BLObject.DistanceBetween(SenderLocation, Drone.Location);
             Drone.BatteryStatus -= BLObject.ChargeForDistance(Package.Weight, DistanceBetween);
             Drone.Location = SenderLocation;
@@ -221,26 +221,26 @@ namespace BL
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (DroneIndex == -1)
             {
-                throw new IBL.BO.MessageException("Error: Drone not found.\n");
+                throw new MessageException("Error: Drone not found.\n");
             }
-            if (BL.BLObject.BLDroneList[DroneIndex].DroneStatus != IBL.BO.DroneStatus.delivery)
+            if (BLObject.BLDroneList[DroneIndex].DroneStatus != DroneStatus.delivery)
             {
-                throw new IBL.BO.MessageException("Error: Drone is not in delivery.\n");
+                throw new MessageException("Error: Drone is not in delivery.\n");
             }
-            IBL.BO.DroneToList Drone = BLObject.BLDroneList[DroneIndex];
+            DroneToList Drone = BLObject.BLDroneList[DroneIndex];
             int PackageIndex = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Drone.PackageId);
             DO.Package Package = DalObject.DataSource.PackageList[PackageIndex];
             if(Package.Delivered != null)
             {
-                throw new IBL.BO.MessageException("Error: Package was delivered already");
+                throw new MessageException("Error: Package was delivered already");
             }
             DO.Customer Sender = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.SenderId);
-            IBL.BO.Location SenderLocation = BLObject.MakeLocation(Sender.Longitude, Sender.Latitude);
+            Location SenderLocation = BLObject.MakeLocation(Sender.Longitude, Sender.Latitude);
             DO.Customer Reciever = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.ReceiverId);
-            IBL.BO.Location RecieverLocation = BLObject.MakeLocation(Reciever.Longitude, Sender.Latitude);
+            Location RecieverLocation = BLObject.MakeLocation(Reciever.Longitude, Sender.Latitude);
             Drone.BatteryStatus -= BLObject.ChargeForDistance(Package.Weight, BLObject.DistanceBetween(SenderLocation, RecieverLocation));
             Drone.Location = RecieverLocation;
-            Drone.DroneStatus = IBL.BO.DroneStatus.free;
+            Drone.DroneStatus = DroneStatus.free;
             Package.Delivered = DateTime.Now;
             BLObject.BLDroneList[DroneIndex] = Drone;
             DalObject.DataSource.PackageList[PackageIndex] = Package;

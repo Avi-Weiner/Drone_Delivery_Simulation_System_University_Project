@@ -4,22 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IBL
+namespace BL
 {
-    namespace BO
+    public class CustomerInPackage
     {
-        public class CustomerInPackage
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public override string ToString()
         {
-            public int Id { get; set; }
-            public string Name { get; set; }
+            return "\nCustomer ID: " + Id +
+                " Customer Name: " + Name + '\n';
 
-            public override string ToString()
-            {
-                return "\nCustomer ID: " + Id +
-                    " Customer Name: " + Name + '\n';
-
-            }
         }
     }
 }
+
 

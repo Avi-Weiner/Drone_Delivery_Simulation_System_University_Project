@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BL : IBL.IBL
+    public partial class BL : BlApi.IBL
     {
         
         
@@ -14,9 +14,9 @@ namespace BL
         /// Returns a list of base stations
         /// </summary>
         /// <returns></returns>
-        public List<IBL.BO.BaseStationToList> ListOfStations()
+        public List<BaseStationToList> ListOfStations()
         {
-            List<IBL.BO.BaseStationToList> list = new();
+            List<BaseStationToList> list = new();
             foreach(DO.Station station in DalObject.DataSource.StationList)
             {
                 //converts DAL station to BL station to StationToList and adds to list
@@ -30,9 +30,9 @@ namespace BL
         /// Returns a list of customers
         /// </summary>
         /// <returns></returns>
-        public List<IBL.BO.CustomerToList> ListOfCustomers()
+        public List<CustomerToList> ListOfCustomers()
         {
-            List<IBL.BO.CustomerToList> list = new();
+            List<CustomerToList> list = new();
             foreach (DO.Customer c in DalObject.DataSource.CustomerList)
             {
                 //converts DAL customer to BL Customer to CustomerToList and adds to list
@@ -46,9 +46,9 @@ namespace BL
         /// Returns a list of packages
         /// </summary>
         /// <returns></returns>
-        public List<IBL.BO.PackageToList> ListOfPackages()
+        public List<PackageToList> ListOfPackages()
         {
-            List<IBL.BO.PackageToList> list = new();
+            List<PackageToList> list = new();
             foreach(DO.Package p in DalObject.DataSource.PackageList)
             {
                 //converts DAP package to BL package to packageToList and adds to list
@@ -61,14 +61,14 @@ namespace BL
         /// Returns a list of packages unassigned to drones
         /// </summary>
         /// <returns></returns>
-        public List<IBL.BO.PackageToList> ListOfUnassignedPackages()
+        public List<PackageToList> ListOfUnassignedPackages()
         {
-            List<IBL.BO.PackageToList> list = new();
+            List<PackageToList> list = new();
             foreach (DO.Package p in DalObject.DataSource.PackageList)
             {
                 //converts DAP package to BL package to packageToList and adds to list
-                IBL.BO.PackageToList Plist = DalPackageToList(p.Id);
-                if (Plist.PackageStatus != IBL.BO.PackageStatus.assigned)
+                PackageToList Plist = DalPackageToList(p.Id);
+                if (Plist.PackageStatus != PackageStatus.assigned)
                     list.Add(Plist);
             }
             return list;
@@ -78,9 +78,9 @@ namespace BL
         /// Returns a list of base stations that have availabe charging stations
         /// </summary>
         /// <returns></returns>
-        public List<IBL.BO.BaseStationToList> ListOfStationsWithChargeSlots()
+        public List<BaseStationToList> ListOfStationsWithChargeSlots()
         {
-            List<IBL.BO.BaseStationToList> list = new();
+            List<BaseStationToList> list = new();
             foreach (DO.Station station in DalObject.DataSource.StationList)
             {
                 if( DalToBlStation(station.Id).AvailableChargeSlots > 0)
@@ -103,9 +103,9 @@ namespace BL
         /// </summary>
         /// <param name="option"></param>
         /// <returns></returns>
-        public List<IBL.BO.DroneToList> DroneListFilter(string option)
+        public List<DroneToList> DroneListFilter(string option)
         {
-            Predicate<IBL.BO.DroneToList> predicate;
+            Predicate<DroneToList> predicate;
 
             switch (option)
             {
@@ -113,13 +113,13 @@ namespace BL
                     predicate = d => true;
                     break;
                 case "Free Drones":
-                    predicate = d => d.DroneStatus == IBL.BO.DroneStatus.free;
+                    predicate = d => d.DroneStatus == DroneStatus.free;
                     break;
                 case "Maintenance Drones":
-                    predicate = d => d.DroneStatus == IBL.BO.DroneStatus.maintenance;
+                    predicate = d => d.DroneStatus == DroneStatus.maintenance;
                     break;
                 case "Delivery Drones":
-                    predicate = d => d.DroneStatus == IBL.BO.DroneStatus.delivery;
+                    predicate = d => d.DroneStatus == DroneStatus.delivery;
                     break;
                 case "Light":
                     predicate = d => d.Weight == DO.WeightCategory.light;
@@ -131,7 +131,7 @@ namespace BL
                     predicate = d => d.Weight == DO.WeightCategory.heavy; 
                     break;
                 default:
-                    throw new IBL.BO.MessageException("Error: Invalid drone list filter option entered.");
+                    throw new MessageException("Error: Invalid drone list filter option entered.");
             }
 
             return BLObject.BLDroneList.FindAll(predicate);

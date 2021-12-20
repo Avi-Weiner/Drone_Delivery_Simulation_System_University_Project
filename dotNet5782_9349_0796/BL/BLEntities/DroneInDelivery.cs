@@ -4,17 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IBL
+namespace BL
 {
-    namespace BO
+    public class DroneInDelivery
     {
-        public class DroneInDelivery
-        {
-            public int Id { get; set; }
-            public double BatteryStatus { get; set; }
-            public Location CurrentLocation { get; set; }
+        public int Id { get; set; }
+        public double BatteryStatus { get; set; }
+        public Location CurrentLocation { get; set; }
 
-        }
     }
 }
+
 

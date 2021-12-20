@@ -90,7 +90,7 @@ namespace ConsoleUI_BL
         /// <param name="Bl"></param>
         static void PrintStationList(BL.BL bl)
         {
-            foreach(IBL.BO.BaseStationToList b in bl.ListOfStations())
+            foreach(BL.BaseStationToList b in bl.ListOfStations())
             {
                 Console.WriteLine(b.ToString() + '\n');
             }
@@ -102,7 +102,7 @@ namespace ConsoleUI_BL
         /// <param name="bl"></param>
         static void PrintDroneList(BL.BL bl)
         {
-            foreach(IBL.BO.DroneToList d in BL.BL.BLObject.BLDroneList)
+            foreach(BL.DroneToList d in BL.BL.BLObject.BLDroneList)
             {
                 Console.WriteLine(d.ToString() + '\n');
             }
@@ -114,7 +114,7 @@ namespace ConsoleUI_BL
         /// <param name="bl"></param>
         static void PrintCustomerList(BL.BL bl)
         {
-            foreach(IBL.BO.CustomerToList c in bl.ListOfCustomers())
+            foreach(BL.CustomerToList c in bl.ListOfCustomers())
             {
                 Console.WriteLine(c.ToString() + '\n');
             }
@@ -126,7 +126,7 @@ namespace ConsoleUI_BL
         /// <param name="bl"></param>
         static void PrintPackageList(BL.BL bl)
         {
-            foreach(IBL.BO.PackageToList p in bl.ListOfPackages())
+            foreach(BL.PackageToList p in bl.ListOfPackages())
             {
                 Console.WriteLine(p.ToString() + '\n');
             }
@@ -138,7 +138,7 @@ namespace ConsoleUI_BL
         /// <param name="bl"></param>
         static void PrintUnassignedPackages(BL.BL bl)
         {
-            foreach(IBL.BO.PackageToList p in bl.ListOfUnassignedPackages())
+            foreach(BL.PackageToList p in bl.ListOfUnassignedPackages())
             {
                 Console.WriteLine(p.ToString() + '\n');
             }
@@ -150,7 +150,7 @@ namespace ConsoleUI_BL
         /// <param name="bl"></param>
         static void PrintStationsWithAvailableChargeSlots(BL.BL bl)
         {
-            foreach(IBL.BO.BaseStationToList b in bl.ListOfStationsWithChargeSlots())
+            foreach(BL.BaseStationToList b in bl.ListOfStationsWithChargeSlots())
             {
                 Console.WriteLine(b.ToString() + '\n');
             }

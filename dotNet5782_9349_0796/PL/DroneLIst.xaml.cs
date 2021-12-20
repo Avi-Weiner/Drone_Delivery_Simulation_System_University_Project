@@ -19,8 +19,8 @@ namespace PL
     /// </summary>
     public partial class DroneList : Window
     {
-        IBL.IBL bl;
-        public DroneList(IBL.IBL BLObj)
+        BlApi.IBL bl;
+        public DroneList(BlApi.IBL BLObj)
         {
 
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace PL
 
         private void DroneListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            IBL.BO.DroneToList drone = (IBL.BO.DroneToList)DroneListView.SelectedItem;
+            BL.DroneToList drone = (BL.DroneToList)DroneListView.SelectedItem;
             int x = drone.Id;
             DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
             droneDisplayWindow.Show();
