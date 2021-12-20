@@ -13,7 +13,9 @@ namespace BL
         public partial class BLObject
         {
             public static List<DroneToList> BLDroneList = new List<DroneToList>();
-            
+
+            static BLObject ThisObject = null;
+
             public BLObject()
             {
                 DalApi.IDAL Dal = DalObject.DalObject.GetDalObject();
