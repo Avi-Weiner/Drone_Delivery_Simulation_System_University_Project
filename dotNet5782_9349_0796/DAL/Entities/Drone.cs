@@ -2,13 +2,13 @@
 
 
 
-    namespace DO
+namespace DO
+{
+    public struct Drone
     {
-        public struct Drone
-        {
-            public int Id { get; set; }
-            public string Model { get; set; }
-            public WeightCategory MaxWeight { get; set; }            
-        }
+        public int Id { get; set; }
+        public string Model { get; set; }
+        public WeightCategory MaxWeight { get; set; }            
     }
+}
 

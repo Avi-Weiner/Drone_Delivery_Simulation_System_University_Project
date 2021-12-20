@@ -2,12 +2,12 @@
 
 
 
-    namespace DO
+namespace DO
+{
+    public struct DroneCharger
     {
-        public struct DroneCharger
-        {
-            public int DroneId { get; set; }
-            public int StationId { get; set; }
-        }
+        public int DroneId { get; set; }
+        public int StationId { get; set; }
     }
+}
 
