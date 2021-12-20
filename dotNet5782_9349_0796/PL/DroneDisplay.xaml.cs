@@ -240,8 +240,8 @@ namespace PL
             
         }
 
-
         #endregion
+
         int ChargingTime;
         private void HoursCharged_TextChanged(object sender, TextChangedEventArgs e)
         {
