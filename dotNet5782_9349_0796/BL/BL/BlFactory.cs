@@ -4,21 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace BL
 {
-    public class DalFactory
+    public static class BlFactory
     {
+
         /// <summary>
         /// Creates and returns a DalObject (Singleton)
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
-        public static DalApi.IDAL GetDal(string param)
+        public static BlApi.IBL GetBl()
         {
-            return DalObject.DalObject.GetDalObject();
+            return BL.GetBLObject();
         }
+
     }
-    
 }
-
-

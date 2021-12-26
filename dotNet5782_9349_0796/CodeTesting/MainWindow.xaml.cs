@@ -25,7 +25,7 @@ namespace CodeTesting
         public MainWindow()
         {
             InitializeComponent();
-            BLObj = new BL.BL();
+            BLObj = BlFactory.GetBl();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

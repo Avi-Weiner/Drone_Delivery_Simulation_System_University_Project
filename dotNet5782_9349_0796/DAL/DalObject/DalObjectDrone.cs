@@ -55,7 +55,7 @@ namespace DalObject
             }
             catch (DO.MessageException e)
             {
-                Console.WriteLine(e);
+                throw new DO.MessageException("Error: DronePickUp(): List is Null");
             }
 
         }
@@ -67,23 +67,23 @@ namespace DalObject
         /// <param name="StationId"></param>
         public static void ChargeDrone(int DroneId, int StationId)
         {
-                //Get Drone
-                int i = GetDrone(DroneId);
+            //Get Drone
+            int i = GetDrone(DroneId);
 
-                //Get station
-                DO.Station S = DataSource.StationList.Find(x => x.Id == StationId);
-                DO.Drone D = DataSource.DroneList.Find(x => x.Id == DroneId);
+            //Get station
+            DO.Station S = DataSource.StationList.Find(x => x.Id == StationId);
+            DO.Drone D = DataSource.DroneList.Find(x => x.Id == DroneId);
 
-                //minus 1 to charge slots
-                S.ChargeSlots--;
-                int j = GetStation(StationId);
-                DataSource.StationList[j] = S;
+            //minus 1 to charge slots
+            S.ChargeSlots--;
+            int j = GetStation(StationId);
+            DataSource.StationList[j] = S;
 
-                //Adding instance of Dronecharger (Need to save this somewhere or it will just get deleted...),
-                //specs unspecific of where to save it so for the meantime it will be deleted
-                DO.DroneCharger newCharger = new DO.DroneCharger();
-                newCharger.DroneId = D.Id;
-                newCharger.StationId = S.Id;
+            //Adding instance of Dronecharger (Need to save this somewhere or it will just get deleted...),
+            //specs unspecific of where to save it so for the meantime it will be deleted
+            DO.DroneCharger newCharger = new DO.DroneCharger();
+            newCharger.DroneId = D.Id;
+            newCharger.StationId = S.Id;
         }
 
         /// <summary>
@@ -93,16 +93,16 @@ namespace DalObject
         /// <param name="StationID"></param>
         public static void ReleaseDrone(int DroneId, int StationId)
         {
-                //Get Drone
-                int i = GetDrone(DroneId);
+            //Get Drone
+            int i = GetDrone(DroneId);
 
-                //Get station
-                int j = GetStation(StationId);
+            //Get station
+            int j = GetStation(StationId);
 
-                //Free up charge slot 
-                DO.Station s = DataSource.StationList.Find(x => x.Id == StationId);
-                s.ChargeSlots++;
-                DataSource.StationList[j] = s;
+            //Free up charge slot 
+            DO.Station s = DataSource.StationList.Find(x => x.Id == StationId);
+            s.ChargeSlots++;
+            DataSource.StationList[j] = s;
 
         }
     }

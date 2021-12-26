@@ -24,12 +24,12 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            BLObj = new BL.BL();
+            BLObj = BL.BlFactory.GetBl();
         }
 
         private void DronesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-         
+          
         }
 
         //private void DroneList_Click(object sender, RoutedEventArgs e)

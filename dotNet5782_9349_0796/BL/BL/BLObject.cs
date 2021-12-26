@@ -10,10 +10,18 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
+        /// <summary>
+        /// ThisBL is a singleton BL
+        /// </summary>
+        static BL ThisBL = null;
+
         public partial class BLObject
         {
-            public static List<DroneToList> BLDroneList = new List<DroneToList>();
-            
+            public static List<DroneToList> BLDroneList = new List<DroneToList>();           
+
+            /// <summary>
+            /// BLObject constructor
+            /// </summary>
             public BLObject()
             {
                 DalApi.IDAL Dal = DAL.DalFactory.GetDal("");
@@ -131,11 +139,34 @@ namespace BL
                 
 
 
-            }//BLObject constructor
+            }
+
+            
         }//Class BLObject
-        public BL()
+
+        /// <summary>
+        /// BL Constructor
+        /// </summary>
+        private BL()
         {
             BLObject Object = new BLObject();
         }
+
+        /// <summary>
+        /// if BL was already intialized the object already there will be returned 
+        /// otherwise a new one will be created.
+        /// </summary>
+        /// <returns></returns>
+        public static BL GetBLObject()
+        {
+            if (ThisBL == null)
+            {
+                ThisBL = new BL();
+            }
+
+            return ThisBL;
+        }
+
+
     }//Class BL
 }//namespace BL
