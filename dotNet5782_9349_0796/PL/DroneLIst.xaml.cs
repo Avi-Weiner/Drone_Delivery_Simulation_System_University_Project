@@ -67,6 +67,9 @@ namespace PL
         /// <param name="e"></param>
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            //if there was no selection yet nothing should be refreshed.
+            if (StatusSelector.SelectedItem == null)
+                return;
             string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
             DroneListView.ItemsSource = bl.DroneListFilter(x);
         }
