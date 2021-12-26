@@ -125,12 +125,19 @@ namespace BL
             {
                 throw new MessageException("Error: Drone is not free.\n");
             }
+            if(DalObject.DataSource.PackageList.Count == 0)
+            {
+                throw new MessageException("Error: No packages to be collected.\n");
+            }
             List<DO.Package> Packages = DalObject.DataSource.PackageList;
             List<DO.Package> tempPack = new List<DO.Package>();
             Packages.RemoveAll(x => x.Delivered != null);
 
             Packages.RemoveAll(x => CheckCloseEnough(x, DroneIndex));
-            
+            if(Packages.Count == 0)
+            {
+                throw new MessageException("Error: Drone Can not take any pacakges.\n");
+            }
             int PackIndex = Packages.FindIndex(x => x.Priority == DO.Priority.emergency);
             if (PackIndex != -1)
             {
@@ -148,7 +155,7 @@ namespace BL
             
 
             DroneToList drone = BLObject.BLDroneList[DroneIndex];
-            if(Packages == null)
+            if(Packages.Count == 0)
             {
                 throw new MessageException("Error: Drone can't take any Package.\n");
             }
@@ -230,7 +237,11 @@ namespace BL
             DroneToList Drone = BLObject.BLDroneList[DroneIndex];
             int PackageIndex = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Drone.PackageId);
             DO.Package Package = DalObject.DataSource.PackageList[PackageIndex];
-            if(Package.Delivered != null)
+            if (Package.PickedUp == null)
+            {
+                throw new MessageException("Error: Package was not picked up yet.");
+            }
+            if (Package.Delivered != null)
             {
                 throw new MessageException("Error: Package was delivered already");
             }

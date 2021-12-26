@@ -25,26 +25,31 @@
 
         <!--Update drone Section -->
         <TextBlock  x:Name="DroneView" Visibility="Hidden" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
-        <TextBlock  x:Name="HoursChargedPrompt" Visibility="Hidden" HorizontalAlignment="Left" Margin="33,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.619,1.694" Width="203"><Run Text="Enter Amount of hours charged 1- 24"/><Run Language="en-au" Text=":"/></TextBlock>
-        <TextBlock  x:Name="DroneUpdateOptions" Visibility="Hidden" HorizontalAlignment="Left" Margin="352,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.619,1.694" Width="123"><Run Language="en-au" Text="Drone Update Options"/></TextBlock>
+        <TextBlock  x:Name="HoursChargedPrompt"  Visibility="Hidden"
+                    HorizontalAlignment="Left" Margin="33,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.619,1.694" Width="203"><Run Text="Enter Amount of hours charged 1- 24"/><Run Language="en-au" Text=":"/></TextBlock>
+        <TextBlock  x:Name="DroneUpdateOptions" Visibility="Hidden"
+                    HorizontalAlignment="Left" Margin="352,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.619,1.694" Width="123"><Run Language="en-au" Text="Drone Update Options"/></TextBlock>
 
         <TextBox  x:Name="HoursCharged" Visibility="Hidden" HorizontalAlignment="Left" Margin="236,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="HoursCharged_TextChanged"/>
         <TextBlock  x:Name="UpdateModel" Visibility="Hidden" HorizontalAlignment="Left" Margin="33,34,0,0" Text="Enter New Model Name:" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.619,1.694" Width="137"/>
 
         <Button x:Name="Update" Visibility="Hidden" Content="Update Model" HorizontalAlignment="Left" Margin="371,32,0,0" VerticalAlignment="Top" Click="Update_ButtonClick"/>
         <Button x:Name="Send" Visibility="Hidden" Content="Send a drone for a delivery" HorizontalAlignment="Left" Margin="371,106,0,0" VerticalAlignment="Top" Click="Send_ButtonClick"/>
-        <Button x:Name="Charge" Visibility="Hidden" Content="Send to charge" HorizontalAlignment="Left" Margin="371,81,0,0" VerticalAlignment="Top" Click="Charge_ButtonClick"/>
-        <Button x:Name="Release" Visibility="Hidden" Content="Release from charge" HorizontalAlignment="Left" Margin="371,56,0,0" VerticalAlignment="Top" Click="Release_ButtonClick"/>
+        <Button x:Name="Charge" Visibility="Hidden" Content="Send to charge" HorizontalAlignment="Left" Margin="371,57,0,0" VerticalAlignment="Top" Click="Charge_ButtonClick"/>
+        <Button x:Name="Release" Visibility="Hidden" Content="Release from charge" HorizontalAlignment="Left" Margin="371,81,0,0" VerticalAlignment="Top" Click="Release_ButtonClick"/>
         <Button x:Name="CollectPakcage" Visibility="Hidden" Content="Collect Package" HorizontalAlignment="Left" Margin="371,131,0,0" VerticalAlignment="Top" Click="Collect_Package_ButtonClick"/>
         <Button x:Name="DeliverPackage" Visibility="Hidden" Content="Deliver Pakcage" HorizontalAlignment="Left" Margin="371,156,0,0" VerticalAlignment="Top" Click="Deliver_Package_ButtonClick"/>
         <TextBox x:Name="newModel" Visibility="Hidden" HorizontalAlignment="Left" Margin="165,34,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <!--End Update drone Section -->
 
         <!--Add drone Section -->
-        <TextBlock x:Name="Model" Visibility="Hidden" HorizontalAlignment="Left" Margin="165,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Text="Model:" Height="16"/>
-        <TextBox x:Name="ModelTextBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="205,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" TextChanged="Model_TextBox_Changed" Height="18"/>
+        <TextBlock x:Name="Model" Visibility="Hidden"
+                   HorizontalAlignment="Left" Margin="165,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="70" Text="Model:" Height="16"/>
+        <TextBox x:Name="ModelTextBox" Visibility="Hidden"
+                 HorizontalAlignment="Left" Margin="205,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" TextChanged="Model_TextBox_Changed" Height="18"/>
 
-        <TextBlock x:Name="Weight" Visibility="Hidden" HorizontalAlignment="Left" Margin="109,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" Height="16"><Run Language="en-au" Text="Weight Catagory:"/></TextBlock>
+        <TextBlock x:Name="Weight" Visibility="Hidden"
+                   HorizontalAlignment="Left" Margin="109,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="112" Height="16"><Run Language="en-au" Text="Weight Catagory:"/></TextBlock>
         <ComboBox x:Name="WeightComboBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="205,86,0,0" VerticalAlignment="Top" Width="146" SelectionChanged="CMB_Weight_Changed" Height="22">
             <ComboBoxItem Content="light" />
             <ComboBoxItem Content="medium"/>

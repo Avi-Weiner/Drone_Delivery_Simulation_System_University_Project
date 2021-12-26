@@ -44,6 +44,8 @@
 
                 <ListBox x:Name="DroneListView" Background="#FFF34258" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="325" Width="807" MouseDoubleClick="DroneListView_MouseDoubleClick"/>
             </ListBox>
+            <Button Content="&#11118;" FontSize="17" Background="GreenYellow"  HorizontalAlignment="Left" Margin="210,45,0,0" VerticalAlignment="Top" Height="25" Width="25" Click="Button_Click_1"/>
+
 
         </Grid>
     </ScrollViewer>

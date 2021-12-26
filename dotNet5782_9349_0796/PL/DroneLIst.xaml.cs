@@ -59,5 +59,16 @@ namespace PL
             DroneDisplay droneDisplayWindow = new DroneDisplay(bl);
             droneDisplayWindow.Show();
         }
+        /// <summary>
+        /// This function will simply reselect the item currently selected which will 
+        /// inevitebly refresh the list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
+            DroneListView.ItemsSource = bl.DroneListFilter(x);
+        }
     }
 }
