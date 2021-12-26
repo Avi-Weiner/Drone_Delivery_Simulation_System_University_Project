@@ -30,7 +30,7 @@ namespace DalObject
             /// <summary>
             /// percent charge rate per hour
             /// </summary>
-            public static double ChargingRate { get; set; } = 0.5;
+            public static double ChargingRate { get; set; } = 1;
 
             //Told to include the below field in exercise 1 but I am not sure what it is.
             //static int PackagesId;
@@ -52,6 +52,10 @@ namespace DalObject
         public static double GetLightWeight() { return Config.LightWeight; }
         public static double GetMediumWeight() { return Config.MediumWeight; }
         public static double GetHeavyWeight() { return Config.HeavyWeight; }
+        /// <summary>
+        /// Returns % charge rate per hour
+        /// </summary>
+        /// <returns></returns>
         public static double GetChargingRate() { return Config.ChargingRate; }
         /// <summary>
         /// Gets the next unique Id to be given out. 
