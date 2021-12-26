@@ -135,11 +135,13 @@ namespace PL
             {
                 DateTime x = DateTime.MinValue;
                 x = x.AddHours(ChargingTime);
-                MessageBox.Show("Drone released from charge successfully");
+               
                 
-                bl.ReleaseDroneFromCharge(drone.Id, x);
+                bl.ReleaseDroneFromCharge(drone.Id);
                 drone = bl.DroneToListToDrone(drone.Id);
+                MessageBox.Show("Drone released from charge successfully");
                 DroneView.Text = drone.ToString();
+                
             }
             catch(BL.MessageException m)
             {

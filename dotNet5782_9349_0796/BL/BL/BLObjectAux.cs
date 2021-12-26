@@ -88,12 +88,11 @@ namespace BL
             /// </summary>
             /// <param name="ChargeTime"></param>
             /// <returns></returns>
-            public static double ChargeForTime(DateTime ChargeTime)
+            public static double ChargeForTime(TimeSpan ChargeTime)
             {
-                int Hours = ChargeTime.Hour;
-                int Minutes = ChargeTime.Minute;
+                
+                double Hours = ChargeTime.TotalHours;
                 double Charge = Hours * DalObject.DataSource.GetChargingRate();
-                Charge += Minutes * (0.016666* DalObject.DataSource.GetChargingRate());
                 return Charge;
             }
         }

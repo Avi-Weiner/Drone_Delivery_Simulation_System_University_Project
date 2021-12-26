@@ -15,7 +15,7 @@ namespace BL
         public DroneStatus DroneStatus { get; set; }
         public Location Location { get; set; }
         public int? PackageId { get; set; }
-
+        public DateTime? ChargingTimeStarted { get; set; }
         public override string ToString()
         {
             return "\nDrone ID: " + Id +

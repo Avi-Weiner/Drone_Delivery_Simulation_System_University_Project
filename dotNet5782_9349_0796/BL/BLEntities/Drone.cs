@@ -19,6 +19,7 @@ namespace BL
         /// Nullable package, if the drone isn't assigned to a package it is null
         /// </summary>
         public Package? PackageInTransfer { get; set; }
+        public DateTime? ChargeStart { get; set; }
 #nullable disable
 
         public override string ToString()

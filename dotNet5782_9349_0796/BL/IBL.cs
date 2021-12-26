@@ -21,7 +21,7 @@ namespace BlApi
         void AssignPackageToDrone(int DroneId);
         void DroneCollectsAPackage(int DroneId);
         void DroneDeliversPakcage(int DroneId);
-        public void ReleaseDroneFromCharge(int DroneId, DateTime ChargeTime);
+        public void ReleaseDroneFromCharge(int DroneId);
 
         /// <summary>
         /// Returns a filtered DroneToList depending on the entered option:

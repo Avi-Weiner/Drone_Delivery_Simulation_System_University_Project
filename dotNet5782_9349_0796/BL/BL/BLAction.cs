@@ -39,7 +39,7 @@ namespace BL
 
             if(StationClose.ChargeSlots<=0)
             {
-                throw new MessageException("Error: not enough charging slots");
+                throw new MessageException("Error: not enough charging slots in station: \n" + StationClose.ChargeSlots + ' ' + StationClose.Id);
             }
             #endregion
 
@@ -52,6 +52,7 @@ namespace BL
             int StationIndex = DalObject.DataSource.StationList.FindIndex(x => x.Id == StationClose.Id);
             StationClose.ChargeSlots -= 1;
             DalObject.DataSource.StationList[StationIndex] = StationClose;
+            BLObject.BLDroneList[DroneIndex].ChargingTimeStarted = DateTime.Now;
             ///iii adding a mathcing instance///////////////////////////////////////////////////////////////////////////////////////
         }
 
@@ -63,10 +64,10 @@ namespace BL
         /// location will be the statoin where it was charged.
         /// </summary>
         /// <param name="DroneId"></param>
-        /// <param name="ChargeTime"></param>
-        public void ReleaseDroneFromCharge(int DroneId, DateTime ChargeTime)//supposed to take in a time not sure whatit's supposed to do so skipped it for now.
+        
+        public void ReleaseDroneFromCharge(int DroneId)
         {
-
+            DateTime ReleaseTime = DateTime.Now;
             int DroneIndex = BLObject.BLDroneList.FindIndex(x => x.Id == DroneId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (DroneIndex == -1)
@@ -77,6 +78,8 @@ namespace BL
             {
                 throw new MessageException("Error: Drone is not in maintenance.\n");
             }
+            DateTime StartingTime = (DateTime)BLObject.BLDroneList[DroneIndex].ChargingTimeStarted;
+            TimeSpan ChargeTime = ReleaseTime - StartingTime;
 
             double Charge = BLObject.BLDroneList[DroneIndex].BatteryStatus;
             Charge += BLObject.ChargeForTime(ChargeTime);
@@ -84,6 +87,7 @@ namespace BL
                 Charge = 1;
             BLObject.BLDroneList[DroneIndex].BatteryStatus = Charge;
             BLObject.BLDroneList[DroneIndex].DroneStatus = DroneStatus.free;
+            BLObject.BLDroneList[DroneIndex].ChargingTimeStarted = null;
             DO.Station StationClose = BLObject.ClosestStation(BLObject.BLDroneList[DroneIndex].Location);
 
             int StationIndex = DalObject.DataSource.StationList.FindIndex(x => x.Id == StationClose.Id);
