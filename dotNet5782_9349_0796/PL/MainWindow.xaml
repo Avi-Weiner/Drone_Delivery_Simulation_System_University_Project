@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="White"/>
+                <GradientStop Color="Blue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <!--<Image Source="/benyamin-bohlouli-ysT4Bo9LvXU-unsplash.jpg" Stretch="UniformToFill"></Image>-->
+        <Button Content="DroneLIst" Margin="349,187,349,197" Click="Button_Click" Background="LightBlue"/>
         <Image Source="/benyamin-bohlouli-ysT4Bo9LvXU-unsplash.jpg" Stretch="UniformToFill"></Image>
         <Button Content="DroneLIst" Margin="349,187,349,197" Click="Button_Click" Background="#FFB92EBF"/>
         <Button Content="StationList" HorizontalAlignment="Left" Margin="166,212,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
