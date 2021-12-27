@@ -9,6 +9,7 @@
     <Grid>
         <Image Source="/benyamin-bohlouli-ysT4Bo9LvXU-unsplash.jpg" Stretch="UniformToFill"></Image>
         <Button Content="DroneLIst" Margin="349,187,349,197" Click="Button_Click" Background="#FFB92EBF"/>
+        <Button Content="StationList" HorizontalAlignment="Left" Margin="166,212,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
 
         <!--<Grid Name="MainGrid">
         <Grid.RowDefinitions>

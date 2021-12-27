@@ -51,5 +51,6 @@ namespace BlApi
         /// <param name="id"></param>
         /// <returns></returns>
         public Package DalToBlPackage(int id);
+        public List<BaseStationToList> StationListFilter(string option);
     }
 }

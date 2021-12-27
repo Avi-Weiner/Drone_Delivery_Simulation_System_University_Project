@@ -136,7 +136,21 @@ namespace BL
 
             return BLObject.BLDroneList.FindAll(predicate);
         }
+        public List<BaseStationToList> StationListFilter(string option)
+        {
+            
+            switch (option)
+            {
+                case "All Stations":
+                    return ListOfStations();
+                    
+                default:
+                    throw new MessageException("Error: Invalid drone list filter option entered.");
+            }
+            
 
+        }
 
     }
+    
 }
