@@ -26,6 +26,7 @@
 
                 <ComboBox x:Name="StatusSelector" Margin="0,44,207,141" SelectionChanged="StatusSelector_SelectionChanged" Grid.ColumnSpan="2">
                     <ComboBoxItem x:Name="AllStations" Content="All Stations" />
+                    <ComboBoxItem x:Name="AvailableChargeSlots" Content="Available charge slots" />
 
                 </ComboBox>
                 <TextBlock HorizontalAlignment="Center" Margin="0,23,0,0" Text="Station list filter options:" TextWrapping="Wrap" VerticalAlignment="Top"/>
