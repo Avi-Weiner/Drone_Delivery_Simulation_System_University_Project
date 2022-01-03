@@ -26,6 +26,11 @@ namespace PL
             InitializeComponent();
             BLObj = BL.BlFactory.GetBl();
         }
+        public MainWindow(BlApi.IBL bL)
+        {
+            InitializeComponent();
+            BLObj = bL;
+        }
 
         private void DronesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -42,6 +47,7 @@ namespace PL
         {
             DroneList DroneListWindow = new DroneList(BLObj);
             DroneListWindow.Show();
+            this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

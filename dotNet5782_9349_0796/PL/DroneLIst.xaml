@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="
         st" Height="450" Width="830">
-    
+
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid Name="MainGrid">
 
@@ -27,7 +27,9 @@
 
 
 
-                <ComboBox x:Name="StatusSelector" Margin="0,44,207,141" SelectionChanged="StatusSelector_SelectionChanged" Grid.ColumnSpan="2" Background="LightBlue">
+                <ComboBox x:Name="StatusSelector" IsEditable="True"
+ IsReadOnly="True"
+ Text="-- Select Drone List --" Margin="0,44,207,141" SelectionChanged="StatusSelector_SelectionChanged" Grid.ColumnSpan="2" Background="LightBlue">
                     <ComboBoxItem x:Name="AllDrones" Content="All Drones" />
                     <ComboBoxItem x:Name="Free" Content="Free Drones"/>
                     <ComboBoxItem x:Name="Maintenance" Content="Maintenance Drones"/>
@@ -46,7 +48,7 @@
 
                 <ListBox x:Name="DroneListView" Background="LightCyan" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="325" Width="807" MouseDoubleClick="DroneListView_MouseDoubleClick"/>
             </ListBox>
-            <Button Content="&#11118;" FontSize="17" Background="GreenYellow"  HorizontalAlignment="Left" Margin="210,45,0,0" VerticalAlignment="Top" Height="25" Width="25" Click="Button_Click_1"/>
+            <Button Content="&#11118;" FontSize="17" Background="GreenYellow"  HorizontalAlignment="Left" Margin="229,45,0,0" VerticalAlignment="Top" Height="25" Width="25" Click="Button_Click_1"/>
 
 
         </Grid>

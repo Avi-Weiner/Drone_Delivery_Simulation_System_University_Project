@@ -52,5 +52,7 @@ namespace BlApi
         /// <returns></returns>
         public Package DalToBlPackage(int id);
         public List<BaseStationToList> StationListFilter(string option);
+        public BaseStationToList StationToStationToList(int id);
+        public BaseStation DalToBlStation(int id);
     }
 }
