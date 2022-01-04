@@ -1,0 +1,52 @@
+﻿<Window x:Class="PL.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="White"/>
+                <GradientStop Color="Blue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <!--<Image Source="/benyamin-bohlouli-ysT4Bo9LvXU-unsplash.jpg" Stretch="UniformToFill"></Image>-->
+        <Button Content="DroneLIst" Margin="349,187,349,197" Click="Button_Click" Background="LightBlue"/>
+        <Image Source="/benyamin-bohlouli-ysT4Bo9LvXU-unsplash.jpg" Stretch="UniformToFill"></Image>
+        <Button Content="DroneLIst" Margin="349,187,349,197"  Click="Button_Click" Background="#FFB92EBF"/>
+        <Button Content="StationList" HorizontalAlignment="Left" Margin="166,212,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+
+        <!--<Grid Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="195*"/>
+            <RowDefinition Height="190*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Name="StatusSelector" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1"/>
+            <TextBox Grid.Column="0"/>
+        </Grid>
+        <ListBox Grid.Row="2"/>
+        <ListView x:Name="DronesListView" Grid.Row="1" SelectionChanged="DronesListView_SelectionChanged">
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+            <Button x:Name="DroneList" Content="DroneList" Click="DroneList_Click" />
+        </ListView>
+        <Image HorizontalAlignment="Left" Height="100" Margin="167,130,0,0" Grid.RowSpan="2" Grid.Row="1" VerticalAlignment="Top" Width="100" Source="/benyamin-bohlouli-ysT4Bo9LvXU-unsplash.jpg"/>
+    </Grid>-->
+    </Grid>
+</Window>

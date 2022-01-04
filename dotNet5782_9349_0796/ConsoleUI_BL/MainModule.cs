@@ -9,7 +9,7 @@ namespace ConsoleUI_BL
             
             int option = 0;
             int InnerOption;
-            BL.BL Bl = new();
+            BlApi.IBL Bl = BL.BlFactory.GetBl();
 
             //ID for all the Id's to be entered by the user
             int id;
@@ -30,16 +30,16 @@ namespace ConsoleUI_BL
                             switch (InnerOption)
                             {
                                 case 1:
-                                    AddBaseStation(Bl);
+                                  //  AddBaseStation(Bl);
                                     break;
                                 case 2:
-                                    AddDrone(Bl);
+                                    //AddDrone(Bl);
                                     break;
                                 case 3:
-                                    AddNewCustomer(Bl);
+                                    //AddNewCustomer(Bl);
                                     break;
                                 case 4:
-                                    AddAPakcage(Bl);
+                                    //AddAPakcage(Bl);
                                     break;
                             }
                             break;
@@ -51,13 +51,13 @@ namespace ConsoleUI_BL
                             switch (InnerOption)
                             {
                                 case 1:
-                                    UpdateDrone(Bl);
+                                   // UpdateDrone(Bl);
                                     break;
                                 case 2:
-                                    UpdateStation(Bl);
+                                    //UpdateStation(Bl);
                                     break;
                                 case 3:
-                                    UpdateCustomer(Bl);
+                                    //UpdateCustomer(Bl);
                                     break;
 
                             }
@@ -78,7 +78,7 @@ namespace ConsoleUI_BL
                                 case 2:
                                     Console.WriteLine("\nEnter charge time in dateTime Format: ");
                                     DateTime ChargeTime = Convert.ToDateTime(Console.ReadLine());
-                                    Bl.ReleaseDroneFromCharge(DroneId, ChargeTime);
+                                   
                                     break;
                                 case 3:
                                     Bl.DroneCollectsAPackage(DroneId);
@@ -112,7 +112,7 @@ namespace ConsoleUI_BL
                                     //Customer Print
                                     Console.WriteLine("\nEnter Customer Id: ");
                                     id = Convert.ToInt32(Console.ReadLine());
-                                    Console.WriteLine(Bl.DalToBlCustomer(id).ToString());
+                                    //Console.WriteLine(Bl.DalToBlCustomer(id).ToString());
                                     break;
                                 case 4:
                                     //Package print

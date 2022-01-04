@@ -152,6 +152,8 @@ namespace PL
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
+            DroneList droneList = new DroneList(bl);
+            droneList.Show();
             Close();
         }
 

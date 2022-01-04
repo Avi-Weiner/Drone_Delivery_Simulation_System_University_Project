@@ -38,15 +38,18 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow m = new MainWindow(bl);
+            m.Show();
             Close();
         }
 
         private void DroneListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BL.DroneToList drone = (BL.DroneToList)DroneListView.SelectedItem;
-            int x = drone.Id;
-            DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
-            droneDisplayWindow.Show();
+            BL.BaseStationToList station = (BL.BaseStationToList)DroneListView.SelectedItem;
+            int x = station.Id;
+            StationDisplay stationDisplayWindow = new StationDisplay(bl.DalToBlStation(x), bl);
+            stationDisplayWindow.Show();
+            Close();
         }
 
         /// <summary>
@@ -56,8 +59,9 @@ namespace PL
         /// <param name="e"></param>
         private void Add_Drone_ButtonClick(object sender, RoutedEventArgs e)
         {
-            DroneDisplay droneDisplayWindow = new DroneDisplay(bl);
-            droneDisplayWindow.Show();
+            StationDisplay stationDisplayWindow = new StationDisplay(bl);
+            
+            stationDisplayWindow.Show();
         }
         /// <summary>
         /// This function will simply reselect the item currently selected which will 

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="StationList" Height="450" Width="800">
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="0,0,-49,-6">
         <Grid Name="MainGrid">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
@@ -24,20 +24,24 @@
 
 
 
-                <ComboBox x:Name="StatusSelector" Margin="0,44,207,141" SelectionChanged="StatusSelector_SelectionChanged" Grid.ColumnSpan="2">
-                    <ComboBoxItem x:Name="AllStations" Content="All Stations" />
+                <ComboBox x:Name="StatusSelector" IsEditable="True"
+ IsReadOnly="True"
+ Text="-- Select Station List --" Margin="0,44,207,141" SelectionChanged="StatusSelector_SelectionChanged" Grid.ColumnSpan="2">
+
+                    <ComboBoxItem x:Name="AllStations" Content="All Stations"  />
+                    <ComboBoxItem x:Name="AvailableChargeSlots" Content="Available charge slots" />
 
                 </ComboBox>
                 <TextBlock HorizontalAlignment="Center" Margin="0,23,0,0" Text="Station list filter options:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                <Button Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="146,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Button_Click"/>
+                <Button Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="123,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Button_Click"/>
                 <Button Content="Add Station" Grid.Column="3" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Height="28" Width="94" Click="Add_Drone_ButtonClick"/>
             </Grid>
 
-            <ListBox Margin="0,75,0,0" Grid.RowSpan="2">
+            <ListBox Margin="0,75,65,0" Grid.RowSpan="2">
 
-                <ListBox x:Name="DroneListView" Background="#FFF34258" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="325" Width="807" MouseDoubleClick="DroneListView_MouseDoubleClick"/>
+                <ListBox x:Name="DroneListView" ScrollViewer.HorizontalScrollBarVisibility="Auto" Background="LightCyan" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="325" Width="768" MouseDoubleClick="DroneListView_MouseDoubleClick"/>
             </ListBox>
-            <Button Content="&#11118;" FontSize="17" Background="GreenYellow"  HorizontalAlignment="Left" Margin="210,45,0,0" VerticalAlignment="Top" Height="25" Width="25" Click="Button_Click_1"/>
+            <Button Content="&#11118;" FontSize="17" Background="GreenYellow"  HorizontalAlignment="Left" Margin="248,45,0,0" VerticalAlignment="Top" Height="25" Width="33" Click="Button_Click_1"/>
 
 
         </Grid>

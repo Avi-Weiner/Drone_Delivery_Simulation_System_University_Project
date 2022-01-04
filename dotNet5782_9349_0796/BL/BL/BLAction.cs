@@ -49,6 +49,7 @@ namespace BL
                 BLObject.DistanceBetween(BLObject.BLDroneList[DroneIndex].Location, BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude)));
             BLObject.BLDroneList[DroneIndex].Location = BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude);
             BLObject.BLDroneList[DroneIndex].DroneStatus = DroneStatus.maintenance;
+
             int StationIndex = DalObject.DataSource.StationList.FindIndex(x => x.Id == StationClose.Id);
             StationClose.ChargeSlots -= 1;
             DalObject.DataSource.StationList[StationIndex] = StationClose;

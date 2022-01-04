@@ -33,12 +33,16 @@ namespace PL
 
             string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
             DroneListView.ItemsSource = bl.DroneListFilter(x);
+            
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow mainWindow = new MainWindow(bl);
+            mainWindow.Show();
             Close();
+            
         }
 
         private void DroneListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -47,6 +51,7 @@ namespace PL
             int x = drone.Id;
             DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
             droneDisplayWindow.Show();
+            Close();
         }
 
         /// <summary>
