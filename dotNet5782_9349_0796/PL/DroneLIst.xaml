@@ -41,7 +41,7 @@
                 <RadioButton x:Name="Customers" Content="Customer Lists" HorizontalAlignment="Left" Margin="25,29,0,0" VerticalAlignment="Top" Checked="Customers_Checked"/>
                 <RadioButton x:Name="Packages"  Content="Package Lists" HorizontalAlignment="Left" Margin="115,30,0,0" VerticalAlignment="Top" Checked="Packages_Checked"/>
                 <Button Content="Add Station" Grid.Column="2" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Height="28" Width="94" Background="LightBlue" Click="Station_Click"/>
-                <Button Content="Add Customer" Grid.Column="2" HorizontalAlignment="Left" Margin="113,31,0,0" VerticalAlignment="Top" Height="28" Width="94" />
+                <Button Content="Add Customer" Grid.Column="2" HorizontalAlignment="Left" Margin="113,31,0,0" VerticalAlignment="Top " Height="28" Width="94" />
                 <Button Content="Add Package" Grid.Column="1" HorizontalAlignment="Left" Margin="81,31,0,0" VerticalAlignment="Top" Height="28" Width="94" Grid.ColumnSpan="2"/>
             </Grid>
 
