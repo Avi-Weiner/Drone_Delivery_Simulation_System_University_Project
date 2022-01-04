@@ -41,6 +41,10 @@ namespace PL
             ChargingStations.Text = Station.AvailableChargeSlots.ToString();
             StationView.Text = station.ToString();
         }
+        //public StationDisplay(BlApi.IBL BL)
+        //{
+            //StationView.Visibility
+       // }
 
        
 

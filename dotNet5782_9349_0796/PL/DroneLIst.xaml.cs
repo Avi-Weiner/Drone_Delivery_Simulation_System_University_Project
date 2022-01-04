@@ -47,6 +47,7 @@ namespace PL
 
         private void DroneListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            MessageBox.Show(DroneListView.SelectedItem.GetType().ToString());
             BL.DroneToList drone = (BL.DroneToList)DroneListView.SelectedItem;
             int x = drone.Id;
             DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
@@ -77,6 +78,11 @@ namespace PL
                 return;
             string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
             DroneListView.ItemsSource = bl.DroneListFilter(x);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            StatusSelector.Items.Add(AllDrones);
         }
     }
 }
