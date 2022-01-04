@@ -23,7 +23,12 @@
         <Button Content="Close" HorizontalAlignment="Left" Margin="741,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Close_ButtonClick" Height="20" Width="33"/>
 
         <!--Update drone Section -->
-        <TextBlock  x:Name="DroneView" Visibility="visible" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+        <TextBlock  x:Name="StationView" Visibility="visible" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+        <TextBox x:Name="StationName" HorizontalAlignment="Left" Margin="140,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="StationName_TextChanged"/>
+        <TextBox x:Name="ChargingStations" HorizontalAlignment="Left" Margin="140,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="StationChargeSlots_TextChanged"/>
+        <Button x:Name="UpdateButton" Background="YellowGreen" Content="Update" HorizontalAlignment="Left" Margin="181,161,0,0" VerticalAlignment="Top" Click="UpdateButton_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="70,54,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="18,113,0,0" Text="Charging Stations" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <!--End Update drone Section -->
 
         <!--Add drone Section -->

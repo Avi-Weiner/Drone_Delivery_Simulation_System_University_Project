@@ -38,6 +38,8 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow m = new MainWindow(bl);
+            m.Show();
             Close();
         }
 
@@ -47,6 +49,7 @@ namespace PL
             int x = station.Id;
             StationDisplay stationDisplayWindow = new StationDisplay(bl.DalToBlStation(x), bl);
             stationDisplayWindow.Show();
+            Close();
         }
 
         /// <summary>

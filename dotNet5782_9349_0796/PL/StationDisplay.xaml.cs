@@ -35,16 +35,19 @@ namespace PL
             station = Station;
 
             InitializeComponent();
-            DroneView.Visibility = Visibility.Visible;
-            
-
-            DroneView.Text = station.ToString();
+            StationView.Visibility = Visibility.Visible;
+            UpdateButton.Visibility = Visibility.Visible;
+            StationName.Text = Station.Name.ToString();
+            ChargingStations.Text = Station.AvailableChargeSlots.ToString();
+            StationView.Text = station.ToString();
         }
 
        
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
+            StationList st = new StationList(bl);
+            st.Show();
             Close();
         }
 
@@ -61,8 +64,40 @@ namespace PL
             InitializeComponent();
         }
 
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.UpdateStation(station.Id, Int32.Parse(StationName.Text), Int32.Parse(ChargingStations.Text));
+                MessageBox.Show("Station updated successfully");
+                StationList st = new StationList(bl);
+                st.Show();
+                Close();
+            }
+            catch (BL.MessageException m)
+            {
+                MessageBox.Show(m.ToString());
+            }
+        }
+        private void StationName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!(int.TryParse(((TextBox)sender).Text, out int i)) && ((TextBox)sender).Text != "")
+            {
+                MessageBox.Show("Invalid input");
+                ((TextBox)sender).Text = station.Name.ToString();
+            }
 
- 
+            
+        }
+        private void StationChargeSlots_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!(int.TryParse(((TextBox)sender).Text, out int i)) && ((TextBox)sender).Text != "")
+            {
+                MessageBox.Show("Invalid input");
+                ((TextBox)sender).Text = station.AvailableChargeSlots.ToString();
+            }
 
+
+        }
     }
 }

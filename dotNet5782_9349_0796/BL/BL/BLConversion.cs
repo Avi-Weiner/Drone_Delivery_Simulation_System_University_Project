@@ -191,7 +191,7 @@ namespace BL
             List<DroneInCharge> ChargeList = new();
             foreach(DroneToList Drone in BLObject.BLDroneList)
             {// Drone.Location == b.Location&& Drone.DroneStatus == DroneStatus.maintenance
-                if ((Drone.Location.latitude == b.Location.latitude) && (Drone.DroneStatus == DroneStatus.maintenance) )//always returns false no matter what
+                if ((Drone.Location.latitude == b.Location.latitude && Drone.Location.longitude == b.Location.longitude) && (Drone.DroneStatus == DroneStatus.maintenance) )//always returns false no matter what
                     ChargeList.Add(DroneToListToInCharge(Drone.Id));
             }
 

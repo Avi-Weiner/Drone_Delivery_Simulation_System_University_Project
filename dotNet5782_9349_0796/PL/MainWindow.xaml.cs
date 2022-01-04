@@ -54,6 +54,7 @@ namespace PL
         {
             StationList StationListWindow = new StationList(BLObj);
             StationListWindow.Show();
+            Close();
         }
     }
 }
