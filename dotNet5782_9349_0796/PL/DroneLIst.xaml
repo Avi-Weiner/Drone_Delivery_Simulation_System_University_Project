@@ -33,9 +33,13 @@
                     <ComboBoxItem Content="Medium"/>
                     <ComboBoxItem Content="Heavy"/>
                 </ComboBox>
-                
+
                 <TextBlock HorizontalAlignment="Center" Margin="0,23,0,0" Text="Drone list filter options:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                <Button Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="146,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Close_Button_Click"/>
+                
+                <Button Grid.Column="3" HorizontalAlignment="Left" Margin="146,10,0,0" VerticalAlignment="Top" Click="Close_Button_Click" Height="18" Width="18">
+                    <Image Source="/Pictures/CloseCross.png"></Image>
+                </Button>
+                
                 <Button Content="Add Drone" Grid.Column="3" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Height="28" Width="94" Background="LightBlue" Click="Add_Drone_ButtonClick"/>
                 <Button Content="Stations" HorizontalAlignment="Left" Margin="12,14,0,0" VerticalAlignment="Top" Click="Button_Click_2"/>
             </Grid>
