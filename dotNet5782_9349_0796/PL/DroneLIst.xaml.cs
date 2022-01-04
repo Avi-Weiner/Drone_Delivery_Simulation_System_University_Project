@@ -28,6 +28,7 @@ namespace PL
             //DroneListView.ItemsSource = BLObj.DroneListFilter("free");
             bl = BLObj;
         }
+
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -37,7 +38,7 @@ namespace PL
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow(bl);
             mainWindow.Show();
@@ -64,13 +65,14 @@ namespace PL
             DroneDisplay droneDisplayWindow = new DroneDisplay(bl);
             droneDisplayWindow.Show();
         }
+
         /// <summary>
         /// This function will simply reselect the item currently selected which will 
         /// inevitebly refresh the list.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Refresh_Button_Click(object sender, RoutedEventArgs e)
         {
             //if there was no selection yet nothing should be refreshed.
             if (StatusSelector.SelectedItem == null)
