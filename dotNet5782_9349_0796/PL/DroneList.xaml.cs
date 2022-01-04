@@ -39,8 +39,10 @@ namespace PL
             string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
             if ((bool)Stations.IsChecked)
                 DroneListView.ItemsSource = bl.StationListFilter(x);
-            else if((bool)Drones.IsChecked)
+            else if ((bool)Drones.IsChecked)
                 DroneListView.ItemsSource = bl.DroneListFilter(x);
+            else if ((bool)Customers.IsChecked)
+                DroneListView.ItemsSource = bl.ListOfCustomers();
             
 
         }
@@ -71,6 +73,13 @@ namespace PL
                     int y = station.Id;
                     StationDisplay stationDisplayWindow = new StationDisplay(bl.DalToBlStation(y), bl);
                     stationDisplayWindow.Show();
+                    Close();
+                    break;
+                case "BL.CustomerToList":
+                    BL.CustomerToList customer = (BL.CustomerToList)DroneListView.SelectedItem;
+                    int z = customer.Id;
+                    CustomerDisplay CustomerDisplayWindow = new CustomerDisplay(bl.DalToBlCustomer(z), bl);
+                    CustomerDisplayWindow.Show();
                     Close();
                     break;
 
