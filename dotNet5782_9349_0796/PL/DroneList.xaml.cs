@@ -20,6 +20,8 @@ namespace PL
     public partial class DroneList : Window
     {
         BlApi.IBL bl;
+        public List<string> ListType { get; set; }
+        
         public DroneList(BlApi.IBL BLObj)
         {
 
@@ -27,11 +29,13 @@ namespace PL
             //StatusSelector.SelectedItem = AllDrones;
             //DroneListView.ItemsSource = BLObj.DroneListFilter("free");
             bl = BLObj;
+            
         }
 
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (StatusSelector.SelectedItem == null)
+                return;
             string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
             DroneListView.ItemsSource = bl.DroneListFilter(x);
             
@@ -84,12 +88,49 @@ namespace PL
 
         private void Stations_Checked(object sender, RoutedEventArgs e)
         {
-            StatusSelector.Items.Remove(AllDrones);
+            ListType = new List<string>()
+            {
+                "All Stations",
+                "Available Charge Slots"
+            };
+            StatusSelector.ItemsSource = ListType;
         }
 
         private void Drones_Checked(object sender, RoutedEventArgs e)
         {
-            StatusSelector.Items.Add(AllDrones);
+            //StatusSelector.Items.Clear();
+            ListType = new List<string>()
+            {
+                "All Drones",
+                "Free Drones",
+                "Maintenance Drones",
+                "DeliveryDrones",
+                "Light",
+                "Medium",
+                "Heavy"
+            };
+            StatusSelector.ItemsSource = ListType;
+            
+           
+        }
+
+        private void Customers_Checked(object sender, RoutedEventArgs e)
+        {
+            ListType = new List<string>()
+            {
+                "All Customers"
+            };
+            StatusSelector.ItemsSource = ListType;
+        }
+
+        private void Packages_Checked(object sender, RoutedEventArgs e)
+        {
+            ListType = new List<string>()
+            {
+                "All Packages",
+                "Unassigned Packages"
+            };
+            StatusSelector.ItemsSource = ListType;
         }
     }
 }
