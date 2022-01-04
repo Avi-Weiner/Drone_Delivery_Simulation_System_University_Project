@@ -82,7 +82,12 @@ namespace PL
             DroneListView.ItemsSource = bl.DroneListFilter(x);
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Stations_Checked(object sender, RoutedEventArgs e)
+        {
+            StatusSelector.Items.Remove(AllDrones);
+        }
+
+        private void Drones_Checked(object sender, RoutedEventArgs e)
         {
             StatusSelector.Items.Add(AllDrones);
         }
