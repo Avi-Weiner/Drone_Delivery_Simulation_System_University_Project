@@ -29,7 +29,12 @@
                 Text="-- Select Drone List --" Height="auto" Margin="0,44,207,141" SelectionChanged="StatusSelector_SelectionChanged" Grid.ColumnSpan="2" Background="LightBlue">
                    
                 </ComboBox>
-                <Button Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="146,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Close_Button_Click"/>
+
+                
+                <Button Grid.Column="3" HorizontalAlignment="Left" Margin="146,10,0,0" VerticalAlignment="Top" Click="Close_Button_Click" Height="18" Width="18">
+                    <Image Source="/Pictures/CloseCross.png"></Image>
+                </Button>
+                
                 <Button Content="Add Drone" Grid.Column="3" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Height="28" Width="94" Background="LightBlue" Click="Add_Drone_ButtonClick"/>
                 <RadioButton x:Name="Drones" Content="Drone Lists" HorizontalAlignment="Left" Margin="25,12,0,0" VerticalAlignment="Top" Checked="Drones_Checked"/>
                 <RadioButton x:Name="Stations" Content="Station Lists" HorizontalAlignment="Left" Margin="115,12,0,0" VerticalAlignment="Top" Checked="Stations_Checked"/>

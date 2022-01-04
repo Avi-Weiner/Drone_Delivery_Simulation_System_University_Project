@@ -18,4 +18,8 @@
     <Resource Include="benyamin-bohlouli-ysT4Bo9LvXU-unsplash.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pictures\" />
+  </ItemGroup>
+
 </Project>
