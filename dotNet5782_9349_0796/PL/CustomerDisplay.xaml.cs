@@ -14,14 +14,29 @@ using System.Windows.Shapes;
 
 namespace PL
 {
-    /// <summary>
-    /// Interaction logic for CustomerDisplay.xaml
-    /// </summary>
     public partial class CustomerDisplay : Window
     {
-        public CustomerDisplay()
+        BlApi.IBL bl;
+        BL.Customer customer;
+        // this line should probalby be deleted...............public Visibility SendButton { get; set; }
+        /// <summary>
+        /// Constructor for updating a drone
+        /// </summary>
+        /// <param name="Drone"></param>
+        /// <param name="BL"></param>
+        public CustomerDisplay(BL.Customer Customer, BlApi.IBL BL)
         {
+            bl = BL;
+            customer = Customer;
+            
             InitializeComponent();
+            CustomerView.Text = customer.ToString();
+        }
+
+        private void Close_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+
         }
     }
 }
