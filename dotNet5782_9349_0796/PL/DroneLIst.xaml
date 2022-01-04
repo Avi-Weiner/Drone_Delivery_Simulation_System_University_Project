@@ -3,13 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="st" Height="450" Width="830">
+    
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid Name="MainGrid">
-
+         
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="820*"/>
@@ -23,22 +25,16 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <ComboBox x:Name="StatusSelector" IsEditable="True" IsReadOnly="True"
-                Text="-- Select Drone List --" Margin="0,44,207,141" SelectionChanged="StatusSelector_SelectionChanged" Grid.ColumnSpan="2" Background="LightBlue">
-                    <ComboBoxItem x:Name="AllDrones" Content="All Drones" />
-                    <ComboBoxItem x:Name="Free" Content="Free Drones"/>
-                    <ComboBoxItem x:Name="Maintenance" Content="Maintenance Drones"/>
-                    <ComboBoxItem x:Name="Delivery" Content="Delivery Drones"/>
-                    <ComboBoxItem Content="Light"/>
-                    <ComboBoxItem Content="Medium"/>
-                    <ComboBoxItem Content="Heavy"/>
+                <ComboBox ItemsSource="{Binding Path=ListType}" x:Name="StatusSelector" IsEditable="True" IsReadOnly="True"
+                Text="-- Select Drone List --" Height="auto" Margin="0,44,207,141" SelectionChanged="StatusSelector_SelectionChanged" Grid.ColumnSpan="2" Background="LightBlue">
+                   
                 </ComboBox>
                 <Button Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="146,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Close_Button_Click"/>
                 <Button Content="Add Drone" Grid.Column="3" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Height="28" Width="94" Background="LightBlue" Click="Add_Drone_ButtonClick"/>
                 <RadioButton x:Name="Drones" Content="Drone Lists" HorizontalAlignment="Left" Margin="25,12,0,0" VerticalAlignment="Top" Checked="Drones_Checked"/>
                 <RadioButton x:Name="Stations" Content="Station Lists" HorizontalAlignment="Left" Margin="115,12,0,0" VerticalAlignment="Top" Checked="Stations_Checked"/>
-                <RadioButton x:Name="Customers" Content="Customer Lists" HorizontalAlignment="Left" Margin="25,29,0,0" VerticalAlignment="Top"/>
-                <RadioButton x:Name="Packages"  Content="Package Lists" HorizontalAlignment="Left" Margin="115,30,0,0" VerticalAlignment="Top"/>
+                <RadioButton x:Name="Customers" Content="Customer Lists" HorizontalAlignment="Left" Margin="25,29,0,0" VerticalAlignment="Top" Checked="Customers_Checked"/>
+                <RadioButton x:Name="Packages"  Content="Package Lists" HorizontalAlignment="Left" Margin="115,30,0,0" VerticalAlignment="Top" Checked="Packages_Checked"/>
             </Grid>
 
             <ListBox Margin="0,75,0,0" Grid.RowSpan="2">
