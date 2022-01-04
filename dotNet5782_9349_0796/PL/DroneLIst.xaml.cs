@@ -37,7 +37,10 @@ namespace PL
             if (StatusSelector.SelectedItem == null)
                 return;
             string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
-            DroneListView.ItemsSource = bl.DroneListFilter(x);
+            if ((bool)Stations.IsChecked)
+                DroneListView.ItemsSource = bl.StationListFilter(x);
+            else if((bool)Drones.IsChecked)
+                DroneListView.ItemsSource = bl.DroneListFilter(x);
             
 
         }
@@ -52,12 +55,31 @@ namespace PL
 
         private void DroneListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(DroneListView.SelectedItem.GetType().ToString());
-            BL.DroneToList drone = (BL.DroneToList)DroneListView.SelectedItem;
-            int x = drone.Id;
-            DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
-            droneDisplayWindow.Show();
-            Close();
+            string Type = DroneListView.SelectedItem.GetType().ToString();
+            //MessageBox.Show(DroneListView.SelectedItem.GetType().ToString());
+            switch(Type)
+            {
+                case "BL.DroneToList":
+                    BL.DroneToList drone = (BL.DroneToList)DroneListView.SelectedItem;
+                    int x = drone.Id;
+                    DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
+                    droneDisplayWindow.Show();
+                    Close();
+                    break;
+                case "BL.BaseStationToList":
+                    BL.BaseStationToList station = (BL.BaseStationToList)DroneListView.SelectedItem;
+                    int y = station.Id;
+                    StationDisplay stationDisplayWindow = new StationDisplay(bl.DalToBlStation(y), bl);
+                    stationDisplayWindow.Show();
+                    Close();
+                    break;
+
+            }
+            //BL.DroneToList drone = (BL.DroneToList)DroneListView.SelectedItem;
+            //int x = drone.Id;
+            //DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
+            //droneDisplayWindow.Show();
+            //Close();
         }
 
         /// <summary>
@@ -131,6 +153,14 @@ namespace PL
                 "Unassigned Packages"
             };
             StatusSelector.ItemsSource = ListType;
+        }
+
+        private void Station_Click(object sender, RoutedEventArgs e)
+        {
+            StationDisplay stationDisplayWindow = new StationDisplay(bl);
+
+            stationDisplayWindow.Show();
+            Close();
         }
     }
 }

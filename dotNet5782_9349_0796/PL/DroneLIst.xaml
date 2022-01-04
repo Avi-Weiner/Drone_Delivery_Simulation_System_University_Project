@@ -7,11 +7,11 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="st" Height="450" Width="830">
-    
+
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid Name="MainGrid">
-         
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="820*"/>
@@ -27,19 +27,22 @@
 
                 <ComboBox ItemsSource="{Binding Path=ListType}" x:Name="StatusSelector" IsEditable="True" IsReadOnly="True"
                 Text="-- Select Drone List --" Height="auto" Margin="0,44,207,141" SelectionChanged="StatusSelector_SelectionChanged" Grid.ColumnSpan="2" Background="LightBlue">
-                   
+
                 </ComboBox>
 
-                
+
                 <Button Grid.Column="3" HorizontalAlignment="Left" Margin="146,10,0,0" VerticalAlignment="Top" Click="Close_Button_Click" Height="18" Width="18">
                     <Image Source="/Pictures/CloseCross.png"></Image>
                 </Button>
-                
-                <Button Content="Add Drone" Grid.Column="3" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Height="28" Width="94" Background="LightBlue" Click="Add_Drone_ButtonClick"/>
+
+                <Button x:Name="AddButton" Content="Add Drone" Grid.Column="3" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Height="28" Width="94" Background="LightBlue" Click="Add_Drone_ButtonClick"/>
                 <RadioButton x:Name="Drones" Content="Drone Lists" HorizontalAlignment="Left" Margin="25,12,0,0" VerticalAlignment="Top" Checked="Drones_Checked"/>
                 <RadioButton x:Name="Stations" Content="Station Lists" HorizontalAlignment="Left" Margin="115,12,0,0" VerticalAlignment="Top" Checked="Stations_Checked"/>
                 <RadioButton x:Name="Customers" Content="Customer Lists" HorizontalAlignment="Left" Margin="25,29,0,0" VerticalAlignment="Top" Checked="Customers_Checked"/>
                 <RadioButton x:Name="Packages"  Content="Package Lists" HorizontalAlignment="Left" Margin="115,30,0,0" VerticalAlignment="Top" Checked="Packages_Checked"/>
+                <Button Content="Add Station" Grid.Column="2" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Height="28" Width="94" Background="LightBlue" Click="Station_Click"/>
+                <Button Content="Add Customer" Grid.Column="2" HorizontalAlignment="Left" Margin="113,31,0,0" VerticalAlignment="Top" Height="28" Width="94" />
+                <Button Content="Add Package" Grid.Column="1" HorizontalAlignment="Left" Margin="81,31,0,0" VerticalAlignment="Top" Height="28" Width="94" Grid.ColumnSpan="2"/>
             </Grid>
 
             <ListBox Margin="0,75,0,0" Grid.RowSpan="2">

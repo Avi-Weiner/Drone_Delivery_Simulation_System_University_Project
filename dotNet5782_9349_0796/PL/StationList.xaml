@@ -34,6 +34,7 @@
                 <TextBlock HorizontalAlignment="Center" Margin="0,23,0,0" Text="Station list filter options:" TextWrapping="Wrap" VerticalAlignment="Top"/>
                 <Button Content="Close" Grid.Column="3" HorizontalAlignment="Left" Margin="123,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Button_Click"/>
                 <Button Content="Add Station" Grid.Column="3" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top" Height="28" Width="94" Click="Add_Drone_ButtonClick"/>
+                <Button Content="Button" Grid.Column="2" HorizontalAlignment="Left" Margin="102,33,0,0" VerticalAlignment="Top" Height="20" Width="87"/>
             </Grid>
 
             <ListBox Margin="0,75,65,0" Grid.RowSpan="2">
