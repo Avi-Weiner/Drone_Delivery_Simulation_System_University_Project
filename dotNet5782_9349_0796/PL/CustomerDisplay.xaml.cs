@@ -34,7 +34,7 @@ namespace PL
             Name.Text = customer.Name;
             Phone1.Text = customer.Phone.Substring(0, 3);
             Phone2.Text = customer.Phone.Substring(4, 4);
-            Phone3.Text = Customer.Phone.Substring(9, 4);
+            Phone3.Text = customer.Phone.Substring(9, 4);
         }
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
