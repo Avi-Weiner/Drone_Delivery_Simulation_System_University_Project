@@ -40,14 +40,10 @@
                 </Button>
 
                 
-                <RadioButton x:Name="Drones" Content="Drone Lists" HorizontalAlignment="Left" Margin="18,12,0,0" 
-                             VerticalAlignment="Top" Checked="Drones_Checked"/>
-                <RadioButton x:Name="Stations" Content="Station Lists" HorizontalAlignment="Left" Margin="121,12,0,0" 
-                             VerticalAlignment="Top" Checked="Stations_Checked"/>
-                <RadioButton x:Name="Customers" Content="Customer Lists" HorizontalAlignment="Left" Margin="18,29,0,0" 
-                             VerticalAlignment="Top" Checked="Customers_Checked"/>
-                <RadioButton x:Name="Packages"  Content="Package Lists" HorizontalAlignment="Left" Margin="121,29,0,0" 
-                             VerticalAlignment="Top" Checked="Packages_Checked" Grid.ColumnSpan="2"/>
+                <RadioButton x:Name="Drones" Content="Drone Lists" HorizontalAlignment="Left" Margin="18,12,0,0" VerticalAlignment="Top" Checked="Drones_Checked"/>
+                <RadioButton x:Name="Stations" Content="Station Lists" HorizontalAlignment="Left" Margin="121,12,0,0" VerticalAlignment="Top" Checked="Stations_Checked"/>
+                <RadioButton x:Name="Customers" Content="Customer Lists" HorizontalAlignment="Left" Margin="18,29,0,0" VerticalAlignment="Top" Checked="Customers_Checked"/>
+                <RadioButton x:Name="Packages"  Content="Package Lists" HorizontalAlignment="Left" Margin="121,29,0,0" VerticalAlignment="Top" Checked="Packages_Checked" Grid.ColumnSpan="2"/>
                 
                 <Button x:Name="AddButton" Content="Add Drone" Grid.Column="2" HorizontalAlignment="Left" 
                         Margin="185,29,0,0" VerticalAlignment="Top" Height="28" Width="94" Background="LightBlue" 
@@ -63,10 +59,13 @@
             </Grid>
 
             <ListBox Margin="0,75,0,0" Grid.RowSpan="2">
-                <ListBox x:Name="DroneListView" Background="LightCyan" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="325" Width="807" MouseDoubleClick="DroneListView_MouseDoubleClick" />
+                <ListBox x:Name="DroneListView" Background="LightCyan" Grid.Row="1" 
+                         ScrollViewer.VerticalScrollBarVisibility="Visible" Height="325" Width="807" 
+                         MouseDoubleClick="DroneListView_MouseDoubleClick" />
             </ListBox>
 
-            <Button Content="&#11118;" FontSize="17" Background="GreenYellow"  HorizontalAlignment="Left" Margin="216,45,0,0" VerticalAlignment="Top" Height="25" Width="25" Click="Refresh_Button_Click"/>
+            <Button Content="&#11118;" FontSize="17" Background="GreenYellow"  HorizontalAlignment="Left" 
+                    Margin="216,45,0,0" VerticalAlignment="Top" Height="25" Width="25" Click="Refresh_Button_Click"/>
 
         </Grid>
     </ScrollViewer>
