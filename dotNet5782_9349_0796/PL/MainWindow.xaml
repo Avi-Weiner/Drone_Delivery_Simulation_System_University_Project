@@ -14,8 +14,6 @@
             </LinearGradientBrush>
         </Grid.Background>
         <!--<Image Source="/benyamin-bohlouli-ysT4Bo9LvXU-unsplash.jpg" Stretch="UniformToFill"></Image>-->
-        <Button Content="DroneList" Margin="349,187,349,197" Click="Button_Click" Background="LightBlue"/>
-
-        <Button Content="StationList" HorizontalAlignment="Left" Margin="166,212,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+        <Button Content="Manager" Margin="349,187,349,197" Click="Button_Click" Background="LightBlue"/>
     </Grid>
 </Window>
