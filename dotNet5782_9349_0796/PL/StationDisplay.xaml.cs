@@ -50,7 +50,7 @@ namespace PL
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
-            List st = new List(bl);
+            ListDisplay st = new ListDisplay(bl);
             st.Show();
             Close();
         }
@@ -74,7 +74,7 @@ namespace PL
             {
                 bl.UpdateStation(station.Id, Int32.Parse(StationName.Text), Int32.Parse(ChargingStations.Text));
                 MessageBox.Show("Station updated successfully");
-                StationList st = new StationList(bl);
+                ListDisplay st = new ListDisplay(bl);
                 st.Show();
                 Close();
             }

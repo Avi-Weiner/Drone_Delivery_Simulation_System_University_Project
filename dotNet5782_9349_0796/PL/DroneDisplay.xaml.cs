@@ -152,7 +152,7 @@ namespace PL
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
-            List droneList = new List(bl);
+            ListDisplay droneList = new ListDisplay(bl);
             droneList.Show();
             Close();
         }

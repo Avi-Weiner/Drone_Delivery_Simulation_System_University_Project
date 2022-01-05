@@ -39,7 +39,7 @@ namespace PL
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
-            List dl = new List(bl);
+            ListDisplay dl = new ListDisplay(bl);
             dl.Show();
             Close();
 

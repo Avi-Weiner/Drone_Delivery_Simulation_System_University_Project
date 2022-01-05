@@ -17,12 +17,12 @@ namespace PL
     /// <summary>
     /// Interaction logic for DroneList.xaml
     /// </summary>
-    public partial class List : Window
+    public partial class ListDisplay : Window
     {
         BlApi.IBL bl;
         public List<string> ListType { get; set; }
         
-        public List(BlApi.IBL BLObj)
+        public ListDisplay(BlApi.IBL BLObj)
         {
 
             InitializeComponent();
