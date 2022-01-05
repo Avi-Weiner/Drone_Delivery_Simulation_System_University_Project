@@ -39,7 +39,7 @@ namespace PL
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
-            DroneList dl = new DroneList(bl);
+            List dl = new List(bl);
             dl.Show();
             Close();
 
