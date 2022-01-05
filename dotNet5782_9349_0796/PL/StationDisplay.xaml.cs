@@ -50,7 +50,7 @@ namespace PL
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
-            StationList st = new StationList(bl);
+            DroneList st = new DroneList(bl);
             st.Show();
             Close();
         }

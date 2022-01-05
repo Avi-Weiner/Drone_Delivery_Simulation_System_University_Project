@@ -1,0 +1,34 @@
+﻿<Window x:Class="PL.PackageDisplay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="PackageDisplay" Height="450" Width="800">
+    <Grid Grid.RowSpan="2">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="White"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="257*"/>
+            <RowDefinition Height="177*"/>
+        </Grid.RowDefinitions>
+
+        <Button Content="Close" HorizontalAlignment="Left" Margin="741,0,0,227" Background="#FFFA0000" Click="Close_ButtonClick" Width="33" Height="20" VerticalAlignment="Bottom"/>
+
+        <!--Update drone Section -->
+        <TextBlock  x:Name="PackageView" Visibility="visible" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+        <!--End Update drone Section -->
+
+        <!--Add drone Section -->
+        <!--End Add drone Section -->
+
+
+    </Grid>
+</Window>
