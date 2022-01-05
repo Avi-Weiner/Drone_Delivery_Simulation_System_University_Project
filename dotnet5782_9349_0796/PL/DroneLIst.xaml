@@ -1,0 +1,72 @@
+﻿<Window x:Class="PL.DroneList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="st" Height="450" Width="830">
+
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid Name="MainGrid">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="820*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,0,219" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <ComboBox ItemsSource="{Binding Path=ListType}" x:Name="StatusSelector" IsEditable="True" IsReadOnly="True"
+                Text="-- Select Drone List --" Height="auto" Margin="0,44,207,141" SelectionChanged="StatusSelector_SelectionChanged" Grid.ColumnSpan="2" Background="LightBlue">
+
+                </ComboBox>
+
+
+                <Button Grid.Column="3" Margin="129,10,25,0" VerticalAlignment="Top" 
+                        Click="Close_Button_Click" Height="45" Width="45"
+                        BorderBrush="Transparent">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/Resources/CloseCross.png"/>
+                    </Button.Background>
+                </Button>
+
+                
+                <RadioButton x:Name="Drones" Content="Drone Lists" HorizontalAlignment="Left" Margin="18,12,0,0" VerticalAlignment="Top" Checked="Drones_Checked"/>
+                <RadioButton x:Name="Stations" Content="Station Lists" HorizontalAlignment="Left" Margin="121,12,0,0" VerticalAlignment="Top" Checked="Stations_Checked"/>
+                <RadioButton x:Name="Customers" Content="Customer Lists" HorizontalAlignment="Left" Margin="18,29,0,0" VerticalAlignment="Top" Checked="Customers_Checked"/>
+                <RadioButton x:Name="Packages"  Content="Package Lists" HorizontalAlignment="Left" Margin="121,29,0,0" VerticalAlignment="Top" Checked="Packages_Checked" Grid.ColumnSpan="2"/>
+                
+                <Button x:Name="AddButton" Content="Add Drone" Grid.Column="2" HorizontalAlignment="Left" 
+                        Margin="185,29,0,0" VerticalAlignment="Top" Height="28" Width="94" Background="LightBlue" 
+                        Click="Add_Drone_ButtonClick" Grid.ColumnSpan="2"/>
+                <Button Content="Add Station" Grid.Column="1" HorizontalAlignment="Left" Margin="160,29,0,0" 
+                        VerticalAlignment="Top" Height="28" Width="94" Background="LightBlue" 
+                        Click="Station_Click" Grid.ColumnSpan="2"/>
+                <Button Content="Add Customer" Grid.Column="2" HorizontalAlignment="Left" Margin="70,29,0,0" 
+                        VerticalAlignment="Top" Height="28" Width="94" />
+                <Button Content="Add Package" Grid.Column="1" HorizontalAlignment="Left" Margin="45,29,0,0" 
+                        VerticalAlignment="Top" Height="28" Width="94"/>
+                
+            </Grid>
+
+            <ListBox Margin="0,75,0,0" Grid.RowSpan="2">
+                <ListBox x:Name="DroneListView" Background="LightCyan" Grid.Row="1" 
+                         ScrollViewer.VerticalScrollBarVisibility="Visible" Height="325" Width="807" 
+                         MouseDoubleClick="DroneListView_MouseDoubleClick" />
+            </ListBox>
+
+            <Button Content="&#11118;" FontSize="17" Background="GreenYellow"  HorizontalAlignment="Left" 
+                    Margin="216,45,0,0" VerticalAlignment="Top" Height="25" Width="25" Click="Refresh_Button_Click"/>
+
+        </Grid>
+    </ScrollViewer>
+</Window>
