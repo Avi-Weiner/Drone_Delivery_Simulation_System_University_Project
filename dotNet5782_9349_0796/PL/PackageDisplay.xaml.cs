@@ -19,9 +19,16 @@ namespace PL
     /// </summary>
     public partial class PackageDisplay : Window
     {
-        public PackageDisplay()
+
+        BlApi.IBL bl;
+        BL.Package package;
+        public PackageDisplay(BlApi.IBL BL, BL.Package Package)
         {
+            package = Package;
+            bl = BL;
             InitializeComponent();
+            PackageView.Text = package.ToString();
+            
         }
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)

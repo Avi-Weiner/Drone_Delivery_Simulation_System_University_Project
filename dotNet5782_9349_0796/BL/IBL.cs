@@ -56,6 +56,6 @@ namespace BlApi
         public BaseStation DalToBlStation(int id);
         public Customer DalToBlCustomer(int id);
         public List<CustomerToList> ListOfCustomers();
-
+        public List<PackageToList> PackageListFilter(string option);
     }
 }

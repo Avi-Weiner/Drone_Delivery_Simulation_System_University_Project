@@ -51,7 +51,7 @@ namespace BL
             DO.Package DalP = DalObject.DataSource.PackageList.Find(x => x.DroneId == id);
             
 
-            if (DalP.Id == 0)
+            if (DalP.Id == -1)
                 throw new MessageException("Error: Object of id " + id + " not found.");
 
             p.Id = DalP.Id;

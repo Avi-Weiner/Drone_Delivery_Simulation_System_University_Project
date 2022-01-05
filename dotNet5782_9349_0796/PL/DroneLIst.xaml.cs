@@ -43,6 +43,11 @@ namespace PL
                 DroneListView.ItemsSource = bl.DroneListFilter(x);
             else if ((bool)Customers.IsChecked)
                 DroneListView.ItemsSource = bl.ListOfCustomers();
+            else if((bool)Packages.IsChecked)
+            {
+                DroneListView.ItemsSource = bl.PackageListFilter(x);
+            }
+                
             
 
         }
@@ -80,6 +85,13 @@ namespace PL
                     int z = customer.Id;
                     CustomerDisplay CustomerDisplayWindow = new CustomerDisplay(bl.DalToBlCustomer(z), bl);
                     CustomerDisplayWindow.Show();
+                    Close();
+                    break;
+                case "BL.PackageToList":
+                    BL.PackageToList package = ((BL.PackageToList)DroneListView.SelectedItem);
+                    int p = package.Id;
+                    PackageDisplay PackageDisplayWindow = new PackageDisplay(bl, bl.DalToBlPackage(p));
+                    PackageDisplayWindow.Show();
                     Close();
                     break;
 

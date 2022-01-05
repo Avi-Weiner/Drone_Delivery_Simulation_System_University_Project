@@ -152,6 +152,18 @@ namespace BL
             
 
         }
+        public List<PackageToList> PackageListFilter(string option)
+        {
+            switch(option)
+            {
+                case "All Packages":
+                    return ListOfPackages();
+                case "Unassigned Packages":
+                    return ListOfUnassignedPackages();
+                default:
+                    throw new MessageException("Error: Invalid Pakcage List filter option entered.");
+            }
+        }
 
     }
     
