@@ -48,10 +48,10 @@ namespace BL
         public Package DalToBlPackage(int id)
         {
             Package p = new();
-            DO.Package DalP = DalObject.DataSource.PackageList.Find(x => x.DroneId == id);
+            DO.Package DalP = DalObject.DataSource.PackageList.Find(x => x.Id == id);
             
 
-            if (DalP.Id == -1)
+            if (DalP.Id != id)
                 throw new MessageException("Error: Object of id " + id + " not found.");
 
             p.Id = DalP.Id;
