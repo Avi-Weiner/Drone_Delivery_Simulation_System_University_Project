@@ -24,6 +24,13 @@
 
         <!--Update drone Section -->
         <TextBlock  x:Name="CustomerView" Visibility="visible" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch" />
+        <TextBox x:Name="Name" HorizontalAlignment="Left" Margin="93,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Phone1" HorizontalAlignment="Left" Margin="92,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" Height="18"/>
+        <TextBox x:Name="Phone2" HorizontalAlignment="Left" Margin="146,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" Height="18"/>
+        <TextBox x:Name="Phone3" HorizontalAlignment="Left" Margin="200,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" Height="18"/>
+        <TextBlock HorizontalAlignment="Left" Margin="136,132,0,0" Text="-" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="191,132,0,0" Text="-" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button x:Name="UpdateButton" Content="Update" HorizontalAlignment="Left" Margin="147,186,0,0" VerticalAlignment="Top" Click="UpdateButton_Click"/>
         <!--End Update drone Section -->
 
         <!--Add drone Section -->

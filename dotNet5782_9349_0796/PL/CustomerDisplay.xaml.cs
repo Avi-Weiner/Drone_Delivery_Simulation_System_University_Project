@@ -31,12 +31,36 @@ namespace PL
             
             InitializeComponent();
             CustomerView.Text = customer.ToString();
+            Name.Text = customer.Name;
+            Phone1.Text = customer.Phone.Substring(0, 3);
+            Phone2.Text = customer.Phone.Substring(5, 4);
+            Phone3.Text = Customer.Phone.Substring(9, 4);
         }
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
+            DroneList dl = new DroneList(bl);
+            dl.Show();
             Close();
 
+        }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            //check if phone number is valid
+            if (Phone1.Text.Length < 3 || Phone2.Text.Length < 4 || Phone3.Text.Length < 4)
+            {
+                MessageBox.Show("Invalid phone number. \n Please reenter your phone number.");
+            }
+            else
+            {
+                string validPhone = Phone1.Text + "-" + Phone2.Text + "-" + Phone3.Text;
+                bl.UpdateCustomer(customer.Id, Name.Text, validPhone);
+                customer.Phone = validPhone;
+                customer.Name = Name.Text;
+                CustomerView.Text = customer.ToString();
+                MessageBox.Show("Customer updated successfully.");
+            }
         }
     }
 }
