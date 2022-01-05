@@ -27,7 +27,7 @@ namespace PL
 
             InitializeComponent();
             //StatusSelector.SelectedItem = AllDrones;
-            //DroneListView.ItemsSource = BLObj.DroneListFilter("free");
+            //ListView.ItemsSource = BLObj.DroneListFilter("free");
             bl = BLObj;
             
         }
@@ -38,14 +38,14 @@ namespace PL
                 return;
             string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
             if ((bool)Stations.IsChecked)
-                DroneListView.ItemsSource = bl.StationListFilter(x);
+                ListView.ItemsSource = bl.StationListFilter(x);
             else if ((bool)Drones.IsChecked)
-                DroneListView.ItemsSource = bl.DroneListFilter(x);
+                ListView.ItemsSource = bl.DroneListFilter(x);
             else if ((bool)Customers.IsChecked)
-                DroneListView.ItemsSource = bl.ListOfCustomers();
+                ListView.ItemsSource = bl.ListOfCustomers();
             else if((bool)Packages.IsChecked)
             {
-                DroneListView.ItemsSource = bl.PackageListFilter(x);
+                ListView.ItemsSource = bl.PackageListFilter(x);
             }
                 
             
@@ -60,35 +60,35 @@ namespace PL
             
         }
 
-        private void DroneListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            string Type = DroneListView.SelectedItem.GetType().ToString();
-            //MessageBox.Show(DroneListView.SelectedItem.GetType().ToString());
+            string Type = ListView.SelectedItem.GetType().ToString();
+            //MessageBox.Show(ListView.SelectedItem.GetType().ToString());
             switch(Type)
             {
                 case "BL.DroneToList":
-                    BL.DroneToList drone = (BL.DroneToList)DroneListView.SelectedItem;
+                    BL.DroneToList drone = (BL.DroneToList)ListView.SelectedItem;
                     int x = drone.Id;
                     DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
                     droneDisplayWindow.Show();
                     Close();
                     break;
                 case "BL.BaseStationToList":
-                    BL.BaseStationToList station = (BL.BaseStationToList)DroneListView.SelectedItem;
+                    BL.BaseStationToList station = (BL.BaseStationToList)ListView.SelectedItem;
                     int y = station.Id;
                     StationDisplay stationDisplayWindow = new StationDisplay(bl.DalToBlStation(y), bl);
                     stationDisplayWindow.Show();
                     Close();
                     break;
                 case "BL.CustomerToList":
-                    BL.CustomerToList customer = (BL.CustomerToList)DroneListView.SelectedItem;
+                    BL.CustomerToList customer = (BL.CustomerToList)ListView.SelectedItem;
                     int z = customer.Id;
                     CustomerDisplay CustomerDisplayWindow = new CustomerDisplay(bl.DalToBlCustomer(z), bl);
                     CustomerDisplayWindow.Show();
                     Close();
                     break;
                 case "BL.PackageToList":
-                    BL.PackageToList package = ((BL.PackageToList)DroneListView.SelectedItem);
+                    BL.PackageToList package = ((BL.PackageToList)ListView.SelectedItem);
                     int p = package.Id;
                     PackageDisplay PackageDisplayWindow = new PackageDisplay(bl, bl.DalToBlPackage(p));
                     PackageDisplayWindow.Show();
@@ -96,7 +96,7 @@ namespace PL
                     break;
 
             }
-            //BL.DroneToList drone = (BL.DroneToList)DroneListView.SelectedItem;
+            //BL.DroneToList drone = (BL.DroneToList)ListView.SelectedItem;
             //int x = drone.Id;
             //DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
             //droneDisplayWindow.Show();
@@ -126,7 +126,7 @@ namespace PL
             if (StatusSelector.SelectedItem == null)
                 return;
             string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
-            DroneListView.ItemsSource = bl.DroneListFilter(x);
+            ListView.ItemsSource = bl.DroneListFilter(x);
         }
 
         private void Stations_Checked(object sender, RoutedEventArgs e)

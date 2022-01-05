@@ -59,9 +59,9 @@
             </Grid>
 
             <ListBox Margin="0,75,0,0" Grid.RowSpan="2">
-                <ListBox x:Name="DroneListView" Background="LightCyan" Grid.Row="1" 
+                <ListBox x:Name="ListView" Background="LightCyan" Grid.Row="1" 
                          ScrollViewer.VerticalScrollBarVisibility="Visible" Height="325" Width="807" 
-                         MouseDoubleClick="DroneListView_MouseDoubleClick" />
+                         MouseDoubleClick="ListView_MouseDoubleClick" />
             </ListBox>
 
             <Button Content="&#11118;" FontSize="17" Background="GreenYellow"  HorizontalAlignment="Left" 
