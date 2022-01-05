@@ -33,7 +33,7 @@ namespace PL
             CustomerView.Text = customer.ToString();
             Name.Text = customer.Name;
             Phone1.Text = customer.Phone.Substring(0, 3);
-            Phone2.Text = customer.Phone.Substring(5, 4);
+            Phone2.Text = customer.Phone.Substring(4, 4);
             Phone3.Text = Customer.Phone.Substring(9, 4);
         }
 
