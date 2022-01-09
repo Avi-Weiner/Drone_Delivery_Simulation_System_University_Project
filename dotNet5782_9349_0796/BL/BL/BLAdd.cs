@@ -21,13 +21,6 @@ namespace BL
         public  BaseStation AddBaseStation(int name, double longitude, double latitude, int availableSlots)
         {//Took out id parameter as it is created automatically 
 
-            //Console.WriteLine("Enter Longitude: ");
-            //double longitude = Convert.ToDouble(Console.ReadLine());
-            //Console.WriteLine("Enter Latitude: ");
-            //double latitude = Convert.ToDouble(Console.ReadLine());
-            //Console.WriteLine("Enter number of charge slots: ");
-            //int slots = Convert.ToInt32(Console.ReadLine());
-
             //Input checking:
             if (longitude < -180 || longitude > 180)
                 throw new MessageException("Error: Longitude exceeds bounds");
