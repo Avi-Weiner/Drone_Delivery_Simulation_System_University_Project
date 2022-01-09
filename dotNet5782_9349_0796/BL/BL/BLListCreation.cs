@@ -136,6 +136,7 @@ namespace BL
 
             return BLObject.BLDroneList.FindAll(predicate);
         }
+
         public List<BaseStationToList> StationListFilter(string option)
         {
             
@@ -143,8 +144,8 @@ namespace BL
             {
                 case "All Stations":
                     return ListOfStations();
-                case "Available charge slots":
-                    return (ListOfStations().FindAll(x => x.AvailableChargeSlots > 0));
+                case "Available Charge Slots":
+                    return ListOfStations().FindAll(x => x.AvailableChargeSlots > 0);
                     
                 default:
                     throw new MessageException("Error: Invalid drone list filter option entered.");
