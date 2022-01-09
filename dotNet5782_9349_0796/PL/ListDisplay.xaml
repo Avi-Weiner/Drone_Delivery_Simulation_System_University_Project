@@ -22,7 +22,7 @@
                 </Grid.ColumnDefinitions>
 
                 <ComboBox ItemsSource="{Binding Path=ListType}" x:Name="StatusSelector" IsEditable="True" IsReadOnly="True"
-                Text="-- Select --" Height="auto" Margin="0,44,133,321" SelectionChanged="StatusSelector_SelectionChanged" Background="LightBlue"/>
+                Text="-- Select --" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="auto" Margin="10,43,56,322" SelectionChanged="StatusSelector_SelectionChanged" Background="LightBlue"/>
 
 
                 <Button Grid.Column="3" Margin="33,10,121,0" VerticalAlignment="Top" 
@@ -34,7 +34,7 @@
                 </Button>
 
 
-                <RadioButton x:Name="Drones" Content="Drone Lists" HorizontalAlignment="Left" Margin="18,12,0,0" VerticalAlignment="Top" Checked="Drones_Checked"/>
+                <RadioButton x:Name="Drones" Content="Drone Lists" HorizontalAlignment="Left" Margin="18,12,0,0" VerticalAlignment="Top" Checked="Drones_Checked" IsChecked="True"/>
                 <RadioButton x:Name="Stations" Content="Station Lists" HorizontalAlignment="Left" Margin="121,12,0,0" VerticalAlignment="Top" Checked="Stations_Checked"/>
                 <RadioButton x:Name="Customers" Content="Customer Lists" HorizontalAlignment="Left" Margin="18,29,0,0" VerticalAlignment="Top" Checked="Customers_Checked"/>
                 <RadioButton x:Name="Packages"  Content="Package Lists" HorizontalAlignment="Left" Margin="121,29,0,0" VerticalAlignment="Top" Checked="Packages_Checked" Grid.ColumnSpan="2"/>
@@ -62,7 +62,7 @@
             </ListBox>
 
             <Button Content="&#11118;" FontSize="17" Background="GreenYellow"  HorizontalAlignment="Left" 
-                    Margin="152,45,0,0" VerticalAlignment="Top" Height="25" Width="25" Click="Refresh_Button_Click"/>
+                    Margin="164,45,0,0" VerticalAlignment="Top" Height="30" Width="32" Click="Refresh_Button_Click"/>
 
         </Grid>
     </ScrollViewer>
