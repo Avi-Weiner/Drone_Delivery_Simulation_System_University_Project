@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="StationDisplay" Height="450" Width="800">
+        Title="StationDisplay" Height="347" Width="516">
     <Grid Grid.RowSpan="2">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -20,8 +20,8 @@
             <RowDefinition Height="177*"/>
         </Grid.RowDefinitions>
 
-        <Button Content="&#10060;" HorizontalAlignment="Left" Margin="722,10,0,0" VerticalAlignment="Top" Background="White" 
-                Foreground="Red" Click="Close_Button_Click" Height="33" Width="49" FontWeight="Bold" 
+        <Button Content="&#10060;" HorizontalAlignment="Left" Margin="444,13,0,0" VerticalAlignment="Top" Background="White" 
+                Foreground="Red" Click="Close_Button_Click" Height="33" Width="48" FontWeight="Bold" 
                 Grid.RowSpan="1" BorderThickness="0,0,0,0"/>
 
         <!--Both Section-->
@@ -34,7 +34,7 @@
         <!--Update Station Section -->
         <TextBlock  x:Name="StationView" Visibility="Hidden" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
         <Button x:Name="UpdateButton" Visibility="Hidden" Background="GreenYellow" Content="Update" HorizontalAlignment="Left" Margin="128,114,0,0" VerticalAlignment="Top" Click="UpdateButton_Click"/>
-        <TextBlock HorizontalAlignment="Left" Visibility="Hidden" Margin="96,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" Text="Update Base Station"/>
+        <TextBlock x:Name="UpdateStationTitle" HorizontalAlignment="Left" Visibility="Hidden" Margin="96,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" Text="Update Base Station"/>
         <!--End Update Station Section -->
 
         <!--Add Station Section -->

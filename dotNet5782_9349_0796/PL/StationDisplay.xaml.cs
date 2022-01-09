@@ -42,6 +42,7 @@ namespace PL
             UpdateButton.Visibility = Visibility.Visible;
             StationName.Visibility = Visibility.Visible;
             ChargingStations.Visibility = Visibility.Visible;
+            UpdateStationTitle.Visibility = Visibility.Visible;
 
             StationName.Text = Station.Name.ToString();
             station.Name = Station.Name;
