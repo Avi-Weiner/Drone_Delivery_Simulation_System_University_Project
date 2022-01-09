@@ -33,7 +33,9 @@ namespace PL
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
+
             Close();
+
         }
     }
 }
