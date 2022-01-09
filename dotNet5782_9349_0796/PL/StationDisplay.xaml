@@ -37,14 +37,15 @@
         <TextBlock HorizontalAlignment="Left" Visibility="Hidden" Margin="96,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" Text="Update Base Station"/>
         <!--End Update Station Section -->
 
-        <!--Add drone Section -->
-        <TextBox x:Name="Longitude" TextChanged="Longitude_Changed" HorizontalAlignment="Left" Margin="154,95,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Latitude" TextChanged="Latitude_Changed" HorizontalAlignment="Left" Margin="154,118,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="62,96,0,0" Text="Longitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="73,119,0,0" Text="Latitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button Content="Add Base Station" Background="GreenYellow" HorizontalAlignment="Left" 
+        <!--Add Station Section -->
+        <TextBox x:Name="Longitude" Visibility="Hidden" TextChanged="Longitude_Changed" HorizontalAlignment="Left" Margin="154,95,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Latitude" Visibility="Hidden" TextChanged="Latitude_Changed" HorizontalAlignment="Left" Margin="154,118,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="LongitudeText" Visibility="Hidden" HorizontalAlignment="Left" Margin="62,96,0,0" Text="Longitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="LatitudeText" Visibility="Hidden" HorizontalAlignment="Left" Margin="73,119,0,0" Text="Latitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button x:Name="AddStationButton" Visibility="Hidden" Content="Add Base Station" Background="GreenYellow" HorizontalAlignment="Left" 
                 Margin="114,152,0,0" VerticalAlignment="Top" Click="Add_Station_Click"/>
-        <!--End Add drone Section -->
+        <TextBlock x:Name="AddBaseStationTitle" Visibility="Hidden" HorizontalAlignment="Left" Margin="118,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" Text="Add Base Station"/></TextBlock>
+        <!--End Add Station Section -->
 
 
     </Grid>

@@ -28,7 +28,7 @@ namespace PL
         #region UpdateStation
         // this line should probalby be deleted...............public Visibility SendButton { get; set; }
         /// <summary>
-        /// Constructor for updating a drone
+        /// Constructor for updating a station
         /// </summary>
         /// <param name="Drone"></param>
         /// <param name="BL"></param>
@@ -48,13 +48,6 @@ namespace PL
             ChargingStations.Text = Station.AvailableChargeSlots.ToString();
             station.AvailableChargeSlots = Station.AvailableChargeSlots;
             StationView.Text = station.ToString();
-        }
-
-        private void Close_ButtonClick(object sender, RoutedEventArgs e)
-        {
-            ListDisplay st = new ListDisplay(bl);
-            st.Show();
-            Close();
         }
 
 
@@ -83,14 +76,31 @@ namespace PL
         /// </summary>
         public StationDisplay(BlApi.IBL BL)
         {
+            station = new BL.BaseStation();
+            location = new BL.Location();
             bl = BL;
             InitializeComponent();
+
+            Longitude.Visibility = Visibility.Visible;
+            Latitude.Visibility = Visibility.Visible;
+            LongitudeText.Visibility = Visibility.Visible;
+            LatitudeText.Visibility = Visibility.Visible;
+            AddStationButton.Visibility = Visibility.Visible;
+            AddBaseStationTitle.Visibility = Visibility.Visible;
+
         }
 
         private void Add_Station_Click(object sender, RoutedEventArgs e)
         {
-            if ( )
-            bl.AddBaseStation(station.Name, location.longitude, location.latitude, station.AvailableChargeSlots);
+            try
+            {
+                bl.AddBaseStation(station.Name, location.longitude, location.latitude, station.AvailableChargeSlots);
+                MessageBox.Show("Station added succesfully");
+            }
+            catch (BL.MessageException m)
+            {
+                MessageBox.Show(m.ToString());
+            }
         }
 
         private void Longitude_Changed(object sender, TextChangedEventArgs e)
@@ -101,7 +111,7 @@ namespace PL
                 MessageBox.Show("Invalid input");
             }
 
-            location.longitude = int.Parse(Longitude.Text);
+            location.longitude = i;
 
         }
 
@@ -112,7 +122,7 @@ namespace PL
                 MessageBox.Show("Invalid input");
             }
 
-            location.latitude = int.Parse(Latitude.Text);
+            location.latitude = i;
         }
 
         #endregion
@@ -126,7 +136,7 @@ namespace PL
                 ((TextBox)sender).Text = station.Name.ToString();
             }
 
-            station.Name = int.Parse(StationName.Text);
+            station.Name = i;
 
         }
 
@@ -138,8 +148,15 @@ namespace PL
                 ((TextBox)sender).Text = station.AvailableChargeSlots.ToString();
             }
 
-            station.AvailableChargeSlots = int.Parse(ChargingStations.Text);
+            station.AvailableChargeSlots = i;
 
+        }
+
+        private void Close_Button_Click(object sender, RoutedEventArgs e)
+        {
+            ListDisplay st = new ListDisplay(bl);
+            st.Show();
+            Close();
         }
         #endregion
     }

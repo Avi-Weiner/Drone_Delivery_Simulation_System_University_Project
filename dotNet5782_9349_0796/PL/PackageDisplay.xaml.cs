@@ -31,7 +31,7 @@ namespace PL
             
         }
 
-        private void Close_ButtonClick(object sender, RoutedEventArgs e)
+        private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
             ListDisplay ListDisplayWindow = new ListDisplay(bl);
             ListDisplayWindow.Show();
