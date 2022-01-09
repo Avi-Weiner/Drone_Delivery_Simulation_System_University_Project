@@ -45,7 +45,7 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            List DroneListWindow = new List(BLObj);
+            ListDisplay DroneListWindow = new ListDisplay(BLObj);
             DroneListWindow.Show();
             this.Close();
         }
