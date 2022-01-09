@@ -49,12 +49,5 @@ namespace PL
             DroneListWindow.Show();
             this.Close();
         }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            StationList StationListWindow = new StationList(BLObj);
-            StationListWindow.Show();
-            Close();
-        }
     }
 }

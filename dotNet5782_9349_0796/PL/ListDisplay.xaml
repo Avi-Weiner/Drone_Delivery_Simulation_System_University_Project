@@ -10,7 +10,7 @@
 
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <Grid Name="MainGrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"> 
+        <Grid Name="MainGrid" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 
 
             <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,0,-74,35">
@@ -39,8 +39,8 @@
                 <RadioButton x:Name="Customers" Content="Customer Lists" HorizontalAlignment="Left" Margin="18,29,0,0" VerticalAlignment="Top" Checked="Customers_Checked"/>
                 <RadioButton x:Name="Packages"  Content="Package Lists" HorizontalAlignment="Left" Margin="121,29,0,0" VerticalAlignment="Top" Checked="Packages_Checked" Grid.ColumnSpan="2"/>
 
-                <Button x:Name="AddButton" Content="Add Drone" Grid.Column="2" HorizontalAlignment="Stretch" 
-                        Margin="185,29,0,0" VerticalAlignment="Stretch" Height="28" Width="94" Background="LightBlue" 
+                <Button x:Name="AddButton" Content="Add Drone" Grid.Column="2" 
+                        Margin="339,26,197,345" Height="28" Width="94" Background="LightBlue" 
                         Click="Add_Drone_ButtonClick" Grid.ColumnSpan="2"/>
                 <Button Content="Add Station" Grid.Column="1" HorizontalAlignment="Left" Margin="21,29,0,0" 
                         VerticalAlignment="Top" Height="28" Width="94" Background="LightBlue" 
@@ -58,7 +58,7 @@
                          MouseDoubleClick="ListView_MouseDoubleClick" 
                          VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
                          />
-                
+
             </ListBox>
 
             <Button Content="&#11118;" FontSize="17" Background="GreenYellow"  HorizontalAlignment="Left" 
