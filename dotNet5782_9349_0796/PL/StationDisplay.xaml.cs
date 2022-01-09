@@ -80,7 +80,7 @@ namespace PL
 
         private void StationName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!(int.TryParse(((TextBox)sender).Text, out int i)) && ((TextBox)sender).Text != "")
+            if (!int.TryParse(((TextBox)sender).Text, out int i) && ((TextBox)sender).Text != "")
             {
                 MessageBox.Show("Invalid input");
                 ((TextBox)sender).Text = station.Name.ToString();
@@ -91,12 +91,22 @@ namespace PL
 
         private void StationChargeSlots_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!(int.TryParse(((TextBox)sender).Text, out int i)) && ((TextBox)sender).Text != "")
+            if (!int.TryParse(((TextBox)sender).Text, out int i) && ((TextBox)sender).Text != "")
             {
                 MessageBox.Show("Invalid input");
                 ((TextBox)sender).Text = station.AvailableChargeSlots.ToString();
             }
 
+
+        }
+
+        private void Longitude_Changed(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Latitude_Changed(object sender, TextChangedEventArgs e)
+        {
 
         }
     }

@@ -20,21 +20,23 @@
             <RowDefinition Height="177*"/>
         </Grid.RowDefinitions>
 
-        <Button Content="Close" HorizontalAlignment="Left" Margin="741,10,0,0" VerticalAlignment="Top" Background="#FFFA0000" Click="Close_ButtonClick" Height="20" Width="33"/>
+        <Button Content="&#10060;" HorizontalAlignment="Left" Margin="722,10,0,0" VerticalAlignment="Top" Background="White" 
+                Foreground="Red" Click="Close_Button_Click" Height="33" Width="49" FontWeight="Bold" 
+                Grid.RowSpan="1" BorderThickness="0,0,0,0"/>
 
-        <!--Update drone Section -->
+        <!--Update Station Section -->
         <TextBlock  x:Name="StationView" Visibility="visible" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
         <TextBox x:Name="StationName" HorizontalAlignment="Left" Margin="140,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="StationName_TextChanged"/>
         <TextBox x:Name="ChargingStations" HorizontalAlignment="Left" Margin="140,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="StationChargeSlots_TextChanged"/>
         <Button x:Name="UpdateButton" Background="GreenYellow" Content="Update" HorizontalAlignment="Left" Margin="279,148,0,0" VerticalAlignment="Top" Click="UpdateButton_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="70,52,0,0" Text="Name:" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="18,101,0,0" Text="Charging Stations:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="Longitude" HorizontalAlignment="Left" Margin="140,150,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Latitude" HorizontalAlignment="Left" Margin="142,206,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Longitude" TextChanged="Longitude_Changed" HorizontalAlignment="Left" Margin="140,150,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Latitude" TextChanged="Latitude_Changed" HorizontalAlignment="Left" Margin="142,206,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="50,151,0,0" Text="Longitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="61,205,0,0" Text="Latitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Button Content="Add Base Station" Background="GreenYellow" HorizontalAlignment="Left" Margin="551,205,0,0" VerticalAlignment="Top"/>
-        <!--End Update drone Section -->
+        <!--End Update Station Section -->
 
         <!--Add drone Section -->
         <!--End Add drone Section -->

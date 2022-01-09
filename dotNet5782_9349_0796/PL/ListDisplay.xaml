@@ -25,14 +25,16 @@
                 Text="-- Select --" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="auto" Margin="10,43,56,322" SelectionChanged="StatusSelector_SelectionChanged" Background="LightBlue"/>
 
 
-                <Button Grid.Column="3" Margin="33,10,121,0" VerticalAlignment="Top" 
+                <!--<Button Grid.Column="3" Margin="33,10,121,0" VerticalAlignment="Top" 
                         Click="Close_Button_Click" Height="45" Width="45"
                         BorderBrush="Transparent">
                     <Button.Background>
                         <ImageBrush ImageSource="/Resources/CloseCross.png"/>
                     </Button.Background>
-                </Button>
-
+                </Button>-->
+                <Button Content="&#10060;" HorizontalAlignment="Left" Margin="471,12,0,0" VerticalAlignment="Top" Background="White" 
+                Foreground="Red" Click="Close_Button_Click" Height="33" Width="49" FontWeight="Bold" 
+                Grid.RowSpan="1" BorderThickness="0,0,0,0" Grid.Column="2"/>
 
                 <RadioButton x:Name="Drones" Content="Drone Lists" HorizontalAlignment="Left" Margin="18,12,0,0" VerticalAlignment="Top" Checked="Drones_Checked" IsChecked="True"/>
                 <RadioButton x:Name="Stations" Content="Station Lists" HorizontalAlignment="Left" Margin="121,12,0,0" VerticalAlignment="Top" Checked="Stations_Checked"/>
@@ -40,8 +42,8 @@
                 <RadioButton x:Name="Packages"  Content="Package Lists" HorizontalAlignment="Left" Margin="121,29,0,0" VerticalAlignment="Top" Checked="Packages_Checked" Grid.ColumnSpan="2"/>
 
                 <Button x:Name="AddButton" Content="Add Drone" Grid.Column="2" 
-                        Margin="339,26,197,345" Height="28" Width="94" Background="LightBlue" 
-                        Click="Add_Drone_ButtonClick" Grid.ColumnSpan="2"/>
+                        Margin="335,29,146,342" Height="28" Width="94" Background="LightBlue" 
+                        Click="Add_Drone_ButtonClick"/>
                 <Button Content="Add Station" Grid.Column="1" HorizontalAlignment="Left" Margin="21,29,0,0" 
                         VerticalAlignment="Top" Height="28" Width="94" Background="LightBlue" 
                         Click="Station_Click" Grid.ColumnSpan="2"/>

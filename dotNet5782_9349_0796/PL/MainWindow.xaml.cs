@@ -47,7 +47,7 @@ namespace PL
         {
             ListDisplay DroneListWindow = new ListDisplay(BLObj);
             DroneListWindow.Show();
-            this.Close();
+            Close();
         }
     }
 }
