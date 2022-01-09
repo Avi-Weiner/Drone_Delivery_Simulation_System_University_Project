@@ -13,10 +13,11 @@ namespace BlApi
         BaseStation AddBaseStation(int name, double longitude, double Latitude, int availableSlots);
         Drone AddDrone(string Model, string Weight, int StationId);
         Customer AddCustomer(string name, string phone, double Longitude, double Latitude);
-        Package AddPackage(int SenderId, int ReceiverId, string Weight, string Priority );
+        Package AddPackage(int SenderId, int ReceiverId, string Weight, string Priority);
         Drone UpdateDrone(int Id, string Model);
         void UpdateStation(int Id, int StationName, int chargingStation);
         void UpdateCustomer(int Id, string Name = "", string Phone = "");
+        void UpdatePackage(int Id, int SenderId = 0, int ReceiverId = 0, string Weight = "", string Priority = "");
         void SendDroneToCharge(int DroneId);
         void AssignPackageToDrone(int DroneId);
         void DroneCollectsAPackage(int DroneId);

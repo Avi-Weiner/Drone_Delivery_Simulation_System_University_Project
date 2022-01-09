@@ -88,7 +88,7 @@ namespace PL
                     Close();
                     break;
                 case "BL.PackageToList":
-                    BL.PackageToList package = ((BL.PackageToList)ListView.SelectedItem);
+                    BL.PackageToList package = (BL.PackageToList)ListView.SelectedItem;
                     int p = package.Id;
                     PackageDisplay PackageDisplayWindow = new PackageDisplay(bl, bl.DalToBlPackage(p));
                     PackageDisplayWindow.Show();

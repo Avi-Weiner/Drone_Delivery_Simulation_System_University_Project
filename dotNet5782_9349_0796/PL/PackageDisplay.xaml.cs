@@ -22,6 +22,14 @@ namespace PL
 
         BlApi.IBL bl;
         BL.Package package;
+        int senderId, receiverId;
+        string weightString, priorityString;
+
+        /// <summary>
+        /// Update package display constructor
+        /// </summary>
+        /// <param name="BL"></param>
+        /// <param name="Package"></param>
         public PackageDisplay(BlApi.IBL BL, BL.Package Package)
         {
             package = Package;
@@ -38,6 +46,67 @@ namespace PL
             Close();
 
 
+        }
+
+        /// <summary>
+        /// Constructor for adding a station
+        /// </summary>
+        public PackageDisplay(BlApi.IBL BL)
+        {
+            package = new BL.Package();
+            bl = BL;
+            InitializeComponent();
+
+            //Longitude.Visibility = Visibility.Visible;
+            //Latitude.Visibility = Visibility.Visible;
+            //LongitudeText.Visibility = Visibility.Visible;
+            //LatitudeText.Visibility = Visibility.Visible;
+            //AddStationButton.Visibility = Visibility.Visible;
+            //AddBaseStationTitle.Visibility = Visibility.Visible;
+
+        }
+
+        private void SenderId_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!int.TryParse(((TextBox)sender).Text, out int i) && ((TextBox)sender).Text != "")
+            {
+                MessageBox.Show("Invalid input");
+            }
+
+            senderId = i;
+        }
+
+        private void ReceiverId_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!int.TryParse(((TextBox)sender).Text, out int i) && ((TextBox)sender).Text != "")
+            {
+                MessageBox.Show("Invalid input");
+            }
+
+            receiverId = i;
+        }
+
+        private void CMB_Weight_Changed(object sender, SelectionChangedEventArgs e)
+        {
+            weightString = WeightComboBox.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
+        }
+
+        private void CMB_Priority_Changed(object sender, SelectionChangedEventArgs e)
+        {
+            priorityString = PriorityComboBox.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
+        }
+
+        private void Add_Package_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.AddPackage(senderId, receiverId, weightString, priorityString);
+                MessageBox.Show("Package added succesfully");
+            }
+            catch (BL.MessageException m)
+            {
+                MessageBox.Show(m.ToString());
+            }
         }
     }
 }

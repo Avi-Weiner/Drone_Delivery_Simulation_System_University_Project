@@ -44,7 +44,7 @@ namespace BL
         }
 
         /// <summary>
-        /// Updates 
+        /// Updates Station
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="StationName"></param>
@@ -71,8 +71,9 @@ namespace BL
             DalObject.DataSource.StationList[Stationi] = Station;
 
         }
+
         /// <summary>
-        /// updates a customer: opriotns to udate are name and or phone.
+        /// updates a customer: options to update are name and or phone.
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="Name"></param>
@@ -97,6 +98,68 @@ namespace BL
             }
 
             DalObject.DataSource.CustomerList[Customeri] = Customer;
+        }
+
+        /// <summary>
+        /// updates a customer: options to update are name and or phone.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="Name"></param>
+        /// <param name="Phone"></param>
+        public void UpdatePackage(int Id, int SenderId = 0, int ReceiverId = 0, string Weight = "", string Priority = "")
+        {
+
+            int packagei = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Id);
+            //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
+            if (packagei == -1)
+            {
+                throw new MessageException("Error: Package not found\n");
+            }
+
+            DO.Package package = DalObject.DataSource.PackageList[packagei];
+
+            if (SenderId != 0) { 
+                int Senderi = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == SenderId);
+                if (Senderi == -1)
+                {
+                    throw new MessageException("Error: Sender not found\n");
+                }
+                package.SenderId = SenderId;
+            }
+
+            if (ReceiverId != 0)
+            {
+                int Receiveri = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == ReceiverId);
+                if (Receiveri == -1)
+                {
+                    throw new MessageException("Error: Receiver not found\n");
+                }
+                package.ReceiverId = ReceiverId;
+            }
+
+            //Check if Weight is valid
+            if (Weight != "")
+            {
+                if (Weight != "light" && Weight != "medium" && Weight != "heavy")
+                    throw new MessageException("Error: Weight status invalid\n");
+                //If valid, convert to WeightCatagory
+                DO.WeightCategory weightCatagory = (DO.WeightCategory)Enum.Parse(typeof(DO.WeightCategory), Weight);
+
+                package.Weight = weightCatagory;
+            }
+
+            //Check if Priority is valid
+            if (Priority != "")
+            {
+                if (Priority != "regular" && Priority != "fast" && Priority != "emergency")
+                    throw new MessageException("Error: Weight status invalid\n");
+                //If valid, convert to WeightCatagory
+                DO.Priority priorityCatagory = (DO.Priority)Enum.Parse(typeof(DO.Priority), Priority);
+
+                package.Priority = priorityCatagory;
+            }
+
+            DalObject.DataSource.PackageList[packagei] = package;
         }
     }
 }
