@@ -44,20 +44,14 @@ namespace PL
         //public StationDisplay(BlApi.IBL BL)
         //{
             //StationView.Visibility
-       // }
-
-       
+       // }      
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
             List st = new List(bl);
             st.Show();
             Close();
-        }
-
-        
-
-       
+        }     
 
         /// <summary>
         /// Constructor for adding a drone
@@ -74,7 +68,7 @@ namespace PL
             {
                 bl.UpdateStation(station.Id, Int32.Parse(StationName.Text), Int32.Parse(ChargingStations.Text));
                 MessageBox.Show("Station updated successfully");
-                StationList st = new StationList(bl);
+                List st = new List(bl);
                 st.Show();
                 Close();
             }
@@ -83,6 +77,7 @@ namespace PL
                 MessageBox.Show(m.ToString());
             }
         }
+
         private void StationName_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!(int.TryParse(((TextBox)sender).Text, out int i)) && ((TextBox)sender).Text != "")
@@ -93,6 +88,7 @@ namespace PL
 
             
         }
+
         private void StationChargeSlots_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!(int.TryParse(((TextBox)sender).Text, out int i)) && ((TextBox)sender).Text != "")
