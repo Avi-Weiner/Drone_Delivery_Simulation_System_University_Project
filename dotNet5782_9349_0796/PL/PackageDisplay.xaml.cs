@@ -23,8 +23,10 @@ namespace PL
 
         BlApi.IBL bl;
         BL.Package package;
+        BL.Drone? Drone;
         int senderId, receiverId;
         string weightString, priorityString;
+
 
         /// <summary>
         /// Update package display constructor
@@ -43,6 +45,25 @@ namespace PL
             DeleteButton.Visibility = Visibility.Visible;
             PackageView.Visibility = Visibility.Visible;
 
+        }
+        /// <summary>
+        /// constructor for opening a pakcage from a drone
+        /// </summary>
+        /// <param name="BL"></param>
+        /// <param name="Package"></param>
+        /// <param name="drone"></param>
+        public PackageDisplay(BlApi.IBL BL, BL.Package Package, BL.Drone drone)
+        {
+            package = Package;
+            Drone = drone;
+            bl = BL;
+            InitializeComponent();
+            PackageView.Text = package.ToString();
+
+            UpdatePackageTitle.Visibility = Visibility.Visible;
+            UpdateButton.Visibility = Visibility.Visible;
+            DeleteButton.Visibility = Visibility.Visible;
+            PackageView.Visibility = Visibility.Visible;
         }
 
         private void Update_Package_Click(object sender, RoutedEventArgs e)
@@ -134,8 +155,11 @@ namespace PL
 
         private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
-            ListDisplay ListDisplayWindow = new ListDisplay(bl);
-            ListDisplayWindow.Show();
+            if (Drone == null)
+            {
+                ListDisplay ListDisplayWindow = new ListDisplay(bl);
+                ListDisplayWindow.Show();
+            }
             Close();
 
 

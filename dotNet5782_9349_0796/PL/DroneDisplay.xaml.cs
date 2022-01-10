@@ -49,8 +49,8 @@ namespace PL
             DeliverPackage.Visibility = Visibility.Visible;
             newModel.Visibility = Visibility.Visible;
             DroneView.Visibility = Visibility.Visible;
-            HoursChargedPrompt.Visibility = Visibility.Visible;
-            HoursCharged.Visibility = Visibility.Visible;
+            //HoursChargedPrompt.Visibility = Visibility.Visible;
+            //HoursCharged.Visibility = Visibility.Visible;
             DroneUpdateOptions.Visibility = Visibility.Visible;
             #endregion
 
@@ -141,8 +141,8 @@ namespace PL
         {
             try
             {
-                DateTime x = DateTime.MinValue;
-                x = x.AddHours(ChargingTime);
+                //DateTime x = DateTime.MinValue;
+                //x = x.AddHours(ChargingTime);
                
                 
                 bl.ReleaseDroneFromCharge(drone.Id);
@@ -256,7 +256,7 @@ namespace PL
 
         #endregion
 
-        int ChargingTime;
+        /*int ChargingTime;
         private void HoursCharged_TextChanged(object sender, TextChangedEventArgs e)
         {
             if(!(int.TryParse(((TextBox)sender).Text, out int i) && i >= 1 && i <= 23))
@@ -265,6 +265,20 @@ namespace PL
             }
             
             ChargingTime = i;
+        }*/
+        /// <summary>
+        /// Displays the pakcageDisplay for package in display
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DisplayPackage(object sender, RoutedEventArgs e)
+        {
+            if (drone.PackageInTransfer != null)
+            {
+                PackageDisplay pd = new PackageDisplay(bl, drone.PackageInTransfer, drone);
+                pd.Show();
+            }
+
         }
     }
 }
