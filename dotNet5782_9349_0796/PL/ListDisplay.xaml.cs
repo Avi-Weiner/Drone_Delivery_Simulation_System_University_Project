@@ -112,6 +112,7 @@ namespace PL
         {
             DroneDisplay droneDisplayWindow = new DroneDisplay(bl);
             droneDisplayWindow.Show();
+            Close();
         }
 
         /// <summary>
