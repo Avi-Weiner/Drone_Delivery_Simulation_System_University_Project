@@ -26,13 +26,13 @@
                 Grid.RowSpan="1" BorderThickness="0,0,0,0"/>
 
         <!--Update Package Section -->
-        <TextBlock x:Name="UpdatePackageTitle" HorizontalAlignment="Left" Margin="138,27,0,0" 
+        <TextBlock x:Name="UpdatePackageTitle" Visibility="Hidden" HorizontalAlignment="Left" Margin="138,27,0,0" 
                    TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" Text="Update"/><Run Text=" "/><Run Text="Package"/></TextBlock>
-        <Button x:Name="UpdateButton" Content="Update Package" Background="GreenYellow" HorizontalAlignment="Left" 
+        <Button x:Name="UpdateButton" Visibility="Hidden" Content="Update Package" Background="GreenYellow" HorizontalAlignment="Left" 
                 Margin="197,161,0,0" VerticalAlignment="Top" Click="Update_Package_Click"/>
-        <Button x:Name="DeleteButton" Content="Delete Package" Background="OrangeRed" HorizontalAlignment="Left" 
+        <Button x:Name="DeleteButton" Visibility="Hidden" Content="Delete Package" Background="OrangeRed" HorizontalAlignment="Left" 
                 Margin="96,161,0,0" VerticalAlignment="Top" Click="Delete_Package_Click"/>
-        <TextBlock  x:Name="PackageView" Visibility="visible" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+        <TextBlock  x:Name="PackageView" Visibility="Hidden" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
         <!--End Update Package Section -->
 
         <!--Add Package Section -->

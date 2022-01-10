@@ -37,7 +37,12 @@ namespace PL
             bl = BL;
             InitializeComponent();
             PackageView.Text = package.ToString();
-            
+
+            UpdatePackageTitle.Visibility = Visibility.Visible;
+            UpdateButton.Visibility = Visibility.Visible;
+            DeleteButton.Visibility = Visibility.Visible;
+            PackageView.Visibility = Visibility.Visible;
+
         }
 
         private void Update_Package_Click(object sender, RoutedEventArgs e)
