@@ -60,11 +60,18 @@ namespace PL
         
         private void Update_ButtonClick(object sender, RoutedEventArgs e)
         {
-            bl.UpdateDrone(drone.Id, newModel.Text);
-            MessageBox.Show("Drone Model updated Successfully");
+            try 
+            {
+                bl.UpdateDrone(drone.Id, newModel.Text);
+                MessageBox.Show("Drone updated Successfully");
             
-            drone = bl.DroneToListToDrone(drone.Id);
-            DroneView.Text = drone.ToString();
+                drone = bl.DroneToListToDrone(drone.Id);
+                DroneView.Text = drone.ToString();
+            }
+            catch (BL.MessageException m)
+            {
+                MessageBox.Show(m.ToString());
+            }
         }
 
         private void Send_ButtonClick(object sender, RoutedEventArgs e)
@@ -73,7 +80,7 @@ namespace PL
             {
                 
                 bl.AssignPackageToDrone(drone.Id);
-                MessageBox.Show("Packge was assigned succefully");
+                MessageBox.Show("Package was assigned succefully");
                 drone = bl.DroneToListToDrone(drone.Id);
                 DroneView.Text = drone.ToString();
 
