@@ -69,8 +69,8 @@ namespace PL
                 case "BL.DroneToList":
                     BL.DroneToList drone = (BL.DroneToList)ListView.SelectedItem;
                     int x = drone.Id;
-                    //DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
-                    //droneDisplayWindow.Show();//this was deleted purposely
+                    DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
+                    droneDisplayWindow.Show();//this was deleted purposely
                     //Close();
                     break;
                 case "BL.BaseStationToList":
