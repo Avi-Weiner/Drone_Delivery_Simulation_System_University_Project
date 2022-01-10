@@ -28,7 +28,7 @@
         <!--Update drone Section -->
 
         <TextBox  x:Name="DroneView" VerticalScrollBarVisibility="Auto" Background="LightBlue"
-                    Visibility="Visible" Margin="17,0,168,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" UseLayoutRounding="False"/>
+                    Visibility="Hidden" Margin="17,0,168,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" UseLayoutRounding="False"/>
         
         <TextBlock  x:Name="HoursChargedPrompt"  Visibility="Hidden"
                     HorizontalAlignment="Left" Margin="33,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
