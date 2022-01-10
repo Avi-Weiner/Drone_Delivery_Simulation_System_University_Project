@@ -161,8 +161,8 @@ namespace PL
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
-            ListDisplay droneList = new ListDisplay(bl);
-            droneList.Show();
+            //ListDisplay droneList = new ListDisplay(bl);
+            //droneList.Show();
             Close();
         }
 
@@ -244,8 +244,8 @@ namespace PL
             {
                 drone = bl.AddDrone(modelString, weightString, stationId);
                 MessageBox.Show("Drone Succesfully Added.");
-                ListDisplay l = new ListDisplay(bl);
-                l.Show();
+                //ListDisplay l = new ListDisplay(bl);
+                //l.Show();
                 Close();
             }
             catch (BL.MessageException m)
