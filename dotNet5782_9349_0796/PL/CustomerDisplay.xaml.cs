@@ -49,6 +49,7 @@ namespace PL
         public CustomerDisplay(BlApi.IBL BL)
         {
             customer = new BL.Customer();
+            location = new BL.Location();
             bl = BL;
             InitializeComponent();
             customer = new BL.Customer();
@@ -63,8 +64,8 @@ namespace PL
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
-            ListDisplay dl = new ListDisplay(bl);
-            dl.Show();
+            //ListDisplay dl = new ListDisplay(bl);
+            //dl.Show();
             Close();
 
         }
@@ -123,6 +124,7 @@ namespace PL
                 string cName = Name.Text;
                 string Phone = Phone1.Text + '-' + Phone2.Text + '-' + Phone3.Text;
                 bl.AddCustomer(cName, Phone, Double.Parse(Longitude.Text), Double.Parse(Latitude.Text));
+                Close();
             }
             catch (BL.MessageException m)
             {

@@ -113,6 +113,7 @@ namespace PL
             {
                 bl.AddPackage(senderId, receiverId, weightString, priorityString);
                 MessageBox.Show("Package added succesfully");
+                Close();
             }
             catch (BL.MessageException m)
             {
@@ -155,11 +156,6 @@ namespace PL
 
         private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (Drone == null)
-            {
-                ListDisplay ListDisplayWindow = new ListDisplay(bl);
-                ListDisplayWindow.Show();
-            }
             Close();
 
 

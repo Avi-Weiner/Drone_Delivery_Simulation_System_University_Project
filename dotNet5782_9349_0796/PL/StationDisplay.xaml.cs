@@ -58,8 +58,8 @@ namespace PL
             {
                 bl.UpdateStation(station.Id, Int32.Parse(StationName.Text), Int32.Parse(ChargingStations.Text));
                 MessageBox.Show("Station updated successfully");
-                ListDisplay st = new ListDisplay(bl);
-                st.Show();
+                //ListDisplay st = new ListDisplay(bl);
+                //st.Show();
                 Close();
             }
             catch (BL.MessageException m)
@@ -97,8 +97,8 @@ namespace PL
             {
                 bl.AddBaseStation(station.Name, location.longitude, location.latitude, station.AvailableChargeSlots);
                 MessageBox.Show("Station added succesfully");
-                ListDisplay listDisplay = new ListDisplay(bl);
-                listDisplay.Show();
+                //ListDisplay listDisplay = new ListDisplay(bl);
+                //listDisplay.Show();
                 Close();
             }
             catch (BL.MessageException m)
@@ -158,8 +158,8 @@ namespace PL
 
         private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
-            ListDisplay st = new ListDisplay(bl);
-            st.Show();
+            //ListDisplay st = new ListDisplay(bl);
+            //st.Show();
             Close();
         }
         #endregion
