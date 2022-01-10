@@ -69,30 +69,30 @@ namespace PL
                 case "BL.DroneToList":
                     BL.DroneToList drone = (BL.DroneToList)ListView.SelectedItem;
                     int x = drone.Id;
-                    DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
-                    droneDisplayWindow.Show();
-                    Close();
+                    //DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
+                    //droneDisplayWindow.Show();//this was deleted purposely
+                    //Close();
                     break;
                 case "BL.BaseStationToList":
                     BL.BaseStationToList station = (BL.BaseStationToList)ListView.SelectedItem;
                     int y = station.Id;
                     StationDisplay stationDisplayWindow = new StationDisplay(bl.DalToBlStation(y), bl);
                     stationDisplayWindow.Show();
-                    Close();
+                    //Close();
                     break;
                 case "BL.CustomerToList":
                     BL.CustomerToList customer = (BL.CustomerToList)ListView.SelectedItem;
                     int z = customer.Id;
                     CustomerDisplay CustomerDisplayWindow = new CustomerDisplay(bl.DalToBlCustomer(z), bl);
                     CustomerDisplayWindow.Show();
-                    Close();
+                    //Close();
                     break;
                 case "BL.PackageToList":
                     BL.PackageToList package = (BL.PackageToList)ListView.SelectedItem;
                     int p = package.Id;
                     PackageDisplay PackageDisplayWindow = new PackageDisplay(bl, bl.DalToBlPackage(p));
                     PackageDisplayWindow.Show();
-                    Close();
+                    //Close();
                     break;
 
             }
@@ -116,8 +116,20 @@ namespace PL
             //if there was no selection yet nothing should be refreshed.
             if (StatusSelector.SelectedItem == null)
                 return;
+            //string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
+            if (StatusSelector.SelectedItem == null)
+                return;
             string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
-            ListView.ItemsSource = bl.DroneListFilter(x);
+            if ((bool)Stations.IsChecked)
+                ListView.ItemsSource = bl.StationListFilter(x);
+            else if ((bool)Drones.IsChecked)
+                ListView.ItemsSource = bl.DroneListFilter(x);
+            else if ((bool)Customers.IsChecked)
+                ListView.ItemsSource = bl.ListOfCustomers();
+            else if ((bool)Packages.IsChecked)
+            {
+                ListView.ItemsSource = bl.PackageListFilter(x);
+            }
         }
 
         private void Stations_Checked(object sender, RoutedEventArgs e)
@@ -175,7 +187,7 @@ namespace PL
         {
             DroneDisplay droneDisplayWindow = new DroneDisplay(bl);
             droneDisplayWindow.Show();
-            Close();
+            
             
         }
         /// <summary>
@@ -188,7 +200,7 @@ namespace PL
             StationDisplay stationDisplayWindow = new StationDisplay(bl);
 
             stationDisplayWindow.Show();
-            Close();
+            
         }
         /// <summary>
         /// add a package
@@ -199,7 +211,7 @@ namespace PL
         {
             PackageDisplay PackageWindow = new PackageDisplay(bl);
             PackageWindow.Show();
-            Close();
+            
         }
         /// <summary>
         /// add a customer
