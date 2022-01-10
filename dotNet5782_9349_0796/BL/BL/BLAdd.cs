@@ -124,6 +124,8 @@ namespace BL
                 throw new MessageException("Error: Longitude exceeds bounds");
             if (Latitude < -90 || Latitude > 90)
                 throw new MessageException("Error: latitude exceeds bounds");
+            if (name == "")
+                throw new MessageException("Error: Name is empty");
 
 
             DalObject.DalObject.AddCustomer(name, phone, Longitude, Latitude);

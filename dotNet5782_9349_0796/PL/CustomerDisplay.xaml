@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="CustomerDisplay" Height="450" Width="800">
+        Title="CustomerDisplay" Height="450" Width="498">
     <Grid Grid.RowSpan="2">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -20,28 +20,33 @@
             <RowDefinition Height="177*"/>
         </Grid.RowDefinitions>
 
-        <Button Content="&#10060;" Foreground="Red"  HorizontalAlignment="Left" Margin="741,10,0,0" VerticalAlignment="Top" Background="White" Click="Close_ButtonClick" Height="20" Width="33" FontSize="12" FontWeight="ExtraBold" FontStretch="Expanded" FontStyle="Normal" BorderThickness="0,0,0,0"/>
+        <!-- Both Section -->
+        <Button Content="&#10060;" Foreground="Red"  HorizontalAlignment="Left" Margin="443,10,0,0" VerticalAlignment="Top" Background="White" Click="Close_ButtonClick" Height="20" Width="33" FontSize="12" FontWeight="ExtraBold" FontStretch="Expanded" FontStyle="Normal" BorderThickness="0,0,0,0"/>
+        <TextBox x:Name="Name" HorizontalAlignment="Left" Margin="93,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="Name_TextChanged"/>
+        <TextBox x:Name="Phone1" HorizontalAlignment="Left" Margin="92,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" Height="18" />
+        <TextBox x:Name="Phone2" HorizontalAlignment="Left" Margin="146,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" Height="18"/>
+        <TextBox x:Name="Phone3" HorizontalAlignment="Left" Margin="200,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" Height="18"/>
+        <TextBlock HorizontalAlignment="Left" Margin="136,112,0,0" Text="-" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="191,112,0,0" Text="-" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="31,83,0,0" Text="Name:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="29,113,0,0" Text="Phone:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <!-- End Both Section -->
 
         <!--Update Customer Section -->
-        <TextBox  Background="LightBlue" VerticalScrollBarVisibility="Auto" x:Name="CustomerView" Visibility="visible" Margin="10,257,26,10" TextWrapping="Wrap" Grid.RowSpan="2" />
-        <TextBox x:Name="Name" HorizontalAlignment="Left" Margin="93,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Phone1" HorizontalAlignment="Left" Margin="92,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" Height="18" />
-        <TextBox x:Name="Phone2" HorizontalAlignment="Left" Margin="146,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" Height="18"/>
-        <TextBox x:Name="Phone3" HorizontalAlignment="Left" Margin="200,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" Height="18"/>
-        <TextBlock HorizontalAlignment="Left" Margin="136,132,0,0" Text="-" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="191,132,0,0" Text="-" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button x:Name="UpdateButton" Content="Update Customer" Background="GreenYellow" HorizontalAlignment="Left" Margin="147,186,0,0" VerticalAlignment="Top" Click="UpdateButton_Click"/>
-        <TextBox x:Name="Longitude" TextChanged="Longitude_Changed" HorizontalAlignment="Left" Margin="93,171,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Latitude" TextChanged="Latitude_Changed" HorizontalAlignment="Left" Margin="94,206,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="AddButton" Content="Add Customer" Background="GreenYellow"  HorizontalAlignment="Left" Margin="259,203,0,0" VerticalAlignment="Top" Click="AddButton_Click"/>
-        <TextBlock HorizontalAlignment="Left" Margin="29,82,0,0" Text="Name:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="29,133,0,0" Text="Phone:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="29,172,0,0" Text="Longitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="29,207,0,0" Text="Latitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="UpdateCustomerTitle" Visibility="Hidden" HorizontalAlignment="Left" Margin="72,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" Text="Update Customer"/></TextBlock>
+        <TextBox x:Name="CustomerView" Visibility="Hidden" Background="LightBlue" VerticalScrollBarVisibility="Auto"  Margin="10,257,26,10" TextWrapping="Wrap" Grid.RowSpan="2" />
+        <Button x:Name="UpdateButton" Visibility="Hidden" Content="Update Customer" Background="GreenYellow" HorizontalAlignment="Left" Margin="69,141,0,0" VerticalAlignment="Top" Click="UpdateButton_Click"/>
         <!--End Update Customer Section -->
 
-        <!--Add drone Section -->
-        <!--End Add drone Section -->
+        <!--Add Customer Section -->
+        <Button x:Name="AddButton" Content="Add Customer" Visibility="Hidden" Background="GreenYellow"  HorizontalAlignment="Left" 
+                Margin="72,207,0,0" VerticalAlignment="Top" Click="AddButton_Click"/>
+        <TextBlock x:Name="LongitudeText" Visibility="Hidden" HorizontalAlignment="Left" Margin="10,145,0,0" Text="Longitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="LatitudeText" Visibility="Hidden" HorizontalAlignment="Left" Margin="21,180,0,0" Text="Latitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="Longitude" Visibility="Hidden" TextChanged="Longitude_Changed" HorizontalAlignment="Left" Margin="92,145,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Latitude" Visibility="Hidden" TextChanged="Latitude_Changed" HorizontalAlignment="Left" Margin="93,179,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="AddCustomerTitle" Visibility="Hidden" HorizontalAlignment="Left" Margin="72,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" Text="Add Customer"/></TextBlock>
+        <!--End Add Customer Section -->
 
 
     </Grid>

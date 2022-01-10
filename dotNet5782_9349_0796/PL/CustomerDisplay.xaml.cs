@@ -21,7 +21,7 @@ namespace PL
         BL.Location location;
         // this line should probalby be deleted...............public Visibility SendButton { get; set; }
         /// <summary>
-        /// Constructor for updating a drone
+        /// Constructor for updating a customer
         /// </summary>
         /// <param name="Drone"></param>
         /// <param name="BL"></param>
@@ -36,15 +36,28 @@ namespace PL
             Phone1.Text = customer.Phone.Substring(0, 3);
             Phone2.Text = customer.Phone.Substring(4, 4);
             Phone3.Text = customer.Phone.Substring(9, 4);
-            Longitude.Visibility = Visibility.Hidden;
-            Latitude.Visibility = Visibility.Hidden;
-            AddButton.Visibility = Visibility.Hidden;
+
+            UpdateCustomerTitle.Visibility = Visibility.Visible;
+            CustomerView.Visibility = Visibility.Visible;
+            UpdateButton.Visibility = Visibility.Visible;
         }
+
+        /// <summary>
+        /// Constructor for adding a customer
+        /// </summary>
+        /// <param name="BL"></param>
         public CustomerDisplay(BlApi.IBL BL)
         {
             bl = BL;
             InitializeComponent();
-            UpdateButton.Visibility = Visibility.Hidden;
+
+            AddButton.Visibility = Visibility.Visible;
+            LongitudeText.Visibility = Visibility.Visible;
+            LatitudeText.Visibility = Visibility.Visible;
+            Longitude.Visibility = Visibility.Visible;
+            Latitude.Visibility = Visibility.Visible;
+            AddCustomerTitle.Visibility = Visibility.Visible;
+            
         }
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
@@ -57,21 +70,29 @@ namespace PL
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            //check if phone number is valid
-            if (Phone1.Text.Length < 3 || Phone2.Text.Length < 4 || Phone3.Text.Length < 4)
+            try
             {
-                MessageBox.Show("Invalid phone number. \n Please reenter your phone number.");
+                //check if phone number is valid
+                if (Phone1.Text.Length < 3 || Phone2.Text.Length < 4 || Phone3.Text.Length < 4)
+                {
+                    MessageBox.Show("Invalid phone number. \n Please reenter your phone number.");
+                }
+                else
+                {
+                    string validPhone = Phone1.Text + "-" + Phone2.Text + "-" + Phone3.Text;
+                    bl.UpdateCustomer(customer.Id, Name.Text, validPhone);
+                    customer.Phone = validPhone;
+                    customer.Name = Name.Text;
+                    CustomerView.Text = customer.ToString();
+                    MessageBox.Show("Customer updated successfully.");
+                }
             }
-            else
+            catch (BL.MessageException m)
             {
-                string validPhone = Phone1.Text + "-" + Phone2.Text + "-" + Phone3.Text;
-                bl.UpdateCustomer(customer.Id, Name.Text, validPhone);
-                customer.Phone = validPhone;
-                customer.Name = Name.Text;
-                CustomerView.Text = customer.ToString();
-                MessageBox.Show("Customer updated successfully.");
+                MessageBox.Show(m.ToString());
             }
         }
+
         private void Longitude_Changed(object sender, TextChangedEventArgs e)
         {
 
@@ -101,9 +122,16 @@ namespace PL
                 string cName = Name.Text;
                 string Phone = Phone1.Text + '-' + Phone2.Text + '-' + Phone3.Text;
                 bl.AddCustomer(cName, Phone, Double.Parse(Longitude.Text), Double.Parse(Latitude.Text));
-
-                    
             }
+            catch (BL.MessageException m)
+            {
+                MessageBox.Show(m.ToString());
+            }
+        }
+
+        private void Name_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            customer.Name = Name.Text;
         }
     }
 }
