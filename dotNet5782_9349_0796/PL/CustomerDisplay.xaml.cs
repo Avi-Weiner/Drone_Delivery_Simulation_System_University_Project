@@ -48,6 +48,7 @@ namespace PL
         /// <param name="BL"></param>
         public CustomerDisplay(BlApi.IBL BL)
         {
+            customer = new BL.Customer();
             bl = BL;
             InitializeComponent();
 
