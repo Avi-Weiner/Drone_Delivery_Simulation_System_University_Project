@@ -103,17 +103,7 @@ namespace PL
             //Close();
         }
 
-        /// <summary>
-        /// Opens an add drone screen
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Add_Drone_ButtonClick(object sender, RoutedEventArgs e)
-        {
-            DroneDisplay droneDisplayWindow = new DroneDisplay(bl);
-            droneDisplayWindow.Show();
-            Close();
-        }
+        
 
         /// <summary>
         /// This function will simply reselect the item currently selected which will 
@@ -176,13 +166,51 @@ namespace PL
             };
             StatusSelector.ItemsSource = ListType;
         }
-
+        /// <summary>
+        /// Opens an add drone screen
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Add_Drone_ButtonClick(object sender, RoutedEventArgs e)
+        {
+            DroneDisplay droneDisplayWindow = new DroneDisplay(bl);
+            droneDisplayWindow.Show();
+            Close();
+            
+        }
+        /// <summary>
+        /// add a station
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Station_Click(object sender, RoutedEventArgs e)
         {
             StationDisplay stationDisplayWindow = new StationDisplay(bl);
 
             stationDisplayWindow.Show();
             Close();
+        }
+        /// <summary>
+        /// add a package
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Package_Click(object sender, RoutedEventArgs e)
+        {
+            PackageDisplay PackageWindow = new PackageDisplay(bl);
+            PackageWindow.Show();
+            Close();
+        }
+        /// <summary>
+        /// add a customer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Customer_Click(object sender, RoutedEventArgs e)
+        {
+            CustomerDisplay customerDisplay = new CustomerDisplay(bl);
+            customerDisplay.Show();
+            
         }
     }
 }

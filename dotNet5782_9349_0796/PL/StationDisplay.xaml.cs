@@ -97,6 +97,9 @@ namespace PL
             {
                 bl.AddBaseStation(station.Name, location.longitude, location.latitude, station.AvailableChargeSlots);
                 MessageBox.Show("Station added succesfully");
+                ListDisplay listDisplay = new ListDisplay(bl);
+                listDisplay.Show();
+                Close();
             }
             catch (BL.MessageException m)
             {

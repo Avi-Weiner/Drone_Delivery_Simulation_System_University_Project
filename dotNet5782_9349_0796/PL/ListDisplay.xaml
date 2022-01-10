@@ -47,10 +47,10 @@
                 <Button Content="Add Station" Grid.Column="1" HorizontalAlignment="Left" Margin="21,29,0,0" 
                         VerticalAlignment="Top" Height="28" Width="94" Background="LightBlue" 
                         Click="Station_Click" Grid.ColumnSpan="2"/>
-                <Button Content="Add Customer" Grid.Column="2" Margin="213,29,124,0" HorizontalAlignment="Left"
-                        VerticalAlignment="Top" Height="28" Width="94" />
-                <Button Content="Add Package" Grid.Column="2"  Margin="87,29,250,0"  HorizontalAlignment="Left"
-                        VerticalAlignment="Top" Height="28" Width="94"/>
+                <Button Content="Add Customer" Grid.Column="2" Margin="213,29,124,0" Background="LightBlue" HorizontalAlignment="Left"
+                        VerticalAlignment="Top" Height="28" Width="94" Click="Customer_Click" />
+                <Button Content="Add Package" Grid.Column="2"  Margin="87,29,250,0"  Background="LightBlue" HorizontalAlignment="Left"
+                        VerticalAlignment="Top" Height="28" Width="94" Click="Package_Click"/>
 
             </Grid>
 

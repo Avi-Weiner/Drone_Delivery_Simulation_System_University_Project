@@ -50,7 +50,7 @@ namespace PL
         {
             bl = BL;
             InitializeComponent();
-
+            customer = new BL.Customer();
             AddButton.Visibility = Visibility.Visible;
             LongitudeText.Visibility = Visibility.Visible;
             LatitudeText.Visibility = Visibility.Visible;
