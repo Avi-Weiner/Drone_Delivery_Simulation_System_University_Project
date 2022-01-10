@@ -83,7 +83,8 @@ namespace PL
                 MessageBox.Show("Package was assigned succefully");
                 drone = bl.DroneToListToDrone(drone.Id);
                 DroneView.Text = drone.ToString();
-
+                
+                
             }
             catch(BL.MessageException m)
             {
