@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 namespace PL
 {
+
     /// <summary>
     /// Interaction logic for PackageDisplay.xaml
     /// </summary>
@@ -39,15 +40,34 @@ namespace PL
             
         }
 
-        private void Close_Button_Click(object sender, RoutedEventArgs e)
+        private void Update_Package_Click(object sender, RoutedEventArgs e)
         {
-            ListDisplay ListDisplayWindow = new ListDisplay(bl);
-            ListDisplayWindow.Show();
-            Close();
-
-
+            try
+            {
+                bl.UpdatePackage(package.Id, senderId, receiverId, weightString, priorityString);
+                MessageBox.Show("Package updated succesfully");
+            }
+            catch (BL.MessageException m)
+            {
+                MessageBox.Show(m.ToString());
+            }
         }
 
+        private void Delete_Package_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.DeletePackage(package.Id);
+                MessageBox.Show("Package deleted succesfully");
+            }
+            catch (BL.MessageException m)
+            {
+                MessageBox.Show(m.ToString());
+            }
+        }
+
+
+        #region AddPackageOnly
         /// <summary>
         /// Constructor for adding a station
         /// </summary>
@@ -57,15 +77,25 @@ namespace PL
             bl = BL;
             InitializeComponent();
 
-            //Longitude.Visibility = Visibility.Visible;
-            //Latitude.Visibility = Visibility.Visible;
-            //LongitudeText.Visibility = Visibility.Visible;
-            //LatitudeText.Visibility = Visibility.Visible;
-            //AddStationButton.Visibility = Visibility.Visible;
-            //AddBaseStationTitle.Visibility = Visibility.Visible;
+            AddPackageTitle.Visibility = Visibility.Visible;
+            AddPackageButton.Visibility = Visibility.Visible;
 
         }
+        private void Add_Package_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.AddPackage(senderId, receiverId, weightString, priorityString);
+                MessageBox.Show("Package added succesfully");
+            }
+            catch (BL.MessageException m)
+            {
+                MessageBox.Show(m.ToString());
+            }
+        }
+        #endregion
 
+        #region Both
         private void SenderId_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!int.TryParse(((TextBox)sender).Text, out int i) && ((TextBox)sender).Text != "")
@@ -96,17 +126,15 @@ namespace PL
             priorityString = PriorityComboBox.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
         }
 
-        private void Add_Package_Click(object sender, RoutedEventArgs e)
+
+        private void Close_Button_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                bl.AddPackage(senderId, receiverId, weightString, priorityString);
-                MessageBox.Show("Package added succesfully");
-            }
-            catch (BL.MessageException m)
-            {
-                MessageBox.Show(m.ToString());
-            }
+            ListDisplay ListDisplayWindow = new ListDisplay(bl);
+            ListDisplayWindow.Show();
+            Close();
+
+
         }
+        #endregion
     }
 }

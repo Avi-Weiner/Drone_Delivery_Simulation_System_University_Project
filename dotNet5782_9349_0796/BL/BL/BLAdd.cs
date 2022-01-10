@@ -192,6 +192,7 @@ namespace BL
             p.CollectingTime = DateTime.MinValue;
             p.DeliveringTime = DateTime.MinValue;
 
+            //No drone is an Id of 0
             p.DroneId = 0;
 
             return p;

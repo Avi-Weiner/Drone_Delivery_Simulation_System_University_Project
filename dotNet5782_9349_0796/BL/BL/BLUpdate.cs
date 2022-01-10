@@ -161,5 +161,38 @@ namespace BL
 
             DalObject.DataSource.PackageList[packagei] = package;
         }
+
+        /// <summary>
+        /// Receives a package Id and deletes the package, freeing up a drone if necessary
+        /// </summary>
+        /// <param name="Id"></param>
+        public void DeletePackage(int Id)
+        {
+            int packagei = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Id);
+            //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
+            if (packagei == -1)
+            {
+                throw new MessageException("Error: Package not found\n");
+            }
+
+            Package package = DalToBlPackage(Id);
+
+            if (package.DroneId != 0)
+            {
+                int Dronei = BLObject.BLDroneList.FindIndex(x => x.Id == package.DroneId);
+                //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
+                if (Dronei == -1)
+                {
+                    throw new MessageException("Error: Drone assigned to package not found.");
+                }
+
+                //Unassign package from its drone
+                BLObject.BLDroneList[Dronei].PackageId = null;
+            }
+
+            //Delete package from package list
+            DalObject.DataSource.PackageList.RemoveAt(packagei);
+
+        }
     }
 }

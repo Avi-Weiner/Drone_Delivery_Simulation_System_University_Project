@@ -26,10 +26,30 @@
                 Grid.RowSpan="1" BorderThickness="0,0,0,0"/>
 
         <!--Update Package Section -->
+        <TextBlock x:Name="UpdatePackageTitle" HorizontalAlignment="Left" Margin="138,27,0,0" 
+                   TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" Text="Update"/><Run Text=" "/><Run Text="Package"/></TextBlock>
+        <Button x:Name="UpdateButton" Content="Update Package" Background="GreenYellow" HorizontalAlignment="Left" 
+                Margin="197,161,0,0" VerticalAlignment="Top" Click="Update_Package_Click"/>
+        <Button x:Name="DeleteButton" Content="Delete Package" Background="OrangeRed" HorizontalAlignment="Left" 
+                Margin="96,161,0,0" VerticalAlignment="Top" Click="Delete_Package_Click"/>
         <TextBlock  x:Name="PackageView" Visibility="visible" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
         <!--End Update Package Section -->
 
         <!--Add Package Section -->
+        <TextBlock x:Name="AddPackageTitle" Visibility="Hidden" HorizontalAlignment="Left" Margin="118,26,0,0" 
+                   TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Add "/><Run Language="en-au" 
+                                                                                     Text="Package"/></TextBlock>
+        <Button x:Name="AddPackageButton" Visibility="Hidden" Content="Add Package" Background="GreenYellow" HorizontalAlignment="Left" 
+                Margin="124,166,0,0" VerticalAlignment="Top" Click="Add_Package_Click"/>
+        <!--End Add Package Section -->
+
+        <!--Both Section-->
+        <TextBlock HorizontalAlignment="Left" Margin="84,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Sender ID:"/>
+        <TextBlock HorizontalAlignment="Left" Margin="77,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" Text="Receiver ID:"/></TextBlock>
+        <TextBox x:Name="SenderId" HorizontalAlignment="Left" Margin="154,49,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="120" TextChanged="SenderId_TextChanged"/>
+        <TextBox x:Name="ReceiverId" HorizontalAlignment="Left" Margin="154,72,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="120" TextChanged="ReceiverId_TextChanged"/>
         <TextBlock x:Name="LongitudeText" HorizontalAlignment="Left" Margin="96,101,0,0" TextWrapping="Wrap" 
                    VerticalAlignment="Top" Text="Weight:"/>
         <ComboBox x:Name="WeightComboBox" HorizontalAlignment="Left" Margin="154,95,0,0" VerticalAlignment="Top" 
@@ -46,27 +66,7 @@
             <ComboBoxItem Content="fast"/>
             <ComboBoxItem Content="emergency"/>
         </ComboBox>
-        <Button x:Name="AddPackageButton" Content="Add Package" Background="GreenYellow" HorizontalAlignment="Left" 
-                Margin="124,166,0,0" VerticalAlignment="Top" Click="Add_Package_Click"/>
-        <TextBlock x:Name="AddBaseStationTitle" HorizontalAlignment="Left" Margin="118,26,0,0" 
-                   TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="Add "/><Run Language="en-au" Text="Package"/></TextBlock>
-        <!--End Add Package Section -->
-
-        <!--Both Section-->
-        <TextBlock HorizontalAlignment="Left" Margin="84,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Sender ID:"/>
-        <TextBlock HorizontalAlignment="Left" Margin="77,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" Text="Receiver ID:"/></TextBlock>
-        <TextBox x:Name="SenderId" HorizontalAlignment="Left" Margin="154,49,0,0" TextWrapping="Wrap" 
-                 VerticalAlignment="Top" Width="120" TextChanged="SenderId_TextChanged"/>
-        <TextBox x:Name="ReceiverId" HorizontalAlignment="Left" Margin="154,72,0,0" TextWrapping="Wrap" 
-                 VerticalAlignment="Top" Width="120" TextChanged="ReceiverId_TextChanged"/>
         <!--End Both Section -->
-
-        <!--Update Station Section -->
-        <!--<TextBlock  x:Name="StationView" Visibility="Hidden" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
-        <Button x:Name="UpdateButton" Visibility="Hidden" Background="GreenYellow" Content="Update" HorizontalAlignment="Left" Margin="128,114,0,0" VerticalAlignment="Top" Click="UpdateButton_Click"/>
-        <TextBlock x:Name="UpdateStationTitle" HorizontalAlignment="Left" Visibility="Hidden" Margin="96,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" Text="Update Base Station"/>-->
-        <!--End Update Station Section -->
-
 
     </Grid>
 </Window>

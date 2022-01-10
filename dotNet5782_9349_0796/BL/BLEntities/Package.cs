@@ -16,7 +16,8 @@ namespace BL
         public DO.Priority Priority { get; set; }
         /// <summary>
         /// Drone changed to just droneId due to possible creation
-        /// of endless loop between BL Package and BL Drone.
+        /// of endless loop between BL Package and BL Drone. 
+        /// DroneId is 0 for no assigned drone.
         /// </summary>
         public int DroneId { get; set; } 
         /// <summary>
