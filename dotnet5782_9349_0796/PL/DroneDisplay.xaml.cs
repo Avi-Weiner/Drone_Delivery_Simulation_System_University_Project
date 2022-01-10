@@ -243,6 +243,8 @@ namespace PL
             {
                 drone = bl.AddDrone(modelString, weightString, stationId);
                 MessageBox.Show("Drone Succesfully Added.");
+                ListDisplay l = new ListDisplay(bl);
+                l.Show();
                 Close();
             }
             catch (BL.MessageException m)
