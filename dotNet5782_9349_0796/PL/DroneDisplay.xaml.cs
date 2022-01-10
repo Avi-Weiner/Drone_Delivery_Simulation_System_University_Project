@@ -23,6 +23,7 @@ namespace PL
         #region DroneAction
         BlApi.IBL bl;
         BL.Drone drone;
+       
         // this line should probalby be deleted...............public Visibility SendButton { get; set; }
         /// <summary>
         /// Constructor for updating a drone
@@ -37,7 +38,6 @@ namespace PL
             //droneView.Inlines.Add(Drone.ToString());
             
             InitializeComponent();
-
             #region Element Visibility 
             //Make Elements visible
             Update.Visibility = Visibility.Visible;
@@ -52,6 +52,7 @@ namespace PL
             //HoursChargedPrompt.Visibility = Visibility.Visible;
             //HoursCharged.Visibility = Visibility.Visible;
             DroneUpdateOptions.Visibility = Visibility.Visible;
+            DisplayPackage.Visibility = Visibility.Visible;
             #endregion
 
             DroneView.Text = Drone.ToString();
@@ -271,7 +272,7 @@ namespace PL
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void DisplayPackage(object sender, RoutedEventArgs e)
+        private void DisplayPackage_Click(object sender, RoutedEventArgs e)
         {
             if (drone.PackageInTransfer != null)
             {

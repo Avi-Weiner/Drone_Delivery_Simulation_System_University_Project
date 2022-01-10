@@ -69,7 +69,7 @@
                  TextChanged="Location_TextBox_Changed" HorizontalAlignment="Left" Margin="205,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" Height="21"/>
         <TextBlock x:Name="AddDroneTitle" Visibility="Hidden" HorizontalAlignment="Left" Margin="209,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Height="16"><Run Language="en-au" Text="Enter new Drone details:"/></TextBlock>
         <Button x:Name="AddDroneButton" Visibility="Hidden" Content="Add Drone" HorizontalAlignment="Left" Margin="234,139,0,0" VerticalAlignment="Top" Width="88" Height="32" Click="AddDroneButton_Click"/>
-        <Button Content="Display Package" HorizontalAlignment="Left" Margin="486,134,0,0" VerticalAlignment="Top" Click="DisplayPackage"/>
+        <Button x:Name="DisplayPackage" Visibility="Hidden" Content="Display Package" HorizontalAlignment="Left" Margin="486,134,0,0" VerticalAlignment="Top" Click="DisplayPackage_Click"/>
 
 
 
