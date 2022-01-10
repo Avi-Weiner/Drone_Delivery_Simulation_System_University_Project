@@ -31,7 +31,7 @@ namespace BL
             DO.Package p = DalObject.DataSource.PackageList.Find(x => x.Id == DroneToList.PackageId);
             // need to do a package conversion
             if (p.Id != default(DO.Package).Id)
-                d.PackageInTransfer = DalToBlPackage(DroneToList.Id);
+                d.PackageInTransfer = DalToBlPackage((int)DroneToList.PackageId);
             else
             {
                 d.PackageInTransfer = null;

@@ -183,7 +183,9 @@ namespace BL
             finalPackage.Scheduled = DateTime.Now;
             int finalPackageIndex = DalObject.DataSource.PackageList.FindIndex(x => x.Id == drone.PackageId);
             DalObject.DataSource.PackageList[finalPackageIndex] = finalPackage;
+            
             BLObject.BLDroneList[DroneIndex] = drone;
+
         }
         
         /// <summary>

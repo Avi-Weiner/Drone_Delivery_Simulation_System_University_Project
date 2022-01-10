@@ -24,14 +24,16 @@ namespace BL
 
         public override string ToString()
         {
-            return "Drone ID: " + Id +
+            string x = "Drone ID: " + Id +
                 "\nModel: " + Model +
                 "\nWeight: " + Weight.ToString() +
                 "\nBattery status: " + BatteryStatus.ToString("P") +
                 "\nDrone status: " + Status.ToString() +
                 "\nLocation: " + Location.ToString();
-                // "\nPackage: " + PackageInTransfer.ToString() + '\n';
-
+                 if (PackageInTransfer != null) {
+                return x + ("\nPackage: " + PackageInTransfer.ToString());
+            }
+            return x;
         }
     }
 }

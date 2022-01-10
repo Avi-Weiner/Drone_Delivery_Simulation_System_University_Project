@@ -26,7 +26,10 @@
                 Grid.RowSpan="1" Grid.ColumnSpan="1" BorderThickness="0,0,0,0"/>
 
         <!--Update drone Section -->
-        <TextBlock  x:Name="DroneView" Visibility="Hidden" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+
+        <TextBox  x:Name="DroneView" VerticalScrollBarVisibility="Auto" Background="LightBlue"
+                    Visibility="Visible" Margin="17,0,168,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" UseLayoutRounding="False"/>
+        
         <TextBlock  x:Name="HoursChargedPrompt"  Visibility="Hidden"
                     HorizontalAlignment="Left" Margin="33,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
                     RenderTransformOrigin="0.619,1.694" Width="203"><Run Text="Enter Amount of hours charged 1- 24"/>
@@ -66,6 +69,9 @@
                  TextChanged="Location_TextBox_Changed" HorizontalAlignment="Left" Margin="205,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="146" Height="21"/>
         <TextBlock x:Name="AddDroneTitle" Visibility="Hidden" HorizontalAlignment="Left" Margin="209,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Height="16"><Run Language="en-au" Text="Enter new Drone details:"/></TextBlock>
         <Button x:Name="AddDroneButton" Visibility="Hidden" Content="Add Drone" HorizontalAlignment="Left" Margin="234,139,0,0" VerticalAlignment="Top" Width="88" Height="32" Click="AddDroneButton_Click"/>
+        
+
+
         <!--End Add drone Section -->
 
 
