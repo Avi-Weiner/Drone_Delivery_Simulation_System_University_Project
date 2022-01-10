@@ -23,7 +23,7 @@
         <Button Content="&#10060;" Foreground="Red"  HorizontalAlignment="Left" Margin="741,10,0,0" VerticalAlignment="Top" Background="White" Click="Close_ButtonClick" Height="20" Width="33" FontSize="12" FontWeight="ExtraBold" FontStretch="Expanded" FontStyle="Normal" BorderThickness="0,0,0,0"/>
 
         <!--Update Customer Section -->
-        <TextBlock  x:Name="CustomerView" Visibility="visible" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch" />
+        <TextBox  Background="LightBlue" VerticalScrollBarVisibility="Auto" x:Name="CustomerView" Visibility="visible" Margin="10,257,26,10" TextWrapping="Wrap" Grid.RowSpan="2" />
         <TextBox x:Name="Name" HorizontalAlignment="Left" Margin="93,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Phone1" HorizontalAlignment="Left" Margin="92,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" Height="18" />
         <TextBox x:Name="Phone2" HorizontalAlignment="Left" Margin="146,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" Height="18"/>
@@ -31,6 +31,13 @@
         <TextBlock HorizontalAlignment="Left" Margin="136,132,0,0" Text="-" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="191,132,0,0" Text="-" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Button x:Name="UpdateButton" Content="Update Customer" Background="GreenYellow" HorizontalAlignment="Left" Margin="147,186,0,0" VerticalAlignment="Top" Click="UpdateButton_Click"/>
+        <TextBox x:Name="Longitude" TextChanged="Longitude_Changed" HorizontalAlignment="Left" Margin="93,171,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Latitude" TextChanged="Latitude_Changed" HorizontalAlignment="Left" Margin="94,206,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="AddButton" Content="Add Customer" Background="GreenYellow"  HorizontalAlignment="Left" Margin="259,203,0,0" VerticalAlignment="Top" Click="AddButton_Click"/>
+        <TextBlock HorizontalAlignment="Left" Margin="29,82,0,0" Text="Name:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="29,133,0,0" Text="Phone:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="29,172,0,0" Text="Longitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="29,207,0,0" Text="Latitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <!--End Update Customer Section -->
 
         <!--Add drone Section -->

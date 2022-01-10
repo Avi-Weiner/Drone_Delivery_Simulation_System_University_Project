@@ -18,6 +18,7 @@ namespace PL
     {
         BlApi.IBL bl;
         BL.Customer customer;
+        BL.Location location;
         // this line should probalby be deleted...............public Visibility SendButton { get; set; }
         /// <summary>
         /// Constructor for updating a drone
@@ -28,13 +29,22 @@ namespace PL
         {
             bl = BL;
             customer = Customer;
-            
+       
             InitializeComponent();
             CustomerView.Text = customer.ToString();
             Name.Text = customer.Name;
             Phone1.Text = customer.Phone.Substring(0, 3);
             Phone2.Text = customer.Phone.Substring(4, 4);
             Phone3.Text = customer.Phone.Substring(9, 4);
+            Longitude.Visibility = Visibility.Hidden;
+            Latitude.Visibility = Visibility.Hidden;
+            AddButton.Visibility = Visibility.Hidden;
+        }
+        public CustomerDisplay(BlApi.IBL BL)
+        {
+            bl = BL;
+            InitializeComponent();
+            UpdateButton.Visibility = Visibility.Hidden;
         }
 
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
@@ -60,6 +70,39 @@ namespace PL
                 customer.Name = Name.Text;
                 CustomerView.Text = customer.ToString();
                 MessageBox.Show("Customer updated successfully.");
+            }
+        }
+        private void Longitude_Changed(object sender, TextChangedEventArgs e)
+        {
+
+            if (!int.TryParse(((TextBox)sender).Text, out int i) && ((TextBox)sender).Text != "")
+            {
+                MessageBox.Show("Invalid input");
+            }
+
+            location.longitude = i;
+
+        }
+
+        private void Latitude_Changed(object sender, TextChangedEventArgs e)
+        {
+            if (!int.TryParse(((TextBox)sender).Text, out int i) && ((TextBox)sender).Text != "")
+            {
+                MessageBox.Show("Invalid input");
+            }
+
+            location.latitude = i;
+        }
+
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string cName = Name.Text;
+                string Phone = Phone1.Text + '-' + Phone2.Text + '-' + Phone3.Text;
+                bl.AddCustomer(cName, Phone, Double.Parse(Longitude.Text), Double.Parse(Latitude.Text));
+
+                    
             }
         }
     }
