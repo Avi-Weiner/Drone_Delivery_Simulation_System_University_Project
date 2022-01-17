@@ -29,7 +29,7 @@ namespace BL
             if (availableSlots < 0)
                 throw new MessageException("Error: ChargeSlots must be positive");
 
-            DalObject.DalObject.AddStation(name, longitude, latitude, availableSlots);
+            BLObject.Dal.AddStation(name, longitude, latitude, availableSlots);
 
             //Create BaseStation
             BaseStation b = new();

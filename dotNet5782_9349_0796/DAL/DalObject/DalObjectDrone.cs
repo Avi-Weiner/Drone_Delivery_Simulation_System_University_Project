@@ -14,9 +14,9 @@ namespace DalObject
         public DO.Drone GetDrone(int DroneId)
         {
             int i = DataSource.CustomerList.FindIndex(x => x.Id == DroneId);
-  
-            if (DataSource.DroneList[i].Id != DroneId)
+            if (i == -1)
                 throw new DO.MessageException("Error: Drone not found.");
+
             return DataSource.DroneList[i];
         }
 
@@ -68,9 +68,8 @@ namespace DalObject
         public static void ChargeDrone(int DroneId, int StationId)
         {
             //Get Drone
-            int i = DataSource.CustomerList.FindIndex(x => x.Id == DroneId);
-
-            if (DataSource.DroneList[i].Id != DroneId)
+            int i = DataSource.DroneList.FindIndex(x => x.Id == DroneId);
+            if (i == -1)
                 throw new DO.MessageException("Error: Drone not found.");
 
             //Get station
@@ -79,7 +78,12 @@ namespace DalObject
 
             //minus 1 to charge slots
             S.ChargeSlots--;
-            int j = GetStation(StationId);
+
+            //Get Station i
+            int j = DataSource.StationList.FindIndex(x => x.Id == StationId);
+            if (j == -1)
+                throw new DO.MessageException("Error: Station not found.");
+
             DataSource.StationList[j] = S;
 
             //Adding instance of Dronecharger (Need to save this somewhere or it will just get deleted...),
@@ -96,13 +100,15 @@ namespace DalObject
         /// <param name="StationID"></param>
         public static void ReleaseDrone(int DroneId, int StationId)
         {
-            //Get Drone
-            int i = DataSource.CustomerList.FindIndex(x => x.Id == DroneId);
-            if (DataSource.DroneList[i].Id != DroneId)
+            //Check Drone
+            int i = DataSource.DroneList.FindIndex(x => x.Id == DroneId);
+            if (i == -1)
                 throw new DO.MessageException("Error: Drone not found.");
 
-            //Get station
-            int j = GetStation(StationId);
+            //Check station
+            int j = DataSource.StationList.FindIndex(x => x.Id == StationId);
+            if (j == -1)
+                throw new DO.MessageException("Error: Station not found.");
 
             //Free up charge slot 
             DO.Station s = DataSource.StationList.Find(x => x.Id == StationId);
