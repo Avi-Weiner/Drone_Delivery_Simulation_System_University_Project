@@ -13,11 +13,11 @@ namespace DAL.DalXML
         /// </summary>
         public DO.Drone GetDrone(int DroneId)
         {
-            int i = DataSource.CustomerList.FindIndex(x => x.Id == DroneId);
-            if (i == -1)
-                throw new DO.MessageException("Error: Drone not found.");
+            List<DO.Drone> DroneList = XMLTools.LoadListFromXMLSerializer<DO.Drone>(dir + DronesFilePath);
 
-            return DataSource.DroneList[i];
+            if (DroneList.Exists(x => x.Id == DroneId) == false)
+                throw new Exception("customer does not exist");
+            return DroneList.Find(x => x.Id == DroneId);
         }
 
         /// <summary>
@@ -27,13 +27,15 @@ namespace DAL.DalXML
         /// <param name="Weight"></param>
         public void AddDrone(string model, DO.WeightCategory Weight)
         {
+            List<DO.Drone> DroneList = XMLTools.LoadListFromXMLSerializer<DO.Drone>(dir + DronesFilePath);
             //add the new drone to the back of the list
-            DataSource.DroneList.Add(new DO.Drone
+            DroneList.Add(new DO.Drone
             {
-                Id = DataSource.GetNextUniqueID(),
+                Id = DalObject.DataSource.GetNextUniqueID(),
                 Model = model,
                 MaxWeight = Weight
             });
+            XMLTools.SaveListToXMLSerializer<DO.Drone>(DroneList, dir + DronesFilePath);
         }
 
         /// <summary>
@@ -42,7 +44,7 @@ namespace DAL.DalXML
         /// <returns></returns>
         public List<DO.Drone> GetDroneList()
         {
-            return DataSource.DroneList;
+            return XMLTools.LoadListFromXMLSerializer<DO.Drone>(dir + DronesFilePath);
         }
 
         /// <summary>
@@ -51,7 +53,7 @@ namespace DAL.DalXML
         /// <param name="Customer"></param>
         public void SetDroneList(List<DO.Drone> Drones)
         {
-            DataSource.DroneList = Drones;
+            XMLTools.SaveListToXMLSerializer<DO.Drone>(Drones, dir + DronesFilePath);
         }
 
         /// <summary>
@@ -61,11 +63,12 @@ namespace DAL.DalXML
         /// <param name="DroneId"></param>
         public static void DronePickUp(int PackageId, int DroneId)
         {
-            List<DO.Package> PackageList = GetDalObject().GetPackageList();
+            List<DO.Package> PackageList = XMLTools.LoadListFromXMLSerializer<DO.Package>(dir + PackagesFilePath);
+            List<DO.Drone> DroneList = XMLTools.LoadListFromXMLSerializer<DO.Drone>(dir + DronesFilePath);
             try
             {
                 DO.Package P = PackageList.Find(x => x.Id == PackageId);
-                DO.Drone D = DataSource.DroneList.Find(x => x.Id == DroneId);
+                DO.Drone D = DroneList.Find(x => x.Id == DroneId);
                 if (P.Id == PackageId && D.Id == DroneId)
                 {
                     P.PickedUp = DateTime.Now;
@@ -87,23 +90,25 @@ namespace DAL.DalXML
         public static void ChargeDrone(int DroneId, int StationId)
         {
             //Get Drone
-            int i = DataSource.DroneList.FindIndex(x => x.Id == DroneId);
+            List<DO.Drone> DroneList = XMLTools.LoadListFromXMLSerializer<DO.Drone>(dir + DronesFilePath);
+            List<DO.Station> StationList = XMLTools.LoadListFromXMLSerializer<DO.Station>(dir + StationsFilePath);
+            int i = DroneList.FindIndex(x => x.Id == DroneId);
             if (i == -1)
                 throw new DO.MessageException("Error: Drone not found.");
 
             //Get station
-            DO.Station S = DataSource.StationList.Find(x => x.Id == StationId);
-            DO.Drone D = DataSource.DroneList.Find(x => x.Id == DroneId);
+            DO.Station S = StationList.Find(x => x.Id == StationId);
+            DO.Drone D = DroneList.Find(x => x.Id == DroneId);
 
             //minus 1 to charge slots
             S.ChargeSlots--;
 
             //Get Station i
-            int j = DataSource.StationList.FindIndex(x => x.Id == StationId);
+            int j = StationList.FindIndex(x => x.Id == StationId);
             if (j == -1)
                 throw new DO.MessageException("Error: Station not found.");
 
-            DataSource.StationList[j] = S;
+            StationList[j] = S;
 
             //Adding instance of Dronecharger (Need to save this somewhere or it will just get deleted...),
             //specs unspecific of where to save it so for the meantime it will be deleted
@@ -119,20 +124,23 @@ namespace DAL.DalXML
         /// <param name="StationID"></param>
         public static void ReleaseDrone(int DroneId, int StationId)
         {
+            List<DO.Drone> DroneList = XMLTools.LoadListFromXMLSerializer<DO.Drone>(dir + DronesFilePath);
+            List<DO.Station> StationList = XMLTools.LoadListFromXMLSerializer<DO.Station>(dir + StationsFilePath);
             //Check Drone
-            int i = DataSource.DroneList.FindIndex(x => x.Id == DroneId);
+            int i = DroneList.FindIndex(x => x.Id == DroneId);
             if (i == -1)
                 throw new DO.MessageException("Error: Drone not found.");
 
             //Check station
-            int j = DataSource.StationList.FindIndex(x => x.Id == StationId);
+            int j = StationList.FindIndex(x => x.Id == StationId);
             if (j == -1)
                 throw new DO.MessageException("Error: Station not found.");
 
             //Free up charge slot 
-            DO.Station s = DataSource.StationList.Find(x => x.Id == StationId);
+            DO.Station s = StationList.Find(x => x.Id == StationId);
             s.ChargeSlots++;
-            DataSource.StationList[j] = s;
+            StationList[j] = s;
+            XMLTools.SaveListToXMLSerializer<DO.Station>(StationList, dir + StationsFilePath);
 
         }
     }
