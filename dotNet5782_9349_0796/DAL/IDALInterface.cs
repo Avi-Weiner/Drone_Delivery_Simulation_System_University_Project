@@ -24,6 +24,8 @@ namespace DalApi
         //Package DalObject
         public DO.Package GetPackage(int PackageId);
         public void AddPackage(int InputSender, int InputReceiver, DO.WeightCategory InputWeight, DO.Priority InputPriority);
+        public List<DO.Package> GetPackageList();
+        public void SetPackageList(List<DO.Package> Packages);
 
         //Station DalObject
         public DO.Station GetStation(int StationId);

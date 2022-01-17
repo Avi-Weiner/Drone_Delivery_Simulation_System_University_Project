@@ -71,5 +71,21 @@ namespace DalObject
             DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
             P.Delivered = DateTime.Now;
         }
+        /// <summary>
+        /// returns all the pakcages in a LIst
+        /// </summary>
+        /// <returns></returns>
+        public List<DO.Package> GetPackageList()
+        {
+            return DataSource.PackageList;
+        }
+        /// <summary>
+        /// sets pakcage list in data source to a new package list
+        /// </summary>
+        /// <param name="Packages"></param>
+        public void SetPackageList(List<DO.Package> Packages)
+        {
+            DataSource.PackageList = Packages;
+        }
     }
 }
