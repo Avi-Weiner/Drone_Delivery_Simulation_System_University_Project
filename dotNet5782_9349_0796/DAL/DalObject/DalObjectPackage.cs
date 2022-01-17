@@ -48,8 +48,12 @@ namespace DalObject
         /// <param name="DroneId"></param>
         public static void AssignDroneToPackage(int PackageId, int DroneId)
         {
-                GetDrone(DroneId);
-                DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
+            //Test if DroneId is valid
+            int i = DataSource.CustomerList.FindIndex(x => x.Id == DroneId);
+            if (DataSource.DroneList[i].Id != DroneId)
+                throw new DO.MessageException("Error: Drone not found.");
+
+            DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
 
                 P.DroneId = DroneId;
                 P.Scheduled = DateTime.Now;

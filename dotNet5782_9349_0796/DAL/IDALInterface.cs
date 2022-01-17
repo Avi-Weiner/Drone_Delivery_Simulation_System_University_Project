@@ -14,6 +14,9 @@ namespace DalApi
         //Customer DalObject
         public int GetCustomer(int CustomerId);
 
+        //Drone DalObject
+        public void AddDrone(string model, DO.WeightCategory Weight);
+
         //No other methods work with static,
         //Without static they don't work in the main.
     }

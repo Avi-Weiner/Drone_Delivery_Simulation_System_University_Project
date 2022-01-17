@@ -17,14 +17,15 @@ namespace BL
 
         public partial class BLObject
         {
-            public static List<DroneToList> BLDroneList = new List<DroneToList>();           
+            public static List<DroneToList> BLDroneList = new List<DroneToList>();
+            public static DalApi.IDAL Dal;
 
             /// <summary>
             /// BLObject constructor
             /// </summary>
             public BLObject()
             {
-                DalApi.IDAL Dal = DAL.DalFactory.GetDal("");
+                Dal = DAL.DalFactory.GetDal("");
                 var rand = new Random();
 
                 double[] PowerConsumptions = DalObject.DalObject.GetPowerConsumptions();//Returns an array of the power consumptions { Free, Light, Medium, Heavy, ChargingRate }

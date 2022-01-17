@@ -11,21 +11,21 @@ namespace DalObject
         /// <summary>
         /// Receives Drone ID and returns its index in DroneList
         /// </summary>
-        public static int GetDrone(int DroneId)
+        public DO.Drone GetDrone(int DroneId)
         {
             int i = DataSource.CustomerList.FindIndex(x => x.Id == DroneId);
   
             if (DataSource.DroneList[i].Id != DroneId)
                 throw new DO.MessageException("Error: Drone not found.");
-            return i;
+            return DataSource.DroneList[i];
         }
 
         /// <summary>
-        ///  adding a drone to the existing drones list
+        /// adding a drone to the existing drones list
         /// </summary>
         /// <param name="model"></param>
         /// <param name="Weight"></param>
-        public static void AddDrone(string model, DO.WeightCategory Weight)
+        public void AddDrone(string model, DO.WeightCategory Weight)
         {
                 //add the new drone to the back of the list
                 DataSource.DroneList.Add(new DO.Drone
@@ -68,7 +68,10 @@ namespace DalObject
         public static void ChargeDrone(int DroneId, int StationId)
         {
             //Get Drone
-            int i = GetDrone(DroneId);
+            int i = DataSource.CustomerList.FindIndex(x => x.Id == DroneId);
+
+            if (DataSource.DroneList[i].Id != DroneId)
+                throw new DO.MessageException("Error: Drone not found.");
 
             //Get station
             DO.Station S = DataSource.StationList.Find(x => x.Id == StationId);
@@ -94,7 +97,9 @@ namespace DalObject
         public static void ReleaseDrone(int DroneId, int StationId)
         {
             //Get Drone
-            int i = GetDrone(DroneId);
+            int i = DataSource.CustomerList.FindIndex(x => x.Id == DroneId);
+            if (DataSource.DroneList[i].Id != DroneId)
+                throw new DO.MessageException("Error: Drone not found.");
 
             //Get station
             int j = GetStation(StationId);

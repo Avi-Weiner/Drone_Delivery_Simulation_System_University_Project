@@ -77,7 +77,8 @@ namespace BL
             #endregion
 
             int UniqueId = DalObject.DataSource.GetNextUniqueID(); //getting next unique id for immediate access
-            DalObject.DalObject.AddDrone(Model, WeightCatagory);
+            BLObject.Dal.AddDrone(Model, WeightCatagory);
+
             //Creading new Drone 
             Drone d = new();
             d.Id = UniqueId;
