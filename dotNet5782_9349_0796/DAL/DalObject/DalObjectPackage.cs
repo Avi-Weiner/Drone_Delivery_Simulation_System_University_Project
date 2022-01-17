@@ -13,16 +13,19 @@ namespace DalObject
         /// </summary>
         /// <param name="PackageId"></param>
         /// <returns></returns>
-        public static int GetPackage(int PackageId)
+        public DO.Package GetPackage(int PackageId)
         {
-            int i = DataSource.CustomerList.FindIndex(x => x.Id == PackageId);
-            return i;
+            int i = DataSource.PackageList.FindIndex(x => x.Id == PackageId);
+            if (i == -1)
+                throw new DO.MessageException("Error: Package not found.");
+
+            return DataSource.PackageList[i];
         }
 
         /// <summary>
         /// receiving a package to deliver
         /// </summary>
-        public static void AddPackage(int InputSender, int InputReceiver, DO.WeightCategory InputWeight, DO.Priority InputPriority)
+        public void AddPackage(int InputSender, int InputReceiver, DO.WeightCategory InputWeight, DO.Priority InputPriority)
         {
                 DataSource.PackageList.Add(new DO.Package
                 {
@@ -49,14 +52,14 @@ namespace DalObject
         public static void AssignDroneToPackage(int PackageId, int DroneId)
         {
             //Test if DroneId is valid
-            int i = DataSource.CustomerList.FindIndex(x => x.Id == DroneId);
-            if (DataSource.DroneList[i].Id != DroneId)
+            int i = DataSource.DroneList.FindIndex(x => x.Id == DroneId);
+            if (i == -1)
                 throw new DO.MessageException("Error: Drone not found.");
 
             DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
 
-                P.DroneId = DroneId;
-                P.Scheduled = DateTime.Now;
+            P.DroneId = DroneId;
+            P.Scheduled = DateTime.Now;
         }
 
         /// <summary>
@@ -65,8 +68,8 @@ namespace DalObject
         /// <param name="PackageId"></param>
         public static void PackageDropOff(int PackageId)
         {
-                DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
-                P.Delivered = DateTime.Now;
+            DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
+            P.Delivered = DateTime.Now;
         }
     }
 }
