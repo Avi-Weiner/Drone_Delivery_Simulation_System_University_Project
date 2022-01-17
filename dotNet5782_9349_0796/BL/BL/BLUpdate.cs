@@ -80,14 +80,15 @@ namespace BL
         /// <param name="Phone"></param>
         public  void UpdateCustomer(int Id, string Name = "-1", string Phone = "-1")
         {
-            int Customeri = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == Id);
+            List<DO.Customer> CustomerList = BLObject.Dal.GetCustomerList();
+            int Customeri = CustomerList.FindIndex(x => x.Id == Id);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (Customeri == -1)
             {
                 throw new MessageException("Error: Customer not found\n");
             }
 
-            DO.Customer Customer = DalObject.DataSource.CustomerList[Customeri];
+            DO.Customer Customer = CustomerList[Customeri];
             if (Name != "-1")
             {
                 Customer.Name = Name;
@@ -97,7 +98,8 @@ namespace BL
                 Customer.Phone = Phone;
             }
 
-            DalObject.DataSource.CustomerList[Customeri] = Customer;
+            CustomerList[Customeri] = Customer;
+            BLObject.Dal.SetCustomerList(CustomerList);
         }
 
         /// <summary>
