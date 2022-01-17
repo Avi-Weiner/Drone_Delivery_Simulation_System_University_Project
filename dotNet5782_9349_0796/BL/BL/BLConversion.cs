@@ -47,8 +47,9 @@ namespace BL
         /// <returns></returns>
         public Package DalToBlPackage(int id)
         {
+            
             Package p = new();
-            DO.Package DalP = DalObject.DataSource.PackageList.Find(x => x.Id == id);
+            DO.Package DalP = BLObject.Dal.GetPackageList().Find(x => x.Id == id);
             
 
             if (DalP.Id != id)
@@ -56,8 +57,8 @@ namespace BL
 
             p.Id = DalP.Id;
             //Get the senders and receivers ID's from customerList and convert to BL Customers
-            p.Sender = DalToBlCustomer(DalObject.DataSource.CustomerList.Find(x => x.Id == DalP.SenderId).Id);
-            p.Receiver = DalToBlCustomer(DalObject.DataSource.CustomerList.Find(x => x.Id == DalP.ReceiverId).Id);
+            p.Sender = DalToBlCustomer(BLObject.Dal.GetCustomerList().Find(x => x.Id == DalP.SenderId).Id);
+            p.Receiver = DalToBlCustomer(BLObject.Dal.GetCustomerList().Find(x => x.Id == DalP.ReceiverId).Id);
             p.Weight = DalP.Weight;
             p.Priority = DalP.Priority;
             p.DroneId = DalP.DroneId;
@@ -98,7 +99,7 @@ namespace BL
         public PackageToList DalPackageToList(int id)
         {
             PackageToList PList = new();
-            DO.Package p = DalObject.DataSource.PackageList.Find(x => x.Id == id);
+            DO.Package p = BLObject.Dal.GetPackageList().Find(x => x.Id == id);
 
             // Not sure how to implement the following
             if (p.Id == default(DO.Package).Id)
@@ -121,8 +122,10 @@ namespace BL
         /// <returns></returns>
         public Customer DalToBlCustomer(int id)
         {
+            
             Customer c = new();
-            DO.Customer DalC = DalObject.DataSource.CustomerList.Find(x => x.Id == id);
+            
+            DO.Customer DalC = BLObject.Dal.GetCustomerList().Find(x => x.Id == id);
 
             if (DalC.Id == 0)
                 throw new MessageException("Error: Object of id " + id + " not found.");
@@ -134,9 +137,9 @@ namespace BL
 
             List<PackageToList> PackagesFromCustomer = new();
             List<PackageToList> PackagesToCustomer = new();
-
+            List<DO.Package> Packages = BLObject.Dal.GetPackageList();
             //Go through packageList and see if the customer is receiving or sending packages
-            foreach(DO.Package package in DalObject.DataSource.PackageList)
+            foreach (DO.Package package in Packages)
             {
                 if (package.ReceiverId == c.Id)
                     PackagesToCustomer.Add(DalPackageToList(package.Id));
