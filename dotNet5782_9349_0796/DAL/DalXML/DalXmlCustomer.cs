@@ -26,6 +26,7 @@ namespace DAL.DalXML
                 XMLTools.SaveListToXMLSerializer<DO.Customer>(DalObject.DataSource.CustomerList, dir + CustomersFilePath);
                 
         }
+
         /// <summary>
         /// Receives Customer Id and returns its index in CustomerList
         /// </summary>
