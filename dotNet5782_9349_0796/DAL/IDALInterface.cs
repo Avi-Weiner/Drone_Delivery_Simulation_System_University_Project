@@ -32,6 +32,8 @@ namespace DalApi
         //Station DalObject
         public DO.Station GetStation(int StationId);
         public void AddStation(int name, double longitude, double latitude, int slots);
+        public List<DO.Station> GetStationList();
+        public void SetStationList(List<DO.Station> Stations);
 
         //No other methods work with static,
         //Without static they don't work in the main.

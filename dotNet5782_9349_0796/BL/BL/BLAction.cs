@@ -49,10 +49,11 @@ namespace BL
                 BLObject.DistanceBetween(BLObject.BLDroneList[DroneIndex].Location, BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude)));
             BLObject.BLDroneList[DroneIndex].Location = BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude);
             BLObject.BLDroneList[DroneIndex].DroneStatus = DroneStatus.maintenance;
-
-            int StationIndex = DalObject.DataSource.StationList.FindIndex(x => x.Id == StationClose.Id);
+            List<DO.Station> StationList = BLObject.Dal.GetStationList();
+            int StationIndex = StationList.FindIndex(x => x.Id == StationClose.Id);
             StationClose.ChargeSlots -= 1;
-            DalObject.DataSource.StationList[StationIndex] = StationClose;
+            StationList[StationIndex] = StationClose;
+            BLObject.Dal.SetStationList(StationList);
             BLObject.BLDroneList[DroneIndex].ChargingTimeStarted = DateTime.Now;
             ///iii adding a mathcing instance///////////////////////////////////////////////////////////////////////////////////////
         }
@@ -90,11 +91,12 @@ namespace BL
             BLObject.BLDroneList[DroneIndex].DroneStatus = DroneStatus.free;
             BLObject.BLDroneList[DroneIndex].ChargingTimeStarted = null;
             DO.Station StationClose = BLObject.ClosestStation(BLObject.BLDroneList[DroneIndex].Location);
-
-            int StationIndex = DalObject.DataSource.StationList.FindIndex(x => x.Id == StationClose.Id);
-            DO.Station station = DalObject.DataSource.StationList[StationIndex];
+            List<DO.Station> StationList = BLObject.Dal.GetStationList();
+            int StationIndex = StationList.FindIndex(x => x.Id == StationClose.Id);
+            DO.Station station = StationList[StationIndex];
             station.ChargeSlots++;
-            DalObject.DataSource.StationList[StationIndex] = station;
+            StationList[StationIndex] = station;
+            BLObject.Dal.SetStationList(StationList);
             //again not sure what the mathcing instance is.
         
         }

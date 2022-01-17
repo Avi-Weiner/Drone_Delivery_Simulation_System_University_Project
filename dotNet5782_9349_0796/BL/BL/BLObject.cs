@@ -27,6 +27,7 @@ namespace BL
             {
                 Dal = DAL.DalFactory.GetDal("");
                 var rand = new Random();
+                List<DO.Drone> DroneList = BLObject.Dal.GetDroneList();
 
                 double[] PowerConsumptions = DalObject.DalObject.GetPowerConsumptions();//Returns an array of the power consumptions { Free, Light, Medium, Heavy, ChargingRate }
                 double Free = PowerConsumptions[0];
@@ -35,7 +36,7 @@ namespace BL
                 double Heavy = PowerConsumptions[3];
                 double ChargingRate = PowerConsumptions[4];
 
-                List<DO.Drone> Drones = DataSource.DroneList;
+                List<DO.Drone> Drones = DroneList;
                 foreach (DO.Drone Drone in Drones)
                 {
                     DroneToList NewDrone = new DroneToList();
@@ -108,11 +109,12 @@ namespace BL
                         {
                             //Count stations
                             int stationCount = 0;
-                            foreach(DO.Station s in DataSource.StationList) { stationCount++; }
+                            List<DO.Station> StationList = BLObject.Dal.GetStationList();
+                            foreach (DO.Station s in StationList) { stationCount++; }
                             //Get random station 
                             int stationi = rand.Next(0, stationCount);
                             //Drone location is at random location
-                            DroneL.Location = MakeLocation(DataSource.StationList[stationi].Longitude, DataSource.StationList[stationi].Latitude);
+                            DroneL.Location = MakeLocation(StationList[stationi].Longitude, StationList[stationi].Latitude);
                             //Battery state between 0 and 0.2
                             DroneL.BatteryStatus = rand.NextDouble() * (0.2);
 

@@ -15,18 +15,22 @@ namespace BL
         /// <param name="Model"></param>
         public  Drone UpdateDrone(int Id, string Model)
         {
-
-            int Dronei = DalObject.DataSource.DroneList.FindIndex(x => x.Id == Id);
+            List<DO.Drone> DroneList = BLObject.Dal.GetDroneList();
+            int Dronei = DroneList.FindIndex(x => x.Id == Id);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if(Dronei == -1)
             {
                 throw new MessageException("Error: Drone not found\n");
             }
             
-            DO.Drone Drone = DalObject.DataSource.DroneList[Dronei];
+            DO.Drone Drone = DroneList[Dronei];
             Drone.Model = Model;
-            DalObject.DataSource.DroneList[Dronei] = Drone;
+            DroneList[Dronei] = Drone;
+            //save back to dal layer
+            BLObject.Dal.SetDroneList(DroneList);
+            
 
+            //drone list in bl layer
             int Listi = BLObject.BLDroneList.FindIndex(x => x.Id == Id);
             BLObject.BLDroneList[Listi].Model = Model;
 
@@ -51,14 +55,15 @@ namespace BL
         /// <param name="AmountOfChargingStation"></param>
         public  void UpdateStation(int Id, int StationName = -1, int AmountOfChargingStation = -1)
         {
-            int Stationi = DalObject.DataSource.StationList.FindIndex(x => x.Id == Id);
+            List<DO.Station> StationList = BLObject.Dal.GetStationList();
+            int Stationi = StationList.FindIndex(x => x.Id == Id);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (Stationi == -1)
             {
                 throw new MessageException("Error: Station not found\n");
             }
 
-            DO.Station Station = DalObject.DataSource.StationList[Stationi];
+            DO.Station Station = StationList[Stationi];
             if(StationName != -1)
             {
                 Station.Name = StationName;
@@ -68,7 +73,8 @@ namespace BL
                 Station.ChargeSlots = AmountOfChargingStation;
             }
             
-            DalObject.DataSource.StationList[Stationi] = Station;
+           StationList[Stationi] = Station;
+            BLObject.Dal.SetStationList(StationList);
 
         }
 

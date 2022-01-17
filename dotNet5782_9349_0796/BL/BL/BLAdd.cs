@@ -32,8 +32,9 @@ namespace BL
             BLObject.Dal.AddStation(name, longitude, latitude, availableSlots);
 
             //Create BaseStation
+            List<DO.Station> StationList = BLObject.Dal.GetStationList();
             BaseStation b = new();
-            DO.Station S = DalObject.DataSource.StationList.Find(x => x.Name == name);
+            DO.Station S = StationList.Find(x => x.Name == name);
             b.Id = S.Id;
             b.Name = name;
 
@@ -84,10 +85,10 @@ namespace BL
             d.Id = UniqueId;
             d.Model = Model;
             d.Weight = WeightCatagory;
-
+            List<DO.Station> StationList = BLObject.Dal.GetStationList();
             Location l = new();
-            l.latitude = DalObject.DataSource.StationList[Stationi].Latitude;
-            l.longitude = DalObject.DataSource.StationList[Stationi].Longitude;
+            l.latitude = StationList[Stationi].Latitude;
+            l.longitude = StationList[Stationi].Longitude;
             d.Location = l;
 
             var rand = new Random();

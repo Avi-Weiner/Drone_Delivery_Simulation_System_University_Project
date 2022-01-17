@@ -37,7 +37,16 @@ namespace DalObject
                 Longitude = longitude,
                 Latitude = latitude,
                 ChargeSlots = slots
-            });;
+            });
+        }
+
+        public List<DO.Station> GetStationList()
+        {
+            return DataSource.StationList;
+        }
+        public void SetStationList(List<DO.Station> Stations)
+        {
+            DataSource.StationList = Stations;
         }
     }
 }

@@ -176,8 +176,9 @@ namespace BL
         /// <returns></returns>
         public BaseStation DalToBlStation(int id)
         {
+            List<DO.Station> StationList = BLObject.Dal.GetStationList();
             BaseStation b = new();
-            DO.Station s = DalObject.DataSource.StationList.Find(x => x.Id == id);
+            DO.Station s = StationList.Find(x => x.Id == id);
 
             if (s.Id == 0)
                 throw new MessageException("Error: Object of id " + id + " not found.");

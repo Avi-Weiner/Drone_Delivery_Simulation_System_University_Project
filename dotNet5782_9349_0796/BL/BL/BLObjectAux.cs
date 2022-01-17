@@ -45,10 +45,11 @@ namespace BL
             /// <returns></returns>
             public static DO.Station ClosestStation(Location location )
             {
+                List<DO.Station> StationList = BLObject.Dal.GetStationList();
                 //starting minDistance is bigger then highest possible distance, the diagonal between 360 and 180 = 402
                 double minDistance = 420;
 
-                List<DO.Station>.Enumerator enumerator = DalObject.DataSource.StationList.GetEnumerator();
+                List<DO.Station>.Enumerator enumerator = StationList.GetEnumerator();
                 int closestStationId = -1;
 
                 while (enumerator.MoveNext())
@@ -62,7 +63,7 @@ namespace BL
                     }
                 }
 
-                return DalObject.DataSource.StationList.Find(x => x.Id == closestStationId);
+                return StationList.Find(x => x.Id == closestStationId);
             }
 
             /// <summary>

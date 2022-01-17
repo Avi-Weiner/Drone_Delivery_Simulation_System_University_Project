@@ -16,8 +16,9 @@ namespace BL
         /// <returns></returns>
         public List<BaseStationToList> ListOfStations()
         {
+            List<DO.Station> StationList = BLObject.Dal.GetStationList();
             List<BaseStationToList> list = new();
-            foreach(DO.Station station in DalObject.DataSource.StationList)
+            foreach(DO.Station station in StationList)
             {
                 //converts DAL station to BL station to StationToList and adds to list
                 list.Add(StationToStationToList(station.Id));
@@ -83,8 +84,9 @@ namespace BL
         /// <returns></returns>
         public List<BaseStationToList> ListOfStationsWithChargeSlots()
         {
+            List<DO.Station> StationList = BLObject.Dal.GetStationList();
             List<BaseStationToList> list = new();
-            foreach (DO.Station station in DalObject.DataSource.StationList)
+            foreach (DO.Station station in StationList)
             {
                 if( DalToBlStation(station.Id).AvailableChargeSlots > 0)
                     list.Add(StationToStationToList(station.Id));
