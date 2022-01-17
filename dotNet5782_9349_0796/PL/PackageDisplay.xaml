@@ -32,7 +32,7 @@
                 Margin="197,161,0,0" VerticalAlignment="Top" Click="Update_Package_Click"/>
         <Button x:Name="DeleteButton" Visibility="Hidden" Content="Delete Package" Background="OrangeRed" HorizontalAlignment="Left" 
                 Margin="96,161,0,0" VerticalAlignment="Top" Click="Delete_Package_Click"/>
-        <TextBlock  x:Name="PackageView" Visibility="Hidden" HorizontalAlignment="Stretch" Margin="185,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Stretch"/>
+        <TextBox x:Name="PackageView" Visibility="Hidden" Background="LightBlue" Grid.Row="1" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
         <!--End Update Package Section -->
 
         <!--Add Package Section -->

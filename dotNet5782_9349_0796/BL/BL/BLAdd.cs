@@ -171,10 +171,10 @@ namespace BL
                 throw new MessageException("Error: Receiver not found.\n");
             }
             //Check if Weight is valid
-            if (Weight != "light" || Weight != "medium" || Weight != "heavy")
+            if (Weight != "light" && Weight != "medium" && Weight != "heavy")
                 throw new MessageException("Error: Weight status invalid\n");
             //Check if Priority is valid
-            if (Priority != "regular" || Priority != "fast" || Priority != "emergency")
+            if (Priority != "regular" && Priority != "fast" && Priority != "emergency")
                 throw new MessageException("Error: Priority invalide");
             #endregion
 

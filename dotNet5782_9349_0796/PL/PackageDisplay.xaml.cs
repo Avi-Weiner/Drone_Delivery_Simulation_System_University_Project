@@ -111,6 +111,7 @@ namespace PL
         {
             try
             {
+                
                 bl.AddPackage(senderId, receiverId, weightString, priorityString);
                 MessageBox.Show("Package added succesfully");
                 Close();
