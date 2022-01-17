@@ -21,7 +21,10 @@ namespace BL
             /// <returns></returns>
             public static double DistanceBetween(Location first, Location second)
             {
-                return Math.Sqrt((first.latitude) - (second.latitude) + (first.longitude) - (second.longitude));
+                double x = (first.latitude) - (second.latitude) + (first.longitude) - (second.longitude);
+                if (x < 0)
+                    x = x * -1;
+                return Math.Sqrt(x);
             }
 
             /// <summary>
