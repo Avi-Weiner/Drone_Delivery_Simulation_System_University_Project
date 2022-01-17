@@ -13,11 +13,12 @@ namespace DAL.DalXML
         /// </summary>
         public DO.Station GetStation(int StationId)
         {
-            int i = DataSource.StationList.FindIndex(x => x.Id == StationId);
+            List<DO.Station> StationList = XMLTools.LoadListFromXMLSerializer<DO.Station>(dir + StationsFilePath);
+            int i = StationList.FindIndex(x => x.Id == StationId);
             if (i == -1)
                 throw new DO.MessageException("Error: Station not found.");
 
-            return DataSource.StationList[i];
+            return StationList[i];
         }
 
         /// <summary>
@@ -29,24 +30,26 @@ namespace DAL.DalXML
         /// <param name="slots"></param>
         public void AddStation(int name, double longitude, double latitude, int slots)
         {
+            List<DO.Station> StationList = XMLTools.LoadListFromXMLSerializer<DO.Station>(dir + StationsFilePath);
             //add station to the back of the station list
-            DataSource.StationList.Add(new DO.Station
+            StationList.Add(new DO.Station
             {
-                Id = DataSource.GetNextUniqueID(),
+                Id = DalObject.DataSource.GetNextUniqueID(),
                 Name = name,
                 Longitude = longitude,
                 Latitude = latitude,
                 ChargeSlots = slots
             });
+            XMLTools.SaveListToXMLSerializer<DO.Station>(StationList, dir + StationsFilePath);
         }
 
         public List<DO.Station> GetStationList()
         {
-            return DataSource.StationList;
+            return XMLTools.LoadListFromXMLSerializer<DO.Station>(dir + StationsFilePath);
         }
         public void SetStationList(List<DO.Station> Stations)
         {
-            DataSource.StationList = Stations;
+            XMLTools.SaveListToXMLSerializer<DO.Station>(Stations, dir + StationsFilePath);
         }
     }
 }
