@@ -25,7 +25,7 @@ namespace BL
             /// </summary>
             public BLObject()
             {
-                Dal = DAL.DalFactory.GetDal("");
+                Dal = DAL.DalFactory.GetDal("DalXml");
                 var rand = new Random();
                 List<DO.Drone> DroneList = BLObject.Dal.GetDroneList();
 

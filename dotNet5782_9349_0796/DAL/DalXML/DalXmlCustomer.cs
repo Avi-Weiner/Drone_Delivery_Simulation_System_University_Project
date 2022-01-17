@@ -10,22 +10,22 @@ namespace DAL.DalXML
 {
     public partial class DalXML : DalApi.IDAL
     {
-        static string dir = @"..\..\..\..\xmlData\";
-        static DalXML()
-        {
-            if (!Directory.Exists(dir))
-                Directory.CreateDirectory(dir);
-        }
-        static string CustomersFilePath = @"Customers.xml";
-        static string DronesFilePath = @"Drones.xml";
-        static string PackagesFilePath = @"Packages.xml";
-        static string StationsFilePath = @"Stations.xml";
-        public DalXML()
-        {
-            if (!File.Exists(dir + CustomersFilePath))
-                XMLTools.SaveListToXMLSerializer<DO.Customer>(DalObject.DataSource.CustomerList, dir + CustomersFilePath);
+      //  static string dir = @"..\..\..\..\xmlData\";
+      //  //static DalXML()
+      ////  {
+      //   //   if (!Directory.Exists(dir))
+      // //         Directory.CreateDirectory(dir);
+      // // }
+      //  static string CustomersFilePath = @"Customers.xml";
+      //  static string DronesFilePath = @"Drones.xml";
+      //  static string PackagesFilePath = @"Packages.xml";
+      //  static string StationsFilePath = @"Stations.xml";
+      //  public DalXML()
+      //  {
+      //      if (!File.Exists(dir + CustomersFilePath))
+      //          XMLTools.SaveListToXMLSerializer<DO.Customer>(DalObject.DataSource.CustomerList, dir + CustomersFilePath);
                 
-        }
+      //  }
         /// <summary>
         /// Receives Customer Id and returns its index in CustomerList
         /// </summary>

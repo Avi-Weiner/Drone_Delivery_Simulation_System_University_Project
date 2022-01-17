@@ -15,6 +15,10 @@ namespace DAL
         /// <returns></returns>
         public static DalApi.IDAL GetDal(string param)
         {
+            if(param == "DalXml")
+            {
+                return DalXML.DalXML.GetDalXML();
+            }
             return DalObject.DalObject.GetDalObject();
         }
     }
