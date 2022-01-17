@@ -15,11 +15,12 @@ namespace DalObject
         /// <returns></returns>
         public DO.Package GetPackage(int PackageId)
         {
-            int i = DataSource.PackageList.FindIndex(x => x.Id == PackageId);
+            List<DO.Package> PackageList = GetDalObject().GetPackageList();
+            int i = PackageList.FindIndex(x => x.Id == PackageId);
             if (i == -1)
                 throw new DO.MessageException("Error: Package not found.");
 
-            return DataSource.PackageList[i];
+            return PackageList[i];
         }
 
         /// <summary>
@@ -27,7 +28,8 @@ namespace DalObject
         /// </summary>
         public void AddPackage(int InputSender, int InputReceiver, DO.WeightCategory InputWeight, DO.Priority InputPriority)
         {
-                DataSource.PackageList.Add(new DO.Package
+            List<DO.Package> PackageList = GetDalObject().GetPackageList();
+            PackageList.Add(new DO.Package
                 {
                     Id = DataSource.GetNextUniqueID(),
                     SenderId = InputSender,
@@ -55,8 +57,9 @@ namespace DalObject
             int i = DataSource.DroneList.FindIndex(x => x.Id == DroneId);
             if (i == -1)
                 throw new DO.MessageException("Error: Drone not found.");
+            List<DO.Package> PackageList = GetDalObject().GetPackageList();
 
-            DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
+            DO.Package P = PackageList.Find(x => x.Id == PackageId);
 
             P.DroneId = DroneId;
             P.Scheduled = DateTime.Now;
@@ -68,11 +71,12 @@ namespace DalObject
         /// <param name="PackageId"></param>
         public static void PackageDropOff(int PackageId)
         {
-            DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
+            List<DO.Package> PackageList = GetDalObject().GetPackageList();
+            DO.Package P = PackageList.Find(x => x.Id == PackageId);
             P.Delivered = DateTime.Now;
         }
         /// <summary>
-        /// returns all the pakcages in a LIst
+        /// returns all the pakcages in a List
         /// </summary>
         /// <returns></returns>
         public List<DO.Package> GetPackageList()

@@ -50,7 +50,8 @@ namespace BL
         public List<PackageToList> ListOfPackages()
         {
             List<PackageToList> list = new();
-            foreach(DO.Package p in DalObject.DataSource.PackageList)
+            List<DO.Package> PakcageList = BLObject.Dal.GetPackageList();
+            foreach(DO.Package p in PakcageList)
             {
                 //converts DAP package to BL package to packageToList and adds to list
                 list.Add(DalPackageToList(p.Id));
@@ -65,7 +66,8 @@ namespace BL
         public List<PackageToList> ListOfUnassignedPackages()
         {
             List<PackageToList> list = new();
-            foreach (DO.Package p in DalObject.DataSource.PackageList)
+            List<DO.Package> PackageList = BLObject.Dal.GetPackageList();
+            foreach (DO.Package p in PackageList)
             {
                 //converts DAP package to BL package to packageToList and adds to list
                 PackageToList Plist = DalPackageToList(p.Id);

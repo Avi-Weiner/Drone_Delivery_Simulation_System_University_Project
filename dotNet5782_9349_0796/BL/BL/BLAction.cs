@@ -121,6 +121,7 @@ namespace BL
         public void AssignPackageToDrone(int DroneId)
         {
             int DroneIndex = BLObject.BLDroneList.FindIndex(x => x.Id == DroneId);
+            List<DO.Package> PackageList = BLObject.Dal.GetPackageList();
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (DroneIndex == -1)
             {
@@ -130,11 +131,11 @@ namespace BL
             {
                 throw new MessageException("Error: Drone is not free.\n");
             }
-            if(DalObject.DataSource.PackageList.Count == 0)
+            if(PackageList.Count == 0)
             {
                 throw new MessageException("Error: No packages to be collected.\n");
             }
-            List<DO.Package> Packages = DalObject.DataSource.PackageList;
+            List<DO.Package> Packages = PackageList;
             List<DO.Package> tempPack = new List<DO.Package>();
             Packages.RemoveAll(x => x.Delivered != null);
 
@@ -181,10 +182,11 @@ namespace BL
             DO.Package  finalPackage = Packages.Find(x => x.Id == drone.PackageId);
             finalPackage.DroneId = drone.Id;
             finalPackage.Scheduled = DateTime.Now;
-            int finalPackageIndex = DalObject.DataSource.PackageList.FindIndex(x => x.Id == drone.PackageId);
-            DalObject.DataSource.PackageList[finalPackageIndex] = finalPackage;
+            int finalPackageIndex = PackageList.FindIndex(x => x.Id == drone.PackageId);
+            PackageList[finalPackageIndex] = finalPackage;
             
             BLObject.BLDroneList[DroneIndex] = drone;
+            BLObject.Dal.SetPackageList(PackageList);
 
         }
         
@@ -197,6 +199,7 @@ namespace BL
         public void DroneCollectsAPackage(int DroneId)
         {
             int DroneIndex = BLObject.BLDroneList.FindIndex(x => x.Id == DroneId);
+            List<DO.Package> PackageList = BLObject.Dal.GetPackageList();
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (DroneIndex == -1)
             {
@@ -207,8 +210,8 @@ namespace BL
                 throw new MessageException("Error: Drone is not in delivery.\n");
             }
             DroneToList Drone = BLObject.BLDroneList[DroneIndex];
-            int PackageIndex = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Drone.PackageId);
-            DO.Package Package = DalObject.DataSource.PackageList[PackageIndex];
+            int PackageIndex = PackageList.FindIndex(x => x.Id == Drone.PackageId);
+            DO.Package Package = PackageList[PackageIndex];
             if(Package.PickedUp != null)
             {
                 throw new MessageException("Error: Package was picked up already.\n");
@@ -220,7 +223,8 @@ namespace BL
             Drone.Location = SenderLocation;
             Package.PickedUp = DateTime.Now;
             BLObject.BLDroneList[DroneIndex] = Drone;
-            DalObject.DataSource.PackageList[PackageIndex] = Package;
+            PackageList[PackageIndex] = Package;
+            BLObject.Dal.SetPackageList(PackageList);
         }
 
         /// <summary>
@@ -232,6 +236,7 @@ namespace BL
         public void DroneDeliversPakcage(int DroneId)
         {
             int DroneIndex = BLObject.BLDroneList.FindIndex(x => x.Id == DroneId);
+            List<DO.Package> PackageList = BLObject.Dal.GetPackageList();
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (DroneIndex == -1)
             {
@@ -242,8 +247,8 @@ namespace BL
                 throw new MessageException("Error: Drone is not in delivery.\n");
             }
             DroneToList Drone = BLObject.BLDroneList[DroneIndex];
-            int PackageIndex = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Drone.PackageId);
-            DO.Package Package = DalObject.DataSource.PackageList[PackageIndex];
+            int PackageIndex = PackageList.FindIndex(x => x.Id == Drone.PackageId);
+            DO.Package Package = PackageList[PackageIndex];
             if (Package.PickedUp == null)
             {
                 throw new MessageException("Error: Package was not picked up yet.");
@@ -261,7 +266,8 @@ namespace BL
             Drone.DroneStatus = DroneStatus.free;
             Package.Delivered = DateTime.Now;
             BLObject.BLDroneList[DroneIndex] = Drone;
-            DalObject.DataSource.PackageList[PackageIndex] = Package;
+            PackageList[PackageIndex] = Package;
+            BLObject.Dal.SetPackageList(PackageList);
         }
     }
 }

@@ -110,15 +110,15 @@ namespace BL
         /// <param name="Phone"></param>
         public void UpdatePackage(int Id, int SenderId = 0, int ReceiverId = 0, string Weight = "", string Priority = "")
         {
-
-            int packagei = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Id);
+            List<DO.Package> PackageList = BLObject.Dal.GetPackageList();
+            int packagei = PackageList.FindIndex(x => x.Id == Id);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (packagei == -1)
             {
                 throw new MessageException("Error: Package not found\n");
             }
 
-            DO.Package package = DalObject.DataSource.PackageList[packagei];
+            DO.Package package = PackageList[packagei];
 
             if (SenderId != 0) { 
                 int Senderi = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == SenderId);
@@ -161,7 +161,8 @@ namespace BL
                 package.Priority = priorityCatagory;
             }
 
-            DalObject.DataSource.PackageList[packagei] = package;
+            PackageList[packagei] = package;
+            BLObject.Dal.SetPackageList(PackageList);
         }
 
         /// <summary>
@@ -170,7 +171,8 @@ namespace BL
         /// <param name="Id"></param>
         public void DeletePackage(int Id)
         {
-            int packagei = DalObject.DataSource.PackageList.FindIndex(x => x.Id == Id);
+            List<DO.Package> PackageList = BLObject.Dal.GetPackageList();
+            int packagei = PackageList.FindIndex(x => x.Id == Id);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (packagei == -1)
             {
@@ -193,7 +195,8 @@ namespace BL
             }
 
             //Delete package from package list
-            DalObject.DataSource.PackageList.RemoveAt(packagei);
+            PackageList.RemoveAt(packagei);
+            BLObject.Dal.SetPackageList(PackageList);
 
         }
     }

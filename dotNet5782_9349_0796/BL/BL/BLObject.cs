@@ -49,8 +49,9 @@ namespace BL
 
                 List<DO.Package> deliveredPackages = new();
                 List<DO.Customer> Customers = BLObject.Dal.GetCustomerList();
+                List<DO.Package> PackageList = BLObject.Dal.GetPackageList();
                 //For Drone that is delivering:
-                foreach (DO.Package Pack in DataSource.PackageList)
+                foreach (DO.Package Pack in PackageList)
                 {
                     if(Pack.DroneId != 0 && Pack.Delivered == null)
                     {

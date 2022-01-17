@@ -61,9 +61,10 @@ namespace DalObject
         /// <param name="DroneId"></param>
         public static void DronePickUp(int PackageId, int DroneId)
         {
+            List<DO.Package> PackageList = GetDalObject().GetPackageList();
             try
             {
-                DO.Package P = DataSource.PackageList.Find(x => x.Id == PackageId);
+                DO.Package P = PackageList.Find(x => x.Id == PackageId);
                 DO.Drone D = DataSource.DroneList.Find(x => x.Id == DroneId);
                 if (P.Id == PackageId && D.Id == DroneId)
                 {
