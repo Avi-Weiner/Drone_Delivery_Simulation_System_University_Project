@@ -16,10 +16,10 @@ namespace DAL.DalXML
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
         }
-        string CustomersFilePath = @"Customers.xml";
-        string DronesFilePath = @"Drones.xml";
-        string PackagesFilePath = @"Packages.xml";
-        string StationsFilePath = @"Stations.xml";
+        static string CustomersFilePath = @"Customers.xml";
+        static string DronesFilePath = @"Drones.xml";
+        static string PackagesFilePath = @"Packages.xml";
+        static string StationsFilePath = @"Stations.xml";
         public DalXML()
         {
             if (!File.Exists(dir + CustomersFilePath))

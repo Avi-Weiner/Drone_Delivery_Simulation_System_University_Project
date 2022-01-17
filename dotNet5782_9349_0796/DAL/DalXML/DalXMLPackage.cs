@@ -15,7 +15,8 @@ namespace DAL.DalXML
         /// <returns></returns>
         public DO.Package GetPackage(int PackageId)
         {
-            List<DO.Package> PackageList = GetDalObject().GetPackageList();
+            List<DO.Package> PackageList = XMLTools.LoadListFromXMLSerializer<DO.Package>(dir + PackagesFilePath);
+            
             int i = PackageList.FindIndex(x => x.Id == PackageId);
             if (i == -1)
                 throw new DO.MessageException("Error: Package not found.");
@@ -28,10 +29,10 @@ namespace DAL.DalXML
         /// </summary>
         public void AddPackage(int InputSender, int InputReceiver, DO.WeightCategory InputWeight, DO.Priority InputPriority)
         {
-            List<DO.Package> PackageList = GetDalObject().GetPackageList();
+            List<DO.Package> PackageList = XMLTools.LoadListFromXMLSerializer<DO.Package>(dir + PackagesFilePath);
             PackageList.Add(new DO.Package
             {
-                Id = DataSource.GetNextUniqueID(),
+                Id = DalObject.DataSource.GetNextUniqueID(),
                 SenderId = InputSender,
                 ReceiverId = InputReceiver,
                 Weight = InputWeight,
@@ -43,6 +44,7 @@ namespace DAL.DalXML
                 Delivered = null
 
             });
+            XMLTools.SaveListToXMLSerializer<DO.Package>(PackageList, dir + PackagesFilePath);
 
         }
 
@@ -53,11 +55,12 @@ namespace DAL.DalXML
         /// <param name="DroneId"></param>
         public static void AssignDroneToPackage(int PackageId, int DroneId)
         {
+            List<DO.Drone> DroneList = XMLTools.LoadListFromXMLSerializer<DO.Drone>(dir + DronesFilePath);
             //Test if DroneId is valid
-            int i = DataSource.DroneList.FindIndex(x => x.Id == DroneId);
+            int i = DroneList.FindIndex(x => x.Id == DroneId);
             if (i == -1)
                 throw new DO.MessageException("Error: Drone not found.");
-            List<DO.Package> PackageList = GetDalObject().GetPackageList();
+            List<DO.Package> PackageList = XMLTools.LoadListFromXMLSerializer<DO.Package>(dir + PackagesFilePath);
 
             DO.Package P = PackageList.Find(x => x.Id == PackageId);
 
@@ -71,7 +74,7 @@ namespace DAL.DalXML
         /// <param name="PackageId"></param>
         public static void PackageDropOff(int PackageId)
         {
-            List<DO.Package> PackageList = GetDalObject().GetPackageList();
+            List<DO.Package> PackageList = XMLTools.LoadListFromXMLSerializer<DO.Package>(dir + PackagesFilePath);
             DO.Package P = PackageList.Find(x => x.Id == PackageId);
             P.Delivered = DateTime.Now;
         }
@@ -82,7 +85,7 @@ namespace DAL.DalXML
         public List<DO.Package> GetPackageList()
         {
 
-            return DataSource.PackageList;
+            return XMLTools.LoadListFromXMLSerializer<DO.Package>(dir + PackagesFilePath);
         }
         /// <summary>
         /// sets pakcage list in data source to a new package list
@@ -90,7 +93,7 @@ namespace DAL.DalXML
         /// <param name="Packages"></param>
         public void SetPackageList(List<DO.Package> Packages)
         {
-            DataSource.PackageList = Packages;
+            XMLTools.SaveListToXMLSerializer<DO.Package>(Packages, dir + PackagesFilePath);
         }
     }
 }
