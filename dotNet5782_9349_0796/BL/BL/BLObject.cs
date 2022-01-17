@@ -48,7 +48,7 @@ namespace BL
                 }
 
                 List<DO.Package> deliveredPackages = new();
-
+                List<DO.Customer> Customers = BLObject.Dal.GetCustomerList();
                 //For Drone that is delivering:
                 foreach (DO.Package Pack in DataSource.PackageList)
                 {
@@ -59,7 +59,7 @@ namespace BL
                         BLDroneList[index].PackageId = Pack.Id;
                         
                         //Find sender Location
-                        DO.Customer sender = DataSource.CustomerList.Find(x => x.Id == Pack.SenderId);
+                        DO.Customer sender = Customers.Find(x => x.Id == Pack.SenderId);
                         Location senderLocation = MakeLocation(sender.Longitude, sender.Latitude);
                         if (Pack.PickedUp == null)
                         {
@@ -79,7 +79,7 @@ namespace BL
                         }
 
                         //battery state shall be randomized minimum charge for distance between: drone, receiver and then the closest station
-                        DO.Customer receiver = DataSource.CustomerList.Find(x => x.Id == Pack.ReceiverId);
+                        DO.Customer receiver = Customers.Find(x => x.Id == Pack.ReceiverId);
                         Location receiverLocation = MakeLocation(receiver.Longitude, receiver.Latitude);
                         Location closestStationLocation 
                             = MakeLocation(ClosestStation(receiverLocation).Longitude, ClosestStation(receiverLocation).Latitude);
@@ -121,7 +121,7 @@ namespace BL
                             //location: random customer that has already received a package
                             int deliveredCount = 0;
                             foreach (DO.Package p in deliveredPackages) { deliveredCount++; }
-                            DO.Customer c = DataSource.CustomerList[rand.Next(0, deliveredCount)];
+                            DO.Customer c = Customers[rand.Next(0, deliveredCount)];
                             DroneL.Location = MakeLocation(c.Longitude, c.Latitude);
 
                             //Battery: mimimum to get to closest station
