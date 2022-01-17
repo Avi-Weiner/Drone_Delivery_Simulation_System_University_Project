@@ -33,8 +33,8 @@ namespace BL
         public List<CustomerToList> ListOfCustomers()
         {
             List<CustomerToList> list = new();
-            //List<DO.Customer> CustomerList = new List<DO.
-            foreach (DO.Customer c in DalObject.DataSource.CustomerList)
+            List<DO.Customer> CustomerList = BLObject.Dal.GetCustomerList();
+            foreach (DO.Customer c in CustomerList)
             {
                 //converts DAL customer to BL Customer to CustomerToList and adds to list
                 list.Add(CustomerToCustomerToList(c.Id));
