@@ -20,6 +20,8 @@ namespace DalApi
         //Drone DalObject
         public DO.Drone GetDrone(int DroneId);
         public void AddDrone(string model, DO.WeightCategory Weight);
+        public List<DO.Drone> GetDroneList();
+        public void SetDroneList(List<DO.Drone> Drones);
 
         //Package DalObject
         public DO.Package GetPackage(int PackageId);

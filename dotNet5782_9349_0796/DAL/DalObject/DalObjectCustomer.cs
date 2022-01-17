@@ -42,5 +42,23 @@ namespace DalObject
 
             });
         }
+
+        /// <summary>
+        /// returns list of all customers
+        /// </summary>
+        /// <returns></returns>
+        public List<DO.Customer> GetCustomerList()
+        {
+            return DataSource.CustomerList;
+        }
+
+        /// <summary>
+        /// Sets the Customer List
+        /// </summary>
+        /// <param name="Customer"></param>
+        public void SetCustomerList(List<DO.Customer> Customers)
+        {
+            DataSource.CustomerList = Customers;
+        }
     }
 }

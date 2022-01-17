@@ -37,6 +37,24 @@ namespace DalObject
         }
 
         /// <summary>
+        /// returns list of all Drones
+        /// </summary>
+        /// <returns></returns>
+        public List<DO.Drone> GetDroneList()
+        {
+            return DataSource.DroneList;
+        }
+
+        /// <summary>
+        /// Set Drone List
+        /// </summary>
+        /// <param name="Customer"></param>
+        public void SetDroneList(List<DO.Drone> Drones)
+        {
+            DataSource.DroneList = Drones;
+        }
+
+        /// <summary>
         /// Receives Drone with ID DroneId and picks up package with ID PackageId
         /// </summary>
         /// <param name="PackageId"></param>

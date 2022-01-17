@@ -36,22 +36,6 @@ namespace DalObject
 
             return ThisObject;       
         }
-        /// <summary>
-        /// returns list of all customers
-        /// </summary>
-        /// <returns></returns>
-        public List<DO.Customer> GetCustomerList()
-        {
-            return DataSource.CustomerList;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Customer"></param>
-        public void SetCustomerList(List<DO.Customer> Customers)
-        {
-            DataSource.CustomerList = Customers;
-        }
 
         /// <summary>
         /// Returns an array of the power consumptions { Free, Light, Medium, Heavy, ChargingRate }
