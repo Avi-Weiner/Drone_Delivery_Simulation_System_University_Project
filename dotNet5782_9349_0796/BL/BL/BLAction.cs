@@ -264,6 +264,8 @@ namespace BL
             DO.Customer Reciever = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.ReceiverId);
             Location RecieverLocation = BLObject.MakeLocation(Reciever.Longitude, Sender.Latitude);
             Drone.BatteryStatus -= BLObject.ChargeForDistance(Package.Weight, BLObject.DistanceBetween(SenderLocation, RecieverLocation));
+            if (Drone.BatteryStatus < 0)
+                Drone.BatteryStatus = 0;
             Drone.Location = RecieverLocation;
             Drone.DroneStatus = DroneStatus.free;
             Package.Delivered = DateTime.Now;

@@ -93,8 +93,8 @@ namespace BL
 
             var rand = new Random();
 
-            d.BatteryStatus = rand.NextDouble() * (0.2) + 0.2; //create random battery status between 0.2 and 0.4
-            d.Status = (DroneStatus)(1); //put in maintenance status
+            d.BatteryStatus = rand.NextDouble() * (0.4 - 0.2) + 0.2; //create random battery status between 0.2 and 0.4
+            d.Status = (DroneStatus)(0); //put in maintenance status was supposed to put in maintnenece but that does not work for anything so simply put in free
 
             //Adding to DroneToList
             DroneToList DTL = new();
