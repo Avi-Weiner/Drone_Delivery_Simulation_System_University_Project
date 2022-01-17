@@ -2,14 +2,14 @@
 <ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Customer>
     <Id>8</Id>
-    <Name>Why did this not work</Name>
+    <Name>Avi</Name>
     <Phone>000-0000-0000</Phone>
     <Longitude>-54.64407540608387</Longitude>
     <Latitude>-66.26345544879486</Latitude>
   </Customer>
   <Customer>
     <Id>9</Id>
-    <Name>B</Name>
+    <Name>Chaim</Name>
     <Phone>000-0000-0000</Phone>
     <Longitude>58.97496253204298</Longitude>
     <Latitude>-53.41845110217969</Latitude>
