@@ -182,7 +182,7 @@ namespace BL
             DO.Priority priorityStatus = (DO.Priority)Enum.Parse(typeof(DO.Priority), Priority);
 
             int id = DalObject.DataSource.GetNextUniqueID(); //Get the next UniqueID which will be the ID of this package
-            DalObject.DalObject.AddPackage(SenderId, ReceiverId, WeightCatagory, priorityStatus);
+            BLObject.Dal.AddPackage(SenderId, ReceiverId, WeightCatagory, priorityStatus);
 
             Package p = new();
 

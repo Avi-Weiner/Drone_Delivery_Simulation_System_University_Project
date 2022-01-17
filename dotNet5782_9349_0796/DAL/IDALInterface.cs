@@ -21,6 +21,10 @@ namespace DalApi
         public DO.Drone GetDrone(int DroneId);
         public void AddDrone(string model, DO.WeightCategory Weight);
 
+        //Package DalObject
+        public DO.Package GetPackage(int PackageId);
+        public void AddPackage(int InputSender, int InputReceiver, DO.WeightCategory InputWeight, DO.Priority InputPriority);
+
         //Station DalObject
         public DO.Station GetStation(int StationId);
         public void AddStation(int name, double longitude, double latitude, int slots);
