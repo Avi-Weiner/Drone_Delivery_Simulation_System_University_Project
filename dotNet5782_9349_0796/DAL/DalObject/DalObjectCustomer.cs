@@ -13,10 +13,13 @@ namespace DalObject
         /// </summary>
         /// <param name="CustomerId"></param>
         /// <returns></returns>
-        public int GetCustomer(int CustomerId)
+        public DO.Customer GetCustomer(int CustomerId)
         {
             int i = DataSource.CustomerList.FindIndex(x => x.Id == CustomerId);
-            return i;
+            if (i == -1)
+                throw new DO.MessageException("Error: Customer not found.");
+            return DataSource.CustomerList.Find(x => x.Id == CustomerId);
+            
         }
 
         /// <summary>
@@ -26,7 +29,7 @@ namespace DalObject
         /// <param name="phone"></param>
         /// <param name="longitude"></param>
         /// <param name="latitude"></param>
-        static public void AddCustomer(string name, string phone, double longitude, double latitude)
+        public void AddCustomer(string name, string phone, double longitude, double latitude)
         {
             ////add customer to the back of the customer list
             DataSource.CustomerList.Add(new DO.Customer

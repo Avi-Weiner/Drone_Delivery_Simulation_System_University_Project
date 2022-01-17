@@ -129,7 +129,7 @@ namespace BL
                 throw new MessageException("Error: Name is empty");
 
 
-            DalObject.DalObject.AddCustomer(name, phone, Longitude, Latitude);
+            BLObject.Dal.AddCustomer(name, phone, Longitude, Latitude);
 
             //Create BaseStation
             Customer b = new();
