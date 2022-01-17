@@ -12,7 +12,10 @@ namespace DalApi
         //General DalObject
 
         //Customer DalObject
-        public int GetCustomer(int CustomerId);
+        public DO.Customer GetCustomer(int CustomerId);
+        public void AddCustomer(string name, string phone, double longitude, double latitude);
+        public List<DO.Customer> GetCustomerList();
+        public void SetCustomerList(List<DO.Customer> Customers);
 
         //Drone DalObject
         public DO.Drone GetDrone(int DroneId);
