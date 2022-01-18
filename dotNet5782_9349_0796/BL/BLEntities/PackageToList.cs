@@ -24,8 +24,8 @@ namespace BL
         public override string ToString()
         {
             return "PackageToList ID: " + Id +
-                "\nSender Name: " + SenderId +
-                "\nReceiver Name: " + ReceiverId +
+                "\nSender ID: " + SenderId +
+                "\nReceiver ID: " + ReceiverId +
                 "\nWeight: " + Weight.ToString() +
                 "\nPriority: " + Priority.ToString() +
                 "\nStatus: " + PackageStatus.ToString() + '\n';

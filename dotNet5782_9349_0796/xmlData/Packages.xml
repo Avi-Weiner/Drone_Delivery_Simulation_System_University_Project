@@ -132,4 +132,16 @@
     <PickedUp xsi:nil="true" />
     <Delivered xsi:nil="true" />
   </Package>
+  <Package>
+    <Id>31</Id>
+    <SenderId>28</SenderId>
+    <ReceiverId>29</ReceiverId>
+    <Weight>light</Weight>
+    <Priority>fast</Priority>
+    <Requested>2022-01-18T13:44:29.283163+02:00</Requested>
+    <DroneId>0</DroneId>
+    <Scheduled xsi:nil="true" />
+    <PickedUp xsi:nil="true" />
+    <Delivered xsi:nil="true" />
+  </Package>
 </ArrayOfPackage>

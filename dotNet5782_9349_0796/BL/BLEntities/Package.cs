@@ -39,8 +39,8 @@ namespace BL
 
         public override string ToString()//changed sender and reciever to namees because the to string dont make much snese
         {
-            string toReturn = "Package ID: " + Id + "\nSender: " + Sender.Id  + "  Sender Location: " + Sender.Location.ToString() +
-                "\nReceiver: " + Receiver.Id + "  Reciever Location: "  + Receiver.Location.ToString() +
+            string toReturn = "Package ID: " + Id + "\nSender Name: " + Sender.Name  + 
+                "\nReceiver Name: " + Receiver.Name +
                 "\nWeight: " + Weight.ToString() + 
                 "\nPriority: " + Priority.ToString() + "\nDrone ID: " + DroneId + 
                 "\nCreation time: " + CreationTime + "\n Assigning time: " + AssigningTime 

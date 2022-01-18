@@ -132,9 +132,10 @@ namespace BL
 
             BLObject.Dal.AddCustomer(name, phone, Longitude, Latitude);
 
+            List<DO.Customer> CustomerList = BLObject.Dal.GetCustomerList();
             //Create BaseStation
             Customer b = new();
-            DO.Customer c = DalObject.DataSource.CustomerList.Find(x => x.Name == name);
+            DO.Customer c = CustomerList.Find(x => x.Name == name);
             b.Id = c.Id;
             b.Name = name;
             b.Phone = phone;
@@ -158,14 +159,15 @@ namespace BL
         public  Package AddPackage(int SenderId, int ReceiverId, string Weight, string Priority)
         {
             #region InputChecking
+            List<DO.Customer> CustomerList = BLObject.Dal.GetCustomerList();
             //------------------Input checking:----------------
-            int senderi = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == SenderId);
+            int senderi = CustomerList.FindIndex(x => x.Id == SenderId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (senderi == -1)
             {
                 throw new MessageException("Error: Sender not found.\n");
             }
-            int receiveri = DalObject.DataSource.CustomerList.FindIndex(x => x.Id == ReceiverId);
+            int receiveri = CustomerList.FindIndex(x => x.Id == ReceiverId);
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
             if (receiveri == -1)
             {
@@ -182,12 +184,12 @@ namespace BL
             DO.WeightCategory WeightCatagory = (DO.WeightCategory)Enum.Parse(typeof(DO.WeightCategory), Weight);
             DO.Priority priorityStatus = (DO.Priority)Enum.Parse(typeof(DO.Priority), Priority);
 
-            int id = DalObject.DataSource.GetNextUniqueID(); //Get the next UniqueID which will be the ID of this package
+            //int id = BLObject.Dal.; //Get the next UniqueID which will be the ID of this package
             BLObject.Dal.AddPackage(SenderId, ReceiverId, WeightCatagory, priorityStatus);
 
             Package p = new();
 
-            p.Id = id;
+            p.Id = 0;
             p.Weight = WeightCatagory;
             p.Priority = priorityStatus;
 
