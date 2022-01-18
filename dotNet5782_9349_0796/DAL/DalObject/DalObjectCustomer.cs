@@ -39,7 +39,6 @@ namespace DalObject
                 Phone = phone,
                 Longitude = longitude,
                 Latitude = latitude
-
             });
         }
 

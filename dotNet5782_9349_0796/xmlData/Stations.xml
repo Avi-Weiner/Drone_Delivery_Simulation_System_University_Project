@@ -10,8 +10,15 @@
   <Station>
     <Id>2</Id>
     <Name>1</Name>
-    <Longitude>159.44422434058237</Longitude>
-    <Latitude>-57.50346163637166</Latitude>
-    <ChargeSlots>7</ChargeSlots>
+    <Longitude>156.1162756830995</Longitude>
+    <Latitude>56.67330403191659</Latitude>
+    <ChargeSlots>6</ChargeSlots>
+  </Station>
+  <Station>
+    <Id>28</Id>
+    <Name>0</Name>
+    <Longitude>-49</Longitude>
+    <Latitude>-49</Latitude>
+    <ChargeSlots>5</ChargeSlots>
   </Station>
 </ArrayOfStation>

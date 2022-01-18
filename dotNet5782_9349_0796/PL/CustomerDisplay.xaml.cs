@@ -97,24 +97,26 @@ namespace PL
 
         private void Longitude_Changed(object sender, TextChangedEventArgs e)
         {
-
-            if (!int.TryParse(((TextBox)sender).Text, out int i) && ((TextBox)sender).Text != "")
-            {
-                MessageBox.Show("Invalid input");
-            }
-
-            location.longitude = i;
-
+            double.TryParse(((TextBox)sender).Text, out double d);
+            if (d < -180 || d > 180)
+                MessageBox.Show("Invalid Input: \n Longitude must be between -180 and 180");
+            location.longitude = d;
         }
 
         private void Latitude_Changed(object sender, TextChangedEventArgs e)
         {
-            if (!int.TryParse(((TextBox)sender).Text, out int i) && ((TextBox)sender).Text != "")
-            {
-                MessageBox.Show("Invalid input");
-            }
+            double.TryParse(((TextBox)sender).Text, out double d);
+            if (d < -90 || d > 90)
+                MessageBox.Show("Invalid Input: \n Latitude must be between -90 and 90");
+            location.latitude = d;
+        }
 
-            location.latitude = i;
+        private void OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (e.Text != "-" && !char.IsDigit(e.Text[0]) && e.Text != ".")
+            {
+                e.Handled = true;
+            }
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)

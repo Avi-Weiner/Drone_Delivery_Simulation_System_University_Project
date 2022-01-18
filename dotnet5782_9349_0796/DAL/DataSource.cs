@@ -62,7 +62,7 @@ namespace DalObject
         /// Does not increment NextUniqueID which is done by SetNextUniqueID()
         /// </summary>
         /// <returns></returns>
-        public static int GetNextUniqueID() {  return Config.NextUniqueId; }
+        public static int GetNextUniqueID() {Config.NextUniqueId += 1; return Config.NextUniqueId - 1; }
 
         //Config setters
         public static void SetNextUniqueID() { Config.NextUniqueId += 1; }
@@ -80,15 +80,12 @@ namespace DalObject
             for (int i = 0; i < 2; i++)
             {
                 StationList.Add(new DO.Station() { 
-                    Id = Config.NextUniqueId,
+                    Id = GetNextUniqueID(),
                     Name = i,
                     Longitude = rand.NextDouble() * 360 - 180,
                     Latitude = rand.NextDouble() * 180 - 90,
                     ChargeSlots = rand.Next(2, 10)
                 });
-                //Increment to the new emtpy station index.
-                
-                Config.NextUniqueId++;
             }
 
             //5 drones
@@ -96,12 +93,10 @@ namespace DalObject
             {
                 DroneList.Add(new DO.Drone()
                 {
-                    Id = Config.NextUniqueId,
+                    Id = GetNextUniqueID(),
                     Model = "Model T",
                     MaxWeight = (DO.WeightCategory)(rand.Next(0, 2)),
                 });
-                
-                Config.NextUniqueId++;
             }
 
             //10 customers
@@ -110,14 +105,13 @@ namespace DalObject
             {
                 CustomerList.Add(new DO.Customer()
                 {
-                    Id = Config.NextUniqueId,
+                    Id = GetNextUniqueID(),
                     Name = ((char)ASCIIvalue).ToString(),
                     Longitude = rand.NextDouble() * 360 - 180,
                     Latitude = rand.NextDouble() * 180 - 90,
                     Phone = "000-0000-0000"
                 });
                 ASCIIvalue++;
-                Config.NextUniqueId++;
             }
 
             //10 packages
@@ -125,7 +119,7 @@ namespace DalObject
             {
                 PackageList.Add(new DO.Package()
                 {
-                    Id = Config.NextUniqueId,
+                    Id = GetNextUniqueID(),
                     SenderId = CustomerList[i].Id,
                     ReceiverId = CustomerList[(i + 1) % 10].Id,
                     Weight = (DO.WeightCategory)(rand.Next(0, 2)),
@@ -136,7 +130,6 @@ namespace DalObject
                     PickedUp = null,
                     Delivered = null
                 });
-                Config.NextUniqueId++;
             }//end of for loop for pakcages
         }//end of intialize;
     }//end of dataSource
