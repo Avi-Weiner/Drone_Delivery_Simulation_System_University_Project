@@ -31,7 +31,7 @@ namespace DAL.DalXML
             //add the new drone to the back of the list
             DroneList.Add(new DO.Drone
             {
-                Id = DalObject.DataSource.GetNextUniqueID(),
+                Id = GetNextUniqueId(),
                 Model = model,
                 MaxWeight = Weight
             });

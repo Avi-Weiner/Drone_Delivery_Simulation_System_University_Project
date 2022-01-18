@@ -34,7 +34,7 @@ namespace DAL.DalXML
             //add station to the back of the station list
             StationList.Add(new DO.Station
             {
-                Id = DalObject.DataSource.GetNextUniqueID(),
+                Id = GetNextUniqueId(),
                 Name = name,
                 Longitude = longitude,
                 Latitude = latitude,

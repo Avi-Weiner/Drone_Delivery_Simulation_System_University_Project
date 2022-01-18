@@ -2,72 +2,86 @@
 <ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Customer>
     <Id>8</Id>
-    <Name>Avi</Name>
+    <Name>A</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>-54.64407540608387</Longitude>
-    <Latitude>-66.26345544879486</Latitude>
+    <Longitude>-139.96040390802565</Longitude>
+    <Latitude>16.824969391722675</Latitude>
   </Customer>
   <Customer>
     <Id>9</Id>
-    <Name>Chaim</Name>
+    <Name>B</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>58.97496253204298</Longitude>
-    <Latitude>-53.41845110217969</Latitude>
+    <Longitude>11.022488582424103</Longitude>
+    <Latitude>60.73217945673139</Latitude>
   </Customer>
   <Customer>
     <Id>10</Id>
     <Name>C</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>55.114154999663185</Longitude>
-    <Latitude>-21.396404985057387</Latitude>
+    <Longitude>35.63208487612758</Longitude>
+    <Latitude>-62.148547504166395</Latitude>
   </Customer>
   <Customer>
     <Id>11</Id>
     <Name>D</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>-125.31425806941198</Longitude>
-    <Latitude>-59.40723450361157</Latitude>
+    <Longitude>-12.64211149543624</Longitude>
+    <Latitude>35.48209109598869</Latitude>
   </Customer>
   <Customer>
     <Id>12</Id>
     <Name>E</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>-133.31493317769605</Longitude>
-    <Latitude>86.99078385578039</Latitude>
+    <Longitude>-61.895864346016126</Longitude>
+    <Latitude>2.227093257115726</Latitude>
   </Customer>
   <Customer>
     <Id>13</Id>
     <Name>F</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>-127.09435335690824</Longitude>
-    <Latitude>-25.647983632817855</Latitude>
+    <Longitude>-83.81492755553448</Longitude>
+    <Latitude>2.4611924367310394</Latitude>
   </Customer>
   <Customer>
     <Id>14</Id>
     <Name>G</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>83.95672354100122</Longitude>
-    <Latitude>-0.8629152974406793</Latitude>
+    <Longitude>107.46429637422057</Longitude>
+    <Latitude>26.817373957865584</Latitude>
   </Customer>
   <Customer>
     <Id>15</Id>
     <Name>H</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>37.4807572073679</Longitude>
-    <Latitude>82.09443728071378</Latitude>
+    <Longitude>32.832886955157335</Longitude>
+    <Latitude>-35.574474756407774</Latitude>
   </Customer>
   <Customer>
     <Id>16</Id>
     <Name>I</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>44.94345578595224</Longitude>
-    <Latitude>-65.35885648585803</Latitude>
+    <Longitude>46.06886559448617</Longitude>
+    <Latitude>89.9362473282666</Latitude>
   </Customer>
   <Customer>
     <Id>17</Id>
     <Name>J</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>44.493858713886624</Longitude>
-    <Latitude>25.004325301854095</Latitude>
+    <Longitude>-52.19868113854838</Longitude>
+    <Latitude>1.6974319944611835</Latitude>
+  </Customer>
+  <Customer>
+    <Id>28</Id>
+    <Name>AviWeiner</Name>
+    <Phone>123-1234-1234</Phone>
+    <Longitude>54</Longitude>
+    <Latitude>54</Latitude>
+  </Customer>
+  <Customer>
+    <Id>29</Id>
+    <Name>YAYY</Name>
+    <Phone>124-1234-1243</Phone>
+    <Longitude>54</Longitude>
+    <Latitude>54</Latitude>
   </Customer>
 </ArrayOfCustomer>

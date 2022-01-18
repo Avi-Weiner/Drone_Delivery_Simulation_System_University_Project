@@ -32,7 +32,7 @@ namespace DAL.DalXML
             List<DO.Package> PackageList = XMLTools.LoadListFromXMLSerializer<DO.Package>(dir + PackagesFilePath);
             PackageList.Add(new DO.Package
             {
-                Id = DalObject.DataSource.GetNextUniqueID(),
+                Id = GetNextUniqueId(),
                 SenderId = InputSender,
                 ReceiverId = InputReceiver,
                 Weight = InputWeight,

@@ -18,6 +18,7 @@ namespace DAL.DalXML
         static string DronesFilePath = @"Drones.xml";
         static string PackagesFilePath = @"Packages.xml";
         static string StationsFilePath = @"Stations.xml";
+        static string NextUniqueId = @"NextUniqueId.xml";
 
         /// <summary>
         /// Constructor for DalObject, initialises all entities
@@ -35,6 +36,8 @@ namespace DAL.DalXML
                 XMLTools.SaveListToXMLSerializer<DO.Package>(DalObject.DataSource.PackageList, dir + PackagesFilePath);
             if (!File.Exists(dir + StationsFilePath))
                 XMLTools.SaveListToXMLSerializer<DO.Station>(DalObject.DataSource.StationList, dir + StationsFilePath);
+            if (!File.Exists(dir + NextUniqueId))
+                XMLTools.SaveIntToXMLSerializer(DalObject.DataSource.GetNextUniqueID(), dir + NextUniqueId);
         }
 
         /// <summary>
@@ -51,6 +54,12 @@ namespace DAL.DalXML
 
             return ThisObject;
 
+        }
+        public static int GetNextUniqueId()
+        {
+            int Id = XMLTools.LoadIntFromXML(dir + NextUniqueId);
+            XMLTools.SaveIntToXMLSerializer(Id + 1, dir + NextUniqueId);
+            return Id;
         }
 
         /// <summary>

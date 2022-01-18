@@ -38,7 +38,7 @@ namespace DAL.DalXML
             ////add customer to the back of the customer list
             customerList.Add(new DO.Customer
             {
-                Id = DalObject.DataSource.GetNextUniqueID(),
+                Id = GetNextUniqueId(),
                 Name = name,
                 Phone = phone,
                 Longitude = longitude,

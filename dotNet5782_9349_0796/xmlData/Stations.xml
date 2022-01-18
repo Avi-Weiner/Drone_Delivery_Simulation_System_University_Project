@@ -2,30 +2,16 @@
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
     <Id>1</Id>
-    <Name>3</Name>
-    <Longitude>-65.34087416033302</Longitude>
-    <Latitude>29.00888993358653</Latitude>
-    <ChargeSlots>6</ChargeSlots>
+    <Name>0</Name>
+    <Longitude>58.32970149737301</Longitude>
+    <Latitude>-55.312583691120416</Latitude>
+    <ChargeSlots>5</ChargeSlots>
   </Station>
   <Station>
     <Id>2</Id>
     <Name>1</Name>
-    <Longitude>156.1162756830995</Longitude>
-    <Latitude>56.67330403191659</Latitude>
-    <ChargeSlots>6</ChargeSlots>
-  </Station>
-  <Station>
-    <Id>28</Id>
-    <Name>0</Name>
-    <Longitude>-49</Longitude>
-    <Latitude>-49</Latitude>
-    <ChargeSlots>5</ChargeSlots>
-  </Station>
-  <Station>
-    <Id>28</Id>
-    <Name>6</Name>
-    <Longitude>-69</Longitude>
-    <Latitude>69</Latitude>
-    <ChargeSlots>4</ChargeSlots>
+    <Longitude>159.44422434058237</Longitude>
+    <Latitude>-57.50346163637166</Latitude>
+    <ChargeSlots>7</ChargeSlots>
   </Station>
 </ArrayOfStation>
