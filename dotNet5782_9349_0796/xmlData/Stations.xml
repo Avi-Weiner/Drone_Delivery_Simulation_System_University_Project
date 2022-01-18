@@ -21,11 +21,4 @@
     <Latitude>-49</Latitude>
     <ChargeSlots>5</ChargeSlots>
   </Station>
-  <Station>
-    <Id>28</Id>
-    <Name>6</Name>
-    <Longitude>-69</Longitude>
-    <Latitude>69</Latitude>
-    <ChargeSlots>4</ChargeSlots>
-  </Station>
 </ArrayOfStation>
