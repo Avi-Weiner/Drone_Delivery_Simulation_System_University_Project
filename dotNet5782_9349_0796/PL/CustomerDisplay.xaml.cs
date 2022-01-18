@@ -59,6 +59,8 @@ namespace PL
             Longitude.Visibility = Visibility.Visible;
             Latitude.Visibility = Visibility.Visible;
             AddCustomerTitle.Visibility = Visibility.Visible;
+            LongitudeRestrictions.Visibility = Visibility.Visible;
+            LatitudeRestrictions.Visibility = Visibility.Visible;
             
         }
 

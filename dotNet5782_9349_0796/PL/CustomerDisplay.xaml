@@ -41,14 +41,14 @@
         <!--Add Customer Section -->
         <Button x:Name="AddButton" Content="Add Customer" Visibility="Hidden" Background="GreenYellow"  HorizontalAlignment="Left" 
                 Margin="72,207,0,0" VerticalAlignment="Top" Click="AddButton_Click"/>
-        <TextBlock x:Name="LongitudeText"  HorizontalAlignment="Left" Margin="10,145,0,0" Text="Longitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock x:Name="LatitudeText"  HorizontalAlignment="Left" Margin="21,180,0,0" Text="Latitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="Longitude"  TextChanged="Longitude_Changed" HorizontalAlignment="Left" Margin="92,145,0,0"  
+        <TextBlock x:Name="LongitudeText" Visibility="Hidden"  HorizontalAlignment="Left" Margin="10,145,0,0" Text="Longitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock x:Name="LatitudeText" Visibility="Hidden"  HorizontalAlignment="Left" Margin="21,180,0,0" Text="Latitude:" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="Longitude" Visibility="Hidden" TextChanged="Longitude_Changed" HorizontalAlignment="Left" Margin="92,145,0,0"  
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="OnPreviewTextInput"/>
-        <TextBox x:Name="Latitude"  TextChanged="Latitude_Changed" HorizontalAlignment="Left" Margin="93,179,0,0"  
+        <TextBox x:Name="Latitude" Visibility="Hidden" TextChanged="Latitude_Changed" HorizontalAlignment="Left" Margin="93,179,0,0"  
                  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewTextInput="OnPreviewTextInput"/>
-        <TextBlock x:Name="LongitudeRestrictions"  HorizontalAlignment="Left" Margin="217,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" FontSize="8" Text="Between -180 and 180"/></TextBlock>
-        <TextBlock x:Name="LatitudeRestrictions"  HorizontalAlignment="Left" Margin="218,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" FontSize="8" Text="Between -90 and 90"/></TextBlock>
+        <TextBlock x:Name="LongitudeRestrictions" Visibility="Hidden" HorizontalAlignment="Left" Margin="217,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" FontSize="8" Text="Between -180 and 180"/></TextBlock>
+        <TextBlock x:Name="LatitudeRestrictions" Visibility="Hidden" HorizontalAlignment="Left" Margin="218,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" FontSize="8" Text="Between -90 and 90"/></TextBlock>
         <TextBlock x:Name="AddCustomerTitle" Visibility="Hidden" HorizontalAlignment="Left" Margin="72,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="en-au" Text="Add Customer"/></TextBlock>
         <!--End Add Customer Section -->
 

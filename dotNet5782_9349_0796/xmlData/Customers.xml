@@ -2,8 +2,8 @@
 <ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Customer>
     <Id>8</Id>
-    <Name>A</Name>
-    <Phone>000-0000-0000</Phone>
+    <Name>Esther</Name>
+    <Phone>516-4444-9999</Phone>
     <Longitude>-139.96040390802565</Longitude>
     <Latitude>16.824969391722675</Latitude>
   </Customer>
