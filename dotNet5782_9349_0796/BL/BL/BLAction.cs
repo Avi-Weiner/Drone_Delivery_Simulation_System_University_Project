@@ -98,12 +98,10 @@ namespace BL
             StationList[StationIndex] = station;
             BLObject.Dal.SetStationList(StationList);
             //again not sure what the mathcing instance is.
-        
         }
 
         public bool CheckCloseEnough(DO.Package pack, int id)
         {
-            
             DO.Customer customerSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
             DO.Customer customerReciever = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.ReceiverId)];
             Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
