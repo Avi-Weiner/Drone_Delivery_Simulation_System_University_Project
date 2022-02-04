@@ -69,7 +69,7 @@ namespace PL
                 case "BL.DroneToList":
                     BL.DroneToList drone = (BL.DroneToList)ListView.SelectedItem;
                     int x = drone.Id;
-                    DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl);
+                    DroneDisplay droneDisplayWindow = new DroneDisplay(bl.DroneToListToDrone(x), bl, this);
                     droneDisplayWindow.Show();//this was deleted purposely
                     //Close();
                     break;
@@ -90,7 +90,7 @@ namespace PL
                 case "BL.PackageToList":
                     BL.PackageToList package = (BL.PackageToList)ListView.SelectedItem;
                     int p = package.Id;
-                    PackageDisplay PackageDisplayWindow = new PackageDisplay(bl, bl.DalToBlPackage(p));
+                    PackageDisplay PackageDisplayWindow = new PackageDisplay(bl, bl.DalToBlPackage(p), this);
                     PackageDisplayWindow.Show();
                     //Close();
                     break;
@@ -104,14 +104,7 @@ namespace PL
         }
 
         
-
-        /// <summary>
-        /// This function will simply reselect the item currently selected which will 
-        /// inevitebly refresh the list.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Refresh_Button_Click(object sender, RoutedEventArgs e)
+        public void Refresh()
         {
             //if there was no selection yet nothing should be refreshed.
             if (StatusSelector.SelectedItem == null)
@@ -130,6 +123,33 @@ namespace PL
             {
                 ListView.ItemsSource = bl.PackageListFilter(x);
             }
+        }
+        /// <summary>
+        /// This function will simply reselect the item currently selected which will 
+        /// inevitebly refresh the list.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Refresh_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Refresh();
+            ////if there was no selection yet nothing should be refreshed.
+            //if (StatusSelector.SelectedItem == null)
+            //    return;
+            ////string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
+            //if (StatusSelector.SelectedItem == null)
+            //    return;
+            //string x = StatusSelector.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
+            //if ((bool)Stations.IsChecked)
+            //    ListView.ItemsSource = bl.StationListFilter(x);
+            //else if ((bool)Drones.IsChecked)
+            //    ListView.ItemsSource = bl.DroneListFilter(x);
+            //else if ((bool)Customers.IsChecked)
+            //    ListView.ItemsSource = bl.ListOfCustomers();
+            //else if ((bool)Packages.IsChecked)
+            //{
+            //    ListView.ItemsSource = bl.PackageListFilter(x);
+           // }
         }
 
         private void Stations_Checked(object sender, RoutedEventArgs e)

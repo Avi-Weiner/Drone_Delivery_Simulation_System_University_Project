@@ -103,13 +103,15 @@ namespace BL
 
         public bool CheckCloseEnough(DO.Package pack, int id)
         {
-            DO.Customer customerSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.SenderId)];
-            DO.Customer customerReciever = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.ReceiverId)];
+            
+            DO.Customer customerSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
+            DO.Customer customerReciever = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.ReceiverId)];
             Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
             Location recieverLocation = BLObject.MakeLocation(customerReciever.Longitude, customerReciever.Latitude);
-
-            if (BLObject.BLDroneList[id].BatteryStatus < BLObject.ChargeForDistance(pack.Weight, BLObject.DistanceBetween(senderLocation, recieverLocation)))
-            {
+            //BLObject.MakeLocation()
+            if (BLObject.BLDroneList[id].BatteryStatus < BLObject.ChargeForDistance(pack.Weight, BLObject.DistanceBetween(senderLocation, recieverLocation) + 
+                BLObject.DistanceBetween(recieverLocation,BLObject.MakeLocation(BLObject.ClosestStation(recieverLocation).Longitude, BLObject.ClosestStation(recieverLocation).Latitude))))
+            { 
                 return true;
             }
             return false;
@@ -170,10 +172,12 @@ namespace BL
             drone.PackageId = Packages[0].Id;
             foreach(DO.Package pack in Packages)
             {
-                DO.Customer customerSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == pack.SenderId)];
+                
+                
+                DO.Customer customerSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
                 Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
                 DO.Package package = Packages.Find(x => x.Id == drone.PackageId);
-                DO.Customer thisPackageSender = DalObject.DataSource.CustomerList[DalObject.DataSource.CustomerList.FindIndex(x => x.Id == package.SenderId)];
+                DO.Customer thisPackageSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
                 Location thisSenderLocation = BLObject.MakeLocation(thisPackageSender.Longitude, thisPackageSender.Latitude);
                 if (BLObject.DistanceBetween(senderLocation, drone.Location) < BLObject.DistanceBetween(thisSenderLocation, drone.Location))
                 {

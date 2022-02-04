@@ -63,7 +63,7 @@
 
             </ListBox>
 
-            <Button Content="&#11118;" FontSize="17" Background="GreenYellow"  HorizontalAlignment="Left" 
+            <Button x:Name="refreshButton" Content="&#11118;" FontSize="17" Background="GreenYellow"  HorizontalAlignment="Left" 
                     Margin="164,45,0,0" VerticalAlignment="Top" Height="30" Width="32" Click="Refresh_Button_Click"/>
 
         </Grid>

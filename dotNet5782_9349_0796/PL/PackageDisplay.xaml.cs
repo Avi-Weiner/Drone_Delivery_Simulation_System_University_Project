@@ -26,20 +26,20 @@ namespace PL
         BL.Drone? Drone;
         int senderId, receiverId;
         string weightString, priorityString;
-
+        ListDisplay lst;
 
         /// <summary>
         /// Update package display constructor
         /// </summary>
         /// <param name="BL"></param>
         /// <param name="Package"></param>
-        public PackageDisplay(BlApi.IBL BL, BL.Package Package)
+        public PackageDisplay(BlApi.IBL BL, BL.Package Package, ListDisplay l)
         {
             package = Package;
             bl = BL;
             InitializeComponent();
             PackageView.Text = package.ToString();
-
+            lst = l;
             UpdatePackageTitle.Visibility = Visibility.Visible;
             UpdateButton.Visibility = Visibility.Visible;
             DeleteButton.Visibility = Visibility.Visible;
@@ -85,6 +85,8 @@ namespace PL
             {
                 bl.DeletePackage(package.Id);
                 MessageBox.Show("Package deleted succesfully");
+                lst.Refresh();
+                Close();
             }
             catch (BL.MessageException m)
             {
