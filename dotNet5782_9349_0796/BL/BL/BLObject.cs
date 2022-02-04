@@ -140,12 +140,24 @@ namespace BL
 
                     }//if(DroneL.DroneStatus != BlApi.DroneStatus.delivery)
                 }//end of foreach
-                
-
-
             }
 
-            
+            /// <summary>
+            /// Selects and returns the first available drone
+            /// </summary>
+            /// <returns></returns>
+            public static DroneToList SelectDrone()
+            {
+                //Check if there is an available drone
+                int DroneIndex = BLDroneList.FindIndex(d => d.DroneStatus == DroneStatus.free);
+                //if findIndex returned -1 then there are no available drones. Error Will be thrown.
+                if (DroneIndex == -1)
+                {
+                    throw new MessageException("Error: No available drones.\n");
+                }
+
+                return BLDroneList.Find(d => d.DroneStatus == DroneStatus.free);
+            }
         }//Class BLObject
 
         /// <summary>
