@@ -28,9 +28,9 @@ namespace DalObject
             /// </summary>
             public static double HeavyWeight { get; set; } = 0.01;
             /// <summary>
-            /// percent charge rate per hour
+            /// percent charge rate per hour (120 = full charge in 30s)
             /// </summary>
-            public static double ChargingRate { get; set; } = 1;
+            public static double ChargingRate { get; set; } = 120;
 
             //Told to include the below field in exercise 1 but I am not sure what it is.
             //static int PackagesId;
