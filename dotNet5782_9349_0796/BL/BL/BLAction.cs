@@ -30,7 +30,7 @@ namespace BL
 
             DO.Station StationClose = BLObject.ClosestStation(BLObject.BLDroneList[DroneIndex].Location);
 
-            if (BLObject.ChargeForDistance(BLObject.BLDroneList[DroneIndex].Weight, 
+            if (BLObject.ChargeForDistance(DO.WeightCategory.light, 
                 BLObject.DistanceBetween(BLObject.BLDroneList[DroneIndex].Location, BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude)))
                 > BLObject.BLDroneList[DroneIndex].BatteryStatus)
             {
