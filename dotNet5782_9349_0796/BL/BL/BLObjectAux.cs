@@ -94,7 +94,6 @@ namespace BL
             /// <returns></returns>
             public static double ChargeForTime(TimeSpan ChargeTime)
             {
-                
                 double Hours = ChargeTime.TotalHours;
                 double Charge = Hours * DalObject.DataSource.GetChargingRate();
                 return Charge;
