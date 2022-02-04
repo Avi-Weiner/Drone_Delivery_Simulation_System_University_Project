@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace PL
 {
@@ -23,20 +24,20 @@ namespace PL
         #region DroneAction
         BlApi.IBL bl;
         BL.Drone drone;
-       
+        ListDisplay lst;
         // this line should probalby be deleted...............public Visibility SendButton { get; set; }
         /// <summary>
         /// Constructor for updating a drone
         /// </summary>
         /// <param name="Drone"></param>
         /// <param name="BL"></param>
-        public DroneDisplay(BL.Drone Drone, BlApi.IBL BL)
+        public DroneDisplay(BL.Drone Drone, BlApi.IBL BL, ListDisplay l)
         {
             bl = BL;
             drone = Drone;
             //droneView.Content = drone.ToString();
             //droneView.Inlines.Add(Drone.ToString());
-            
+            lst = l;
             InitializeComponent();
             #region Element Visibility 
             //Make Elements visible
@@ -58,7 +59,10 @@ namespace PL
             DroneView.Text = Drone.ToString();
         }
 
-        
+        //public void Deliveries()
+        //{
+        //    while(drone.)
+        //}
         private void Update_ButtonClick(object sender, RoutedEventArgs e)
         {
             try 

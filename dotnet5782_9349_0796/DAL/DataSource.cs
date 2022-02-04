@@ -18,15 +18,15 @@ namespace DalObject
             /// <summary>
             /// percentage light electricity consumption per km
             /// </summary>
-            public static double LightWeight { get; set; } = 0.0001;
+            public static double LightWeight { get; set; } = 0.001;
             /// <summary>
             /// percentage medium electricity consumption per km
             /// </summary>
-            public static double MediumWeight { get; set; } = 0.0005;
+            public static double MediumWeight { get; set; } = 0.005;
             /// <summary>
             /// percentage heavy electricity consumption per km
             /// </summary>
-            public static double HeavyWeight { get; set; } = 0.001;
+            public static double HeavyWeight { get; set; } = 0.01;
             /// <summary>
             /// percent charge rate per hour
             /// </summary>
