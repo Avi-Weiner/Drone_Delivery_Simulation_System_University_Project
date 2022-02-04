@@ -1,87 +1,15 @@
 <?xml version="1.0"?>
 <ArrayOfPackage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Package>
-    <Id>21</Id>
-    <SenderId>11</SenderId>
-    <ReceiverId>12</ReceiverId>
-    <Weight>light</Weight>
-    <Priority>fast</Priority>
-    <Requested>2022-02-04T11:43:58.6610714+02:00</Requested>
-    <DroneId>0</DroneId>
-    <Scheduled>2022-02-09T11:43:58.6610716+02:00</Scheduled>
-    <PickedUp xsi:nil="true" />
-    <Delivered xsi:nil="true" />
-  </Package>
-  <Package>
-    <Id>22</Id>
-    <SenderId>12</SenderId>
-    <ReceiverId>13</ReceiverId>
-    <Weight>light</Weight>
-    <Priority>regular</Priority>
-    <Requested>2022-02-04T11:43:58.661072+02:00</Requested>
-    <DroneId>0</DroneId>
-    <Scheduled>2022-02-09T11:43:58.6610722+02:00</Scheduled>
-    <PickedUp xsi:nil="true" />
-    <Delivered xsi:nil="true" />
-  </Package>
-  <Package>
-    <Id>23</Id>
-    <SenderId>13</SenderId>
-    <ReceiverId>14</ReceiverId>
-    <Weight>light</Weight>
-    <Priority>fast</Priority>
-    <Requested>2022-02-04T11:43:58.6610729+02:00</Requested>
-    <DroneId>0</DroneId>
-    <Scheduled>2022-02-09T11:43:58.6610731+02:00</Scheduled>
-    <PickedUp xsi:nil="true" />
-    <Delivered xsi:nil="true" />
-  </Package>
-  <Package>
-    <Id>24</Id>
-    <SenderId>14</SenderId>
-    <ReceiverId>15</ReceiverId>
-    <Weight>medium</Weight>
-    <Priority>fast</Priority>
-    <Requested>2022-02-04T11:43:58.6610734+02:00</Requested>
-    <DroneId>0</DroneId>
-    <Scheduled>2022-02-09T11:43:58.6610736+02:00</Scheduled>
-    <PickedUp xsi:nil="true" />
-    <Delivered xsi:nil="true" />
-  </Package>
-  <Package>
-    <Id>25</Id>
-    <SenderId>15</SenderId>
-    <ReceiverId>16</ReceiverId>
-    <Weight>light</Weight>
-    <Priority>regular</Priority>
-    <Requested>2022-02-04T11:43:58.6610739+02:00</Requested>
-    <DroneId>0</DroneId>
-    <Scheduled>2022-02-09T11:43:58.6610741+02:00</Scheduled>
-    <PickedUp xsi:nil="true" />
-    <Delivered xsi:nil="true" />
-  </Package>
-  <Package>
-    <Id>26</Id>
-    <SenderId>16</SenderId>
-    <ReceiverId>17</ReceiverId>
-    <Weight>light</Weight>
-    <Priority>regular</Priority>
-    <Requested>2022-02-04T11:43:58.6610745+02:00</Requested>
-    <DroneId>0</DroneId>
-    <Scheduled>2022-02-09T11:43:58.6610747+02:00</Scheduled>
-    <PickedUp xsi:nil="true" />
-    <Delivered xsi:nil="true" />
-  </Package>
-  <Package>
     <Id>27</Id>
     <SenderId>17</SenderId>
     <ReceiverId>8</ReceiverId>
-    <Weight>medium</Weight>
-    <Priority>regular</Priority>
-    <Requested>2022-02-04T11:43:58.6610752+02:00</Requested>
-    <DroneId>0</DroneId>
-    <Scheduled>2022-02-09T11:43:58.6610753+02:00</Scheduled>
-    <PickedUp xsi:nil="true" />
-    <Delivered xsi:nil="true" />
+    <Weight>light</Weight>
+    <Priority>fast</Priority>
+    <Requested>2022-02-04T12:16:44.1974887+02:00</Requested>
+    <DroneId>3</DroneId>
+    <Scheduled>2022-02-04T12:17:03.4419368+02:00</Scheduled>
+    <PickedUp>2022-02-04T12:17:04.9916686+02:00</PickedUp>
+    <Delivered>2022-02-04T12:17:06.4248706+02:00</Delivered>
   </Package>
 </ArrayOfPackage>
