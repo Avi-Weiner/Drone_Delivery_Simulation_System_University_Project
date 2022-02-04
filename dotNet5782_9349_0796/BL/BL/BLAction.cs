@@ -139,6 +139,7 @@ namespace BL
             {
                 throw new MessageException("Error: No packages to be collected.\n");
             }
+
             List<DO.Package> Packages = PackageList;
             List<DO.Package> tempPack = new List<DO.Package>();
             Packages.RemoveAll(x => x.Delivered != null);
@@ -159,10 +160,8 @@ namespace BL
                 if(PackIndex != -1)
                 {
                     Packages.RemoveAll(x => x.Priority != DO.Priority.fast);
-                   
                 }
             }
-            
 
             DroneToList drone = BLObject.BLDroneList[DroneIndex];
             if(Packages.Count == 0)
@@ -172,8 +171,6 @@ namespace BL
             drone.PackageId = Packages[0].Id;
             foreach(DO.Package pack in Packages)
             {
-                
-                
                 DO.Customer customerSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
                 Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
                 DO.Package package = Packages.Find(x => x.Id == drone.PackageId);
