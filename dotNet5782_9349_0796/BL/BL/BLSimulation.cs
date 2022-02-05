@@ -16,15 +16,34 @@ namespace BL
             Should_Stop = false;
             while (!Should_Stop)
             {
+                bool stillPackages = true;
+                while (stillPackages)
+                {
+                    try
+                    {
+                        AssignPackageToDrone(Id);
+                        DroneCollectsAPackage(Id);
+                        DroneDeliversPakcage(Id);
+                    }
+                    catch (MessageException e)
+                    {
+                        if (e.Message == "Error: No packages to be collected.\n")
+                        {
+                            stillPackages = false;
+                            break;
+                        }
+                        else
+                        {
+                            throw new MessageException(e.Message);
+                        }
 
-                Thread.Sleep(3000);
-                AssignPackageToDrone(Id);
-                DroneCollectsAPackage(Id);
-                DroneDeliversPakcage(Id);
-
+                    }
+                }
 
             }
-
         }
+        
+
+
     }
 }

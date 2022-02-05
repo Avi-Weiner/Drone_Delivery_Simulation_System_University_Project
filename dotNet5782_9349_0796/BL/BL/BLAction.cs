@@ -97,28 +97,36 @@ namespace BL
             //again not sure what the mathcing instance is.
         }
 
+        /// <summary>
+        /// Checks if the drone with the given ID has enough battery to drop off receive and deliver the
+        /// given package and return to the closest base station.
+        /// </summary>
+        /// <param name="pack"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool CheckCloseEnough(DO.Package pack, int id)
         {
             DO.Customer customerSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
             DO.Customer customerReciever = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.ReceiverId)];
             Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
             Location recieverLocation = BLObject.MakeLocation(customerReciever.Longitude, customerReciever.Latitude);
-            //BLObject.MakeLocation()
+
             if (BLObject.BLDroneList[id].BatteryStatus < BLObject.ChargeForDistance(pack.Weight, BLObject.DistanceBetween(senderLocation, recieverLocation) + 
                 BLObject.DistanceBetween(recieverLocation,BLObject.MakeLocation(BLObject.ClosestStation(recieverLocation).Longitude, BLObject.ClosestStation(recieverLocation).Latitude))))
-            { 
+            {
                 return true;
             }
             return false;
         }
 
         /// <summary>
-        /// if input is valid the heviest closest package will be assgined to the drone
-        /// if anything goes wrong appropriate exception will be thrown.
+        /// if input is valid the heaviest, closest package will be assgined to the drone
+        /// if anything goes wrong, appropriate exception will be thrown.
         /// </summary>
         /// <param name="DroneId"></param>
         public void AssignPackageToDrone(int DroneId)
         {
+            #region Check basic validity
             int DroneIndex = BLObject.BLDroneList.FindIndex(x => x.Id == DroneId);
             List<DO.Package> PackageList = BLObject.Dal.GetPackageList();
             //if findIndex returned -1 then the drone does not exist. Error Will be thrown.
@@ -134,7 +142,9 @@ namespace BL
             {
                 throw new MessageException("Error: No packages to be collected.\n");
             }
+            #endregion
 
+            #region prioritise package selection
             List<DO.Package> Packages = PackageList;
             List<DO.Package> tempPack = new List<DO.Package>();
             Packages.RemoveAll(x => x.Delivered != null);
@@ -142,7 +152,7 @@ namespace BL
             Packages.RemoveAll(x => CheckCloseEnough(x, DroneIndex));
             if(Packages.Count == 0)
             {
-                throw new MessageException("Error: Drone Can not take any pacakges.\n");
+                throw new MessageException("Error: Drone Can not take any packages.\n");
             }
             int PackIndex = Packages.FindIndex(x => x.Priority == DO.Priority.emergency);
             if (PackIndex != -1)
@@ -157,13 +167,15 @@ namespace BL
                     Packages.RemoveAll(x => x.Priority != DO.Priority.fast);
                 }
             }
-
             DroneToList drone = BLObject.BLDroneList[DroneIndex];
             if(Packages.Count == 0)
             {
                 throw new MessageException("Error: Drone can't take any Package.\n");
             }
-            drone.PackageId = Packages[0].Id;
+            #endregion
+
+            //Choose prioritised package that is close enough
+            drone.PackageId = -1;
             foreach(DO.Package pack in Packages)
             {
                 DO.Customer customerSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
@@ -174,10 +186,14 @@ namespace BL
                 if (BLObject.DistanceBetween(senderLocation, drone.Location) < BLObject.DistanceBetween(thisSenderLocation, drone.Location))
                 {
                     drone.PackageId = pack.Id;
+                    break;
                 }
             }
+            if (drone.PackageId == -1) //if no valid packages
+                throw new MessageException("Error: No packages to be collected.\n"); 
+
             drone.DroneStatus = DroneStatus.delivery;
-            DO.Package  finalPackage = Packages.Find(x => x.Id == drone.PackageId);
+            DO.Package finalPackage = Packages.Find(x => x.Id == drone.PackageId);
             finalPackage.DroneId = drone.Id;
             finalPackage.Scheduled = DateTime.Now;
             int finalPackageIndex = PackageList.FindIndex(x => x.Id == drone.PackageId);

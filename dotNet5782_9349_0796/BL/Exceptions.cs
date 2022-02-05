@@ -11,6 +11,10 @@ namespace BL
     {
         public MessageException(string message) : base(message) { }
 
+        //public override string ToString()
+        //{
+        //    return Message;
+        //}
     }
 }
 
