@@ -143,7 +143,7 @@ namespace BL
             }
 
             /// <summary>
-            /// Selects and returns the first available drone
+            /// Selects and returns the first available drone,
             /// </summary>
             /// <returns></returns>
             public static DroneToList SelectDrone()
