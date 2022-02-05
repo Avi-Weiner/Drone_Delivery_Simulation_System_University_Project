@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Threading;
+using System.ComponentModel;
 
 namespace PL
 {
@@ -324,18 +325,56 @@ namespace PL
             }
 
         }
-
-        private void WindowDroneObserver(object sender, BL.DroneEventArgs args)
-        {
-            UpdateDrone(args.Drone);
-        }
-        
-        private void UpdateDrone(BL.Drone drone)
+       /// <summary>
+       /// pass a drone to be updated to the droneView window
+       /// </summary>
+       /// <param name="drone"></param>
+        private void UpdateDroneView(BL.Drone drone)
         {
             DroneView.Text = drone.ToString();
         }
-        
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            Action sim = new(Simulate);
+            bl.ActivateSimulator(drone.Id, sim);
+            
+        }
+        public void Simulate()
+        {
+            worker.ReportProgress(1);
+        }
+        private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            UpdateDroneView(bl.DroneToListToDrone(drone.Id));
+        }
+
+        BackgroundWorker worker;
+        private void Simulator_Button_Click(object sender, RoutedEventArgs e)
+        {
+            worker = new BackgroundWorker();
+            worker.DoWork += Worker_DoWork;
+            worker.ProgressChanged += Update_Worker;
+            worker.WorkerReportsProgress = true;
+            worker.WorkerSupportsCancellation = true;
+            worker.ProgressChanged += Worker_ProgressChanged;
+            //worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            try
+            {
+                worker.RunWorkerAsync();
+            }
+            catch (Exception except)
+            {
+                worker.CancelAsync();
+                MessageBox.Show(except.Message);
+            }
+        }
+        /// <summary>
+        /// updates the drone window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Update_Worker(object sender, ProgressChangedEventArgs e)
         {
 
         }
