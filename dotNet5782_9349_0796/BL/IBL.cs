@@ -59,5 +59,6 @@ namespace BlApi
         public Customer DalToBlCustomer(int id);
         public List<CustomerToList> ListOfCustomers();
         public List<PackageToList> PackageListFilter(string option);
+        public void ActivateSimulator(int Id, Action action);
     }
 }

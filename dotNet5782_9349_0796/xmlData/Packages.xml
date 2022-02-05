@@ -4,12 +4,12 @@
     <Id>27</Id>
     <SenderId>17</SenderId>
     <ReceiverId>8</ReceiverId>
-    <Weight>light</Weight>
+    <Weight>medium</Weight>
     <Priority>fast</Priority>
-    <Requested>2022-02-04T12:16:44.1974887+02:00</Requested>
+    <Requested>2022-02-05T22:14:29.272457+02:00</Requested>
     <DroneId>3</DroneId>
-    <Scheduled>2022-02-04T12:17:03.4419368+02:00</Scheduled>
-    <PickedUp>2022-02-04T12:17:04.9916686+02:00</PickedUp>
-    <Delivered>2022-02-04T12:17:06.4248706+02:00</Delivered>
+    <Scheduled>2022-02-05T22:16:02.2026588+02:00</Scheduled>
+    <PickedUp>2022-02-05T22:16:02.2038257+02:00</PickedUp>
+    <Delivered>2022-02-05T22:16:02.2049454+02:00</Delivered>
   </Package>
 </ArrayOfPackage>
