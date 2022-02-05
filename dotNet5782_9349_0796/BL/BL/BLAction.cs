@@ -58,31 +58,12 @@ namespace BL
             BLObject.BLDroneList[DroneIndex].ChargingTimeStarted = DateTime.Now;
             ///iii adding a mathcing instance///////////////////////////////////////////////////////////////////////////////////////
         }
-        bool Should_Stop = false;
-        public void ActivateSimulator(int Id, Action action)
-        {
-            Thread thread = Thread.CurrentThread;
-            Should_Stop = false;
-            while(!Should_Stop)
-            {
-
-                Thread.Sleep(3000);
-                    AssignPackageToDrone(Id);
-                    DroneCollectsAPackage(Id);
-                    DroneDeliversPakcage(Id);
-                
-                
-            }
-
-        }
-
 
         /// <summary>
         /// drone will be released from charging station and appropriate battery will be added
         /// location will be the statoin where it was charged.
         /// </summary>
         /// <param name="DroneId"></param>
-
         public void ReleaseDroneFromCharge(int DroneId)
         {
             DateTime ReleaseTime = DateTime.Now;
