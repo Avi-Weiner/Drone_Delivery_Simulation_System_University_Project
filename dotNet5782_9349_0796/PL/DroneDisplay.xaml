@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="DroneDisplay" Height="412" Width="654">
+        Title="DroneDisplay" Height="321" Width="auto"
+        Closing="Window_Closing"
+        >
 
     <Grid Grid.RowSpan="2">
         <Grid.Background>
@@ -29,8 +31,8 @@
 
         <TextBox  x:Name="DroneView" VerticalScrollBarVisibility="Auto" Background="LightBlue"
                     Visibility="Hidden" Margin="17,0,168,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" UseLayoutRounding="False"/>
-        
-       <!-- <TextBlock  x:Name="HoursChargedPrompt"  Visibility="Hidden"
+
+        <!-- <TextBlock  x:Name="HoursChargedPrompt"  Visibility="Hidden"
                     HorizontalAlignment="Left" Margin="33,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" 
                     RenderTransformOrigin="0.619,1.694" Width="203"><Run Text="Enter Amount of hours charged 1- 24"/>
             <Run Language="en-au" Text=":"/></TextBlock>-->
@@ -70,6 +72,7 @@
         <TextBlock x:Name="AddDroneTitle" Visibility="Hidden" HorizontalAlignment="Left" Margin="209,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Height="16"><Run Language="en-au" Text="Enter new Drone details:"/></TextBlock>
         <Button x:Name="AddDroneButton" Visibility="Hidden" Content="Add Drone" HorizontalAlignment="Left" Margin="234,139,0,0" VerticalAlignment="Top" Width="88" Height="32" Click="AddDroneButton_Click"/>
         <Button x:Name="DisplayPackage" Visibility="Hidden" Content="Display Package" HorizontalAlignment="Left" Margin="486,134,0,0" VerticalAlignment="Top" Click="DisplayPackage_Click"/>
+        <Button Content="Start Simulator" HorizontalAlignment="Left" Margin="42,101,0,0" VerticalAlignment="Top" Height="40" Width="90" Click="Button_Click"/>
 
 
 

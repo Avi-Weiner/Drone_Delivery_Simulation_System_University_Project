@@ -25,6 +25,7 @@ namespace PL
         BlApi.IBL bl;
         BL.Drone drone;
         ListDisplay lst;
+        private bool myClosing = false;
         // this line should probalby be deleted...............public Visibility SendButton { get; set; }
         /// <summary>
         /// Constructor for updating a drone
@@ -59,10 +60,23 @@ namespace PL
             DroneView.Text = Drone.ToString();
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!myClosing) // Won't allow to cancel the window!!! It is not me!!!
+            {
+                e.Cancel = true;
+                MessageBox.Show(@"DON""T CLOSE ME!!!", "STOP IT!!!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
         //public void Deliveries()
         //{
         //    while(drone.)
         //}
+        /// <summary>
+        /// won't allow window to close unless its supposed to.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Update_ButtonClick(object sender, RoutedEventArgs e)
         {
             try 
@@ -78,7 +92,11 @@ namespace PL
                 MessageBox.Show(m.ToString());
             }
         }
-
+        /// <summary>
+        /// assignes a package to a drone
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Send_ButtonClick(object sender, RoutedEventArgs e)
         {
             try
@@ -96,7 +114,11 @@ namespace PL
                 MessageBox.Show(m.ToString());
             }
         }
-
+        /// <summary>
+        /// drone collects a package
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Collect_Package_ButtonClick(object sender, RoutedEventArgs e)
         {
             try
@@ -111,7 +133,11 @@ namespace PL
                 MessageBox.Show(m.ToString());
             }
         }
-
+        /// <summary>
+        /// drone delivers a pakcage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Deliver_Package_ButtonClick(object sender, RoutedEventArgs e)
         {
             try
@@ -126,7 +152,11 @@ namespace PL
                 MessageBox.Show(m.ToString());
             }
         }
-
+        /// <summary>
+        /// send a drone to charge in the nearenst base station
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Charge_ButtonClick(object sender, RoutedEventArgs e)
         {
             try
@@ -141,7 +171,11 @@ namespace PL
                 MessageBox.Show(m.ToString());
             }
         }
-
+        /// <summary>
+        /// release a drone from a charger
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Release_ButtonClick(object sender, RoutedEventArgs e)
         {
             try
@@ -162,11 +196,16 @@ namespace PL
             }
         }
         #endregion
-
+        /// <summary>
+        /// close the window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
-            //ListDisplay droneList = new ListDisplay(bl);
-            //droneList.Show();
+
+            //for now this must be changed with threading 
+            myClosing = true;
             Close();
         }
 
@@ -283,6 +322,21 @@ namespace PL
                 PackageDisplay pd = new PackageDisplay(bl, drone.PackageInTransfer, drone);
                 pd.Show();
             }
+
+        }
+
+        private void WindowDroneObserver(object sender, BL.DroneEventArgs args)
+        {
+            UpdateDrone(args.Drone);
+        }
+        
+        private void UpdateDrone(BL.Drone drone)
+        {
+            DroneView.Text = drone.ToString();
+        }
+        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }
