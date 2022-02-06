@@ -387,12 +387,14 @@ namespace PL
         /// <param name="e"></param>
         private void Worker_WorkComplete(object sender, RunWorkerCompletedEventArgs e)
         {
+            bl.StopTheSimulator();
             MessageBox.Show("Simulator was completed successfully.");
         }
 
         private void StopSimulator_Click(object sender, RoutedEventArgs e)
         {
-            bl.StopTheSimulator();
+            worker.CancelAsync();
+           
             StopSimulator.Visibility = Visibility.Hidden;
             Simulator.Visibility = Visibility.Visible;
         }
