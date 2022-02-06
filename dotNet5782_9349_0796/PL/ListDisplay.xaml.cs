@@ -170,7 +170,7 @@ namespace PL
                 "All Drones",
                 "Free Drones",
                 "Maintenance Drones",
-                "DeliveryDrones",
+                "Delivery Drones",
                 "Light",
                 "Medium",
                 "Heavy"
