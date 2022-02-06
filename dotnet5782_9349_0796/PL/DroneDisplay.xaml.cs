@@ -368,7 +368,7 @@ namespace PL
             worker.WorkerSupportsCancellation = true;
             worker.ProgressChanged += Worker_ProgressChanged;
             worker.RunWorkerCompleted += Worker_WorkComplete;
-            //worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
+            
             try
             {
                 worker.RunWorkerAsync();
@@ -394,7 +394,7 @@ namespace PL
         private void StopSimulator_Click(object sender, RoutedEventArgs e)
         {
             worker.CancelAsync();
-           
+            bl.StopTheSimulator();
             StopSimulator.Visibility = Visibility.Hidden;
             Simulator.Visibility = Visibility.Visible;
         }
