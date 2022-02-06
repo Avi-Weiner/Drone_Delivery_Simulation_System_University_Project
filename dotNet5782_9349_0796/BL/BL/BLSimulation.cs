@@ -70,7 +70,6 @@ namespace BL
 
                 try
                 {
-
                     while(DroneToListToDrone(Id).BatteryStatus < 1 || !Should_Stop)
                     {
                         SendDroneToCharge(Id);
