@@ -224,7 +224,7 @@ namespace PL
         {
             bl = BL;
             InitializeComponent();
-
+            Simulator.Visibility = Visibility.Hidden;
             //Make Elements visible
             Model.Visibility = Visibility.Visible;
             ModelTextBox.Visibility = Visibility.Visible;
@@ -290,6 +290,7 @@ namespace PL
                 MessageBox.Show("Drone Succesfully Added.");
                 //ListDisplay l = new ListDisplay(bl);
                 //l.Show();
+                myClosing = true;
                 Close();
             }
             catch (BL.MessageException m)
@@ -364,6 +365,7 @@ namespace PL
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
             worker.ProgressChanged += Worker_ProgressChanged;
+            worker.RunWorkerCompleted += Worker_WorkComplete;
             //worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             try
             {
@@ -375,14 +377,16 @@ namespace PL
                 MessageBox.Show(except.Message);
             }
         }
+
         /// <summary>
-        /// updates the drone window
+        /// What to do when the wroker simulation is complete. 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Update_Worker(object sender, ProgressChangedEventArgs e)
+        private void Worker_WorkComplete(object sender, RunWorkerCompletedEventArgs e)
         {
-
+            MessageBox.Show("Simulator was completed successfully.");
         }
+       
     }
 }
