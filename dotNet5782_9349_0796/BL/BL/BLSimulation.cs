@@ -13,6 +13,10 @@ namespace BL
         {
             Thread.Sleep(4000);
         }
+        public void StopTheSimulator()
+        {
+            Should_Stop = true;
+        }
         bool Should_Stop = false;
         public void ActivateSimulator(int Id, Action action)
         {

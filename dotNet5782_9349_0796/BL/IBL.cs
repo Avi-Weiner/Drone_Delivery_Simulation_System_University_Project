@@ -60,5 +60,6 @@ namespace BlApi
         public List<CustomerToList> ListOfCustomers();
         public List<PackageToList> PackageListFilter(string option);
         public void ActivateSimulator(int Id, Action action);
+        public void StopTheSimulator();
     }
 }
