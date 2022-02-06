@@ -35,6 +35,7 @@ namespace BL
                 BLObject.DistanceBetween(BLObject.BLDroneList[DroneIndex].Location, BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude)))
                 > BLObject.BLDroneList[DroneIndex].BatteryStatus)
             {
+            
                 throw new MessageException("Error: Not enough charge.\n");
             }
 
@@ -92,6 +93,8 @@ namespace BL
             int StationIndex = StationList.FindIndex(x => x.Id == StationClose.Id);
             DO.Station station = StationList[StationIndex];
             station.ChargeSlots++;
+
+            //set back updated station.
             StationList[StationIndex] = station;
             BLObject.Dal.SetStationList(StationList);
             //again not sure what the mathcing instance is.
@@ -100,6 +103,7 @@ namespace BL
         /// <summary>
         /// Checks if the drone with the given ID has enough battery to drop off receive and deliver the
         /// given package and return to the closest base station.
+        /// returns true if its not close enough
         /// </summary>
         /// <param name="pack"></param>
         /// <param name="id"></param>
@@ -110,9 +114,10 @@ namespace BL
             DO.Customer customerReciever = BLObject.Dal.GetCustomerList().Find(x => x.Id == pack.ReceiverId);
             Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
             Location recieverLocation = BLObject.MakeLocation(customerReciever.Longitude, customerReciever.Latitude);
-
-            if (BLObject.BLDroneList[id].BatteryStatus < BLObject.ChargeForDistance(pack.Weight, BLObject.DistanceBetween(senderLocation, recieverLocation) + 
-                BLObject.DistanceBetween(recieverLocation,BLObject.MakeLocation(BLObject.ClosestStation(recieverLocation).Longitude, BLObject.ClosestStation(recieverLocation).Latitude))))
+            Location ClosesetStation = BLObject.MakeLocation(BLObject.ClosestStation(recieverLocation).Longitude, BLObject.ClosestStation(recieverLocation).Latitude);
+            double DistanceBetweenDroneAndPackage = BLObject.DistanceBetween(senderLocation, BLObject.BLDroneList[id].Location);
+            if (BLObject.BLDroneList[id].BatteryStatus < DistanceBetweenDroneAndPackage + BLObject.ChargeForDistance(pack.Weight, BLObject.DistanceBetween(senderLocation, recieverLocation)) + 
+                BLObject.ChargeForDistance(DO.WeightCategory.light, BLObject.DistanceBetween(recieverLocation, ClosesetStation)))
             {
                 return true;
             }
@@ -146,9 +151,9 @@ namespace BL
 
             #region prioritise package selection
             List<DO.Package> Packages = PackageList;
-            List<DO.Package> tempPack = new List<DO.Package>();
+            //List<DO.Package> tempPack = new List<DO.Package>();
             Packages.RemoveAll(x => x.Delivered != null);
-
+            Packages.RemoveAll(x => x.Weight > BLObject.BLDroneList[DroneIndex].Weight);
             Packages.RemoveAll(x => CheckCloseEnough(x, DroneIndex));
             if(Packages.Count == 0)
             {
@@ -176,6 +181,7 @@ namespace BL
 
             //Choose prioritised package that is close enough, maybe not
             drone.PackageId = Packages[0].Id;
+
             //foreach(DO.Package pack in Packages)
             //{
             //    DO.Customer customerSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
@@ -197,10 +203,12 @@ namespace BL
             finalPackage.DroneId = drone.Id;
             finalPackage.Scheduled = DateTime.Now;
             int finalPackageIndex = PackageList.FindIndex(x => x.Id == drone.PackageId);
-            PackageList[finalPackageIndex] = finalPackage;
+            List<DO.Package> PackageList1 = BLObject.Dal.GetPackageList();
+            PackageList1[finalPackageIndex] = finalPackage;
             
             BLObject.BLDroneList[DroneIndex] = drone;
-            BLObject.Dal.SetPackageList(PackageList);
+            BLObject.Dal.SetPackageList(PackageList1);
+            
 
         }
         

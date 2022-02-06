@@ -22,6 +22,7 @@ namespace BL
                     try
                     {
                         //Need to add time taken for each process somehow (maybe)
+                        Thread.Sleep(1000);
                         AssignPackageToDrone(Id);
                         action();
                         Thread.Sleep(1000);
@@ -32,14 +33,22 @@ namespace BL
                         action();
                         Thread.Sleep(3000);
                     }
+
+
                     catch (MessageException e)
                     {
-                        if (e.Message == "Error: No packages to be collected.\n" ||
-                            e.Message == "Error: No packages close enough with current charge.\n")
+
+                        if(e.Message == "Error: No packages close enough with current charge.\n")
+                        {
+                            break;
+                        }
+                        else if (e.Message == "Error: No packages to be collected.\n" )
+                            //||
+                            //e.Message == "Error: No packages close enough with current charge.\n")
                         {
                             stillPackages = false;
                             Should_Stop = true;//Chaim. Should this belong here? 
-                            break;
+                            //break;  // Why is this here?
                         }
                         else
                         {
@@ -50,14 +59,15 @@ namespace BL
 
                 try
                 {
-                    SendDroneToCharge(Id);
-                    Thread.Sleep(4000);
-                    ReleaseDroneFromCharge(Id);
+                    //SendDroneToCharge(Id);
+                    //Thread.Sleep(4000);
+                    //ReleaseDroneFromCharge(Id);
                     while(DroneToListToDrone(Id).BatteryStatus < 1)
                     {
                         SendDroneToCharge(Id);
-                        Thread.Sleep(3000);
+                        Thread.Sleep(1000);
                         ReleaseDroneFromCharge(Id);
+                        action();
                     }
                 }
                 catch (MessageException e)
