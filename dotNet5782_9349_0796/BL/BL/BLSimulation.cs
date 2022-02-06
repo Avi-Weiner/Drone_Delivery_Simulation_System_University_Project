@@ -76,7 +76,9 @@ namespace BL
                         SendDroneToCharge(Id);
                         Thread.Sleep(StepTimer);
                         ReleaseDroneFromCharge(Id);
+                        SendDroneToCharge(Id);
                         action();
+                        ReleaseDroneFromCharge(Id);
                     }
                     Idle();
 
