@@ -122,9 +122,10 @@ namespace BL
                         else if (DroneL.DroneStatus == DroneStatus.free)
                         {
                             //location: random customer that has already received a package
-                            int deliveredCount = 0;
-                            foreach (DO.Package p in deliveredPackages) { deliveredCount++; }
-                            DO.Customer c = Customers[rand.Next(0, deliveredCount)];
+                            //List<DO.Customer> CustomersThatReceived = Dal.GetCustomerList();
+                            //int deliveredCount = 0;
+                            //foreach (DO.Package p in deliveredPackages) { deliveredCount++; }
+                            DO.Customer c = Customers[rand.Next(0, Customers.Count)];
                             DroneL.Location = MakeLocation(c.Longitude, c.Latitude);
 
                             //Battery: mimimum to get to closest station
