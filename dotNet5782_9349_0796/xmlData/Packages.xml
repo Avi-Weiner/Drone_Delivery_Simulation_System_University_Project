@@ -8,9 +8,9 @@
     <Priority>fast</Priority>
     <Requested>2022-02-06T12:25:32.7050218+02:00</Requested>
     <DroneId>3</DroneId>
-    <Scheduled>2022-02-06T12:43:50.8894476+02:00</Scheduled>
-    <PickedUp>2022-02-06T12:43:51.8997978+02:00</PickedUp>
-    <Delivered>2022-02-06T12:43:52.9034068+02:00</Delivered>
+    <Scheduled>2022-02-06T12:43:17.1736201+02:00</Scheduled>
+    <PickedUp>2022-02-06T12:43:21.463548+02:00</PickedUp>
+    <Delivered>2022-02-06T12:43:25.8957718+02:00</Delivered>
   </Package>
   <Package>
     <Id>19</Id>
