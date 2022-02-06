@@ -4,70 +4,70 @@
     <Id>8</Id>
     <Name>A</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>44.1593287438896</Longitude>
-    <Latitude>49.42536087679926</Latitude>
+    <Longitude>-45.92436761871184</Longitude>
+    <Latitude>16.05192540495281</Latitude>
   </Customer>
   <Customer>
     <Id>9</Id>
     <Name>B</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>-33.60539416484784</Longitude>
-    <Latitude>5.0293396762708795</Latitude>
+    <Longitude>-173.2159507615566</Longitude>
+    <Latitude>55.84648032944952</Latitude>
   </Customer>
   <Customer>
     <Id>10</Id>
     <Name>C</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>139.18588118589759</Longitude>
-    <Latitude>-2.9496413902145093</Latitude>
+    <Longitude>-139.44880790982805</Longitude>
+    <Latitude>3.6119451809730094</Latitude>
   </Customer>
   <Customer>
     <Id>11</Id>
     <Name>D</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>148.0882018097156</Longitude>
-    <Latitude>-67.7917075705676</Latitude>
+    <Longitude>80.56665877837997</Longitude>
+    <Latitude>42.470138255725686</Latitude>
   </Customer>
   <Customer>
     <Id>12</Id>
     <Name>E</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>-108.65533380240916</Longitude>
-    <Latitude>87.58585137202675</Latitude>
+    <Longitude>-64.41018099170653</Longitude>
+    <Latitude>-28.968749753650634</Latitude>
   </Customer>
   <Customer>
     <Id>13</Id>
     <Name>F</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>-80.87642340961676</Longitude>
-    <Latitude>72.64039975713956</Latitude>
+    <Longitude>-110.34756126364114</Longitude>
+    <Latitude>80.61899114894635</Latitude>
   </Customer>
   <Customer>
     <Id>14</Id>
     <Name>G</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>141.02652767720934</Longitude>
-    <Latitude>-42.28267439281692</Latitude>
+    <Longitude>-18.300361669762225</Longitude>
+    <Latitude>44.041335477512945</Latitude>
   </Customer>
   <Customer>
     <Id>15</Id>
     <Name>H</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>88.3525477854314</Longitude>
-    <Latitude>-52.98104969923433</Latitude>
+    <Longitude>-31.36423267953296</Longitude>
+    <Latitude>-77.06048231900692</Latitude>
   </Customer>
   <Customer>
     <Id>16</Id>
     <Name>I</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>-5.856017910808333</Longitude>
-    <Latitude>68.56802351706105</Latitude>
+    <Longitude>130.0545989861966</Longitude>
+    <Latitude>-5.998603429644646</Latitude>
   </Customer>
   <Customer>
     <Id>17</Id>
     <Name>J</Name>
     <Phone>000-0000-0000</Phone>
-    <Longitude>20.786351506033157</Longitude>
-    <Latitude>-4.908954005180377</Latitude>
+    <Longitude>82.75992707477877</Longitude>
+    <Latitude>18.865449674830515</Latitude>
   </Customer>
 </ArrayOfCustomer>

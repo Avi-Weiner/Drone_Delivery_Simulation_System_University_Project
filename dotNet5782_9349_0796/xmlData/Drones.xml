@@ -23,6 +23,6 @@
   <Drone>
     <Id>7</Id>
     <Model>Model T</Model>
-    <MaxWeight>light</MaxWeight>
+    <MaxWeight>medium</MaxWeight>
   </Drone>
 </ArrayOfDrone>
