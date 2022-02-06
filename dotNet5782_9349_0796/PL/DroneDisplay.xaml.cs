@@ -28,6 +28,7 @@ namespace PL
         ListDisplay lst;
         private bool myClosing = false;
         // this line should probalby be deleted...............public Visibility SendButton { get; set; }
+
         /// <summary>
         /// Constructor for updating a drone
         /// </summary>
@@ -52,8 +53,6 @@ namespace PL
             DeliverPackage.Visibility = Visibility.Visible;
             newModel.Visibility = Visibility.Visible;
             DroneView.Visibility = Visibility.Visible;
-            //HoursChargedPrompt.Visibility = Visibility.Visible;
-            //HoursCharged.Visibility = Visibility.Visible;
             DroneUpdateOptions.Visibility = Visibility.Visible;
             DisplayPackage.Visibility = Visibility.Visible;
             #endregion
@@ -312,6 +311,7 @@ namespace PL
             
             ChargingTime = i;
         }*/
+
         /// <summary>
         /// Displays the pakcageDisplay for package in display
         /// </summary>
@@ -359,8 +359,22 @@ namespace PL
         BackgroundWorker worker;
         private void Simulator_Button_Click(object sender, RoutedEventArgs e)
         {
+            #region Visibilities
             Simulator.Visibility = Visibility.Hidden;
+            Update.Visibility = Visibility.Hidden;
+            UpdateModel.Visibility = Visibility.Hidden;
+            Send.Visibility = Visibility.Hidden;
+            Charge.Visibility = Visibility.Hidden;
+            Release.Visibility = Visibility.Hidden;
+            CollectPakcage.Visibility = Visibility.Hidden;
+            DeliverPackage.Visibility = Visibility.Hidden;
+            newModel.Visibility = Visibility.Hidden;
+            DroneUpdateOptions.Visibility = Visibility.Hidden;
+            DisplayPackage.Visibility = Visibility.Hidden;
+
             StopSimulator.Visibility = Visibility.Visible;
+            #endregion
+
             worker = new BackgroundWorker();
             worker.DoWork += Worker_DoWork;
             
@@ -397,7 +411,21 @@ namespace PL
         {
             worker.CancelAsync();
             bl.StopTheSimulator();
-            
+
+            #region Make Update options visible
+            Update.Visibility = Visibility.Visible;
+            UpdateModel.Visibility = Visibility.Visible;
+            Send.Visibility = Visibility.Visible;
+            Charge.Visibility = Visibility.Visible;
+            Release.Visibility = Visibility.Visible;
+            CollectPakcage.Visibility = Visibility.Visible;
+            DeliverPackage.Visibility = Visibility.Visible;
+            newModel.Visibility = Visibility.Visible;
+            DroneView.Visibility = Visibility.Visible;
+            DroneUpdateOptions.Visibility = Visibility.Visible;
+            DisplayPackage.Visibility = Visibility.Visible;
+            #endregion  
+
         }
     }
 }
