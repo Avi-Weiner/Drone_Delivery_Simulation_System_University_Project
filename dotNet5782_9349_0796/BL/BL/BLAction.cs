@@ -179,24 +179,8 @@ namespace BL
             }
             #endregion
 
-            //Choose prioritised package that is close enough, maybe not
+            //Choose prioritised package
             drone.PackageId = Packages[0].Id;
-
-            //foreach(DO.Package pack in Packages)
-            //{
-            //    DO.Customer customerSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
-            //    Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
-
-            //    DO.Package package = Packages.Find(x => x.Id == drone.PackageId); //I don't think this line does anything - Avi
-
-            //    DO.Customer thisPackageSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
-            //    Location thisSenderLocation = BLObject.MakeLocation(thisPackageSender.Longitude, thisPackageSender.Latitude);
-            //    if (BLObject.DistanceBetween(senderLocation, drone.Location) < BLObject.DistanceBetween(thisSenderLocation, drone.Location))
-            //    {
-            //        drone.PackageId = pack.Id;
-            //        break;
-            //    }
-            //}
 
             drone.DroneStatus = DroneStatus.delivery;
             DO.Package finalPackage = Packages.Find(x => x.Id == drone.PackageId);
