@@ -359,6 +359,8 @@ namespace PL
         BackgroundWorker worker;
         private void Simulator_Button_Click(object sender, RoutedEventArgs e)
         {
+            Simulator.Visibility = Visibility.Hidden;
+            StopSimulator.Visibility = Visibility.Visible;
             worker = new BackgroundWorker();
             worker.DoWork += Worker_DoWork;
             
@@ -387,6 +389,12 @@ namespace PL
         {
             MessageBox.Show("Simulator was completed successfully.");
         }
-       
+
+        private void StopSimulator_Click(object sender, RoutedEventArgs e)
+        {
+            bl.StopTheSimulator();
+            StopSimulator.Visibility = Visibility.Hidden;
+            Simulator.Visibility = Visibility.Visible;
+        }
     }
 }
