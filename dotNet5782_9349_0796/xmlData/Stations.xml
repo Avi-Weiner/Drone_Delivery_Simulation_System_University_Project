@@ -19,6 +19,6 @@
     <Name>0</Name>
     <Longitude>-49</Longitude>
     <Latitude>-49</Latitude>
-    <ChargeSlots>5</ChargeSlots>
+    <ChargeSlots>0</ChargeSlots>
   </Station>
 </ArrayOfStation>

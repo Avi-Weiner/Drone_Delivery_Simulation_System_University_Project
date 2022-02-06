@@ -106,8 +106,8 @@ namespace BL
         /// <returns></returns>
         public bool CheckCloseEnough(DO.Package pack, int id)
         {
-            DO.Customer customerSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
-            DO.Customer customerReciever = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.ReceiverId)];
+            DO.Customer customerSender = BLObject.Dal.GetCustomerList().Find(x => x.Id == pack.SenderId);//changed from findIndex to Find...
+            DO.Customer customerReciever = BLObject.Dal.GetCustomerList().Find(x => x.Id == pack.ReceiverId);
             Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
             Location recieverLocation = BLObject.MakeLocation(customerReciever.Longitude, customerReciever.Latitude);
 

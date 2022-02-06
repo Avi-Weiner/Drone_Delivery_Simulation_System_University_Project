@@ -23,8 +23,14 @@ namespace BL
                     {
                         //Need to add time taken for each process somehow (maybe)
                         AssignPackageToDrone(Id);
+                        action();
+                        Thread.Sleep(1000);
                         DroneCollectsAPackage(Id);
+                        action();
+                        Thread.Sleep(1000);
                         DroneDeliversPakcage(Id);
+                        action();
+                        Thread.Sleep(3000);
                     }
                     catch (MessageException e)
                     {
@@ -32,6 +38,7 @@ namespace BL
                             e.Message == "Error: No packages close enough with current charge.\n")
                         {
                             stillPackages = false;
+                            Should_Stop = true;//Chaim. Should this belong here? 
                             break;
                         }
                         else
@@ -45,6 +52,13 @@ namespace BL
                 {
                     SendDroneToCharge(Id);
                     Thread.Sleep(4000);
+                    ReleaseDroneFromCharge(Id);
+                    while(DroneToListToDrone(Id).BatteryStatus < 1)
+                    {
+                        SendDroneToCharge(Id);
+                        Thread.Sleep(3000);
+                        ReleaseDroneFromCharge(Id);
+                    }
                 }
                 catch (MessageException e)
                 {

@@ -318,12 +318,18 @@ namespace PL
         /// <param name="e"></param>
         private void DisplayPackage_Click(object sender, RoutedEventArgs e)
         {
-            if (drone.PackageInTransfer != null)
+            try
             {
-                PackageDisplay pd = new PackageDisplay(bl, drone.PackageInTransfer, drone);
-                pd.Show();
+                if (drone.PackageInTransfer != null)
+                {
+                    PackageDisplay pd = new PackageDisplay(bl, drone.PackageInTransfer, drone);
+                    pd.Show();
+                }
             }
-
+            catch (BL.MessageException m)
+            {
+                MessageBox.Show(m.ToString());
+            }
         }
        /// <summary>
        /// pass a drone to be updated to the droneView window
@@ -354,7 +360,7 @@ namespace PL
         {
             worker = new BackgroundWorker();
             worker.DoWork += Worker_DoWork;
-            worker.ProgressChanged += Update_Worker;
+            
             worker.WorkerReportsProgress = true;
             worker.WorkerSupportsCancellation = true;
             worker.ProgressChanged += Worker_ProgressChanged;
