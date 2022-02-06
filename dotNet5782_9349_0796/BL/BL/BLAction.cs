@@ -116,7 +116,7 @@ namespace BL
             Location recieverLocation = BLObject.MakeLocation(customerReciever.Longitude, customerReciever.Latitude);
             Location ClosesetStation = BLObject.MakeLocation(BLObject.ClosestStation(recieverLocation).Longitude, BLObject.ClosestStation(recieverLocation).Latitude);
             double DistanceBetweenDroneAndPackage = BLObject.DistanceBetween(senderLocation, BLObject.BLDroneList[id].Location);
-            if (BLObject.BLDroneList[id].BatteryStatus < DistanceBetweenDroneAndPackage + BLObject.ChargeForDistance(pack.Weight, BLObject.DistanceBetween(senderLocation, recieverLocation)) + 
+            if (BLObject.BLDroneList[id].BatteryStatus < BLObject.ChargeForDistance(DO.WeightCategory.light, DistanceBetweenDroneAndPackage) + BLObject.ChargeForDistance(pack.Weight, BLObject.DistanceBetween(senderLocation, recieverLocation)) + 
                 BLObject.ChargeForDistance(DO.WeightCategory.light, BLObject.DistanceBetween(recieverLocation, ClosesetStation)))
             {
                 return true;
