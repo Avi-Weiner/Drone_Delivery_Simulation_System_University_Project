@@ -120,4 +120,16 @@
     <PickedUp>2022-02-06T14:26:36.2964275+02:00</PickedUp>
     <Delivered>2022-02-06T14:26:37.2984361+02:00</Delivered>
   </Package>
+  <Package>
+    <Id>28</Id>
+    <SenderId>16</SenderId>
+    <ReceiverId>17</ReceiverId>
+    <Weight>medium</Weight>
+    <Priority>emergency</Priority>
+    <Requested>2022-02-06T14:41:06.8862687+02:00</Requested>
+    <DroneId>6</DroneId>
+    <Scheduled>2022-02-06T14:42:49.0070339+02:00</Scheduled>
+    <PickedUp>2022-02-06T14:42:50.0108195+02:00</PickedUp>
+    <Delivered>2022-02-06T14:42:51.0148909+02:00</Delivered>
+  </Package>
 </ArrayOfPackage>
