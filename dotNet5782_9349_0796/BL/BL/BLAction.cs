@@ -186,8 +186,9 @@ namespace BL
             DO.Package finalPackage = Packages.Find(x => x.Id == drone.PackageId);
             finalPackage.DroneId = drone.Id;
             finalPackage.Scheduled = DateTime.Now;
-            int finalPackageIndex = PackageList.FindIndex(x => x.Id == drone.PackageId);
+            
             List<DO.Package> PackageList1 = BLObject.Dal.GetPackageList();
+            int finalPackageIndex = PackageList1.FindIndex(x => x.Id == drone.PackageId);
             PackageList1[finalPackageIndex] = finalPackage;
             
             BLObject.BLDroneList[DroneIndex] = drone;
@@ -278,7 +279,7 @@ namespace BL
             BLObject.BLDroneList[DroneIndex] = Drone;
             //PackageList[PackageIndex] = Package;
             List<DO.Package> PackageList1 = BLObject.Dal.GetPackageList();
-            int Index = PackageList.FindIndex(x => x.Id == Package.Id);
+            int Index = PackageList1.FindIndex(x => x.Id == Package.Id);
             PackageList1[Index] = Package;
             BLObject.Dal.SetPackageList(PackageList1);
         }
