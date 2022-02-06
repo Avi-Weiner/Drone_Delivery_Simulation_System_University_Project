@@ -72,14 +72,10 @@
         <TextBlock x:Name="AddDroneTitle" Visibility="Hidden" HorizontalAlignment="Left" Margin="209,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Height="16"><Run Language="en-au" Text="Enter new Drone details:"/></TextBlock>
         <Button x:Name="AddDroneButton" Visibility="Hidden" Content="Add Drone" HorizontalAlignment="Left" Margin="234,139,0,0" VerticalAlignment="Top" Width="88" Height="32" Click="AddDroneButton_Click"/>
         <Button x:Name="DisplayPackage" Visibility="Hidden" Content="Display Package" HorizontalAlignment="Left" Margin="486,134,0,0" VerticalAlignment="Top" Click="DisplayPackage_Click"/>
-        <Button x:Name="Simulator" Content="Simulator"  HorizontalAlignment="Left" Margin="42,101,0,0" VerticalAlignment="Top" Height="40" Width="90" Click="Simulator_Button_Click"/>
-        <Button x:Name="StopSimulator" Visibility ="Hidden"  Content="Stop the simulator" Click="StopSimulator_Click" RenderTransformOrigin="0.487,1.594" Margin="42,144,520,40"/>
-
-
-
+        <Button x:Name="Simulator" Content="Start Simulator"  HorizontalAlignment="Left" Margin="42,101,0,0" VerticalAlignment="Top" Height="38" Width="101" Click="Simulator_Button_Click" Background="GreenYellow"/>
+        <Button x:Name="StopSimulator" Visibility="Hidden" Content="Stop Simulator" Click="StopSimulator_Click" RenderTransformOrigin="0.487,1.594" Margin="42,101,520,77" Height="38" Width="101" Background="OrangeRed"/>
 
         <!--End Add drone Section -->
-
 
     </Grid>
 </Window>
