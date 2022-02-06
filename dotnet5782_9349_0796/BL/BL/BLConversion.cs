@@ -47,9 +47,11 @@ namespace BL
         /// <returns></returns>
         public Package DalToBlPackage(int id)
         {
-            
+
             Package p = new();
-            DO.Package DalP = BLObject.Dal.GetPackageList().Find(x => x.Id == id);
+            List<DO.Package> ListOfPackages = BLObject.Dal.GetPackageList();
+            int IndexOfPackage = ListOfPackages.FindIndex(x => x.Id == id);
+            DO.Package DalP = ListOfPackages[IndexOfPackage];
             
 
             if (DalP.Id != id)
