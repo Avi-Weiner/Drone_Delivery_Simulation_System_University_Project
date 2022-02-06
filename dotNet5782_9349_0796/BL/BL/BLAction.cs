@@ -40,7 +40,7 @@ namespace BL
 
             if(StationClose.ChargeSlots<=0)
             {
-                throw new MessageException("Error: not enough charging slots in station: \n" + StationClose.ChargeSlots + ' ' + StationClose.Id);
+                throw new MessageException("Error: not enough charging slots in closest station.\n");
             }
             #endregion
 
@@ -152,7 +152,7 @@ namespace BL
             Packages.RemoveAll(x => CheckCloseEnough(x, DroneIndex));
             if(Packages.Count == 0)
             {
-                throw new MessageException("Error: Drone Can not take any packages.\n");
+                throw new MessageException("Error: No packages close enough with current charge.\n");
             }
             int PackIndex = Packages.FindIndex(x => x.Priority == DO.Priority.emergency);
             if (PackIndex != -1)
@@ -174,23 +174,23 @@ namespace BL
             }
             #endregion
 
-            //Choose prioritised package that is close enough
-            drone.PackageId = -1;
-            foreach(DO.Package pack in Packages)
-            {
-                DO.Customer customerSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
-                Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
-                DO.Package package = Packages.Find(x => x.Id == drone.PackageId);
-                DO.Customer thisPackageSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
-                Location thisSenderLocation = BLObject.MakeLocation(thisPackageSender.Longitude, thisPackageSender.Latitude);
-                if (BLObject.DistanceBetween(senderLocation, drone.Location) < BLObject.DistanceBetween(thisSenderLocation, drone.Location))
-                {
-                    drone.PackageId = pack.Id;
-                    break;
-                }
-            }
-            if (drone.PackageId == -1) //if no valid packages
-                throw new MessageException("Error: No packages to be collected.\n"); 
+            //Choose prioritised package that is close enough, maybe not
+            drone.PackageId = Packages[0].Id;
+            //foreach(DO.Package pack in Packages)
+            //{
+            //    DO.Customer customerSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
+            //    Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
+
+            //    DO.Package package = Packages.Find(x => x.Id == drone.PackageId); //I don't think this line does anything - Avi
+
+            //    DO.Customer thisPackageSender = BLObject.Dal.GetCustomerList()[BLObject.Dal.GetCustomerList().FindIndex(x => x.Id == pack.SenderId)];
+            //    Location thisSenderLocation = BLObject.MakeLocation(thisPackageSender.Longitude, thisPackageSender.Latitude);
+            //    if (BLObject.DistanceBetween(senderLocation, drone.Location) < BLObject.DistanceBetween(thisSenderLocation, drone.Location))
+            //    {
+            //        drone.PackageId = pack.Id;
+            //        break;
+            //    }
+            //}
 
             drone.DroneStatus = DroneStatus.delivery;
             DO.Package finalPackage = Packages.Find(x => x.Id == drone.PackageId);
@@ -271,6 +271,7 @@ namespace BL
             {
                 throw new MessageException("Error: Package was delivered already");
             }
+
             DO.Customer Sender = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.SenderId);
             Location SenderLocation = BLObject.MakeLocation(Sender.Longitude, Sender.Latitude);
             DO.Customer Reciever = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.ReceiverId);
