@@ -405,13 +405,6 @@ namespace PL
             MessageBox.Show("Simulator was completed successfully.");
             StopSimulator.Visibility = Visibility.Hidden;
             Simulator.Visibility = Visibility.Visible;
-        }
-
-        private void StopSimulator_Click(object sender, RoutedEventArgs e)
-        {
-            worker.CancelAsync();
-            bl.StopTheSimulator();
-
             #region Make Update options visible
             Update.Visibility = Visibility.Visible;
             UpdateModel.Visibility = Visibility.Visible;
@@ -425,6 +418,14 @@ namespace PL
             DroneUpdateOptions.Visibility = Visibility.Visible;
             DisplayPackage.Visibility = Visibility.Visible;
             #endregion  
+        }
+
+        private void StopSimulator_Click(object sender, RoutedEventArgs e)
+        {
+            worker.CancelAsync();
+            bl.StopTheSimulator();
+
+            
 
         }
     }
