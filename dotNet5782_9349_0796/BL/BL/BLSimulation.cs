@@ -9,14 +9,19 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
+
+        const int StepTimer = 1000;
+
         private void Idle()
         {
-            Thread.Sleep(4000);
+            Thread.Sleep(StepTimer*4);
         }
+
         public void StopTheSimulator()
         {
             Should_Stop = true;
         }
+
         bool Should_Stop = false;
         public void ActivateSimulator(int Id, Action action)
         {
@@ -30,16 +35,16 @@ namespace BL
                     try
                     {
                         //Need to add time taken for each process somehow (maybe)
-                        Thread.Sleep(1000);
+                        Thread.Sleep(StepTimer);
                         AssignPackageToDrone(Id);
                         action();
-                        Thread.Sleep(1000);
+                        Thread.Sleep(StepTimer);
                         DroneCollectsAPackage(Id);
                         action();
-                        Thread.Sleep(1000);
+                        Thread.Sleep(StepTimer);
                         DroneDeliversPakcage(Id);
                         action();
-                        Thread.Sleep(3000);
+                        Thread.Sleep(StepTimer);
                     }
                     catch (MessageException e)
                     {
@@ -65,13 +70,10 @@ namespace BL
 
                 try
                 {
-                    //SendDroneToCharge(Id);
-                    //Thread.Sleep(4000);
-                    //ReleaseDroneFromCharge(Id);
                     while(DroneToListToDrone(Id).BatteryStatus < 1)
                     {
                         SendDroneToCharge(Id);
-                        Thread.Sleep(1000);
+                        Thread.Sleep(StepTimer);
                         ReleaseDroneFromCharge(Id);
                         action();
                     }
