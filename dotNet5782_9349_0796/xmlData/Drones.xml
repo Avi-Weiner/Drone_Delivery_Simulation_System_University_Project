@@ -8,17 +8,17 @@
   <Drone>
     <Id>4</Id>
     <Model>Model T</Model>
-    <MaxWeight>light</MaxWeight>
+    <MaxWeight>medium</MaxWeight>
   </Drone>
   <Drone>
     <Id>5</Id>
     <Model>Model T</Model>
-    <MaxWeight>light</MaxWeight>
+    <MaxWeight>medium</MaxWeight>
   </Drone>
   <Drone>
     <Id>6</Id>
     <Model>Model T</Model>
-    <MaxWeight>light</MaxWeight>
+    <MaxWeight>medium</MaxWeight>
   </Drone>
   <Drone>
     <Id>7</Id>

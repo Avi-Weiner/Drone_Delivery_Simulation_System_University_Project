@@ -274,9 +274,13 @@ namespace BL
             Drone.Location = RecieverLocation;
             Drone.DroneStatus = DroneStatus.free;
             Package.Delivered = DateTime.Now;
+            
             BLObject.BLDroneList[DroneIndex] = Drone;
-            PackageList[PackageIndex] = Package;
-            BLObject.Dal.SetPackageList(PackageList);
+            //PackageList[PackageIndex] = Package;
+            List<DO.Package> PackageList1 = BLObject.Dal.GetPackageList();
+            int Index = PackageList.FindIndex(x => x.Id == Package.Id);
+            PackageList1[Index] = Package;
+            BLObject.Dal.SetPackageList(PackageList1);
         }
 
 

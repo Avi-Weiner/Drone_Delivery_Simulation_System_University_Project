@@ -70,7 +70,8 @@ namespace BL
 
                 try
                 {
-                    while(DroneToListToDrone(Id).BatteryStatus < 1)
+
+                    while(DroneToListToDrone(Id).BatteryStatus < 1 || !Should_Stop)
                     {
                         SendDroneToCharge(Id);
                         Thread.Sleep(StepTimer);
