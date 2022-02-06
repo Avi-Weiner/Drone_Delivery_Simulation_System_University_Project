@@ -389,14 +389,15 @@ namespace PL
         {
             bl.StopTheSimulator();
             MessageBox.Show("Simulator was completed successfully.");
+            StopSimulator.Visibility = Visibility.Hidden;
+            Simulator.Visibility = Visibility.Visible;
         }
 
         private void StopSimulator_Click(object sender, RoutedEventArgs e)
         {
             worker.CancelAsync();
             bl.StopTheSimulator();
-            StopSimulator.Visibility = Visibility.Hidden;
-            Simulator.Visibility = Visibility.Visible;
+            
         }
     }
 }
