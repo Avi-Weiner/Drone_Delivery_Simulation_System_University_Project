@@ -22,7 +22,7 @@ namespace BL
             Should_Stop = true;
         }
 
-        bool Should_Stop = false;
+        static bool Should_Stop = false;
         public void ActivateSimulator(int Id, Action action)
         {
             Thread thread = Thread.CurrentThread;
@@ -71,7 +71,7 @@ namespace BL
                 try
                 {
 
-                    while(DroneToListToDrone(Id).BatteryStatus < 1 || !Should_Stop)
+                    while(DroneToListToDrone(Id).BatteryStatus < 1 && !Should_Stop)
                     {
                         SendDroneToCharge(Id);
                         Thread.Sleep(StepTimer);

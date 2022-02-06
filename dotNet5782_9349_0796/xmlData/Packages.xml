@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <ArrayOfPackage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Package>
-    <Id>27</Id>
-    <SenderId>17</SenderId>
-    <ReceiverId>8</ReceiverId>
-    <Weight>light</Weight>
+    <Id>23</Id>
+    <SenderId>13</SenderId>
+    <ReceiverId>14</ReceiverId>
+    <Weight>medium</Weight>
     <Priority>fast</Priority>
-    <Requested>2022-02-06T12:25:32.7050248+02:00</Requested>
+    <Requested>2022-02-06T12:25:32.7050218+02:00</Requested>
     <DroneId>3</DroneId>
-    <Scheduled>2022-02-06T12:25:47.1851208+02:00</Scheduled>
-    <PickedUp>2022-02-06T12:25:48.1871171+02:00</PickedUp>
-    <Delivered>2022-02-06T12:25:49.1896042+02:00</Delivered>
+    <Scheduled>2022-02-06T12:43:17.1736201+02:00</Scheduled>
+    <PickedUp>2022-02-06T12:43:21.463548+02:00</PickedUp>
+    <Delivered>2022-02-06T12:43:25.8957718+02:00</Delivered>
   </Package>
   <Package>
     <Id>19</Id>
