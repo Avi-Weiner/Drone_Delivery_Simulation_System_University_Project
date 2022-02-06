@@ -9,6 +9,14 @@ namespace BL
 {
     public partial class BL : BlApi.IBL
     {
+        private void Idle()
+        {
+            Thread.Sleep(4000);
+        }
+        public void StopTheSimulator()
+        {
+            Should_Stop = true;
+        }
         bool Should_Stop = false;
         public void ActivateSimulator(int Id, Action action)
         {
@@ -67,6 +75,8 @@ namespace BL
                         ReleaseDroneFromCharge(Id);
                         action();
                     }
+                    Idle();
+
                 }
                 catch (MessageException e)
                 {
