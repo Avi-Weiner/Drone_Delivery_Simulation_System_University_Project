@@ -33,8 +33,6 @@ namespace BL
                         action();
                         Thread.Sleep(3000);
                     }
-
-
                     catch (MessageException e)
                     {
 
@@ -81,12 +79,7 @@ namespace BL
                         throw new MessageException(e.Message);
                     }
                 }
-
-
             }
         }
-        
-
-
     }
 }
