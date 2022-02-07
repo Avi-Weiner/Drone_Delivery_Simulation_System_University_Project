@@ -26,6 +26,7 @@ namespace PL
         BlApi.IBL bl;
         BL.Drone drone;
         ListDisplay lst;
+        private bool Thread_Running = false;
         private bool myClosing = false;
         // this line should probalby be deleted...............public Visibility SendButton { get; set; }
 
@@ -204,9 +205,17 @@ namespace PL
         private void Close_ButtonClick(object sender, RoutedEventArgs e)
         {
 
-            //for now this must be changed with threading 
-            myClosing = true;
-            Close();
+
+            if (!Thread_Running)
+            {
+                myClosing = true;
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Don't close me; Thread is running.");
+            }
+        
         }
 
         #region AddDrone
@@ -239,7 +248,11 @@ namespace PL
             //Add drone by just accepting the information, (valid only on the most basic level, rest of the validation done by BL)
             //Send info to logic layer to be added to the system
         }
-
+        /// <summary>
+        /// Model name textbox changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Model_TextBox_Changed(object sender, TextChangedEventArgs e)
         {
             modelString = ModelTextBox.Text;
@@ -254,13 +267,21 @@ namespace PL
         {
             weightString = WeightComboBox.SelectedItem.ToString().Split(new string[] { ": " }, StringSplitOptions.None).Last();
         }
-
+        /// <summary>
+        /// validate weather the locatoin entered is valid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LocationValidation(object sender, TextCompositionEventArgs e)
         {
             //do not allow futher incorrect typing, got rid of max
             e.Handled = !(int.TryParse(((TextBox)sender).Text + e.Text, out int i) && i >= 1);
         }
-
+        /// <summary>
+        /// Change in the location txt box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Location_TextBox_Changed(object sender, TextChangedEventArgs e)
         {
             #region validation
@@ -280,7 +301,11 @@ namespace PL
             stationId = j;
 
         }
-
+        /// <summary>
+        /// clicking this will add the drone requested to be added and close the window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddDroneButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -359,6 +384,7 @@ namespace PL
         BackgroundWorker worker;
         private void Simulator_Button_Click(object sender, RoutedEventArgs e)
         {
+            Thread_Running = true;
             #region Visibilities
             Simulator.Visibility = Visibility.Hidden;
             Update.Visibility = Visibility.Hidden;
@@ -418,8 +444,13 @@ namespace PL
             DroneUpdateOptions.Visibility = Visibility.Visible;
             DisplayPackage.Visibility = Visibility.Visible;
             #endregion  
+            Thread_Running = false;
         }
-
+        /// <summary>
+        /// clicking this will stop the simulator.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StopSimulator_Click(object sender, RoutedEventArgs e)
         {
             worker.CancelAsync();
