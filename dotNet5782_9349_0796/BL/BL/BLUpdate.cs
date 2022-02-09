@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace BL
 {
@@ -13,6 +14,7 @@ namespace BL
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="Model"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public  Drone UpdateDrone(int Id, string Model)
         {
             List<DO.Drone> DroneList = BLObject.Dal.GetDroneList();
@@ -23,12 +25,16 @@ namespace BL
                 throw new MessageException("Error: Drone not found\n");
             }
             
+
             DO.Drone Drone = DroneList[Dronei];
             Drone.Model = Model;
             DroneList[Dronei] = Drone;
-            //save back to dal layer
-            BLObject.Dal.SetDroneList(DroneList);
-            
+
+            lock (BLObject.Dal)
+            {
+                //save back to dal layer
+                BLObject.Dal.SetDroneList(DroneList);
+            }
 
             //drone list in bl layer
             int Listi = BLObject.BLDroneList.FindIndex(x => x.Id == Id);
@@ -53,6 +59,7 @@ namespace BL
         /// <param name="Id"></param>
         /// <param name="StationName"></param>
         /// <param name="AmountOfChargingStation"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public  void UpdateStation(int Id, int StationName = -1, int AmountOfChargingStation = -1)
         {
             List<DO.Station> StationList = BLObject.Dal.GetStationList();
@@ -72,9 +79,12 @@ namespace BL
             {
                 Station.ChargeSlots = AmountOfChargingStation;
             }
-            
-           StationList[Stationi] = Station;
-            BLObject.Dal.SetStationList(StationList);
+
+            lock (BLObject.Dal)
+            {
+                StationList[Stationi] = Station;
+                BLObject.Dal.SetStationList(StationList);
+            }
 
         }
 
@@ -84,6 +94,7 @@ namespace BL
         /// <param name="Id"></param>
         /// <param name="Name"></param>
         /// <param name="Phone"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public  void UpdateCustomer(int Id, string Name = "-1", string Phone = "-1")
         {
             List<DO.Customer> CustomerList = BLObject.Dal.GetCustomerList();
@@ -104,8 +115,11 @@ namespace BL
                 Customer.Phone = Phone;
             }
 
-            CustomerList[Customeri] = Customer;
-            BLObject.Dal.SetCustomerList(CustomerList);
+            lock (BLObject.Dal)
+            {
+                CustomerList[Customeri] = Customer;
+                BLObject.Dal.SetCustomerList(CustomerList);
+            }
         }
 
         /// <summary>
@@ -114,6 +128,7 @@ namespace BL
         /// <param name="Id"></param>
         /// <param name="Name"></param>
         /// <param name="Phone"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void UpdatePackage(int Id, int SenderId = 0, int ReceiverId = 0, string Weight = "", string Priority = "")
         {
             List<DO.Package> PackageList = BLObject.Dal.GetPackageList();
@@ -167,14 +182,18 @@ namespace BL
                 package.Priority = priorityCatagory;
             }
 
-            PackageList[packagei] = package;
-            BLObject.Dal.SetPackageList(PackageList);
+            lock (BLObject.Dal)
+            {
+                PackageList[packagei] = package;
+                BLObject.Dal.SetPackageList(PackageList);
+            }
         }
 
         /// <summary>
         /// Receives a package Id and deletes the package, freeing up a drone if necessary
         /// </summary>
         /// <param name="Id"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DeletePackage(int Id)
         {
             List<DO.Package> PackageList = BLObject.Dal.GetPackageList();
@@ -200,9 +219,12 @@ namespace BL
                 BLObject.BLDroneList[Dronei].PackageId = null;
             }
 
-            //Delete package from package list
-            PackageList.RemoveAt(packagei);
-            BLObject.Dal.SetPackageList(PackageList);
+            lock (BLObject.Dal)
+            {
+                //Delete package from package list
+                PackageList.RemoveAt(packagei);
+                BLObject.Dal.SetPackageList(PackageList);
+            }
 
         }
     }

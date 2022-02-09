@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace BL
 {
     public partial class BL : BlApi.IBL
     {
-        
-        
         /// <summary>
         /// Returns a list of base stations
         /// </summary>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public List<BaseStationToList> ListOfStations()
         {
             List<DO.Station> StationList = BLObject.Dal.GetStationList();
@@ -31,6 +31,7 @@ namespace BL
         /// Returns a list of customers
         /// </summary>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public List<CustomerToList> ListOfCustomers()
         {
             List<CustomerToList> list = new();
@@ -48,6 +49,7 @@ namespace BL
         /// Returns a list of packages
         /// </summary>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public List<PackageToList> ListOfPackages()
         {
             List<PackageToList> list = new();
@@ -64,6 +66,7 @@ namespace BL
         /// Returns a list of packages unassigned to drones
         /// </summary>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public List<PackageToList> ListOfUnassignedPackages()
         {
             List<PackageToList> list = new();
@@ -82,6 +85,7 @@ namespace BL
         /// Returns a list of base stations that have availabe charging stations
         /// </summary>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public List<BaseStationToList> ListOfStationsWithChargeSlots()
         {
             List<DO.Station> StationList = BLObject.Dal.GetStationList();
@@ -108,6 +112,7 @@ namespace BL
         /// </summary>
         /// <param name="option"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public List<DroneToList> DroneListFilter(string option)
         {
             Predicate<DroneToList> predicate;
@@ -142,22 +147,21 @@ namespace BL
             return BLObject.BLDroneList.FindAll(predicate);
         }
 
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public List<BaseStationToList> StationListFilter(string option)
         {
-            
             switch (option)
             {
                 case "All Stations":
                     return ListOfStations();
                 case "Available Charge Slots":
                     return ListOfStations().FindAll(x => x.AvailableChargeSlots > 0);
-                    
                 default:
                     throw new MessageException("Error: Invalid drone list filter option entered.");
             }
-            
-
         }
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public List<PackageToList> PackageListFilter(string option)
         {
             switch(option)
@@ -170,7 +174,5 @@ namespace BL
                     throw new MessageException("Error: Invalid Pakcage List filter option entered.");
             }
         }
-
     }
-    
 }

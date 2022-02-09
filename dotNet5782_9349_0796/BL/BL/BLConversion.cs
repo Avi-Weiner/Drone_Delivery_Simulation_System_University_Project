@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
+
 namespace BL
 {
-
     public partial class BL : BlApi.IBL
     {
         /// <summary>
@@ -14,6 +14,7 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Drone DroneToListToDrone(int id)
         {
             Drone d = new();
@@ -80,6 +81,7 @@ namespace BL
         /// <param name="PickedUp"></param>
         /// <param name="Delivered"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public PackageStatus TimesToStatus(DateTime? scheduled, DateTime? PickedUp, DateTime? Delivered)
         {
             if (scheduled == null)
@@ -99,6 +101,7 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public PackageToList DalPackageToList(int id)
         {
             PackageToList PList = new();
@@ -123,6 +126,7 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public Customer DalToBlCustomer(int id)
         {
             
@@ -161,6 +165,7 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public DroneInCharge DroneToListToInCharge(int id)
         {
             
@@ -180,6 +185,7 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public BaseStation DalToBlStation(int id)
         {
             List<DO.Station> StationList = BLObject.Dal.GetStationList();
@@ -211,6 +217,7 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public BaseStationToList StationToStationToList(int id)
         {
             BaseStation s = DalToBlStation(id);
@@ -229,6 +236,7 @@ namespace BL
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public CustomerToList CustomerToCustomerToList(int id)
         {
             Customer c = DalToBlCustomer(id);

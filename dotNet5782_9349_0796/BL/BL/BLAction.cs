@@ -16,7 +16,7 @@ namespace BL
         /// drone will be updated and station chargers will be updated.
         /// </summary>
         /// <param name="DroneId"></param>
-        ///[MethodImpl(MethodImplOptions.Synchronized)]
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void SendDroneToCharge(int DroneId)
         {
             #region Input Checking
@@ -47,19 +47,21 @@ namespace BL
             }
             #endregion
 
-            //update battery state 
-            BLObject.BLDroneList[DroneIndex].BatteryStatus -= 
-                BLObject.ChargeForDistance(BLObject.BLDroneList[DroneIndex].Weight, 
-                BLObject.DistanceBetween(BLObject.BLDroneList[DroneIndex].Location, BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude)));
-            BLObject.BLDroneList[DroneIndex].Location = BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude);
-            BLObject.BLDroneList[DroneIndex].DroneStatus = DroneStatus.maintenance;
-            List<DO.Station> StationList = BLObject.Dal.GetStationList();
-            int StationIndex = StationList.FindIndex(x => x.Id == StationClose.Id);
-            StationClose.ChargeSlots -= 1;
-            StationList[StationIndex] = StationClose;
-            BLObject.Dal.SetStationList(StationList);
-            BLObject.BLDroneList[DroneIndex].ChargingTimeStarted = DateTime.Now;
-            ///iii adding a mathcing instance///////////////////////////////////////////////////////////////////////////////////////
+            lock (BLObject.Dal)
+            {
+                //update battery state 
+                BLObject.BLDroneList[DroneIndex].BatteryStatus -= 
+                    BLObject.ChargeForDistance(BLObject.BLDroneList[DroneIndex].Weight, 
+                    BLObject.DistanceBetween(BLObject.BLDroneList[DroneIndex].Location, BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude)));
+                BLObject.BLDroneList[DroneIndex].Location = BLObject.MakeLocation(StationClose.Longitude, StationClose.Latitude);
+                BLObject.BLDroneList[DroneIndex].DroneStatus = DroneStatus.maintenance;
+                List<DO.Station> StationList = BLObject.Dal.GetStationList();
+                int StationIndex = StationList.FindIndex(x => x.Id == StationClose.Id);
+                StationClose.ChargeSlots -= 1;
+                StationList[StationIndex] = StationClose;
+                BLObject.Dal.SetStationList(StationList);
+                BLObject.BLDroneList[DroneIndex].ChargingTimeStarted = DateTime.Now;
+            }
         }
 
         /// <summary>
@@ -67,6 +69,7 @@ namespace BL
         /// location will be the statoin where it was charged.
         /// </summary>
         /// <param name="DroneId"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void ReleaseDroneFromCharge(int DroneId)
         {
             DateTime ReleaseTime = DateTime.Now;
@@ -83,23 +86,25 @@ namespace BL
             DateTime StartingTime = (DateTime)BLObject.BLDroneList[DroneIndex].ChargingTimeStarted;
             TimeSpan ChargeTime = ReleaseTime - StartingTime;
 
-            double Charge = BLObject.BLDroneList[DroneIndex].BatteryStatus;
-            Charge += BLObject.ChargeForTime(ChargeTime);
-            if (Charge > 1)
-                Charge = 1;
-            BLObject.BLDroneList[DroneIndex].BatteryStatus = Charge;
-            BLObject.BLDroneList[DroneIndex].DroneStatus = DroneStatus.free;
-            BLObject.BLDroneList[DroneIndex].ChargingTimeStarted = null;
-            DO.Station StationClose = BLObject.ClosestStation(BLObject.BLDroneList[DroneIndex].Location);
-            List<DO.Station> StationList = BLObject.Dal.GetStationList();
-            int StationIndex = StationList.FindIndex(x => x.Id == StationClose.Id);
-            DO.Station station = StationList[StationIndex];
-            station.ChargeSlots++;
+            lock (BLObject.Dal)
+            {
+                double Charge = BLObject.BLDroneList[DroneIndex].BatteryStatus;
+                Charge += BLObject.ChargeForTime(ChargeTime);
+                if (Charge > 1)
+                    Charge = 1;
+                BLObject.BLDroneList[DroneIndex].BatteryStatus = Charge;
+                BLObject.BLDroneList[DroneIndex].DroneStatus = DroneStatus.free;
+                BLObject.BLDroneList[DroneIndex].ChargingTimeStarted = null;
+                DO.Station StationClose = BLObject.ClosestStation(BLObject.BLDroneList[DroneIndex].Location);
+                List<DO.Station> StationList = BLObject.Dal.GetStationList();
+                int StationIndex = StationList.FindIndex(x => x.Id == StationClose.Id);
+                DO.Station station = StationList[StationIndex];
+                station.ChargeSlots++;
 
-            //set back updated station.
-            StationList[StationIndex] = station;
-            BLObject.Dal.SetStationList(StationList);
-            //again not sure what the mathcing instance is.
+                //set back updated station.
+                StationList[StationIndex] = station;
+                BLObject.Dal.SetStationList(StationList);
+            }
         }
 
         /// <summary>
@@ -110,20 +115,24 @@ namespace BL
         /// <param name="pack"></param>
         /// <param name="id"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public bool CheckCloseEnough(DO.Package pack, int id)
         {
-            DO.Customer customerSender = BLObject.Dal.GetCustomerList().Find(x => x.Id == pack.SenderId);//changed from findIndex to Find...
-            DO.Customer customerReciever = BLObject.Dal.GetCustomerList().Find(x => x.Id == pack.ReceiverId);
-            Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
-            Location recieverLocation = BLObject.MakeLocation(customerReciever.Longitude, customerReciever.Latitude);
-            Location ClosesetStation = BLObject.MakeLocation(BLObject.ClosestStation(recieverLocation).Longitude, BLObject.ClosestStation(recieverLocation).Latitude);
-            double DistanceBetweenDroneAndPackage = BLObject.DistanceBetween(senderLocation, BLObject.BLDroneList[id].Location);
-            if (BLObject.BLDroneList[id].BatteryStatus < BLObject.ChargeForDistance(DO.WeightCategory.light, DistanceBetweenDroneAndPackage) + BLObject.ChargeForDistance(pack.Weight, BLObject.DistanceBetween(senderLocation, recieverLocation)) + 
-                BLObject.ChargeForDistance(DO.WeightCategory.light, BLObject.DistanceBetween(recieverLocation, ClosesetStation)))
+            lock (BLObject.Dal)
             {
-                return true;
+                DO.Customer customerSender = BLObject.Dal.GetCustomerList().Find(x => x.Id == pack.SenderId);//changed from findIndex to Find...
+                DO.Customer customerReciever = BLObject.Dal.GetCustomerList().Find(x => x.Id == pack.ReceiverId);
+                Location senderLocation = BLObject.MakeLocation(customerSender.Longitude, customerSender.Latitude);
+                Location recieverLocation = BLObject.MakeLocation(customerReciever.Longitude, customerReciever.Latitude);
+                Location ClosesetStation = BLObject.MakeLocation(BLObject.ClosestStation(recieverLocation).Longitude, BLObject.ClosestStation(recieverLocation).Latitude);
+                double DistanceBetweenDroneAndPackage = BLObject.DistanceBetween(senderLocation, BLObject.BLDroneList[id].Location);
+                if (BLObject.BLDroneList[id].BatteryStatus < BLObject.ChargeForDistance(DO.WeightCategory.light, DistanceBetweenDroneAndPackage) + BLObject.ChargeForDistance(pack.Weight, BLObject.DistanceBetween(senderLocation, recieverLocation)) +
+                    BLObject.ChargeForDistance(DO.WeightCategory.light, BLObject.DistanceBetween(recieverLocation, ClosesetStation)))
+                {
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
 
         /// <summary>
@@ -131,6 +140,7 @@ namespace BL
         /// if anything goes wrong, appropriate exception will be thrown.
         /// </summary>
         /// <param name="DroneId"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void AssignPackageToDrone(int DroneId)
         {
             #region Check basic validity
@@ -181,30 +191,32 @@ namespace BL
             }
             #endregion
 
-            //Choose prioritised package
-            drone.PackageId = Packages[0].Id;
+            lock (BLObject.Dal)
+            {
+                //Choose prioritised package
+                drone.PackageId = Packages[0].Id;
 
-            drone.DroneStatus = DroneStatus.delivery;
-            DO.Package finalPackage = Packages.Find(x => x.Id == drone.PackageId);
-            finalPackage.DroneId = drone.Id;
-            finalPackage.Scheduled = DateTime.Now;
-            
-            List<DO.Package> PackageList1 = BLObject.Dal.GetPackageList();
-            int finalPackageIndex = PackageList1.FindIndex(x => x.Id == drone.PackageId);
-            PackageList1[finalPackageIndex] = finalPackage;
-            
-            BLObject.BLDroneList[DroneIndex] = drone;
-            BLObject.Dal.SetPackageList(PackageList1);
-            
+                drone.DroneStatus = DroneStatus.delivery;
+                DO.Package finalPackage = Packages.Find(x => x.Id == drone.PackageId);
+                finalPackage.DroneId = drone.Id;
+                finalPackage.Scheduled = DateTime.Now;
 
+                List<DO.Package> PackageList1 = BLObject.Dal.GetPackageList();
+                int finalPackageIndex = PackageList1.FindIndex(x => x.Id == drone.PackageId);
+                PackageList1[finalPackageIndex] = finalPackage;
+
+                BLObject.BLDroneList[DroneIndex] = drone;
+                BLObject.Dal.SetPackageList(PackageList1);
+            }
         }
-        
+
         /// <summary>
         /// if a package was assinged to a drone the drone will be sent to collect the package it was assigned
         /// and collect the package. appropriate battery percentage will drop.
         /// otherwise an exception will be thrown.
         /// </summary>
         /// <param name="DroneId"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DroneCollectsAPackage(int DroneId)
         {
             int DroneIndex = BLObject.BLDroneList.FindIndex(x => x.Id == DroneId);
@@ -225,15 +237,19 @@ namespace BL
             {
                 throw new MessageException("Error: Package was picked up already.\n");
             }
-            DO.Customer Sender = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.SenderId);
-            Location SenderLocation = BLObject.MakeLocation(Sender.Longitude, Sender.Latitude);
-            double DistanceBetween = BLObject.DistanceBetween(SenderLocation, Drone.Location);
-            Drone.BatteryStatus -= BLObject.ChargeForDistance(Package.Weight, DistanceBetween);
-            Drone.Location = SenderLocation;
-            Package.PickedUp = DateTime.Now;
-            BLObject.BLDroneList[DroneIndex] = Drone;
-            PackageList[PackageIndex] = Package;
-            BLObject.Dal.SetPackageList(PackageList);
+
+            lock (BLObject.Dal)
+            {
+                DO.Customer Sender = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.SenderId);
+                Location SenderLocation = BLObject.MakeLocation(Sender.Longitude, Sender.Latitude);
+                double DistanceBetween = BLObject.DistanceBetween(SenderLocation, Drone.Location);
+                Drone.BatteryStatus -= BLObject.ChargeForDistance(Package.Weight, DistanceBetween);
+                Drone.Location = SenderLocation;
+                Package.PickedUp = DateTime.Now;
+                BLObject.BLDroneList[DroneIndex] = Drone;
+                PackageList[PackageIndex] = Package;
+                BLObject.Dal.SetPackageList(PackageList);
+            }
         }
 
         /// <summary>
@@ -242,6 +258,7 @@ namespace BL
         /// if the drone doesn't have a package appropriate message will be thrown.
         /// </summary>
         /// <param name="DroneId"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public void DroneDeliversPakcage(int DroneId)
         {
             int DroneIndex = BLObject.BLDroneList.FindIndex(x => x.Id == DroneId);
@@ -267,23 +284,26 @@ namespace BL
                 throw new MessageException("Error: Package was delivered already");
             }
 
-            DO.Customer Sender = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.SenderId);
-            Location SenderLocation = BLObject.MakeLocation(Sender.Longitude, Sender.Latitude);
-            DO.Customer Reciever = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.ReceiverId);
-            Location RecieverLocation = BLObject.MakeLocation(Reciever.Longitude, Sender.Latitude);
-            Drone.BatteryStatus -= BLObject.ChargeForDistance(Package.Weight, BLObject.DistanceBetween(SenderLocation, RecieverLocation));
-            if (Drone.BatteryStatus < 0)
-                Drone.BatteryStatus = 0;
-            Drone.Location = RecieverLocation;
-            Drone.DroneStatus = DroneStatus.free;
-            Package.Delivered = DateTime.Now;
-            
-            BLObject.BLDroneList[DroneIndex] = Drone;
-            //PackageList[PackageIndex] = Package;
-            List<DO.Package> PackageList1 = BLObject.Dal.GetPackageList();
-            int Index = PackageList1.FindIndex(x => x.Id == Package.Id);
-            PackageList1[Index] = Package;
-            BLObject.Dal.SetPackageList(PackageList1);
+            lock (BLObject.Dal)
+            {
+                DO.Customer Sender = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.SenderId);
+                Location SenderLocation = BLObject.MakeLocation(Sender.Longitude, Sender.Latitude);
+                DO.Customer Reciever = DalObject.DataSource.CustomerList.Find(x => x.Id == Package.ReceiverId);
+                Location RecieverLocation = BLObject.MakeLocation(Reciever.Longitude, Sender.Latitude);
+                Drone.BatteryStatus -= BLObject.ChargeForDistance(Package.Weight, BLObject.DistanceBetween(SenderLocation, RecieverLocation));
+                if (Drone.BatteryStatus < 0)
+                    Drone.BatteryStatus = 0;
+                Drone.Location = RecieverLocation;
+                Drone.DroneStatus = DroneStatus.free;
+                Package.Delivered = DateTime.Now;
+
+                BLObject.BLDroneList[DroneIndex] = Drone;
+                //PackageList[PackageIndex] = Package;
+                List<DO.Package> PackageList1 = BLObject.Dal.GetPackageList();
+                int Index = PackageList1.FindIndex(x => x.Id == Package.Id);
+                PackageList1[Index] = Package;
+                BLObject.Dal.SetPackageList(PackageList1);
+            }
         }
 
 

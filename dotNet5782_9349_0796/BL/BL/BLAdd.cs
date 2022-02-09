@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace BL
 {
@@ -17,7 +18,7 @@ namespace BL
         /// <param name="longitude"></param>
         /// <param name="latitude"></param>
         /// <param name="slots"></param>
-
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public  BaseStation AddBaseStation(int name, double longitude, double latitude, int availableSlots)
         {//Took out id parameter as it is created automatically 
 
@@ -29,7 +30,10 @@ namespace BL
             if (availableSlots < 0)
                 throw new MessageException("Error: ChargeSlots must be positive");
 
-            BLObject.Dal.AddStation(name, longitude, latitude, availableSlots);
+            lock (BLObject.Dal)
+            {
+                BLObject.Dal.AddStation(name, longitude, latitude, availableSlots);
+            }
 
             //Create BaseStation
             List<DO.Station> StationList = BLObject.Dal.GetStationList();
@@ -56,6 +60,7 @@ namespace BL
         /// <param name="model"></param>
         /// <param name="Weight"></param>
         /// <param name="chargingStation"></param>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public  Drone AddDrone(string Model, string Weight, int StationId)
         {   //manufacturerId was also included as a parameter but our
             //Id's are automatically created in the data layer for each entered object
@@ -78,7 +83,11 @@ namespace BL
             #endregion
 
             int UniqueId = DalObject.DataSource.GetNextUniqueID(); //getting next unique id for immediate access
-            BLObject.Dal.AddDrone(Model, WeightCatagory);
+
+            lock (BLObject.Dal)
+            {
+                BLObject.Dal.AddDrone(Model, WeightCatagory);
+            }
 
             //Creading new Drone 
             Drone d = new();
@@ -120,6 +129,7 @@ namespace BL
         /// <param name="Longitude"></param>
         /// <param name="Latitude"></param>
         /// <returns></returns>
+        [MethodImpl(MethodImplOptions.Synchronized)]
         public  Customer AddCustomer(string name, string phone, double Longitude, double Latitude)
         {//Customer id created automatically and therefore removed
             if (Longitude < -180 || Longitude > 180)
@@ -129,8 +139,10 @@ namespace BL
             if (name == "")
                 throw new MessageException("Error: Name is empty");
 
-
-            BLObject.Dal.AddCustomer(name, phone, Longitude, Latitude);
+            lock (BLObject.Dal)
+            {
+                BLObject.Dal.AddCustomer(name, phone, Longitude, Latitude);
+            }
 
             List<DO.Customer> CustomerList = BLObject.Dal.GetCustomerList();
             //Create BaseStation
@@ -156,7 +168,8 @@ namespace BL
         /// <param name="Weight"></param>
         /// <param name="Priority"></param>
         /// <returns></returns>
-        public  Package AddPackage(int SenderId, int ReceiverId, string Weight, string Priority)
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        public Package AddPackage(int SenderId, int ReceiverId, string Weight, string Priority)
         {
             #region InputChecking
             List<DO.Customer> CustomerList = BLObject.Dal.GetCustomerList();
@@ -184,9 +197,11 @@ namespace BL
             DO.WeightCategory WeightCatagory = (DO.WeightCategory)Enum.Parse(typeof(DO.WeightCategory), Weight);
             DO.Priority priorityStatus = (DO.Priority)Enum.Parse(typeof(DO.Priority), Priority);
 
-            //int id = BLObject.Dal.; //Get the next UniqueID which will be the ID of this package
-            BLObject.Dal.AddPackage(SenderId, ReceiverId, WeightCatagory, priorityStatus);
-
+            lock (BLObject.Dal)
+            {
+                //int id = BLObject.Dal.; //Get the next UniqueID which will be the ID of this package
+                BLObject.Dal.AddPackage(SenderId, ReceiverId, WeightCatagory, priorityStatus);
+            }
             Package p = new();
 
             p.Id = 0;
