@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Runtime.CompilerServices;
 
 namespace BL
 {
@@ -15,6 +16,7 @@ namespace BL
         /// drone will be updated and station chargers will be updated.
         /// </summary>
         /// <param name="DroneId"></param>
+        ///[MethodImpl(MethodImplOptions.Synchronized)]
         public void SendDroneToCharge(int DroneId)
         {
             #region Input Checking
